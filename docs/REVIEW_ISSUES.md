@@ -5,10 +5,10 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 
 | ID | Impact | Effort | Status | Issue |
 |---|---|---|---|---|
-| R01 | Critical | 1–2 h | todo | Inverse-flame O2 (burner oxidizer stream) treated as ambient O2 |
+| R01 | Critical | 1–2 h | done | Inverse-flame O2 (burner oxidizer stream) treated as ambient O2 |
 | R02 | Critical | 1 h | todo | Missing data raises the score (renormalization rewards unknowns) |
 | R03 | High | — | todo | No "findings": app ranks conditions, never interprets results (done via R06a) |
-| R04 | High | 2–3 h | todo | Pipeline not reproducible: hand-copied constants, no raw data in repo |
+| R04 | High | 2–3 h | done | Pipeline not reproducible: hand-copied constants, no raw data in repo |
 | R05 | High | 1–2 h (human) | todo | Human verification steps not done (H1, H4, H5, links, phone) |
 | R06 | Critical | see subtasks | todo | Add the super-intelligence (SI) layer the challenge title asks for (subtasks R06a–R06e) |
 | R06a | Critical | 3–4 h | todo | SI: AI-extracted key findings per investigation, each with a quote and source (merges with R03) |
@@ -53,6 +53,7 @@ In inverse flames the chamber holds fuel + N2 (`Xf before test`); `XO2` is the O
 - Where: `pipeline/build_data.mjs:96,102` (O2 ranges up to 85%), `BINS`, `RUN_STATS.o2_ge_30*`, `o2_any` gap.
 - Effect: Evidence Map shows atmospheres to 85% O2; gap "highest O2 tested 85%"; Slide 5 "83 runs ≥30% O2 at ≤75 kPa"; spacesuit + suppression ranks Flame Design and CFI-G first only because of this.
 - Fix: split normal vs. inverse; exclude inverse rows from ambient-O2 ranges and coverage counts (or plot them separately labeled "oxidizer stream"); recompute bins, insights, gaps.
+- Done 2026-11-14: inverse rows excluded from ambient O2 and pressure ranges, bins and all counts (PSI-10 inverse table confirmed the same: chamber holds C2H4 + N2). Run points 1,138 → 875; max O2 85% → 40%; ≥30% O2 at ≤75 kPa 83 → 37. Slides 5 and project page numbers updated (R15 still open for R02). A labeled "oxidizer stream" view was not built; ranges kept in `TABLES[id].inverse`.
 
 ### R02 — Missing data raises the score (Critical)
 `ranker.ts:65-68` skips unknown factors and rescales weights. Spacesuit + prevention ranks BASS and SAFFIRE-III #1/#2 though neither recorded O2.
@@ -65,6 +66,7 @@ Challenge: "summarizes, ranks, and interprets those findings". Summaries say wha
 ### R04 — Pipeline not reproducible (High)
 Values were transcribed by hand into constants; `pipeline/raw/` is empty. PSI is reachable from this machine now.
 - Fix: fetch script (PLAN P1.2, rate-limited, cached), commit trimmed record JSON + CSVs, parse ranges/bins/counts from them, keep current numbers as regression checks.
+- Done 2026-11-14: `pipeline/fetch.mjs` → `pipeline/raw/` (24 records, 22 tables, sha256 manifest); `pipeline/tables.mjs` parses ranges, counts and full-resolution run points (with file, row and `flame_type` normal/inverse, ready for R01); `build_data.mjs` checks against `pipeline/expected.json`. Hand copy reproduced except two corrections (PSI-10 max pressure 304.7 not 304.8; Exploration Atmosphere near-count 30 not 31), logged in DATA_CLEANING_LOG.md. Text-derived quotes are checked against record text. R01 and R08 can now work from `POINTS`.
 
 ### R05 — Human verification outstanding (High, human)
 H1 (`SUBMISSION_REQUIREMENTS.md` empty: demo/slide limits unconfirmed), H4 (10 fields vs live PSI), H5 (read 19 summaries; `human_reviewed` all false), external link check, phone check, keyboard/screen-reader check.

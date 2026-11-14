@@ -84,7 +84,7 @@ export default function EvidenceMap() {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
-        <p className="dim">Runs are grouped to the nearest 1% oxygen and 5 kPa for display; mark size shows the number of runs. Source: experimental tables of BASS-II, FLEX, CFI, ACME Flame Design and ACME CFI-G in NASA PSI. Dashed rings are the other preset environments.</p>
+        <p className="dim">Runs are grouped to the nearest 1% oxygen and 5 kPa for display; mark size shows the number of runs. Source: experimental tables of BASS-II, FLEX, CFI, ACME Flame Design and ACME CFI-G in NASA PSI. For the two ACME studies only normal flames are shown: in their inverse flames the chamber held fuel and nitrogen, and the recorded oxygen value is the burner's oxidizer stream, not the atmosphere. Dashed rings are the other preset environments.</p>
         <details className="alt">
           <summary>Chart data as a table</summary>
           <table className="grid">

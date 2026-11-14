@@ -5,10 +5,10 @@
    {
     "id": "combined",
     "severity": "info",
-    "text": "Of 1138 runs with both oxygen and pressure, 387 are within 5 oxygen points and 10 kPa of this environment (ACME Flame Design: 74, ACME CFI-G: 44, BASS-II: 112, CFI: 47, FLEX: 110). Fuel types: gas-fuel, solid-fuel, liquid-droplet.",
+    "text": "Of 875 runs with both oxygen and pressure, 375 are within 5 oxygen points and 10 kPa of this environment (ACME Flame Design: 71, ACME CFI-G: 35, BASS-II: 112, CFI: 47, FLEX: 110). Fuel types: gas-fuel, solid-fuel, liquid-droplet.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
-     "value": 387
+     "value": 375
     },
     "sources": [
      "PSI-10",
@@ -70,23 +70,22 @@
    {
     "id": "low_pressure",
     "severity": "high",
-    "text": "5 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "text": "4 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
     "computed_from": {
      "metric": "investigations whose recorded pressure range includes 70.3 kPa",
-     "value": 5
+     "value": 4
     },
     "sources": [
      "PSI-69",
      "PSI-68",
      "PSI-39",
-     "PSI-10",
      "PSI-159"
     ]
    },
    {
     "id": "combined",
     "severity": "info",
-    "text": "Of 1138 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
+    "text": "Of 875 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
      "value": 23
@@ -147,23 +146,22 @@
    {
     "id": "low_pressure",
     "severity": "high",
-    "text": "5 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "text": "4 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
     "computed_from": {
      "metric": "investigations whose recorded pressure range includes 70.3 kPa",
-     "value": 5
+     "value": 4
     },
     "sources": [
      "PSI-69",
      "PSI-68",
      "PSI-39",
-     "PSI-10",
      "PSI-159"
     ]
    },
    {
     "id": "combined",
     "severity": "info",
-    "text": "Of 1138 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
+    "text": "Of 875 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
      "value": 23
@@ -224,23 +222,22 @@
    {
     "id": "low_pressure",
     "severity": "high",
-    "text": "5 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "text": "4 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
     "computed_from": {
      "metric": "investigations whose recorded pressure range includes 70.3 kPa",
-     "value": 5
+     "value": 4
     },
     "sources": [
      "PSI-69",
      "PSI-68",
      "PSI-39",
-     "PSI-10",
      "PSI-159"
     ]
    },
    {
     "id": "combined",
     "severity": "info",
-    "text": "Of 1138 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
+    "text": "Of 875 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
      "value": 23
@@ -271,13 +268,13 @@
    {
     "id": "o2_any",
     "severity": "high",
-    "text": "No investigation of any fuel type has a tabulated oxygen level as high as 100%. The highest is 85% (ACME Flame Design, ACME CFI-G, gas fuels).",
+    "text": "No investigation of any fuel type has a tabulated oxygen level as high as 100%. The highest is 40% (ACME BRE, ACME Flame Design, ACME CFI-G, gas fuels).",
     "computed_from": {
      "metric": "max tabulated O2 % across all investigations",
-     "value": 85
+     "value": 40
     },
     "sources": [
-     "PSI-10"
+     "PSI-20"
     ]
    },
    {
@@ -293,7 +290,7 @@
    {
     "id": "combined",
     "severity": "high",
-    "text": "Of 1138 runs with both oxygen and pressure, none is within 5 oxygen points and 10 kPa of this environment.",
+    "text": "Of 875 runs with both oxygen and pressure, none is within 5 oxygen points and 10 kPa of this environment.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
      "value": 0
@@ -352,28 +349,26 @@
    {
     "id": "low_pressure",
     "severity": "high",
-    "text": "4 investigations have a recorded pressure range that includes 56.5 kPa (FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "text": "3 investigations have a recorded pressure range that includes 56.5 kPa (FLEX-2, CFI, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
     "computed_from": {
      "metric": "investigations whose recorded pressure range includes 56.5 kPa",
-     "value": 4
+     "value": 3
     },
     "sources": [
      "PSI-68",
      "PSI-39",
-     "PSI-10",
      "PSI-159"
     ]
    },
    {
     "id": "combined",
     "severity": "info",
-    "text": "Of 1138 runs with both oxygen and pressure, 31 are within 5 oxygen points and 10 kPa of this environment (ACME Flame Design: 2, ACME CFI-G: 29). Fuel types: gas-fuel.",
+    "text": "Of 875 runs with both oxygen and pressure, 19 are within 5 oxygen points and 10 kPa of this environment (ACME CFI-G: 19). Fuel types: gas-fuel.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
-     "value": 31
+     "value": 19
     },
     "sources": [
-     "PSI-10",
      "PSI-159"
     ]
    }
@@ -429,23 +424,22 @@
    {
     "id": "low_pressure",
     "severity": "high",
-    "text": "5 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "text": "4 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
     "computed_from": {
      "metric": "investigations whose recorded pressure range includes 70.3 kPa",
-     "value": 5
+     "value": 4
     },
     "sources": [
      "PSI-69",
      "PSI-68",
      "PSI-39",
-     "PSI-10",
      "PSI-159"
     ]
    },
    {
     "id": "combined",
     "severity": "info",
-    "text": "Of 1138 runs with both oxygen and pressure, 43 are within 5 oxygen points and 10 kPa of this environment (FLEX: 43). Fuel types: liquid-droplet.",
+    "text": "Of 875 runs with both oxygen and pressure, 43 are within 5 oxygen points and 10 kPa of this environment (FLEX: 43). Fuel types: liquid-droplet.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
      "value": 43
@@ -492,10 +486,10 @@
    {
     "id": "combined",
     "severity": "info",
-    "text": "Of 1138 runs with both oxygen and pressure, 387 are within 5 oxygen points and 10 kPa of this environment (ACME Flame Design: 74, ACME CFI-G: 44, BASS-II: 112, CFI: 47, FLEX: 110). Fuel types: gas-fuel, solid-fuel, liquid-droplet.",
+    "text": "Of 875 runs with both oxygen and pressure, 375 are within 5 oxygen points and 10 kPa of this environment (ACME Flame Design: 71, ACME CFI-G: 35, BASS-II: 112, CFI: 47, FLEX: 110). Fuel types: gas-fuel, solid-fuel, liquid-droplet.",
     "computed_from": {
      "metric": "runs within +/-5 O2 points and +/-10 kPa",
-     "value": 387
+     "value": 375
     },
     "sources": [
      "PSI-10",

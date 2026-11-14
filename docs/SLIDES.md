@@ -47,7 +47,7 @@ Code: https://github.com/samarthssinghal/flamemap
 
 ## Slide 5 — What we found (lunar habitat)
 - No solid-fuel test in PSI has reached 30% oxygen — the highest is 22.2% (BASS-II).
-- 83 of 1,138 run points reach 30% O2 or more at 75 kPa or less; none of them used solid fuel.
+- 37 of 875 run points reach 30% O2 or more at 75 kPa or less; none of them used solid fuel.
 - 0 of 19 investigations ran at partial gravity — a real evidence gap, not just a low score.
 
 *Visual: Evidence Map screenshot with the lunar-habitat marker sitting outside the tested cluster.*

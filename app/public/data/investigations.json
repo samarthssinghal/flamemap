@@ -1977,21 +1977,21 @@
   "conditions": {
    "o2_percent": {
     "min": 19.8,
-    "max": 85,
+    "max": 40,
     "unit": "%",
     "source": {
      "type": "table_column",
-     "ref": "PSI-10_Experimental table_Flame Design_Normal Flame.csv and _Inverse Flame.csv :: XO2 (init) / XO2"
+     "ref": "PSI-10_Experimental table_Flame Design_Normal Flame.csv :: XO2 (init) (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
     },
     "confidence": "high"
    },
    "pressure_kpa": {
-    "min": 43,
-    "max": 304.8,
+    "min": 94.4,
+    "max": 131.4,
     "unit": "kPa",
     "source": {
      "type": "table_column",
-     "ref": "PSI-10_Experimental table_Flame Design_Normal Flame.csv and _Inverse Flame.csv :: pinit (atm)"
+     "ref": "PSI-10_Experimental table_Flame Design_Normal Flame.csv :: pinit (atm) (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
     },
     "confidence": "high"
    },
@@ -2035,7 +2035,7 @@
   },
   "summary": {
    "text": "Spherical gas flames were studied on the station over a broad range of dilutions, flow rates and pressures, in both normal and inverse directions. The aim was to find soot-inception limits and take detailed measurements, observing the flames with cameras, radiometers and thermocouples.",
-   "why_it_matters": "Not aimed at fire safety, but it is one of the few data sets that reaches very high oxygen levels and low pressures.",
+   "why_it_matters": "Not aimed at fire safety, but its normal flames burned in chamber atmospheres of up to 40% oxygen, among the highest in this collection, at about 1 atm.",
    "generated_by": "AI-drafted from the PSI record text",
    "human_reviewed": false
   },
@@ -2204,22 +2204,22 @@
   "geometry": "Spherical diffusion flames, normal and inverse",
   "conditions": {
    "o2_percent": {
-    "min": 12,
-    "max": 85,
+    "min": 18,
+    "max": 40,
     "unit": "%",
     "source": {
      "type": "table_column",
-     "ref": "PSI-159_Experimental table_CFI-G_Normal Flames.csv and _Inverse Flames.csv :: XO2 before test / XO2"
+     "ref": "PSI-159_Experimental table_CFI-G_Normal Flames.csv :: XO2 before test (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
     },
     "confidence": "high"
    },
    "pressure_kpa": {
-    "min": 49.5,
-    "max": 331,
+    "min": 50.7,
+    "max": 304,
     "unit": "kPa",
     "source": {
      "type": "table_column",
-     "ref": "PSI-159_Experimental table_CFI-G_Normal Flames.csv and _Inverse Flames.csv :: approx p (bar)"
+     "ref": "PSI-159_Experimental table_CFI-G_Normal Flames.csv :: approx p (bar) (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
     },
     "confidence": "high"
    },
@@ -2260,7 +2260,7 @@
   },
   "summary": {
    "text": "Spherical gas flames were run on the station with several fuels over a range of dilutions, flow rates and pressures, in normal and inverse directions, to find the conditions where cool diffusion flames occur. The flight tests are supported by simulations and chemical-kinetics work.",
-   "why_it_matters": "Not aimed at fire safety, but it covers the widest oxygen range in this collection and includes low-pressure tests.",
+   "why_it_matters": "Not aimed at fire safety, but its normal flames burned in atmospheres of up to 40% oxygen, including tests near half an atmosphere.",
    "generated_by": "AI-drafted from the PSI record text",
    "human_reviewed": false
   },
@@ -2814,7 +2814,7 @@
     "doi": "10.2514/6.2005-1141"
    },
    {
-    "title": "A  Mechanistic Study of Soret Diffusion in Hydrogen-Air Flames",
+    "title": "A Mechanistic Study of Soret Diffusion in Hydrogen-Air Flames",
     "doi": "10.2514/6.2009-988"
    },
    {
