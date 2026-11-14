@@ -1,7 +1,7 @@
 # Decisions
 
 - Single-person execution; static site (Vite + React + TypeScript), no backend. Ranker runs in the browser.
-- The pipeline is one Node script (`pipeline/build_data.mjs`) instead of the Python scripts in PLAN.md, because PSI was reachable only from a browser. See DATA_CLEANING_LOG.md.
+- The pipeline is Node (`pipeline/fetch.mjs`, `tables.mjs`, `build_data.mjs`) instead of the Python scripts in PLAN.md. It started as one script with hand-copied values because PSI was reachable only from a browser; since R04 (2026-11-14) it downloads and parses the PSI files itself and the raw snapshot is committed in `pipeline/raw/`. See DATA_CLEANING_LOG.md.
 - PSI record text is not copied into the app. The app shows short summaries and links to the PSI record. Publication lists are shown as counts with a link.
 - Fire-safety roles follow the challenge statement grouping. Secondary role "suppression" is given to BASS and BASS-II (extinguishing-agent objective and title) and FLEX-2 (flame extinction objective). SPICE and SAFFIRE-I have no secondary role.
 - ACME BRE is classed as prevention with fuel class gas: it emulates solid and liquid burning with a gas burner.

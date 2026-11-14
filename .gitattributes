@@ -1,0 +1,2 @@
+# Keep the PSI snapshot byte-for-byte (sha256 in pipeline/raw/manifest.json)
+pipeline/raw/** -text

@@ -4,9 +4,9 @@
 FlameMap helps researchers, students and engineers find which NASA microgravity combustion experiments apply to a given crewed environment. You pick an environment (station cabin, lunar habitat, rover, Mars habitat, spacesuit or your own values) and a fire-safety task (prevention, detection or suppression). FlameMap ranks 19 flight investigations from NASA's Physical Sciences Informatics (PSI) database by how closely their tested oxygen, pressure, airflow and gravity match, shows the calculation for every score, links each value to its source, and flags conditions that have never been tested.
 
 ## Project details
-- **What it does.** Rank page with per-factor breakdown; evidence map of 1,138 runs by oxygen and pressure with the chosen environment marked; explorer with search and filters; side-by-side comparison; CSV and JSON export.
+- **What it does.** Rank page with per-factor breakdown; evidence map of 875 runs by oxygen and pressure with the chosen environment marked; explorer with search and filters; side-by-side comparison; CSV and JSON export.
 - **How it works.** We read the PSI records and their experimental tables, converted units, and stored every condition with its source and a confidence label. The ranking is transparent arithmetic: distance from the environment to the tested range for each factor, combined with adjustable weights. Unknown values are skipped, never treated as zero.
-- **What we found for a lunar habitat (30% O2, 70.3 kPa, 0.166 g).** The highest oxygen level in any solid-fuel data table is 22.2% (BASS-II). 83 runs reach 30% oxygen or more at 75 kPa or less, all with gas or liquid-droplet fuels. No solid-fuel table records pressure. None of the 19 investigations ran at partial gravity.
+- **What we found for a lunar habitat (30% O2, 70.3 kPa, 0.166 g).** The highest oxygen level in any solid-fuel data table is 22.2% (BASS-II). 37 runs reach 30% oxygen or more at 75 kPa or less, all with gas or liquid-droplet fuels. No solid-fuel table records pressure. None of the 19 investigations ran at partial gravity.
 - **Limits.** It is a research-navigation aid. It does not predict fire behavior or certify safety.
 - **Tools.** TypeScript, React, Vite, Recharts, Node.js, Vitest.
 

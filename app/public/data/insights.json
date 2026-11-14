@@ -2,7 +2,7 @@
  "snapshot_date": "2026-11-14",
  "n_investigations": 19,
  "n_table_rows": 1993,
- "n_run_points": 1138,
+ "n_run_points": 875,
  "n_publications_listed": 325,
  "n_related_modeling": 5,
  "max_o2_solid": {
@@ -11,28 +11,27 @@
   "acronym": "BASS-II"
  },
  "max_o2_any": {
-  "value": 85,
-  "psi_id": "PSI-10"
+  "value": 40,
+  "psi_id": "PSI-20"
  },
  "min_recorded_pressure": {
-  "value": 43,
-  "psi_id": "PSI-10",
-  "acronym": "ACME Flame Design"
+  "value": 50.7,
+  "psi_id": "PSI-68",
+  "acronym": "FLEX-2"
  },
  "solid_investigations_with_recorded_pressure": 0,
  "runs_o2_ge_30": {
-  "total": 476,
+  "total": 270,
   "by_investigation": {
-   "PSI-10": 222,
-   "PSI-159": 230,
+   "PSI-10": 131,
+   "PSI-159": 115,
    "PSI-69": 24
   }
  },
  "runs_o2_ge_30_and_p_le_75": {
-  "total": 83,
+  "total": 37,
   "by_investigation": {
-   "PSI-10": 18,
-   "PSI-159": 48,
+   "PSI-159": 20,
    "PSI-69": 17
   },
   "solid": 0

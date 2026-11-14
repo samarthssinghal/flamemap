@@ -3,7 +3,15 @@
 Snapshot: psi.nasa.gov, 2026-11-14. 24 records fetched (19 ranked, 5 related modeling studies) and 22 "Experimental table" CSV files. No fetch errors.
 
 ## How the data was read
-The build machine could not reach psi.nasa.gov, so the record JSON and the CSV tables were fetched and parsed in a browser session on psi.nasa.gov. The resulting ranges, counts and binned run points were copied into `pipeline/build_data.mjs`. The build script checks the copied run bins against the per-investigation row counts computed in the browser and fails if they differ. To make this fully reproducible, run the console snippet in PLAN.md Appendix E, save `psi_bundle.json`, and port the parsing into the pipeline.
+Since R04 (2026-11-14) the pipeline is reproducible from files in the repo:
+1. `node pipeline/fetch.mjs` downloads each record from `https://psi.nasa.gov/geode-py/ws/repo/investigations/<ID>`, keeps the fields listed in PLAN.md P1.2 (`pipeline/raw/<ID>.json`), and downloads every file in its `experimentalTable` list through the signed-URL endpoint (`pipeline/raw/tables/`). Requests are 500 ms apart with retries; files already on disk are not downloaded again (`--force` refreshes). `raw/manifest.json` records the source URL, fetch time and sha256 of each file. `.gitattributes` marks `pipeline/raw/**` as binary so line endings never change.
+2. `pipeline/tables.mjs` parses the CSVs using the rules in the table below. A data row is any row with at least one non-empty cell (the CFI-G inverse table has 1,015 lines, of which 154 are data; the rest are blank padding).
+3. `pipeline/build_data.mjs` takes DOI, dates, license, file size, publications and table list from the records and ranges, run counts and run points from the parsed tables. It checks each file against its sha256, checks that the tables it parsed are exactly the ones the record lists, checks that every text-derived value quotes the record verbatim, and compares every computed number with `pipeline/expected.json`.
+
+Earlier versions copied these values by hand from a browser session. `expected.json` was created from those hand-copied values, so the first reproducible build is a check of the hand copy. Result: all 19 run counts, 21 table-derived ranges, 161 display bins, 1,138 run points and the near/O2 run counts reproduced exactly, except two corrections (now in `expected.json`):
+- PSI-10 pressure max is 304.7 kPa, not 304.8. The hand copy rounded the largest `pinit` (3.0076 atm) to 3.008 before converting.
+- "NASA Exploration Atmosphere" preset: 28 CFI-G runs are near it, not 29 (total 30, not 31). The hand count was summed from rounded display bins (see the 2026-11-14 preset note below); counts now always come from full-resolution rows.
+Publication lists now come straight from the records (`pipeline/publications_data.mjs` was removed). Titles are HTML-entity-decoded and whitespace-collapsed; this changed one title (a double space removed). Modeling-study DOIs also come from the records.
 
 ## Unit conversions
 mmHg x 0.133322 = kPa; atm x 101.325 = kPa; bar x 100 = kPa; mole fraction x 100 = % by volume.
@@ -23,18 +31,25 @@ mmHg x 0.133322 = kPa; atm x 101.325 = kPa; bar x 100 = kPa; mole fraction x 100
 | PSI-68 FLEX-2 | 8 | Cells list several values ("0.17; 0.21;0.25; 0.3", "0.5; 1.0; 1.5; 2.0; or 3.0", "0.1 - 5") | Used for ranges only, not for run points. |
 | PSI-39 CFI | 87 | "Oxygen": 0.17 to 0.21 (mole fraction); "Pressure": "0.5 atm" to "5 atm" | Units decided from the cell text. |
 | PSI-20 ACME BRE | 18 | "Oxygen Conc (percent)": lists such as "21; 26.5; 40"; two cells read "3400%" and "2100%" | The two cells are read as 34 and 21 (spreadsheet formatting). Table note: chamber pressure varied but is not listed, so pressure = not recorded. |
-| PSI-10 Flame Design (2 tables) | 207 + 120 | XO2 (init) / XO2: 0.198 to 0.850; pinit (atm): 0.425 to 3.008 | 11 inverse-flame rows have "RAMP" or "LOW O2" instead of a number: excluded from oxygen range and run points (316 points). |
-| PSI-159 CFI-G (2 tables) | 179 + 154 | XO2: 0.12 to 0.85; approx p (bar): 0.495 to 3.310 | 333 points. |
+| PSI-10 Flame Design (2 tables) | 207 + 120 | Normal table only for conditions: XO2 (init) 0.198 to 0.400; pinit (atm) 0.932 to 1.297 (94.4 to 131.4 kPa) | Inverse table not used for ambient O2 or pressure (R01, below). 11 inverse rows have "RAMP" or "LOW O2" instead of a number. Run points: 207 normal. |
+| PSI-159 CFI-G (2 tables) | 179 + 154 (inverse file has 1,015 lines; the rest are blank) | Normal table only for conditions: XO2 before test 0.18 to 0.40; approx p (bar) 0.507 to 3.04 | Inverse table not used for ambient O2 or pressure (R01, below). Run points: 179 normal. |
 | PSI-21 CLD Flame, PSI-22 E-FIELD | 32 each | fuel only | No oxygen or pressure columns. Sealed chamber, so no cabin assumption. |
 | PSI-23 s-Flame | 18 | "Atmosphere*": "~21% O2 ..." to "~30% O2 ..." | Approximate values: confidence medium. |
 | PSI-107 SPICE | 469 | "Air Rate (cm/s)": -5.92 to 85.28 | 8 rows are negative (-0.28, -5.92). Kept as recorded. Record text says 5.4 to 65 cm/s. |
 | PSI-106 SLICE | 12 | fuel only | Run log. |
 
+## Inverse flames are not ambient atmospheres (R01, 2026-11-14)
+PSI-10 and PSI-159 each have a normal-flame and an inverse-flame table. In a normal flame, fuel flows from the burner into a chamber of O2 + N2, and XO2 is the chamber's oxygen fraction. In an inverse flame it is the other way round: the chamber holds fuel diluted in N2 (columns "XC2H4 initial", "Xf before test") and XO2 is the oxygen fraction of the oxidizer stream from the burner. The record text says the studies ran "normal and inverse convection directions". So inverse-flame XO2 (up to 0.85) is not an atmosphere a crew could breathe or a material could burn in.
+
+Earlier builds mixed both tables, so the app showed atmospheres up to 85% O2, low-pressure tests down to 43 kPa (all of which were inverse flames), and 83 runs at 30% O2 or more and 75 kPa or less. Now `tables.mjs` takes the ambient O2 and pressure ranges from the normal-flame tables only and tags every point with `flame_type`; `build_data.mjs` leaves inverse points out of the evidence map bins and all coverage counts. The inverse rows still count toward each table's row total (`n_runs`), and their oxidizer-stream ranges are kept in the parsed output (`TABLES[id].inverse`) for a later labeled view.
+
+Effect: run points 1,138 to 875 (263 inverse removed: 109 + 154). Flame Design 19.8 to 40% O2 at 94.4 to 131.4 kPa (was 19.8 to 85% at 43 to 304.7). CFI-G 18 to 40% at 50.7 to 304 kPa (was 12 to 85% at 49.5 to 331). Highest O2 in any table is now 40% (ACME BRE, Flame Design, CFI-G). Runs at 30% O2 or more and 75 kPa or less: 37 (CFI-G 20, FLEX 17), was 83. Near the station cabin: Flame Design 71 (was 74), CFI-G 35 (was 44). Near the NASA Exploration Atmosphere: CFI-G 19 (was 28), Flame Design 0 (was 2). The two "why it matters" lines that cited very high oxygen and low pressure were rewritten.
+
 ## Assumptions
 - Cabin pressure (101.3 kPa, low confidence, labeled "assumed") is applied only to experiments open to cabin or module air: MSG glovebox (BASS, BASS-II, SPICE, SLICE, SAME, SAME-R), DAFT, and Saffire in Cygnus. Sealed-chamber experiments (FLEX, FLEX-2, CFI, all ACME) use the table value or "not recorded".
 - All ranked records are "Microgravity Investigation", so gravity = 0 g.
 - n_runs is the number of data rows in the experimental table unless noted above.
-- Run points on the evidence map are grouped to the nearest 1% O2 and 5 kPa.
+- Run points on the evidence map are grouped to the nearest 1% O2 and 5 kPa. Inverse-flame runs are not run points (see R01 above).
 
 ## Excluded
 PSI-108 (STDCE-1) and PSI-181 (solder study) appear in the "combustion" search but are not combustion investigations.

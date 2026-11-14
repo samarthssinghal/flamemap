@@ -1,0 +1,500 @@
+{
+ "note": "Regression snapshot for build_data.mjs. Created from the hand-copied values the pipeline used before R04 (2026-11-14), with two corrections listed in docs/DATA_CLEANING_LOG.md. The build fails if a computed value differs; after checking a change is intended, run: node pipeline/build_data.mjs --accept",
+ "investigations": {
+  "PSI-25": {
+   "doi": "10.60555/4qc4-de67",
+   "start": "2010-01-01",
+   "end": "2022-12-31",
+   "license": "CC0-1.0",
+   "raw_data_gb": 274.6,
+   "n_publications": 17,
+   "n_runs": 129,
+   "table_files": [
+    "PSI-25_Experimental table_BASS-II.csv"
+   ],
+   "o2_percent": [
+    13.6,
+    22.2
+   ],
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-26": {
+   "doi": "10.60555/58h4-dy80",
+   "start": "2009-10-01",
+   "end": "2013-06-30",
+   "license": "CC0-1.0",
+   "raw_data_gb": 163.6,
+   "n_publications": 10,
+   "n_runs": 122,
+   "table_files": [
+    "PSI-26_Experimental table_BASS.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-98": {
+   "doi": "10.60555/0t15-1z43",
+   "start": "2001-03-02",
+   "end": "2008-02-28",
+   "license": "CC0-1.0",
+   "raw_data_gb": 12.3,
+   "n_publications": 6,
+   "n_runs": 2,
+   "table_files": [
+    "PSI-98_Experimental table_SAFFIRE-1.csv"
+   ],
+   "o2_percent": [
+    21.5,
+    21.7
+   ],
+   "pressure_kpa": null,
+   "flow_cm_s": [
+    20,
+    20
+   ]
+  },
+  "PSI-99": {
+   "doi": "10.60555/2chp-m469",
+   "start": "2016-09-30",
+   "end": "2017-04-01",
+   "license": "CC0-1.0",
+   "raw_data_gb": 16.9,
+   "n_publications": 7,
+   "n_runs": 9,
+   "table_files": [
+    "PSI-99_Experimental table_SAFFIRE-2.csv"
+   ],
+   "o2_percent": [
+    21.5,
+    22.1
+   ],
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-100": {
+   "doi": "10.60555/040q-4h36",
+   "start": "2017-04-18",
+   "end": null,
+   "license": "CC0-1.0",
+   "raw_data_gb": 35.2,
+   "n_publications": 3,
+   "n_runs": 2,
+   "table_files": [
+    "PSI-100_Experimental table_SAFFIRE-3.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": [
+    30,
+    30
+   ]
+  },
+  "PSI-102": {
+   "doi": "10.60555/gd4k-8h62",
+   "start": "2001-03-02",
+   "end": "2008-02-28",
+   "license": "CC0-1.0",
+   "raw_data_gb": 0.7,
+   "n_publications": 16,
+   "n_runs": 8,
+   "table_files": [
+    "PSI-102_Experimental table_SAME.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": [
+    5,
+    10
+   ]
+  },
+  "PSI-101": {
+   "doi": "10.60555/2np7-jv14",
+   "start": "2010-07-01",
+   "end": "2010-09-30",
+   "license": "CC0-1.0",
+   "raw_data_gb": 6.3,
+   "n_publications": 6,
+   "n_runs": 109,
+   "table_files": [
+    "PSI-101_Experimental table_SAME-R.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": [
+    0,
+    8.1
+   ]
+  },
+  "PSI-47": {
+   "doi": "10.60555/ztgj-d202",
+   "start": "2003-03-01",
+   "end": "2009-06-01",
+   "license": "CC0-1.0",
+   "raw_data_gb": 0,
+   "n_publications": 2,
+   "n_runs": 2,
+   "table_files": [
+    "PSI-47_Experimental table_DAFT.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-69": {
+   "doi": "10.60555/mbq8-0451",
+   "start": "2007-08-01",
+   "end": "2016-07-31",
+   "license": "CC0-1.0",
+   "raw_data_gb": 923.8,
+   "n_publications": 51,
+   "n_runs": 274,
+   "table_files": [
+    "PSI-69_Experimental table_FLEX.csv"
+   ],
+   "o2_percent": [
+    12,
+    34
+   ],
+   "pressure_kpa": [
+    70.2,
+    309.3
+   ],
+   "flow_cm_s": null
+  },
+  "PSI-68": {
+   "doi": "10.60555/byp8-h018",
+   "start": "2016-08-12",
+   "end": "2019-09-30",
+   "license": "CC0-1.0",
+   "raw_data_gb": 1224.8,
+   "n_publications": 48,
+   "n_runs": 8,
+   "table_files": [
+    "PSI-68_Experimental table_Flex2.csv"
+   ],
+   "o2_percent": [
+    17,
+    30
+   ],
+   "pressure_kpa": [
+    50.7,
+    304
+   ],
+   "flow_cm_s": [
+    0.1,
+    5
+   ]
+  },
+  "PSI-39": {
+   "doi": "10.60555/m6pj-a914",
+   "start": "2020-10-01",
+   "end": "2021-10-20",
+   "license": "CC0-1.0",
+   "raw_data_gb": 718.9,
+   "n_publications": 7,
+   "n_runs": 87,
+   "table_files": [
+    "PSI-39_Experimental table_CFI.csv"
+   ],
+   "o2_percent": [
+    17,
+    21
+   ],
+   "pressure_kpa": [
+    50.7,
+    506.6
+   ],
+   "flow_cm_s": null
+  },
+  "PSI-20": {
+   "doi": "10.60555/vb93-3y72",
+   "start": "2010-01-01",
+   "end": "2025-02-08",
+   "license": "CC0-1.0",
+   "raw_data_gb": 2035.6,
+   "n_publications": 16,
+   "n_runs": 18,
+   "table_files": [
+    "PSI-20_Experimental table_ACME BRE.csv"
+   ],
+   "o2_percent": [
+    21,
+    40
+   ],
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-10": {
+   "doi": "10.60555/w4zy-bt45",
+   "start": "1999-01-14",
+   "end": "2025-04-30",
+   "license": null,
+   "raw_data_gb": 2180.4,
+   "n_publications": 33,
+   "n_runs": 327,
+   "table_files": [
+    "PSI-10_Experimental table_Flame Design_Normal Flame.csv",
+    "PSI-10_Experimental table_Flame Design_Inverse Flame.csv"
+   ],
+   "o2_percent": [
+    19.8,
+    40
+   ],
+   "pressure_kpa": [
+    94.4,
+    131.4
+   ],
+   "flow_cm_s": null
+  },
+  "PSI-159": {
+   "doi": "10.60555/cyt1-kh64",
+   "start": null,
+   "end": null,
+   "license": "CC0-1.0",
+   "raw_data_gb": 2085.6,
+   "n_publications": 2,
+   "n_runs": 333,
+   "table_files": [
+    "PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+    "PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
+   ],
+   "o2_percent": [
+    18,
+    40
+   ],
+   "pressure_kpa": [
+    50.7,
+    304
+   ],
+   "flow_cm_s": null
+  },
+  "PSI-21": {
+   "doi": "10.60555/23e1-9950",
+   "start": "2006-10-01",
+   "end": "2022-05-31",
+   "license": "CC0-1.0",
+   "raw_data_gb": 2005.5,
+   "n_publications": 18,
+   "n_runs": 32,
+   "table_files": [
+    "PSI-21_Experimental table_CLD Flame.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-22": {
+   "doi": "10.60555/se5a-8c73",
+   "start": "2016-11-18",
+   "end": "2020-11-17",
+   "license": "CC0-1.0",
+   "raw_data_gb": 950.2,
+   "n_publications": 25,
+   "n_runs": 32,
+   "table_files": [
+    "PSI-22_Experimental table_ACME E-FIELD Flames.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-23": {
+   "doi": "10.60555/k57n-p030",
+   "start": "2015-02-05",
+   "end": "2019-11-24",
+   "license": "CC0-1.0",
+   "raw_data_gb": 782.2,
+   "n_publications": 44,
+   "n_runs": 18,
+   "table_files": [
+    "PSI-23_Experimental table_ACME s-Flame.csv"
+   ],
+   "o2_percent": [
+    21,
+    30
+   ],
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  },
+  "PSI-107": {
+   "doi": "10.60555/9kbh-e962",
+   "start": null,
+   "end": null,
+   "license": "CC0-1.0",
+   "raw_data_gb": 6.9,
+   "n_publications": 9,
+   "n_runs": 469,
+   "table_files": [
+    "PSI-107_Experimental table_Spice.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": [
+    -5.9,
+    85.3
+   ]
+  },
+  "PSI-106": {
+   "doi": "10.60555/pm12-rg61",
+   "start": null,
+   "end": null,
+   "license": "CC0-1.0",
+   "raw_data_gb": 72.9,
+   "n_publications": 5,
+   "n_runs": 12,
+   "table_files": [
+    "PSI-106_Experimental table_Slice.csv"
+   ],
+   "o2_percent": null,
+   "pressure_kpa": null,
+   "flow_cm_s": null
+  }
+ },
+ "run_stats": {
+  "total_points": 875,
+  "near": {
+   "iss": {
+    "PSI-10": 71,
+    "PSI-159": 35,
+    "PSI-25": 112,
+    "PSI-39": 47,
+    "PSI-69": 110
+   },
+   "moon_base": {
+    "PSI-69": 23
+   },
+   "rover": {
+    "PSI-69": 23
+   },
+   "mars_base": {
+    "PSI-69": 23
+   },
+   "spacesuit": {},
+   "exploration_atm": {
+    "PSI-159": 19
+   },
+   "exploration_10_2psi": {
+    "PSI-69": 43
+   },
+   "earth": {
+    "PSI-10": 71,
+    "PSI-159": 35,
+    "PSI-25": 112,
+    "PSI-39": 47,
+    "PSI-69": 110
+   }
+  },
+  "o2_ge_30": {
+   "PSI-10": 131,
+   "PSI-159": 115,
+   "PSI-69": 24
+  },
+  "o2_ge_30_and_p_le_75_recorded": {
+   "PSI-159": 20,
+   "PSI-69": 17
+  }
+ },
+ "bins": {
+  "PSI-25,22,100,1": 18,
+  "PSI-25,21,100,1": 23,
+  "PSI-25,15,100,1": 11,
+  "PSI-25,17,100,1": 26,
+  "PSI-25,18,100,1": 18,
+  "PSI-25,19,100,1": 16,
+  "PSI-25,20,100,1": 4,
+  "PSI-25,14,100,1": 2,
+  "PSI-25,16,100,1": 11,
+  "PSI-69,21,100,0": 28,
+  "PSI-69,21,310,0": 3,
+  "PSI-69,21,275,0": 4,
+  "PSI-69,21,205,0": 2,
+  "PSI-69,34,70,0": 9,
+  "PSI-69,30,70,0": 8,
+  "PSI-69,30,100,0": 3,
+  "PSI-69,30,105,0": 4,
+  "PSI-69,20,70,0": 12,
+  "PSI-69,21,105,0": 6,
+  "PSI-69,20,75,0": 2,
+  "PSI-69,18,105,0": 4,
+  "PSI-69,18,100,0": 21,
+  "PSI-69,15,100,0": 16,
+  "PSI-69,14,100,0": 11,
+  "PSI-69,13,105,0": 4,
+  "PSI-69,13,100,0": 5,
+  "PSI-69,12,105,0": 4,
+  "PSI-69,12,100,0": 4,
+  "PSI-69,25,70,0": 6,
+  "PSI-69,24,70,0": 10,
+  "PSI-69,23,70,0": 19,
+  "PSI-69,21,70,0": 11,
+  "PSI-69,18,70,0": 11,
+  "PSI-69,17,70,0": 11,
+  "PSI-69,24,100,0": 9,
+  "PSI-69,15,70,0": 4,
+  "PSI-69,20,100,0": 15,
+  "PSI-69,16,100,0": 10,
+  "PSI-69,19,100,0": 7,
+  "PSI-69,17,100,0": 10,
+  "PSI-39,21,100,0": 28,
+  "PSI-39,17,100,0": 19,
+  "PSI-39,21,125,0": 9,
+  "PSI-39,21,205,0": 7,
+  "PSI-39,17,305,0": 5,
+  "PSI-39,21,305,0": 9,
+  "PSI-39,21,505,0": 3,
+  "PSI-39,21,75,0": 4,
+  "PSI-39,21,50,0": 3,
+  "PSI-10,21,105,0": 7,
+  "PSI-10,20,105,0": 30,
+  "PSI-10,21,100,0": 19,
+  "PSI-10,20,100,0": 15,
+  "PSI-10,40,100,0": 4,
+  "PSI-10,39,105,0": 6,
+  "PSI-10,38,105,0": 7,
+  "PSI-10,37,105,0": 12,
+  "PSI-10,38,100,0": 6,
+  "PSI-10,37,100,0": 3,
+  "PSI-10,36,105,0": 8,
+  "PSI-10,30,100,0": 3,
+  "PSI-10,29,100,0": 2,
+  "PSI-10,39,100,0": 8,
+  "PSI-10,40,125,0": 4,
+  "PSI-10,40,130,0": 4,
+  "PSI-10,39,130,0": 24,
+  "PSI-10,38,130,0": 15,
+  "PSI-10,39,125,0": 4,
+  "PSI-10,38,125,0": 2,
+  "PSI-10,37,130,0": 3,
+  "PSI-10,29,105,0": 1,
+  "PSI-10,40,95,0": 20,
+  "PSI-159,39,95,0": 6,
+  "PSI-159,38,95,0": 8,
+  "PSI-159,37,95,0": 6,
+  "PSI-159,36,95,0": 1,
+  "PSI-159,21,100,0": 27,
+  "PSI-159,18,100,0": 2,
+  "PSI-159,40,100,0": 5,
+  "PSI-159,39,100,0": 28,
+  "PSI-159,38,100,0": 9,
+  "PSI-159,23,100,0": 6,
+  "PSI-159,39,50,0": 3,
+  "PSI-159,38,50,0": 5,
+  "PSI-159,37,50,0": 2,
+  "PSI-159,36,50,0": 3,
+  "PSI-159,35,50,0": 4,
+  "PSI-159,21,50,0": 5,
+  "PSI-159,40,95,0": 1,
+  "PSI-159,21,205,0": 12,
+  "PSI-159,22,305,0": 12,
+  "PSI-159,37,100,0": 2,
+  "PSI-159,36,100,0": 2,
+  "PSI-159,35,100,0": 2,
+  "PSI-159,34,50,0": 1,
+  "PSI-159,33,50,0": 2,
+  "PSI-159,40,205,0": 6,
+  "PSI-159,39,205,0": 14,
+  "PSI-159,38,205,0": 5
+ }
+}
