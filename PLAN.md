@@ -67,17 +67,13 @@ This file is written to be executed by a coding agent (Claude Code) inside one g
 repo/
   PLAN.md
   README.md
-  pipeline/
-    requirements.txt
-    config.py              # IDs, column maps, conversions (Appendix A, B)
-    01_fetch.py            # PSI JSON + experimental table CSVs -> pipeline/raw/
-    02_runs.py             # CSVs -> normalized runs
-    03_investigations.py   # records + ranges + provenance
-    04_validate.py         # schema + sanity checks
-    05_insights.py         # gaps.json, insights.json (computed)
-    06_check_summaries.py  # number-traceability check for AI text
-    raw/                   # cached downloads (commit JSON and CSV; they are small)
-    manual/                # hand-entered fields: manual_fields.json, summaries.json
+  pipeline/                # AS BUILT (Node, see "Phase 1 as built"); original Python plan in git history
+    fetch.mjs              # PSI JSON + experimental table CSVs -> pipeline/raw/ (cached, sha256 manifest)
+    tables.mjs             # CSV parsing, unit conversions, cleaning rules -> ranges, counts, run points
+    build_data.mjs         # classification, text-derived fields, summaries, environments, gaps, insights, validation
+    expected.json          # regression snapshot of every computed number (build fails on a difference)
+    raw/                   # committed snapshot: <ID>.json, tables/*.csv, manifest.json
+    (not built yet: number-traceability check for AI text, planned as 06_check_summaries; see REVIEW_ISSUES R06d)
   app/
     public/data/           # investigations.json runs.json environments.json gaps.json insights.json earth_applications.json sources.json
     src/
@@ -170,7 +166,7 @@ Enumerations:
 ```
 Preset values: Appendix C.
 
-### 4.4 `gaps.json`, `insights.json` — computed by `05_insights.py`
+### 4.4 `gaps.json`, `insights.json` — computed by `pipeline/build_data.mjs`
 ```json
 {"environment_id": "moon_base", "gaps": [
   {"id": "partial_gravity", "severity": "high", "text": "…", "computed_from": {"metric": "count of investigations with gravity within 0.05 g of 0.166", "value": 0}, "sources": ["PSI-25", "..."]}
@@ -263,6 +259,16 @@ Accept: the public URL loads the nav. Record the URL in `README.md`. If blocked 
 Accept: `tsc --noEmit` passes.
 
 ### PHASE 1 — PSI data pipeline (Track A, about 5 hours)
+
+> **Phase 1 as built (updated 2026-11-14, R04/R01).** The pipeline is Node, not the Python scripts described below. At first PSI was reachable only from a browser, so values were copied by hand; since R04 the pipeline downloads and parses everything itself. The tasks below are kept as the original spec. Where each one lives now:
+> - P1.1 Config → investigation list and classification in `build_data.mjs` (`I`, `MODELING`); column map and conversions in `tables.mjs`.
+> - P1.2 Fetch → `node pipeline/fetch.mjs` (endpoints work from a script; 24 records, 22 tables; `--force` to refresh). The browser fallback (Appendix E) is no longer needed.
+> - P1.3 Inspect → done; decisions in `docs/DATA_CLEANING_LOG.md` and Appendix B (corrected).
+> - P1.4 Runs → `tables.mjs` returns full-resolution run points with source file, row and `flame_type`; `runs.json` holds them binned to 1% O2 and 5 kPa. Inverse-flame rows are not run points (R01), so there are 875 points, not the 1,500+ expected below.
+> - P1.5 Investigations → `build_data.mjs`: identity, dates, license, size, publications and table list from `raw/<ID>.json`; ranges and `n_runs` from `tables.mjs`. `text.*` (verbatim PSI text) is not stored yet (REVIEW_ISSUES R34).
+> - P1.6 Text-derived fields → inline in `build_data.mjs` (no `manual_fields.json`); each quote is checked against the record text at build time.
+> - P1.7 Validate and P1.8 Insights/gaps → end of `build_data.mjs`, plus file sha256 checks and the `expected.json` regression check (`--accept` after an intended change, logged in DATA_CLEANING_LOG.md).
+> - P1.9 Spot-check → `docs/VERIFICATION_LOG.md`; H4 still open (REVIEW_ISSUES R05).
 
 **P1.1 Config.** Create `pipeline/config.py` with: the investigation list (Appendix A), the column map and conversions (Appendix B), the role/fuel classification (Appendix A).
 
@@ -374,7 +380,7 @@ Accept: every value has a status; none is unlabeled.
 ### PHASE 6 — QA (both, 2 hours; after feature freeze)
 
 Write results into `docs/QA_CHECKLIST.md`.
-1. `npm run test` green; `04_validate.py` and `06_check_summaries.py` exit 0.
+1. `npm run test` green; `node pipeline/build_data.mjs` exits 0 (and the AI-text number check, once built per R06d).
 2. Hand-check: for 3 environments × 1 task, compute the top investigation's relevance by hand (spreadsheet or calculator) from `investigations.json` and compare to the app. Must match exactly.
 3. Every page loads from the deployed URL in a private window on desktop Chrome, Safari or Firefox, and on one phone. No console errors.
 4. Click every external link (PSI, DOI, NASA). No dead links.
@@ -502,7 +508,7 @@ Record URL pattern: `https://psi.nasa.gov/physci/repo/data/investigations/<PSI-I
 | PSI-100 | SAFFIRE-III | prevention | – | solid | run_table_partial |
 | PSI-102 | SAME | detection | – | aerosol | run_table_partial |
 | PSI-101 | SAME-R | detection | – | aerosol | run_table_partial |
-| PSI-47 | DAFT / DAFT-2 | detection | – | aerosol | INSPECT |
+| PSI-47 | DAFT / DAFT-2 | detection | – | aerosol | run_log_only |
 | PSI-69 | FLEX | suppression | fundamental | liquid_droplet | run_table_with_conditions |
 | PSI-68 | FLEX-2 | fundamental | suppression | liquid_droplet | run_table_with_conditions |
 | PSI-39 | CFI | fundamental | – | liquid_droplet | run_table_with_conditions |
@@ -528,7 +534,7 @@ Role assignments follow the challenge statement's grouping (prevention: BASS, BA
 
 **Exclude** (returned by the "combustion" search but not combustion): PSI-108 (STDCE-1), PSI-181 (solder study).
 
-## APPENDIX B — Experimental-table column map (headers as seen 2026-11-14; confirm exact strings in P1.3)
+## APPENDIX B — Experimental-table column map (headers as seen 2026-11-14; corrected after R04/R01 — `pipeline/tables.mjs` is the source of truth)
 
 Conversions: mmHg × 0.133322 = kPa; atm × 101.325 = kPa; bar × 100 = kPa; psi × 6.89476 = kPa; mole fraction × 100 = %.
 
@@ -541,15 +547,15 @@ Conversions: mmHg × 0.133322 = kPa; atm × 101.325 = kPa; bar × 100 = kPa; psi
 | PSI-100 | SAFFIRE-3.csv | 2 | none | none → assumed cabin | "Air Flow" (unit not in header: INSPECT) | "Material" | |
 | PSI-102 | SAME.csv | 8 | none | none → assumed cabin | "Air Flow (cm/s)" | "Sample Material" | |
 | PSI-101 | SAME-R.csv | 109 | none | none → assumed cabin | "Inlet velocity (cm/s)" | "Sample Type" / "Description" | |
-| PSI-47 | DAFT.csv | ? | INSPECT | INSPECT | INSPECT | INSPECT | not yet inspected |
+| PSI-47 | DAFT.csv | 2 | none | none → assumed cabin | none | "Sample Material" | session log (D1, D2); no combustion |
 | PSI-69 | FLEX.csv | 274 | "O initial ambient composition; mole fraction" → ×100 | "Ambient pressure; mmHg" → ×0.133322 | none | "Fuel" | diluent columns N, CO, He (confirm from PSI text whether "O"/"CO" mean O2/CO2; log it) |
 | PSI-68 | Flex2.csv | 8 | "Oxygen Mole Fraction" → ×100 | "Ambient Pressure (atm)" → ×101.325 | "Flow Velocity (cm/s)" | "Sample (Fuel Type)" | cells may hold ranges as text |
 | PSI-39 | CFI.csv | 87 | "Oxygen" (unit INSPECT) | "Pressure" (unit INSPECT) | none | "Fuel" | also Nitrogen, Helium |
 | PSI-20 | ACME BRE.csv | 18 | "Oxygen Conc (percent)" → % | none → INSPECT text (CIR chamber, not cabin: do **not** assume 101.3) | none | "Fuel Bottle" | "Burner Size (mm)" → geometry |
-| PSI-10 | Flame Design_Normal Flame.csv | 207 | "XO2 (init)" → ×100 | "pmean (atm)" → ×101.325 | none | "Fuel" | |
-| PSI-10 | Flame Design_Inverse Flame.csv | 120 | "XO2" → ×100 | "pmean (atm)" → ×101.325 | none | (ethylene per "XC2H4" columns: confirm in text) | |
-| PSI-159 | CFI-G_Normal Flames.csv | 179 | "XO2 before test" → ×100 | "approx p (bar)" → ×100 | none | "Fuel" | |
-| PSI-159 | CFI-G_Inverse Flames.csv | 1015 | "XO2" → ×100 | "approx p (bar)" → ×100 | none | "Fuel" | |
+| PSI-10 | Flame Design_Normal Flame.csv | 207 | "XO2 (init)" → ×100 | "pinit (atm)" → ×101.325 | none | "Fuel" | the only table used for PSI-10 conditions |
+| PSI-10 | Flame Design_Inverse Flame.csv | 120 | not ambient: "XO2" is the burner oxidizer stream | not used (chamber holds C2H4 + N2) | none | ethylene ("XC2H4" columns) | R01: excluded from ranges, bins and counts; 11 rows say RAMP / LOW O2 |
+| PSI-159 | CFI-G_Normal Flames.csv | 179 | "XO2 before test" → ×100 | "approx p (bar)" → ×100 | none | "Fuel" | the only table used for PSI-159 conditions |
+| PSI-159 | CFI-G_Inverse Flames.csv | 154 (1,015 lines; rest blank) | not ambient: "XO2" is the burner oxidizer stream | not used (chamber holds fuel + N2, "Xf before test") | none | "Fuel" | R01: excluded from ranges, bins and counts |
 | PSI-21 | CLD Flame.csv | 32 | none | none (CIR chamber: do not assume) | none | "Fuel Bottle" | partial |
 | PSI-22 | ACME E-FIELD Flames.csv | 32 | none | none (CIR: do not assume) | none | "Fuel Bottle" | partial |
 | PSI-23 | ACME s-Flame.csv | 18 | "Atmosphere*" (INSPECT) | none (CIR: do not assume) | none | "Fuel Bottle" | partial |
@@ -584,6 +590,9 @@ Reference spans: O2 79 (= 100 − 21), pressure 71.7 kPa (= 101.3 − 29.6), air
 For `earth_applications.json`, fetch each spin-off page and write one or two sentences in our own words from what the page says. If a page cannot be fetched, show the title and link only.
 
 ## APPENDIX E — Browser fallback for P1.2 ([HUMAN] paste into the DevTools console on psi.nasa.gov)
+
+> No longer needed (2026-11-14): `pipeline/fetch.mjs` reaches PSI directly. Kept for reference in case PSI starts blocking scripts.
+
 ```js
 (async () => {
   const ids = ["PSI-25","PSI-26","PSI-98","PSI-99","PSI-100","PSI-102","PSI-101","PSI-47","PSI-69","PSI-68","PSI-39","PSI-20","PSI-10","PSI-159","PSI-21","PSI-22","PSI-23","PSI-107","PSI-106","PSI-62","PSI-60","PSI-115","PSI-117","PSI-142"];
