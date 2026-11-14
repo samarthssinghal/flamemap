@@ -17,6 +17,9 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | R06d | High | 1 h | todo | SI guardrails: machine check that every number/quote in AI text exists in the source; label AI text |
 | R06e | Medium | 1 h | todo | SI: AI-suggested related investigations ("studies like this one") with reasons |
 | R07 | High | 30 min | todo | Same metric shows two numbers (387 vs 392); custom env has no gaps |
+| R27 | High | 1–2 h | todo | Add NASA-stated findings from the Researcher's Guide (cited by page); seeds R06a with verified findings |
+| R28 | High | 1 h | todo | "Three misconceptions" panel: NASA's myths about fire in space vs. the PSI evidence that disproved them |
+| R29 | High | 30 min | todo | Presets have no airflow, so the airflow factor is never scored; set ventilation airflow from the Guide |
 | R08 | Medium | 2–3 h | todo | Exports not useful for modeling: ranges and bins only, no per-run rows or outcomes |
 | R09 | Medium | 1 h | todo | Gravity factor never discriminates; SAFFIRE-II 1-g data not used |
 | R10 | Medium | 1–2 h | todo | Partial-gravity framing missing (E-FIELD analog, µg/1-g bounding) |
@@ -25,7 +28,9 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | R13 | Medium | 2 h | todo | No controls/equipment view (detection, suppression, ventilation) |
 | R14 | Medium | 1–2 h | todo | No hardware-family / similarity view (ACME-CIR, MDCA, MSG duct, SAME↔DAFT) |
 | R15 | Medium | 15 min | todo | Slides and project page contain numbers affected by R01 |
-| R16 | Low | 20 min | todo | Earth panel misses fine-water-mist extinguishers (named in challenge) |
+| R30 | Medium | 1 h | todo | Incident → lesson → evidence panel (Apollo 1, Apollo 13, Mir linked to tasks and investigations) |
+| R33 | Medium | 15 min | todo | Save the Researcher's Guide text in `reference/` so findings and citations are reproducible |
+| R16 | Low | 20 min | todo | Earth panel misses fine-water-mist extinguishers (named in challenge); Guide has the source |
 | R17 | Low | 15 min | todo | Dangling references to `claude/*.md` files not in repo |
 | R18 | Low | 15 min | todo | SAFFIRE-I dates copied from PSI record are wrong (same as SAME); add note |
 | R19 | Low | 15 min | todo | SPICE airflow min −5.9 cm/s kept; record text says 5.4–65 |
@@ -36,6 +41,8 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | R24 | Low | 30 min | todo | Bundle > 500 kB; lazy-load Evidence Map / Recharts |
 | R25 | Low | 15 min | todo | CI skips lint; README says `main` (branch is `master`), no live URL; project page links are placeholders |
 | R26 | Low | 10 min | todo | Lint warning: `App.tsx` exports non-components (fast refresh) |
+| R31 | Low | 5 min | todo | "Fireman's Air Tanks" blurb says spacesuit tech; the NASA page doesn't say that |
+| R32 | Low | 10 min | todo | NASA ScienceCasts video (challenge resource) is not linked anywhere |
 
 ---
 
@@ -140,3 +147,107 @@ Add `npm run lint` to CI; README branch name and live URL; fill project-page lin
 
 ### R26 — Lint warning (Low)
 Move `useApp`/`DISCLAIMER` out of `App.tsx` into `lib/context.ts`.
+
+---
+
+## From the NASA Data & Resources review (2026-11-14)
+
+How each challenge resource is used today:
+
+| Resource | Used in app today | Content used? |
+|---|---|---|
+| PSI repository | Core data | Yes |
+| NASA Combustion Science page | Link in Sources | No |
+| ScienceCasts video | Not linked | No |
+| Researcher's Guide to ISS Combustion Science (PDF) | Link in Sources | No |
+| Apollo 1, Apollo 13, Mir | One-line tiles on About | Titles only |
+| Spin-offs (air tanks, fire detector, fire attire) | One-line tiles on About | Blurbs (one inaccurate) |
+
+Guide PDF: https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf (page numbers below are the printed ones).
+
+### R27 — NASA-stated findings from the Researcher's Guide (High)
+Findings NASA itself states, quotable with page numbers, so they need no AI interpretation:
+- BASS: "NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth" (p. 31).
+- BASS: "local application of suppressant is not adequate for flame extinguishment. The local jet entrains air and sustains the flame even when the ambient airflow is turned off" (p. 31); nitrogen applied to the flame "can actually strengthen it" (p. 22).
+- FLEX: "the flammability limit is lower in reduced gravity … terrestrial standards for inert gas suppressants in low gravity do not offer the same margin of safety" (p. 12); limiting oxygen index "significantly lower than in normal gravity" (p. 36); cool flames after radiative extinction (p. 36).
+- Solids: the minimum-oxygen flammability limit occurs near 10 cm/s, "the velocity typical of that of spacecraft ventilation systems"; flames spread upstream at low flow; materials ignite more easily in low gravity (pp. 20, 31).
+- Detection: microgravity smoke particle sizes differ, so terrestrial detectors "would be looking for something different"; SAME measured particle-size distributions; DAFT measured ISS background aerosol (pp. 26, 35).
+Show these on cards, Explorer and Compare, labeled "NASA-stated finding" with page cite. AI-extracted findings (R06a) are added on top and labeled differently.
+
+### R28 — "Three misconceptions" panel (High)
+Guide p. 35 lists NASA's past misconceptions, all disproved by microgravity research: (1) a steady fire cannot exist in quiescent microgravity; (2) a fire will self-extinguish if ventilation is shut off; (3) terrestrial fire tests are conservative. Pair each with the evidence (candle/SOFBALL; BASS suppression finding; BASS and FLEX lower limits) and links to the PSI records. Strong demo and slide material.
+
+### R29 — Ventilation airflow for presets (High)
+Every preset has `flow_cm_s: null`, so the airflow factor (10% weight) is never scored and the airflow data from BASS, SAFFIRE, SAME and SPICE is unused in ranking. Guide: spacecraft ventilation range "0 to 30 cm/s" (p. 20), worst case near 10 cm/s (p. 31). Set crewed presets to a cited value (or a range) and label it "from NASA Researcher's Guide".
+
+### R30 — Incident → lesson → evidence panel (Medium)
+From the NASA pages (facts as stated there):
+- Apollo 1: 100% O2 cabin, flash fire, likely wiring arcing; combustible materials restricted afterwards → prevention task; BASS, SAFFIRE, BRE; spacesuit / high-O2 presets. (Page gives no pressure; don't add a preset without a source.)
+- Apollo 13: overheated tank heaters degraded Teflon insulation in the O2 tank → ignition-source control in oxygen systems; largely outside PSI's combustion data (state it, as a scope note).
+- Mir 1997: solid-fuel oxygen generator fire, several minutes, dense smoke filled modules and blocked the escape route, foam extinguishers, smoke cleared by life support over hours → detection (SAME, SAME-R, DAFT) and suppression (FLEX, BASS suppression finding).
+Guide p. 34 also frames this: crewed spacecraft always hold all three sides of the fire triangle.
+
+### R33 — Keep the Guide text in the repo (Medium)
+Save extracted text (`reference/researchers-guide-2015.txt`) with the source URL so R27/R06a citations can be checked by script.
+
+### Additions to existing items
+- R16: Guide p. 26: water-mist research (Mist, STS-107, 2003) led to water-mist portable extinguishers; the first two of nine were sent to the ISS in December 2015 to replace CO2 units; designed to replace banned Halon systems. Use for the Earth panel and the suppression task.
+- R14: hardware specs from the Guide: CIR 100-liter chamber; MDCA droplets 1–5 mm in 0–3 atm with up to 40% O2; MSG "normally limited to ISS air", which explains why no solid-fuel table records pressure (useful text for the gap banner).
+- R10: forthcoming evidence named on NASA pages: FM2 (lunar gravity), SoFIE (solid fuels, 10–40% O2 at 0.2–1.5 atm, exploration atmospheres), FLARE (ground-to-microgravity flammability correlation). List them under the partial-gravity and high-O2 gaps as "planned, not yet in PSI".
+
+### R31 — Air-tank blurb (Low)
+NASA page: JSC and Scott Aviation made a backpack system of "only 20 pounds for 30 minute air supply, 13 pounds less than conventional" tanks, at 4,500 psi. It does not mention spacesuits. Fix `earth_applications.json` blurb in `build_data.mjs`.
+
+### R32 — ScienceCasts video (Low)
+Link "NASA ScienceCasts: The Power of Studying Combustion on the ISS" (https://www.youtube.com/watch?v=W1oXykoz9zg) on About and in Sources.
+
+---
+
+## From the PSI data-usage review (2026-11-14)
+
+Checked against all 24 live PSI records (`/geode-py/ws/repo/investigations/<ID>`) and the PSI search index.
+
+**Correct:** All 24 records in PSI's "Combustion Science" research area are covered (19 ranked + 5 ground/modeling). The two exclusions (PSI-108, PSI-181) are not in that research area. Every hand-copied field (title, DOI, acronym, dates, platform, sub-area, license, file size, publication count, table file names) matches the live record; the only differences are spelling clean-ups of PSI typos ("Comparitive", "Appartatus") and shortened hardware names.
+
+**Not used:** most of each record's content.
+
+| PSI field | Filled | Used in app |
+|---|---|---|
+| `objective`, `approach`, `hypothesis`, `researchImpacts` ("Research Impacts/Earth Benefits") | 24/24 | Only as input to the AI summaries; text not shown or stored |
+| `publications` (`title`, `doi`, `authorList`, `status`) | 23/24 | Title and DOI only |
+| `related_glds` (PSI's own links between investigations) | 15/24 | No (modeling links hand-built) |
+| Files: Reports (20), Science Documents (36), Presentations (50), Analyzed Data (248), Reference Data (57), Representative Images (9) | most | No |
+| `contacts` (PI / Co-I, affiliation) | 24/24 | No |
+| `experimentHardwareLink` (GRC hardware pages) | 19/24 | No |
+| `Keywords`, `Thumbnail` (search index) | 24/24 | No |
+| `modifiedDate`, `releaseDate`, `version` | 24/24 | No (one global snapshot date) |
+
+| ID | Impact | Effort | Status | Issue |
+|---|---|---|---|---|
+| R34 | High | 1 h | todo | Show PSI objective, approach, hypothesis and research impacts verbatim (CC0) in Explorer and Compare |
+| R35 | High | 2–3 h | todo | Use PSI's own Reports / Science Documents / Presentations as the source for findings (R06a, R27) |
+| R36 | High | 1 h | todo | Pair each hypothesis with its finding ("tested → found") |
+| R37 | Medium | 30 min | todo | Use PSI `related_glds` for related investigations (replaces hand-built links; feeds R14, R06e) |
+| R38 | Medium | 30 min | todo | Per-investigation Earth benefits from `researchImpacts` (challenge's Earth objective) |
+| R39 | Medium | 30 min | todo | Publications: keep authors and status; citation export (CSV/BibTeX) |
+| R40 | Medium | 1 h | todo | Data inventory per investigation from PSI file categories; link GRC hardware page |
+| R41 | Low | 20 min | todo | Show PI / Co-I names and affiliations (no email or phone) |
+| R42 | Low | 30 min | todo | Use PSI keywords for search and tags; show representative images |
+| R43 | Low | 30 min | todo | Label the 5 "modeling" studies as PSI Ground Investigations; PSI-142 has a 1-g table (use for R10) |
+| R44 | Low | 15 min | todo | PSI-179 Aerosol Sampling Experiment (Complex Fluids) is relevant to detection; add as related |
+| R45 | Low | 15 min | todo | Store each record's `modifiedDate`/`version`; show per-record freshness |
+
+### R34 — PSI record text verbatim (High)
+Challenge lists "experimental objectives" first. Records are CC0 (PSI-10 has no license field; cite DOI). Show the four sections collapsed in Explorer, side by side in Compare, and keep them in `investigations.json` (`text.*`, as PLAN 4.1 specified). Also lets R06d check AI text against the source. Reverses DECISIONS.md "PSI record text is not copied"; log it.
+
+### R35 — PSI documents as findings source (High)
+Examples: `PSI-25_Reports_BASS-II Summary Report.pdf`, `PSI-25_Science Documents_BASS-II_Test.Matrices.xlsx` (per-run conditions; may replace the text-derived airflow), `PSI-102_Reports_SAME_Final Science Report.pdf`, `PSI-101_Reports_SAME-R_Final Report.pdf`, `PSI-101_Presentations_SAME-2_Comparison of Flight and Ground Test Results.pptx`, `PSI-107_Reports_SPICE_FinalReport.pdf`, `PSI-107_Reports_SMOKE POINTS OF MICROGRAVITY AND NORMAL GRAVITY COFLOW DIFFUSION FLAMES` (µg vs 1-g, useful for R10), `PSI-26_Presentations_BASS_Overview of Recent ISS Results.pdf`. Download only these documents (small), not raw data. Note: FLEX, FLEX-2 and SAFFIRE-II returned no file lists in this pass; check again.
+
+### R36 — Hypothesis → finding (High)
+Example: BASS-II hypothesis (PSI): materials in microgravity "with adequate ventilation, burn as well if not better than the same material in normal gravity". Finding (Guide p. 31): Test 1 "is not conservative, and materials can burn at lower oxygen levels in microgravity". Show as "Hypothesis / What was found / Source".
+
+### R37 — PSI related links
+PSI links: BASS-II↔BASS, BASS→SPICE (shared flow duct), SAFFIRE-I↔II↔III, SAME↔SAME-R, DAFT→SAME (the instrument link the challenge mentions), CFI→FLEX, E-FIELD→s-Flame, SLICE→SPICE, modeling studies→parents. Use these instead of the hand-built `MODELING` list.
+
+### R38 — Earth benefits per investigation
+`researchImpacts` is labeled "Research Impacts/Earth Benefits" in PSI. Extract the Earth-side sentences (e.g. ACME Flame Design: "improving efficiency and reducing pollutant emissions in terrestrial combustion") into the Earth panel, linked to each investigation.
