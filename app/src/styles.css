@@ -86,8 +86,8 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .fill { display: block; height: 100%; background: var(--good); }
 .s-outside .fill, .s-partial .fill { background: var(--warn); }
 .s-mismatch .fill { background: var(--bad); }
-.s-unknown .track { background: repeating-linear-gradient(45deg, #0c1426 0 5px, #1b2740 5px 10px); }
-.s-unknown .fval { color: var(--dim); }
+.s-unknown .track, .s-not_set .track { background: repeating-linear-gradient(45deg, #0c1426 0 5px, #1b2740 5px 10px); }
+.s-unknown .fval, .s-not_set .fval { color: var(--dim); }
 .s-outside .fval, .s-partial .fval { color: var(--warn); }
 .s-inside .fval, .s-match .fval { color: var(--good); }
 .s-mismatch .fval { color: #ff9aa8; }
@@ -172,3 +172,11 @@ details.alt { margin: 8px 0 12px; }
 details.alt summary { cursor: pointer; color: var(--accent); margin-bottom: 8px; }
 .seg button[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: #06101f; font-weight: 600; }
 .card-body h3 { margin: 14px 0 4px; font-size: 0.9rem; color: var(--text); text-transform: none; letter-spacing: 0; }
+.findings { padding-left: 1.1rem; margin: 6px 0; }
+.findings > li { margin: 6px 0; }
+.findings details { margin: 2px 0 0; }
+.findings summary { cursor: pointer; color: var(--dim); font-size: 0.8rem; }
+.findings blockquote { margin: 6px 0; padding-left: 10px; border-left: 2px solid var(--line); font-size: 0.85rem; }
+.findings .cells { font-size: 0.8rem; margin: 4px 0; padding-left: 1rem; }
+.findings.compact { font-size: 0.85rem; padding-left: 1rem; }
+.k-nasa_stated { color: var(--good); border-color: #2c5a37; }

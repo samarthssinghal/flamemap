@@ -171,7 +171,60 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": [
+   {
+    "kind": "nasa_stated",
+    "text": "NASA's normal-gravity screening test for spacecraft materials (NASA-STD-6001 Test 1) is not conservative: materials can keep burning at lower oxygen levels in microgravity than on Earth.",
+    "quote": "Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "The Guide (2015) credits \"the BASS experiment currently running on the ISS\". BASS (PSI-26) ended in 2013 and BASS-II (PSI-25) used the same glovebox hardware and was flying in 2014, so this finding is shown on both records.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-26"
+    ]
+   },
+   {
+    "kind": "nasa_stated",
+    "text": "Spraying suppressant locally at a flame did not put it out: the jet pulled in air and kept the flame burning, even with the ventilation airflow turned off.",
+    "quote": "current findings show that local application of suppressant is not adequate for flame extinguishment. The local jet entrains air and sustains the flame even when the ambient airflow is turned off.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "Same BASS section of the Guide as above; shown on both BASS and BASS-II.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-26"
+    ]
+   },
+   {
+    "kind": "nasa_stated",
+    "text": "Nitrogen applied to a burning sample as a suppressant could make the flame stronger, because the gas stream drew oxygen into it.",
+    "quote": "it is possible that the suppressant stream will be ineffective or might actually make the flame worse through the entrainment of oxygen. Early results have demonstrated that nitrogen applied to the flame can actually strengthen it because of this effect.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 22",
+     "page": 22,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "From the Guide's BASS section (pages 21-22), which describes nitrogen suppressant applied to selected flames.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-26"
+    ]
+   }
+  ]
  },
  {
   "psi_id": "PSI-26",
@@ -199,7 +252,16 @@
   ],
   "geometry": "Flat fabric, spheres and cylinders in a 76 mm x 76 mm flow duct",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -308,7 +370,60 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": [
+   {
+    "kind": "nasa_stated",
+    "text": "NASA's normal-gravity screening test for spacecraft materials (NASA-STD-6001 Test 1) is not conservative: materials can keep burning at lower oxygen levels in microgravity than on Earth.",
+    "quote": "Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "The Guide (2015) credits \"the BASS experiment currently running on the ISS\". BASS (PSI-26) ended in 2013 and BASS-II (PSI-25) used the same glovebox hardware and was flying in 2014, so this finding is shown on both records.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25"
+    ]
+   },
+   {
+    "kind": "nasa_stated",
+    "text": "Spraying suppressant locally at a flame did not put it out: the jet pulled in air and kept the flame burning, even with the ventilation airflow turned off.",
+    "quote": "current findings show that local application of suppressant is not adequate for flame extinguishment. The local jet entrains air and sustains the flame even when the ambient airflow is turned off.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "Same BASS section of the Guide as above; shown on both BASS and BASS-II.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25"
+    ]
+   },
+   {
+    "kind": "nasa_stated",
+    "text": "Nitrogen applied to a burning sample as a suppressant could make the flame stronger, because the gas stream drew oxygen into it.",
+    "quote": "it is possible that the suppressant stream will be ineffective or might actually make the flame worse through the entrainment of oxygen. Early results have demonstrated that nitrogen applied to the flame can actually strengthen it because of this effect.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 22",
+     "page": 22,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "From the Guide's BASS section (pages 21-22), which describes nitrogen suppressant applied to selected flames.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25"
+    ]
+   }
+  ]
  },
  {
   "psi_id": "PSI-98",
@@ -426,7 +541,55 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": [
+   {
+    "kind": "from_data",
+    "text": "At the same 20 cm/s airflow, the flame spreading with the flow (concurrent) burned for 420 s, while the flame spreading against it (opposed) burned for 70 s.",
+    "quote": null,
+    "cells": [
+     {
+      "row": "S1",
+      "column": "Air Flow (cm/s)",
+      "value": "20"
+     },
+     {
+      "row": "S1",
+      "column": "Flow Direction",
+      "value": "Concurrent"
+     },
+     {
+      "row": "S1",
+      "column": "Burn Time (s)",
+      "value": "420"
+     },
+     {
+      "row": "S2",
+      "column": "Air Flow (cm/s)",
+      "value": "20"
+     },
+     {
+      "row": "S2",
+      "column": "Flow Direction",
+      "value": "Opposed"
+     },
+     {
+      "row": "S2",
+      "column": "Burn Time (s)",
+      "value": "70"
+     }
+    ],
+    "source": {
+     "type": "psi_table",
+     "label": "PSI-98_Experimental table_SAFFIRE-1.csv",
+     "file": "PSI-98_Experimental table_SAFFIRE-1.csv",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   }
+  ]
  },
  {
   "psi_id": "PSI-99",
@@ -555,73 +718,239 @@
    "by": null,
    "date": null
   },
+  "findings": [
+   {
+    "kind": "from_data",
+    "text": "None of the four silicone samples burned in microgravity (about 0 cm). In the 1-g comparison, two of them burned completely and one burned 7.6 cm.",
+    "quote": null,
+    "cells": [
+     {
+      "row": "2-1",
+      "column": "Material",
+      "value": "Silicone"
+     },
+     {
+      "row": "2-1",
+      "column": "?-g Burn Length",
+      "value": "~ 0"
+     },
+     {
+      "row": "2-1",
+      "column": "1-g Burn Length",
+      "value": "Complete"
+     },
+     {
+      "row": "2-2",
+      "column": "Material",
+      "value": "Silicone"
+     },
+     {
+      "row": "2-2",
+      "column": "?-g Burn Length",
+      "value": "~ 0"
+     },
+     {
+      "row": "2-2",
+      "column": "1-g Burn Length",
+      "value": "7.6 cm"
+     },
+     {
+      "row": "2-3",
+      "column": "Material",
+      "value": "Silicone"
+     },
+     {
+      "row": "2-3",
+      "column": "?-g Burn Length",
+      "value": "~ 0"
+     },
+     {
+      "row": "2-3",
+      "column": "1-g Burn Length",
+      "value": "~ 0"
+     },
+     {
+      "row": "2-4",
+      "column": "Material",
+      "value": "Silicone"
+     },
+     {
+      "row": "2-4",
+      "column": "?-g Burn Length",
+      "value": "~ 0"
+     },
+     {
+      "row": "2-4",
+      "column": "1-g Burn Length",
+      "value": "Complete"
+     }
+    ],
+    "source": {
+     "type": "psi_table",
+     "label": "PSI-99_Experimental table_SAFFIRE-2.csv",
+     "file": "PSI-99_Experimental table_SAFFIRE-2.csv",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-99"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "kind": "from_data",
+    "text": "Both PMMA samples burned completely in 1-g but showed only about 10 cm of significant damage in microgravity. On one of them the flame stayed anchored at the base of the sample, which regressed only 0.01 to 0.04 mm/s.",
+    "quote": "The flames remain anchored at the base of the sample which has a very slow regression rate (0.01 to 0.04 mm/s)",
+    "cells": [
+     {
+      "row": "2-8",
+      "column": "Material",
+      "value": "PMMA"
+     },
+     {
+      "row": "2-8",
+      "column": "?-g Burn Length",
+      "value": "~ 10 cm (note 3)"
+     },
+     {
+      "row": "2-8",
+      "column": "1-g Burn Length",
+      "value": "Complete"
+     },
+     {
+      "row": "2-9",
+      "column": "?-g Burn Length",
+      "value": "~ 10 cm (note 4)"
+     },
+     {
+      "row": "2-9",
+      "column": "1-g Burn Length",
+      "value": "Complete"
+     }
+    ],
+    "source": {
+     "type": "psi_table",
+     "label": "PSI-99_Experimental table_SAFFIRE-2.csv",
+     "file": "PSI-99_Experimental table_SAFFIRE-2.csv",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-99"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "kind": "from_data",
+    "text": "The cotton-fiberglass fabric (SIBAL) burned its full 29 cm length in microgravity, as it did in 1-g.",
+    "quote": null,
+    "cells": [
+     {
+      "row": "2-5",
+      "column": "Material",
+      "value": "Cotton-Fiberglass (SIBAL)"
+     },
+     {
+      "row": "2-5",
+      "column": "?-g Burn Length",
+      "value": "29 cm"
+     },
+     {
+      "row": "2-5",
+      "column": "1-g Burn Length",
+      "value": "Complete"
+     },
+     {
+      "row": "2-6",
+      "column": "?-g Burn Length",
+      "value": "29 cm"
+     },
+     {
+      "row": "2-6",
+      "column": "1-g Burn Length",
+      "value": "Complete"
+     }
+    ],
+    "source": {
+     "type": "psi_table",
+     "label": "PSI-99_Experimental table_SAFFIRE-2.csv",
+     "file": "PSI-99_Experimental table_SAFFIRE-2.csv",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-99"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   }
+  ],
   "gravity_comparison": {
-   "caveat": "NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Shown for context only — not a general rule for how any material behaves below 1 g.",
+   "caveat": "NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Cell text is shown as written in the PSI table. Shown for context only — not a general rule for how any material behaves below 1 g.",
    "source": "PSI-99 experimental table (SAFFIRE-2.csv)",
    "rows": [
     {
      "sample": "2-1",
      "material": "Silicone, 0.27 mm",
-     "o2_percent": "~21.5%",
-     "microgravity_burn": "~0 cm (self-extinguished)",
-     "one_g_burn": "Complete (29 cm)"
+     "o2_percent": "~ 21.5",
+     "microgravity_burn": "~ 0",
+     "one_g_burn": "Complete"
     },
     {
      "sample": "2-2",
      "material": "Silicone, 0.61 mm",
-     "o2_percent": "~22.1%",
-     "microgravity_burn": "~0 cm (self-extinguished)",
+     "o2_percent": "~ 22.1",
+     "microgravity_burn": "~ 0",
      "one_g_burn": "7.6 cm"
     },
     {
      "sample": "2-3",
      "material": "Silicone, 1.03 mm",
-     "o2_percent": "~22.1%",
-     "microgravity_burn": "~0 cm (self-extinguished)",
-     "one_g_burn": "~0 cm (self-extinguished)"
+     "o2_percent": "~ 22.1",
+     "microgravity_burn": "~ 0",
+     "one_g_burn": "~ 0"
     },
     {
      "sample": "2-4",
-     "material": "Silicone, 0.37 mm",
-     "o2_percent": "~22.1%",
-     "microgravity_burn": "~0 cm (self-extinguished)",
-     "one_g_burn": "Complete (29 cm)"
+     "material": "Silicone, 037 mm",
+     "o2_percent": "~ 22.1",
+     "microgravity_burn": "~ 0",
+     "one_g_burn": "Complete"
     },
     {
      "sample": "2-5",
-     "material": "Cotton-fiberglass (SIBAL)",
-     "o2_percent": "~22.1%",
-     "microgravity_burn": "29 cm (full sample)",
-     "one_g_burn": "Complete (29 cm)"
+     "material": "Cotton-Fiberglass (SIBAL), 037 mm",
+     "o2_percent": "~ 22.1",
+     "microgravity_burn": "29 cm",
+     "one_g_burn": "Complete"
     },
     {
      "sample": "2-6",
-     "material": "Cotton-fiberglass (SIBAL)",
-     "o2_percent": "~22.1%",
-     "microgravity_burn": "29 cm (full sample)",
-     "one_g_burn": "Complete (29 cm)"
+     "material": "Cotton-Fiberglass (SIBAL), 037 mm",
+     "o2_percent": "~ 22.1",
+     "microgravity_burn": "29 cm",
+     "one_g_burn": "Complete"
     },
     {
      "sample": "2-7",
-     "material": "PMMA & Nomex",
-     "o2_percent": "~22.1%",
-     "microgravity_burn": "PMMA 5 cm; Nomex not ignited",
-     "one_g_burn": "PMMA consumed; Nomex not ignited"
+     "material": "PMMA & Nomex, 0.85 and 0.37 mm",
+     "o2_percent": "~ 22.1",
+     "microgravity_burn": "5 cm & 0 (note 2)",
+     "one_g_burn": "~ 0 (Nomex)"
     },
     {
      "sample": "2-8",
-     "material": "PMMA",
-     "o2_percent": "22.1% to 22.0%",
-     "microgravity_burn": "~10 cm of visible damage",
-     "one_g_burn": "Complete (29 cm)"
+     "material": "PMMA, See Fig. 5",
+     "o2_percent": "22.1 to 22.0",
+     "microgravity_burn": "~ 10 cm (note 3)",
+     "one_g_burn": "Complete"
     },
     {
      "sample": "2-9",
-     "material": "PMMA",
-     "o2_percent": "22.0% to 21.9%",
-     "microgravity_burn": "~10 cm of visible damage",
-     "one_g_burn": "Complete (29 cm)"
+     "material": "PMMA, 1 cm",
+     "o2_percent": "22.0 to 21.9",
+     "microgravity_burn": "~ 10 cm (note 4)",
+     "one_g_burn": "Complete"
     }
+   ],
+   "notes": [
+    "Note 1 Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
+    "Note 2 The PMMA portion was completely consumed but the Nomex was not ignited.",
+    "Note 3 This is the length of fuel with significant visible damage.",
+    "Note 4 The flames remain anchored at the base of the sample which has a very slow regression rate (0.01 to 0.04 mm/s)"
    ]
   }
  },
@@ -646,7 +975,16 @@
   ],
   "geometry": "Large sample, 94 cm x 40.6 cm",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -722,7 +1060,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-102",
@@ -749,7 +1088,16 @@
   ],
   "geometry": "Overheated samples in the glovebox",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -883,7 +1231,26 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": [
+   {
+    "kind": "nasa_context",
+    "text": "Smoke particles from fires in microgravity differ greatly in size from those on Earth, so a terrestrial smoke detector used in space would be looking for the wrong signature.",
+    "quote": "Fundamental research in microgravity highlighted the vastly different particulate size associated with flames in microgravity. Since many fire detectors operate by sensing fire-generated particulates, they would need to use different signatures to detect fires in microgravity. If terrestrial fire detectors were used in space, they would be “looking” for something different than they should.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 35",
+     "page": 35,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this about microgravity smoke research in general. SAME and SAME-R are the PSI studies that measured smoke particle size from spacecraft materials (Guide page 26).",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-101"
+    ]
+   }
+  ]
  },
  {
   "psi_id": "PSI-101",
@@ -910,7 +1277,16 @@
   ],
   "geometry": "Overheated samples in the glovebox",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -998,7 +1374,26 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": [
+   {
+    "kind": "nasa_context",
+    "text": "Smoke particles from fires in microgravity differ greatly in size from those on Earth, so a terrestrial smoke detector used in space would be looking for the wrong signature.",
+    "quote": "Fundamental research in microgravity highlighted the vastly different particulate size associated with flames in microgravity. Since many fire detectors operate by sensing fire-generated particulates, they would need to use different signatures to detect fires in microgravity. If terrestrial fire detectors were used in space, they would be “looking” for something different than they should.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 35",
+     "page": 35,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this about microgravity smoke research in general. SAME and SAME-R are the PSI studies that measured smoke particle size from spacecraft materials (Guide page 26).",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-102"
+    ]
+   }
+  ]
  },
  {
   "psi_id": "PSI-47",
@@ -1021,7 +1416,16 @@
   ],
   "geometry": "Aerosol held in 15-liter Mylar bags",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -1082,7 +1486,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-69",
@@ -1389,7 +1794,54 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": [
+   {
+    "kind": "nasa_stated",
+    "text": "The flammability limit is lower in microgravity, so inert-gas suppressant standards set on Earth give less safety margin in space.",
+    "quote": "The research to date has shown that the flammability limit is lower in reduced gravity. The implication is that terrestrial standards for inert gas suppressants in low gravity do not offer the same margin of safety as in normal gravity.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 12",
+     "page": 12,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "kind": "nasa_stated",
+    "text": "For heptane and methanol droplets, the lowest oxygen level that still supports burning (limiting oxygen index) was significantly lower than in normal gravity, and lower than predicted.",
+    "quote": "identified an LOI that is both significantly lower than in normal gravity and lower than previously predicted and anticipated.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 36",
+     "page": 36,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "The Guide states this for \"these experiments\", FLEX and FLEX-2; heptane and methanol were the FLEX fuels.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "kind": "nasa_stated",
+    "text": "After the visible flame around a heptane droplet went out, a stable cool flame formed and kept burning. NASA calls this the most significant observation of these experiments.",
+    "quote": "The most significant observation from these experiments, however, is the identification of stable, quasi-steady cool flames that form after radiative extinction of the visible flame for heptane droplet combustion",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 36",
+     "page": 36,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   }
+  ]
  },
  {
   "psi_id": "PSI-68",
@@ -1688,7 +2140,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-39",
@@ -1806,7 +2259,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-20",
@@ -1951,7 +2405,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-10",
@@ -2178,7 +2633,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-159",
@@ -2279,7 +2735,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-21",
@@ -2422,7 +2879,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-22",
@@ -2591,7 +3049,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-23",
@@ -2850,7 +3309,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-107",
@@ -2877,7 +3337,16 @@
   ],
   "geometry": "Gas-jet nozzles of 0.41, 0.76 and 1.6 mm in a coflow duct",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -2983,7 +3452,8 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  },
  {
   "psi_id": "PSI-106",
@@ -3009,7 +3479,16 @@
   ],
   "geometry": "Exchangeable burner tubes in a fan-driven flow duct",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -3086,6 +3565,7 @@
   "verified": {
    "by": null,
    "date": null
-  }
+  },
+  "findings": []
  }
 ]

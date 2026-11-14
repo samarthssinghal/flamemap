@@ -4,6 +4,15 @@ type Spans = EnvFile['reference_spans']
 
 const r1 = (x: number) => Math.round(x * 10) / 10
 
+/**
+ * Distance used when the environment sets a factor but the investigation did not record it.
+ * A condition that was not recorded is no evidence that it was tested, so it counts as untested:
+ * the maximum distance, 1. (Skipping it, as earlier versions did, let studies with missing data
+ * outrank studies that recorded the value; a midpoint of 0.5 still did for extreme environments
+ * such as the 100% O2 spacesuit. REVIEW_ISSUES R02.)
+ */
+export const UNKNOWN_DISTANCE = 1
+
 /** Distance for a tested range. Returns null when either side is unknown (never treats unknown as 0). */
 export function rangeDistance(envValue: number | null, cond: RangeCond | null, span: number): { gap: number; distance: number; lo: number; hi: number } | null {
   if (envValue === null || envValue === undefined || !cond) return null
@@ -42,7 +51,11 @@ export function scoreOne(env: Environment, task: Task, w: Weights, inv: Investig
   for (const r of ranges) {
     const d = rangeDistance(r.env, r.cond, r.span)
     if (!d) {
-      breakdown.push({ factor: r.key, label: r.label, env_value: r.env, tested_min: r.cond?.min ?? null, tested_max: r.cond?.max ?? null, gap: null, distance: null, weight: r.weight, status: 'unknown', unit: r.unit, source: r.cond?.source ?? null, confidence: r.cond?.confidence ?? null })
+      // Environment does not set this factor: skipped for every investigation alike.
+      // Investigation did not record it: scored at UNKNOWN_DISTANCE.
+      const notSet = r.env === null || r.env === undefined
+      breakdown.push({ factor: r.key, label: r.label, env_value: r.env, tested_min: r.cond?.min ?? null, tested_max: r.cond?.max ?? null, gap: null, distance: notSet ? null : UNKNOWN_DISTANCE, weight: r.weight, status: notSet ? 'not_set' : 'unknown', unit: r.unit, source: r.cond?.source ?? null, confidence: r.cond?.confidence ?? null })
+      if (!notSet) flags.push(`${r.label} not recorded`)
       continue
     }
     const status = d.gap === 0 ? 'inside' : 'outside'
@@ -62,15 +75,19 @@ export function scoreOne(env: Environment, task: Task, w: Weights, inv: Investig
   const tf = taskFit(inv, task)
   breakdown.push({ factor: 'task', label: 'Task fit', env_value: task.name, tested_min: null, tested_max: null, gap: null, distance: 1 - tf.fit, weight: w.task, status: tf.fit >= 0.99 ? 'match' : tf.fit > 0 ? 'partial' : 'mismatch', unit: '', source: null, confidence: null })
 
-  const known = breakdown.filter((b) => b.distance !== null)
-  const wKnown = known.reduce((s, b) => s + b.weight, 0)
-  const wAll = w.o2 + w.pressure + w.flow + w.gravity + w.task
-  const weighted = wKnown > 0 ? known.reduce((s, b) => s + b.weight * (b.distance as number), 0) / wKnown : 1
+  // Scored = every factor the environment sets (unknown ones at UNKNOWN_DISTANCE). Weights are rescaled
+  // only over factors the environment sets, which is the same set for every investigation.
+  const scored = breakdown.filter((b) => b.distance !== null)
+  const recorded = scored.filter((b) => b.status !== 'unknown')
+  const wScored = scored.reduce((s, b) => s + b.weight, 0)
+  const wRecorded = recorded.reduce((s, b) => s + b.weight, 0)
+  const weighted = wScored > 0 ? scored.reduce((s, b) => s + b.weight * (b.distance as number), 0) / wScored : 1
   return {
     inv,
     relevance: Math.round(100 * (1 - weighted)),
-    evidence_completeness: wAll > 0 ? wKnown / wAll : 0,
-    n_known: known.length,
+    evidence_completeness: wScored > 0 ? wRecorded / wScored : 0,
+    n_known: recorded.length,
+    n_scored: scored.length,
     breakdown,
     flags,
   }
@@ -95,7 +112,9 @@ export function explain(item: RankedItem): string[] {
     if (b.factor === 'task') {
       out.push(b.status === 'match' ? 'Fire-safety role and fuel type both match the selected task.' : b.status === 'partial' ? `Partial match to the selected task (task fit ${Math.round((1 - (b.distance as number)) * 100)}%).` : 'Role and fuel type do not match the selected task.')
     } else if (b.status === 'unknown') {
-      out.push(b.env_value === null ? `${b.label}: not set for this environment, so it is not scored.` : `${b.label}: not recorded for this investigation, so it is not scored.`)
+      out.push(`${b.label}: not recorded for this investigation, so it counts as untested (distance ${UNKNOWN_DISTANCE}, the maximum).`)
+    } else if (b.status === 'not_set') {
+      out.push(`${b.label}: not set for this environment, so it is not scored for any investigation.`)
     } else if (b.factor === 'gravity') {
       out.push(b.status === 'inside' ? `Gravity: tested at ${b.env_value} g, the same as this environment.` : `Gravity: tested at ${item.inv.conditions.gravity_g.values.join(' and ')} g; this environment is ${b.env_value} g.`)
     } else {

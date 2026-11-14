@@ -6,18 +6,18 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | ID | Impact | Effort | Status | Issue |
 |---|---|---|---|---|
 | R01 | Critical | 1–2 h | done | Inverse-flame O2 (burner oxidizer stream) treated as ambient O2 |
-| R02 | Critical | 1 h | todo | Missing data raises the score (renormalization rewards unknowns) |
-| R03 | High | — | todo | No "findings": app ranks conditions, never interprets results (done via R06a) |
+| R02 | Critical | 1 h | done | Missing data raises the score (renormalization rewards unknowns) |
+| R03 | High | — | done | No "findings": app ranks conditions, never interprets results (done via R06a) |
 | R04 | High | 2–3 h | done | Pipeline not reproducible: hand-copied constants, no raw data in repo |
 | R05 | High | 1–2 h (human) | todo | Human verification steps not done (H1, H4, H5, links, phone) |
 | R06 | Critical | see subtasks | todo | Add the super-intelligence (SI) layer the challenge title asks for (subtasks R06a–R06e) |
 | R06a | Critical | 3–4 h | todo | SI: AI-extracted key findings per investigation, each with a quote and source (merges with R03) |
 | R06b | Critical | 2–3 h | todo | SI: AI interpretation brief for each environment + task (what the evidence says, what's missing) |
 | R06c | High | 3–4 h | todo | SI: "Ask the evidence" Q&A in the app, answers cited to PSI records only |
-| R06d | High | 1 h | todo | SI guardrails: machine check that every number/quote in AI text exists in the source; label AI text |
+| R06d | High | 1 h | in progress | SI guardrails: machine check that every number/quote in AI text exists in the source; label AI text |
 | R06e | Medium | 1 h | todo | SI: AI-suggested related investigations ("studies like this one") with reasons |
 | R07 | High | 30 min | todo | Same metric shows two numbers (387 vs 392); custom env has no gaps |
-| R27 | High | 1–2 h | todo | Add NASA-stated findings from the Researcher's Guide (cited by page); seeds R06a with verified findings |
+| R27 | High | 1–2 h | in progress | Add NASA-stated findings from the Researcher's Guide (cited by page); seeds R06a with verified findings |
 | R28 | High | 1 h | todo | "Three misconceptions" panel: NASA's myths about fire in space vs. the PSI evidence that disproved them |
 | R29 | High | 30 min | todo | Presets have no airflow, so the airflow factor is never scored; set ventilation airflow from the Guide |
 | R08 | Medium | 2–3 h | todo | Exports not useful for modeling: ranges and bins only, no per-run rows or outcomes |
@@ -29,7 +29,7 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | R14 | Medium | 1–2 h | todo | No hardware-family / similarity view (ACME-CIR, MDCA, MSG duct, SAME↔DAFT) |
 | R15 | Medium | 15 min | todo | Slides and project page contain numbers affected by R01 |
 | R30 | Medium | 1 h | todo | Incident → lesson → evidence panel (Apollo 1, Apollo 13, Mir linked to tasks and investigations) |
-| R33 | Medium | 15 min | todo | Save the Researcher's Guide text in `reference/` so findings and citations are reproducible |
+| R33 | Medium | 15 min | done | Save the Researcher's Guide text in `reference/` so findings and citations are reproducible |
 | R16 | Low | 20 min | todo | Earth panel misses fine-water-mist extinguishers (named in challenge); Guide has the source |
 | R17 | Low | 15 min | todo | Dangling references to `claude/*.md` files not in repo |
 | R18 | Low | 15 min | todo | SAFFIRE-I dates copied from PSI record are wrong (same as SAME); add note |
@@ -58,10 +58,12 @@ In inverse flames the chamber holds fuel + N2 (`Xf before test`); `XO2` is the O
 ### R02 — Missing data raises the score (Critical)
 `ranker.ts:65-68` skips unknown factors and rescales weights. Spacesuit + prevention ranks BASS and SAFFIRE-III #1/#2 though neither recorded O2.
 - Fix options: unknown factor → fixed distance (e.g. 0.5); or relevance × completeness; or sort by completeness band first. Update tests (spec test 6 changes) and the About page text.
+- Done 2026-11-14: unrecorded factor → distance 1 (`UNKNOWN_DISTANCE` in `ranker.ts`); factor the environment does not set → skipped for all (`not_set` status). 0.5 was tried: spacesuit still ranked ACME CLD/E-FIELD (nothing recorded) first. Added cabin-air O2 assumption (21%, low confidence) for 7 cabin-air studies, matching the existing cabin-pressure assumption, so SAME/SAME-R/DAFT stay top for detection. Spacesuit + prevention now: CFI-G, BASS-II, SAFFIRE-II, SAFFIRE-I, BASS (all 44–45). Tests 6, 10 updated; 12, 13 added. Cards show "n of m factors recorded"; CSV export adds `factors_recorded`.
 
 ### R03 — No findings / interpretation (High)
 Challenge: "summarizes, ranks, and interprets those findings". Summaries say what was done, not what was learned. Tables have outcome columns (CFI-G hot ignition, burn time, self-extinction; SAFFIRE-II burn length; FLEX extinction).
 - Fix: per-investigation "Key findings" (3–5 bullets) with a quote and source (PSI text, table column, or publication), shown on cards, Explorer and Compare. Start with the top ~8 fire-safety studies.
+- Done 2026-11-14: 11 findings for 7 studies in `pipeline/findings.json` (7 Guide quotes with page, 4 from SAFFIRE-I/II table cells), checked by `build_data.mjs` (quote on page, cell values, numbers). Shown on Rank cards, Explorer drawer and Compare. Covers the R27 findings and the quote check of R06d; R06a's AI extraction from PSI reports (R35) and publications is still open. No findings for DAFT, SAFFIRE-III or the non-fire-safety studies (no source states a result). SAFFIRE-II comparison rows now read from the table (fixed sample 2-7).
 
 ### R04 — Pipeline not reproducible (High)
 Values were transcribed by hand into constants; `pipeline/raw/` is empty. PSI is reachable from this machine now.

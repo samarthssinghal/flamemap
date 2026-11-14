@@ -28,7 +28,7 @@ export const flatInv = (i: Investigation) => ({
 export const flatRank = (r: RankedItem, idx: number) => {
   const f = (k: string) => r.breakdown.find((b) => b.factor === k)
   return {
-    rank: idx + 1, relevance: r.relevance, factors_scored: r.n_known, evidence_completeness: Math.round(r.evidence_completeness * 100) / 100,
+    rank: idx + 1, relevance: r.relevance, factors_recorded: r.n_known, factors_scored: r.n_scored, evidence_completeness: Math.round(r.evidence_completeness * 100) / 100,
     distance_o2: f('o2')?.distance ?? null, distance_pressure: f('pressure')?.distance ?? null, distance_airflow: f('flow')?.distance ?? null, distance_gravity: f('gravity')?.distance ?? null, distance_task: f('task')?.distance ?? null,
     flags: r.flags.join('; '), ...flatInv(r.inv),
   }

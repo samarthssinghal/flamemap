@@ -52,6 +52,15 @@ function load(dir, id, suffix) {
   return { file, data, col }
 }
 
+// Whole table by file name, for checking quoted cells (findings). Rows are keyed by normalized header;
+// `_key` is the trimmed first cell, used to address a row ("S1", "2-8").
+export function readTable(dir, file) {
+  const [header, ...body] = parseCsv(readFileSync(join(dir, file), 'utf8'))
+  const cols = header.map(norm)
+  const rows = body.filter((c) => c.some((x) => x.trim() !== '')).map((c) => Object.fromEntries([['_key', (c[0] ?? '').trim()], ...cols.map((h, j) => [h, (c[j] ?? '').trim()])]))
+  return { header, cols, rows, norm }
+}
+
 // Plain number, or null for blanks and text such as "RAMP", "LOW O2", "none".
 const num = (s) => (s !== '' && Number.isFinite(Number(s)) ? Number(s) : null)
 // All numbers in a cell such as "21.5 - 21.7", "~ 21.5", "0.17; 0.21;0.25; 0.3", "30 cm/s", "-5.92".

@@ -10,7 +10,7 @@ import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { CABIN_KPA, parseTables } from './tables.mjs'
+import { CABIN_KPA, parseTables, readTable } from './tables.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const RAW = join(HERE, 'raw')
@@ -41,6 +41,10 @@ const tbl = (id, f, col) => ({ type: 'table_column', ref: `${id}_Experimental ta
 const txt = (q) => ({ type: 'psi_text', ref: q })
 const CABIN = { min: CABIN_KPA, max: CABIN_KPA, unit: 'kPa', source: { type: 'assumed_platform', ref: 'Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed' }, confidence: 'low' }
 const R = (min, max, unit, source, confidence = 'high') => ({ min, max, unit, source, confidence })
+// Same platforms as CABIN: experiments open to station or Cygnus cabin air, with no O2 column and no
+// statement in the record that ambient oxygen was changed. Used so that a missing table column is not
+// mistaken for an unknown atmosphere (REVIEW_ISSUES R02). Low confidence, shown as "assumed".
+const CABIN_O2 = { min: 21, max: 21, unit: '%', source: { type: 'assumed_platform', ref: 'Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed' }, confidence: 'low' }
 const UNIT = { o2: '%', pressure: 'kPa', flow: 'cm/s' }
 // Range parsed from the experimental table (pipeline/tables.mjs)
 const T = (id, field, source, confidence = 'high') => {
@@ -65,7 +69,7 @@ const I = [
     why: 'Aims to link the normal-gravity NASA-STD-6001 Test 1 method to actual material flammability in microgravity, to help select safer materials.' },
   { id: 'PSI-26', ac: 'BASS', title: 'Burning and Suppression of Solids', sub: 'Spacecraft Fire Safety', plat: 'International Space Station (ISS)', hw: 'Microgravity Science Glovebox',
     role: 'prevention', sec: ['suppression'], fuel: 'solid', mats: ['cotton-fiberglass fabric (SIBAL)', 'Nomex', 'Ultem', 'PMMA spheres'], geom: 'Flat fabric, spheres and cylinders in a 76 mm x 76 mm flow duct',
-    o2: null, p: CABIN, flow: R(null, 40, 'cm/s', txt('"airflow speeds reaching as high as 40 cm/s"'), 'medium'),
+    o2: CABIN_O2, p: CABIN, flow: R(null, 40, 'cm/s', txt('"airflow speeds reaching as high as 40 cm/s"'), 'medium'),
     avail: 'run_log_only', dil: [], varied: ['airflow speed', 'flow direction', 'material', 'geometry'], sensors: ['imaging (top and edge views)'],
     sum: 'Fabric, plastic and other solid samples were ignited in a small flow duct inside the station glovebox, with a fan setting the airflow in the opposed or concurrent direction. Flame size, shape, color, spread rate and quenching were observed. A second objective was to assess an inert gaseous extinguishing agent.',
     why: 'Spacecraft materials are selected with a 1-g test (NASA-STD-6001 Test 1); BASS examines how that relates to burning in microgravity.' },
@@ -83,25 +87,25 @@ const I = [
     why: 'Compares low-gravity flammability limits with those from NASA\'s normal-gravity material screening test, across several materials.' },
   { id: 'PSI-100', ac: 'SAFFIRE-III', title: 'Spacecraft Fire Experiment-III', sub: 'Spacecraft Fire Safety', plat: 'International Space Station (ISS)', hw: 'Saffire III enclosure in Cygnus',
     role: 'prevention', sec: [], fuel: 'solid', mats: ['cotton-fiberglass fabric (SIBAL)'], geom: 'Large sample, 94 cm x 40.6 cm',
-    o2: null, p: CABIN, flow: T('PSI-100', 'flow', tbl('PSI-100', 'SAFFIRE-3.csv', 'Air Flow')),
+    o2: CABIN_O2, p: CABIN, flow: T('PSI-100', 'flow', tbl('PSI-100', 'SAFFIRE-3.csv', 'Air Flow')),
     avail: 'run_table_partial', dil: [], varied: ['flow direction'], sensors: ['two cameras', 'thermocouples', 'radiometers', 'pressure, CO2 and O2 sensors', 'anemometers'],
     sum: 'A follow-on to Saffire-I using the same cotton-fiberglass fabric on a Cygnus cargo vehicle, but at a flow velocity of 30 cm/s compared with 20 cm/s. The flow was concurrent or opposed. Cameras, thermocouples, radiometers and gas sensors recorded the burn.',
     why: 'Extends the large-scale fire-growth test to a higher airflow, for comparison with the normal-gravity flammability screening test.' },
   { id: 'PSI-102', ac: 'SAME', title: 'Smoke and Aerosol Measurement Experiment', sub: 'Spacecraft Fire Safety', plat: 'International Space Station (ISS)', hw: 'Comparative Soot Diagnostic hardware',
     role: 'detection', sec: [], fuel: 'aerosol', mats: ['Teflon', 'Kapton', 'silicone rubber', 'lampwick', 'dibutyl phthalate'], geom: 'Overheated samples in the glovebox',
-    o2: null, p: CABIN, flow: T('PSI-102', 'flow', tbl('PSI-102', 'SAME.csv', 'Air Flow (cm/s)')),
+    o2: CABIN_O2, p: CABIN, flow: T('PSI-102', 'flow', tbl('PSI-102', 'SAME.csv', 'Air Flow (cm/s)')),
     avail: 'run_table_partial', dil: [], varied: ['material', 'airflow', 'aging duration'], sensors: ['two smoke detectors', 'thermophoretic soot samplers', 'video cameras'],
     sum: 'Smoke from overheated spacecraft materials was produced in the station glovebox and sampled. Two smoke detectors were tested against it, and collected particles were later examined with an electron microscope to measure particle dimensions. Sample mass loss was also measured.',
     why: 'Provides data on how sensitive existing smoke detectors are to reduced-gravity smoke, toward an advanced fire detector for long missions.' },
   { id: 'PSI-101', ac: 'SAME-R', title: 'Smoke Aerosol Measurement Experiment-Reflight', sub: 'Spacecraft Fire Safety', plat: 'International Space Station (ISS)', hw: 'Comparative Soot Diagnostic hardware',
     role: 'detection', sec: [], fuel: 'aerosol', mats: ['Kapton', 'silicone', 'lampwick', 'Teflon', 'Pyrell foam'], geom: 'Overheated samples in the glovebox',
-    o2: null, p: CABIN, flow: T('PSI-101', 'flow', tbl('PSI-101', 'SAME-R.csv', 'Inlet velocity (cm/s)')),
+    o2: CABIN_O2, p: CABIN, flow: T('PSI-101', 'flow', tbl('PSI-101', 'SAME-R.csv', 'Inlet velocity (cm/s)')),
     avail: 'run_table_partial', dil: [], varied: ['material', 'heating temperature', 'inlet velocity', 'aging'], sensors: ['smoke detector instruments', 'thermal precipitator'],
     sum: 'A reflight of SAME on the same hardware with changes: a new fire-retardant foam sample, broader test conditions including higher heating temperatures and no flow during heating, and a new instrument. The goal was to quantify smoke particle sizes in low gravity. 66 test points were completed.',
     why: 'Together with SAME, its results can lead to an advanced fire detector for spacecraft on long-duration missions.' },
   { id: 'PSI-47', ac: 'DAFT / DAFT-2', title: 'Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2', sub: 'Spacecraft Fire Safety', plat: 'International Space Station (ISS)', hw: 'TSI P-Trak',
     role: 'detection', sec: [], fuel: 'aerosol', mats: ['Arizona Road Dust (test aerosol)'], geom: 'Aerosol held in 15-liter Mylar bags',
-    o2: null, p: CABIN, flow: null,
+    o2: CABIN_O2, p: CABIN, flow: null,
     avail: 'run_log_only', dil: [], varied: ['instrument', 'sampled location'], sensors: ['modified P-Trak particle counter', 'DustTrak'],
     sum: 'A risk-reduction test for SAME. A commercial particle counter, the P-Trak, relies on gravity, so it was modified for microgravity and checked on orbit against a second instrument using a standard dust aerosol held in 15-liter bags. No combustion took place.',
     why: 'Longer missions on larger vessels need fire detection with better reliability and sensitivity; this checked a key smoke-measurement instrument.' },
@@ -161,17 +165,20 @@ const I = [
     why: 'Fundamental flame-structure data for validating chemistry and transport models; indirect value for fire safety.' },
   { id: 'PSI-107', ac: 'SPICE', title: 'Smoke Point In Co-flow Experiment', sub: 'Fire Safety', plat: 'International Space Station (ISS)', hw: 'Microgravity Science Glovebox (MSG)',
     role: 'fundamental', sec: [], fuel: 'gas', mats: ['methane', 'ethylene', 'propane', 'propylene', 'propylene mixtures'], geom: 'Gas-jet nozzles of 0.41, 0.76 and 1.6 mm in a coflow duct',
-    o2: null, p: CABIN, flow: T('PSI-107', 'flow', tbl('PSI-107', 'Spice.csv', 'Air Rate (cm/s)')),
+    o2: CABIN_O2, p: CABIN, flow: T('PSI-107', 'flow', tbl('PSI-107', 'Spice.csv', 'Air Rate (cm/s)')),
     avail: 'run_table_partial', dil: [], varied: ['fuel', 'nozzle diameter', 'fuel flow rate', 'coflow air velocity'], sensors: ['still and video cameras', 'radiative heat loss'],
     sum: 'Gas-jet flames were lit in a flow duct in the station glovebox with a controlled coflow of air. Fuel flow was adjusted to find the smoke point, where the flame starts to emit soot. Flame lengths were recorded for several fuels and burner diameters. In total 526 flames were studied.',
     why: 'Improves understanding of soot formation, which the record links to designing safer spacecraft environments.' },
   { id: 'PSI-106', ac: 'SLICE', title: 'Structure and Liftoff In Combustion Experiment', sub: null, plat: 'International Space Station (ISS)', hw: null,
     role: 'fundamental', sec: [], fuel: 'gas', mats: ['methane', 'ethylene', 'ethane', 'nitrogen-diluted mixtures'], geom: 'Exchangeable burner tubes in a fan-driven flow duct',
-    o2: null, p: CABIN, flow: null,
+    o2: CABIN_O2, p: CABIN, flow: null,
     avail: 'run_log_only', dil: ['N2'], varied: ['fuel', 'nitrogen dilution', 'coflow velocity', 'burner diameter'], sensors: ['high-resolution still camera', 'flow and temperature sensors'],
     sum: 'Gas flames were lit by hand in a fan-driven flow duct and photographed under controlled coflow air. The study looked at how flames stabilize at their base and when they lift off, and how diluting the fuel with nitrogen affects soot and stability.',
     why: 'Insights into flame stability and soot that the record connects to fire safety and to better numerical models.' },
 ]
+
+const byId = Object.fromEntries(I.map((x) => [x.id, x]))
+const GUIDE_URL = 'https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf'
 
 const MODELING = [
   { psi_id: 'PSI-62', title: 'Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography', parents: ['PSI-25', 'PSI-26'] },
@@ -182,31 +189,59 @@ const MODELING = [
 ]
 
 // SAFFIRE-II (PSI-99) is the one PSI record that measured the same solid-fuel samples in both
-// microgravity and normal gravity (NASA-STD-6001B Test 1 is a 1-g standard; this table is the only
-// place any PSI investigation pairs it against a microgravity result). Transcribed from
-// PSI-99_Experimental table_SAFFIRE-2.csv (9 real burn samples; 2 rows are pre-test camera
-// calibration and 4 are footnotes, excluded here). See context-limitations.md B3 for why this is
-// shown as context only, not a general claim about how materials behave below 1 g.
+// microgravity and normal gravity (NASA-STD-6001B Test 1 is a 1-g standard). Rows are read from
+// PSI-99_Experimental table_SAFFIRE-2.csv: the 9 burn samples ("2-<n>") with cell text unchanged, and
+// the table's own notes. Blank material cells repeat the row above (the table leaves them blank).
+// The microgravity column header is "?-g" in the file itself (the µ was lost upstream).
+const SAFFIRE2 = readTable(join(RAW, 'tables'), 'PSI-99_Experimental table_SAFFIRE-2.csv')
+const s2col = (name) => { const n = SAFFIRE2.norm(name); if (!SAFFIRE2.cols.includes(n)) throw new Error(`SAFFIRE-2.csv: no column ${name}`); return n }
+let lastMaterial = ''
 const GRAVITY_COMPARISON = {
   'PSI-99': {
-    caveat: 'NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Shown for context only — not a general rule for how any material behaves below 1 g.',
+    caveat: 'NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Cell text is shown as written in the PSI table. Shown for context only — not a general rule for how any material behaves below 1 g.',
     source: 'PSI-99 experimental table (SAFFIRE-2.csv)',
-    rows: [
-      { sample: '2-1', material: 'Silicone, 0.27 mm', o2_percent: '~21.5%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-2', material: 'Silicone, 0.61 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: '7.6 cm' },
-      { sample: '2-3', material: 'Silicone, 1.03 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: '~0 cm (self-extinguished)' },
-      { sample: '2-4', material: 'Silicone, 0.37 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-5', material: 'Cotton-fiberglass (SIBAL)', o2_percent: '~22.1%', microgravity_burn: '29 cm (full sample)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-6', material: 'Cotton-fiberglass (SIBAL)', o2_percent: '~22.1%', microgravity_burn: '29 cm (full sample)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-7', material: 'PMMA & Nomex', o2_percent: '~22.1%', microgravity_burn: 'PMMA 5 cm; Nomex not ignited', one_g_burn: 'PMMA consumed; Nomex not ignited' },
-      { sample: '2-8', material: 'PMMA', o2_percent: '22.1% to 22.0%', microgravity_burn: '~10 cm of visible damage', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-9', material: 'PMMA', o2_percent: '22.0% to 21.9%', microgravity_burn: '~10 cm of visible damage', one_g_burn: 'Complete (29 cm)' },
-    ],
+    rows: SAFFIRE2.rows.filter((r) => /^2-\d+$/.test(r._key)).map((r) => {
+      lastMaterial = r[s2col('Material')] || lastMaterial
+      return { sample: r._key, material: `${lastMaterial}, ${r[s2col('Samle Thickness')]}`, o2_percent: r[s2col('Percent O2 (Note 1)')], microgravity_burn: r[s2col('?-g Burn Length')], one_g_burn: r[s2col('1-g Burn Length')] }
+    }),
+    notes: SAFFIRE2.rows.filter((r) => /^Note \d/.test(r._key)).map((r) => r._key),
   },
 }
 
+// ---------- key findings (pipeline/findings.json), each checked against its source ----------
+const GUIDE_PATH = join(HERE, '..', 'reference', 'researchers-guide-2015.txt')
+const GUIDE_PAGES = Object.fromEntries([...readFileSync(GUIDE_PATH, 'utf8').matchAll(/=== page (\d+) ===\n([\s\S]*?)(?=\n=== page |$)/g)].map((m) => [Number(m[1]), m[2]]))
+const ws = (s) => s.replace(/\s+/g, ' ').trim()
+const numbersIn = (s) => [...s.matchAll(/\d+(?:\.\d+)?/g)].map((m) => m[0])
+const FINDINGS = JSON.parse(readFileSync(join(HERE, 'findings.json'), 'utf8')).findings.map((f, k) => {
+  const where = `findings.json #${k + 1} (${f.psi_ids.join(', ')})`
+  if (!['nasa_stated', 'nasa_context', 'from_data'].includes(f.kind)) throw new Error(`${where}: bad kind ${f.kind}`)
+  let corpus = f.quote ?? ''
+  if (f.source.type === 'nasa_guide') {
+    const page = GUIDE_PAGES[f.source.page]
+    if (!page) throw new Error(`${where}: Guide has no page ${f.source.page}`)
+    if (!f.quote || !ws(page).includes(ws(f.quote))) throw new Error(`${where}: quote not found on Guide page ${f.source.page}: ${f.quote}`)
+  } else if (f.source.type === 'psi_table') {
+    const t = readTable(join(RAW, 'tables'), f.source.file)
+    if (f.quote && !t.rows.some((r) => Object.values(r).some((v) => ws(v).includes(ws(f.quote))))) throw new Error(`${where}: quote not found in ${f.source.file}: ${f.quote}`)
+    for (const c of f.cells ?? []) {
+      const row = t.rows.find((r) => r._key === c.row), col = t.norm(c.column)
+      if (!row) throw new Error(`${where}: ${f.source.file} has no row ${c.row}`)
+      if (!(col in row)) throw new Error(`${where}: ${f.source.file} has no column ${c.column}`)
+      if (row[col] !== c.value) throw new Error(`${where}: ${f.source.file} row ${c.row}, ${c.column} is "${row[col]}", finding says "${c.value}"`)
+      corpus += ` ${c.column} ${c.value}`
+    }
+    if (!f.quote && !(f.cells ?? []).length) throw new Error(`${where}: table finding needs a quote or cells`)
+  } else throw new Error(`${where}: unknown source type ${f.source.type}`)
+  for (const n of numbersIn(f.text)) if (!numbersIn(corpus).includes(n)) throw new Error(`${where}: number ${n} in text is not in the quote or cited cells`)
+  for (const id of f.psi_ids) if (!byId[id]) throw new Error(`${where}: unknown investigation ${id}`)
+  const source = f.source.type === 'nasa_guide'
+    ? { type: 'nasa_guide', label: `NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. ${f.source.page}`, page: f.source.page, url: GUIDE_URL }
+    : { type: 'psi_table', label: f.source.file, file: f.source.file, url: url(f.psi_ids[0]) }
+  return { psi_ids: f.psi_ids, kind: f.kind, text: f.text, quote: f.quote ?? null, cells: f.cells ?? [], source, attribution_note: f.attribution_note ?? null, generated_by: 'Written with Claude Code from the quoted source; quotes and cells checked at build time' }
+})
+
 // ---------- build investigations ----------
-const byId = Object.fromEntries(I.map((x) => [x.id, x]))
 const investigations = I.map((x) => {
   const r = rec(x.id), t = TABLES[x.id]
   if (r.accession !== x.id) throw new Error(`raw/${x.id}.json holds ${r.accession}`)
@@ -224,6 +259,7 @@ const investigations = I.map((x) => {
     n_publications: (r.publications ?? []).length, publications: (r.publications ?? []).map((p) => ({ title: clean(p.title), doi: p.doi || null })),
     related_modeling: MODELING.filter((m) => m.parents.includes(x.id)).map((m) => ({ psi_id: m.psi_id, title: m.title, url: url(m.psi_id) })),
     verified: { by: null, date: null },
+    findings: FINDINGS.filter((f) => f.psi_ids.includes(x.id)).map(({ psi_ids, ...f }) => ({ ...f, also_on: psi_ids.filter((id) => id !== x.id) })),
     ...(GRAVITY_COMPARISON[x.id] ? { gravity_comparison: GRAVITY_COMPARISON[x.id] } : {}),
   }
 })
@@ -271,7 +307,8 @@ const environments = {
 
 // ---------- gaps and insights (computed) ----------
 const FUEL_LABEL = { solid: 'solid-fuel', liquid_droplet: 'liquid-droplet', gas: 'gas-fuel', aerosol: 'smoke and aerosol' }
-const maxO2 = (cls) => investigations.filter((i) => (!cls || i.fuel_class === cls) && i.conditions.o2_percent).reduce((b, i) => (!b || i.conditions.o2_percent.max > b.conditions.o2_percent.max ? i : b), null)
+const tabulatedO2 = (i) => i.conditions.o2_percent && i.conditions.o2_percent.source.type === 'table_column'
+const maxO2 = (cls) => investigations.filter((i) => (!cls || i.fuel_class === cls) && tabulatedO2(i)).reduce((b, i) => (!b || i.conditions.o2_percent.max > b.conditions.o2_percent.max ? i : b), null)
 const recordedP = investigations.filter((i) => i.conditions.pressure_kpa && i.conditions.pressure_kpa.source.type !== 'assumed_platform')
 const sumObj = (o) => Object.values(o).reduce((a, b) => a + b, 0)
 // Run-level counts from the full-resolution points (not the display bins), keyed by PSI ID in sorted order.
@@ -287,9 +324,9 @@ const gaps =environments.environments.map((e) => {
   const sameG = investigations.filter((i) => i.conditions.gravity_g.values.some((v) => Math.abs(v - e.gravity_g) <= 0.05))
   if (sameG.length === 0) g.push({ id: 'partial_gravity', severity: 'high', text: `None of the ${investigations.length} flight investigations ran at ${e.gravity_g} g. All of them ran in microgravity, so there is no partial-gravity evidence here.`, computed_from: { metric: `investigations with a gravity level within 0.05 g of ${e.gravity_g}`, value: 0 }, sources: investigations.map((i) => i.psi_id) })
   const ms = maxO2('solid')
-  if (e.o2_percent > ms.conditions.o2_percent.max) g.push({ id: 'o2_solids', severity: 'high', text: `The highest oxygen level in any solid-fuel data table is ${ms.conditions.o2_percent.max}% (${ms.acronym}). This environment has ${e.o2_percent}%, which is ${(e.o2_percent - ms.conditions.o2_percent.max).toFixed(1)} points higher.`, computed_from: { metric: 'max tabulated O2 % among solid-fuel investigations', value: ms.conditions.o2_percent.max }, sources: investigations.filter((i) => i.fuel_class === 'solid' && i.conditions.o2_percent).map((i) => i.psi_id) })
+  if (e.o2_percent > ms.conditions.o2_percent.max) g.push({ id: 'o2_solids', severity: 'high', text: `The highest oxygen level in any solid-fuel data table is ${ms.conditions.o2_percent.max}% (${ms.acronym}). This environment has ${e.o2_percent}%, which is ${(e.o2_percent - ms.conditions.o2_percent.max).toFixed(1)} points higher.`, computed_from: { metric: 'max tabulated O2 % among solid-fuel investigations', value: ms.conditions.o2_percent.max }, sources: investigations.filter((i) => i.fuel_class === 'solid' && tabulatedO2(i)).map((i) => i.psi_id) })
   const ma = maxO2(null)
-  if (e.o2_percent > ma.conditions.o2_percent.max) g.push({ id: 'o2_any', severity: 'high', text: `No investigation of any fuel type has a tabulated oxygen level as high as ${e.o2_percent}%. The highest is ${ma.conditions.o2_percent.max}% (${investigations.filter((i) => i.conditions.o2_percent && i.conditions.o2_percent.max === ma.conditions.o2_percent.max).map((i) => i.acronym).join(', ')}, gas fuels).`, computed_from: { metric: 'max tabulated O2 % across all investigations', value: ma.conditions.o2_percent.max }, sources: [ma.psi_id] })
+  if (e.o2_percent > ma.conditions.o2_percent.max) g.push({ id: 'o2_any', severity: 'high', text: `No investigation of any fuel type has a tabulated oxygen level as high as ${e.o2_percent}%. The highest is ${ma.conditions.o2_percent.max}% (${investigations.filter((i) => tabulatedO2(i) && i.conditions.o2_percent.max === ma.conditions.o2_percent.max).map((i) => i.acronym).join(', ')}, gas fuels).`, computed_from: { metric: 'max tabulated O2 % across all investigations', value: ma.conditions.o2_percent.max }, sources: [ma.psi_id] })
   const solidsRecP = recordedP.filter((i) => i.fuel_class === 'solid')
   if (e.pressure_kpa < 95) {
     const covering = recordedP.filter((i) => i.conditions.pressure_kpa.min <= e.pressure_kpa && i.conditions.pressure_kpa.max >= e.pressure_kpa)
