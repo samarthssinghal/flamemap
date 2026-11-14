@@ -41,6 +41,7 @@ export default function About() {
         <ul>
           <li>AI helped read the PSI record text to fill in fuels, geometry, sensors and the variables each study changed, and drafted the short summaries. These are labeled in the app.</li>
           <li>The summaries use only the text of the PSI record. A team review of every summary is still pending for this build.</li>
+          <li>Key findings were written with Claude Code from two sources only: NASA&apos;s Researcher&apos;s Guide to ISS Combustion Science (2015) and the PSI experimental tables. Each finding carries its exact quote or table cells, and the build fails if a quote, cell value or number does not match the source. Findings are labeled &quot;NASA-stated&quot;, &quot;NASA context&quot; or &quot;From the PSI data table&quot;.</li>
           <li>The ranking, gap statements and chart counts are computed from the data. No AI model produces a score.</li>
           <li>AI coding assistants helped write the software.</li>
         </ul>

@@ -17,7 +17,7 @@ function inv(p: Partial<Investigation> & { o2?: RangeCond | null; pr?: RangeCond
     conditions: { o2_percent: p.o2 ?? null, pressure_kpa: p.pr ?? null, flow_cm_s: p.fl ?? null, gravity_g: { values: p.g ?? [0], source: src, confidence: 'high' } },
     diluents: [], variables_varied: [], sensors: [],
     evidence: p.evidence ?? { n_runs: 1, table_files: [], data_availability: '', raw_data_gb: null },
-    summary: { text: '', why_it_matters: '', generated_by: '', human_reviewed: false }, n_publications: 0, publications: [], related_modeling: [], verified: { by: null, date: null },
+    summary: { text: '', why_it_matters: '', generated_by: '', human_reviewed: false }, n_publications: 0, publications: [], related_modeling: [], findings: [], verified: { by: null, date: null },
   }
 }
 const env = (o2: number | null, p: number | null, g: number, f: number | null = null): Environment => ({ id: 'e', name: 'e', o2_percent: o2, pressure_kpa: p, gravity_g: g, flow_cm_s: f, sources: [] })

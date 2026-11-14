@@ -10,7 +10,7 @@ import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { CABIN_KPA, parseTables } from './tables.mjs'
+import { CABIN_KPA, parseTables, readTable } from './tables.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const RAW = join(HERE, 'raw')
@@ -177,6 +177,9 @@ const I = [
     why: 'Insights into flame stability and soot that the record connects to fire safety and to better numerical models.' },
 ]
 
+const byId = Object.fromEntries(I.map((x) => [x.id, x]))
+const GUIDE_URL = 'https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf'
+
 const MODELING = [
   { psi_id: 'PSI-62', title: 'Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography', parents: ['PSI-25', 'PSI-26'] },
   { psi_id: 'PSI-60', title: 'Computational and Experimental Analysis of SPICE Data Sets', parents: ['PSI-107'] },
@@ -186,31 +189,59 @@ const MODELING = [
 ]
 
 // SAFFIRE-II (PSI-99) is the one PSI record that measured the same solid-fuel samples in both
-// microgravity and normal gravity (NASA-STD-6001B Test 1 is a 1-g standard; this table is the only
-// place any PSI investigation pairs it against a microgravity result). Transcribed from
-// PSI-99_Experimental table_SAFFIRE-2.csv (9 real burn samples; 2 rows are pre-test camera
-// calibration and 4 are footnotes, excluded here). See context-limitations.md B3 for why this is
-// shown as context only, not a general claim about how materials behave below 1 g.
+// microgravity and normal gravity (NASA-STD-6001B Test 1 is a 1-g standard). Rows are read from
+// PSI-99_Experimental table_SAFFIRE-2.csv: the 9 burn samples ("2-<n>") with cell text unchanged, and
+// the table's own notes. Blank material cells repeat the row above (the table leaves them blank).
+// The microgravity column header is "?-g" in the file itself (the µ was lost upstream).
+const SAFFIRE2 = readTable(join(RAW, 'tables'), 'PSI-99_Experimental table_SAFFIRE-2.csv')
+const s2col = (name) => { const n = SAFFIRE2.norm(name); if (!SAFFIRE2.cols.includes(n)) throw new Error(`SAFFIRE-2.csv: no column ${name}`); return n }
+let lastMaterial = ''
 const GRAVITY_COMPARISON = {
   'PSI-99': {
-    caveat: 'NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Shown for context only — not a general rule for how any material behaves below 1 g.',
+    caveat: 'NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Cell text is shown as written in the PSI table. Shown for context only — not a general rule for how any material behaves below 1 g.',
     source: 'PSI-99 experimental table (SAFFIRE-2.csv)',
-    rows: [
-      { sample: '2-1', material: 'Silicone, 0.27 mm', o2_percent: '~21.5%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-2', material: 'Silicone, 0.61 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: '7.6 cm' },
-      { sample: '2-3', material: 'Silicone, 1.03 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: '~0 cm (self-extinguished)' },
-      { sample: '2-4', material: 'Silicone, 0.37 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-5', material: 'Cotton-fiberglass (SIBAL)', o2_percent: '~22.1%', microgravity_burn: '29 cm (full sample)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-6', material: 'Cotton-fiberglass (SIBAL)', o2_percent: '~22.1%', microgravity_burn: '29 cm (full sample)', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-7', material: 'PMMA & Nomex', o2_percent: '~22.1%', microgravity_burn: 'PMMA 5 cm; Nomex not ignited', one_g_burn: 'PMMA consumed; Nomex not ignited' },
-      { sample: '2-8', material: 'PMMA', o2_percent: '22.1% to 22.0%', microgravity_burn: '~10 cm of visible damage', one_g_burn: 'Complete (29 cm)' },
-      { sample: '2-9', material: 'PMMA', o2_percent: '22.0% to 21.9%', microgravity_burn: '~10 cm of visible damage', one_g_burn: 'Complete (29 cm)' },
-    ],
+    rows: SAFFIRE2.rows.filter((r) => /^2-\d+$/.test(r._key)).map((r) => {
+      lastMaterial = r[s2col('Material')] || lastMaterial
+      return { sample: r._key, material: `${lastMaterial}, ${r[s2col('Samle Thickness')]}`, o2_percent: r[s2col('Percent O2 (Note 1)')], microgravity_burn: r[s2col('?-g Burn Length')], one_g_burn: r[s2col('1-g Burn Length')] }
+    }),
+    notes: SAFFIRE2.rows.filter((r) => /^Note \d/.test(r._key)).map((r) => r._key),
   },
 }
 
+// ---------- key findings (pipeline/findings.json), each checked against its source ----------
+const GUIDE_PATH = join(HERE, '..', 'reference', 'researchers-guide-2015.txt')
+const GUIDE_PAGES = Object.fromEntries([...readFileSync(GUIDE_PATH, 'utf8').matchAll(/=== page (\d+) ===\n([\s\S]*?)(?=\n=== page |$)/g)].map((m) => [Number(m[1]), m[2]]))
+const ws = (s) => s.replace(/\s+/g, ' ').trim()
+const numbersIn = (s) => [...s.matchAll(/\d+(?:\.\d+)?/g)].map((m) => m[0])
+const FINDINGS = JSON.parse(readFileSync(join(HERE, 'findings.json'), 'utf8')).findings.map((f, k) => {
+  const where = `findings.json #${k + 1} (${f.psi_ids.join(', ')})`
+  if (!['nasa_stated', 'nasa_context', 'from_data'].includes(f.kind)) throw new Error(`${where}: bad kind ${f.kind}`)
+  let corpus = f.quote ?? ''
+  if (f.source.type === 'nasa_guide') {
+    const page = GUIDE_PAGES[f.source.page]
+    if (!page) throw new Error(`${where}: Guide has no page ${f.source.page}`)
+    if (!f.quote || !ws(page).includes(ws(f.quote))) throw new Error(`${where}: quote not found on Guide page ${f.source.page}: ${f.quote}`)
+  } else if (f.source.type === 'psi_table') {
+    const t = readTable(join(RAW, 'tables'), f.source.file)
+    if (f.quote && !t.rows.some((r) => Object.values(r).some((v) => ws(v).includes(ws(f.quote))))) throw new Error(`${where}: quote not found in ${f.source.file}: ${f.quote}`)
+    for (const c of f.cells ?? []) {
+      const row = t.rows.find((r) => r._key === c.row), col = t.norm(c.column)
+      if (!row) throw new Error(`${where}: ${f.source.file} has no row ${c.row}`)
+      if (!(col in row)) throw new Error(`${where}: ${f.source.file} has no column ${c.column}`)
+      if (row[col] !== c.value) throw new Error(`${where}: ${f.source.file} row ${c.row}, ${c.column} is "${row[col]}", finding says "${c.value}"`)
+      corpus += ` ${c.column} ${c.value}`
+    }
+    if (!f.quote && !(f.cells ?? []).length) throw new Error(`${where}: table finding needs a quote or cells`)
+  } else throw new Error(`${where}: unknown source type ${f.source.type}`)
+  for (const n of numbersIn(f.text)) if (!numbersIn(corpus).includes(n)) throw new Error(`${where}: number ${n} in text is not in the quote or cited cells`)
+  for (const id of f.psi_ids) if (!byId[id]) throw new Error(`${where}: unknown investigation ${id}`)
+  const source = f.source.type === 'nasa_guide'
+    ? { type: 'nasa_guide', label: `NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. ${f.source.page}`, page: f.source.page, url: GUIDE_URL }
+    : { type: 'psi_table', label: f.source.file, file: f.source.file, url: url(f.psi_ids[0]) }
+  return { psi_ids: f.psi_ids, kind: f.kind, text: f.text, quote: f.quote ?? null, cells: f.cells ?? [], source, attribution_note: f.attribution_note ?? null, generated_by: 'Written with Claude Code from the quoted source; quotes and cells checked at build time' }
+})
+
 // ---------- build investigations ----------
-const byId = Object.fromEntries(I.map((x) => [x.id, x]))
 const investigations = I.map((x) => {
   const r = rec(x.id), t = TABLES[x.id]
   if (r.accession !== x.id) throw new Error(`raw/${x.id}.json holds ${r.accession}`)
@@ -228,6 +259,7 @@ const investigations = I.map((x) => {
     n_publications: (r.publications ?? []).length, publications: (r.publications ?? []).map((p) => ({ title: clean(p.title), doi: p.doi || null })),
     related_modeling: MODELING.filter((m) => m.parents.includes(x.id)).map((m) => ({ psi_id: m.psi_id, title: m.title, url: url(m.psi_id) })),
     verified: { by: null, date: null },
+    findings: FINDINGS.filter((f) => f.psi_ids.includes(x.id)).map(({ psi_ids, ...f }) => ({ ...f, also_on: psi_ids.filter((id) => id !== x.id) })),
     ...(GRAVITY_COMPARISON[x.id] ? { gravity_comparison: GRAVITY_COMPARISON[x.id] } : {}),
   }
 })

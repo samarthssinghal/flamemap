@@ -40,11 +40,26 @@ export interface Investigation {
   publications: { title: string; doi: string | null }[]
   related_modeling: { psi_id: string; title: string; url: string }[]
   verified: { by: string | null; date: string | null }
+  findings: Finding[]
   gravity_comparison?: {
     caveat: string
     source: string
     rows: { sample: string; material: string; o2_percent: string; microgravity_burn: string; one_g_burn: string }[]
+    notes: string[]
   }
+}
+
+/** A key finding, checked at build time against its source (pipeline/findings.json). */
+export interface Finding {
+  kind: 'nasa_stated' | 'nasa_context' | 'from_data'
+  text: string
+  quote: string | null
+  cells: { row: string; column: string; value: string }[]
+  source: { type: 'nasa_guide' | 'psi_table'; label: string; url: string; page?: number; file?: string }
+  attribution_note: string | null
+  generated_by: string
+  /** other investigations this finding is also shown on */
+  also_on: string[]
 }
 
 export interface RunPoint {

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../App'
+import Findings from '../components/Findings'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, SRC_LABEL, fmtRange } from '../lib/data'
 import { flatInv, saveCsv, saveJson } from '../lib/export'
 import type { Investigation, RangeCond } from '../lib/types'
@@ -27,6 +28,8 @@ function Detail({ i, close }: { i: Investigation; close: () => void }) {
       <p>{i.summary.text}</p>
       <p><b>Why it matters:</b> {i.summary.why_it_matters}</p>
       <p className="ai-note">AI-drafted summary, based only on the PSI record text. Check the PSI record before relying on it.</p>
+      <h3>Key findings</h3>
+      <Findings inv={i} />
       <h3>Tested conditions</h3>
       <dl className="kv">
         <dt>Oxygen</dt><dd><Cond c={i.conditions.o2_percent} unit="%" />{i.conditions.o2_percent && <div className="dim src">{i.conditions.o2_percent.source.ref}</div>}</dd>
@@ -63,7 +66,8 @@ function Detail({ i, close }: { i: Investigation; close: () => void }) {
               </tbody>
             </table>
           </div>
-          <p className="dim src">Source: {i.gravity_comparison.source}</p>
+          {i.gravity_comparison.notes.length > 0 && <ul className="dim src">{i.gravity_comparison.notes.map((n) => <li key={n}>{n}</li>)}</ul>}
+          <p className="dim src">Source: {i.gravity_comparison.source}. The microgravity column is headed "?-g" in the PSI file.</p>
         </>
       )}
       {i.publications.length > 0 && (
@@ -98,7 +102,7 @@ export default function Explorer() {
   const lastBtn = useRef<HTMLElement | null>(null)
   const closeDetail = useMemo(() => () => { setSel(null); lastBtn.current?.focus() }, [])
   const rows = useMemo(() => data.investigations.filter((i) => {
-    const hay = [i.acronym, i.title, i.psi_id, i.fuel_materials.join(' '), i.summary.text, i.sensors.join(' '), i.variables_varied.join(' '), i.hardware ?? ''].join(' ').toLowerCase()
+    const hay = [i.acronym, i.title, i.psi_id, i.fuel_materials.join(' '), i.summary.text, i.findings.map((f) => f.text).join(' '), i.sensors.join(' '), i.variables_varied.join(' '), i.hardware ?? ''].join(' ').toLowerCase()
     return (!q || hay.includes(q.toLowerCase())) && (!role || i.fire_safety_role === role || i.secondary_roles.includes(role as never)) && (!fuel || i.fuel_class === fuel) && (!avail || i.evidence.data_availability === avail)
   }), [data, q, role, fuel, avail])
   const selInv = data.investigations.find((i) => i.psi_id === sel)

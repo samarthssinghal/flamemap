@@ -172,3 +172,11 @@ details.alt { margin: 8px 0 12px; }
 details.alt summary { cursor: pointer; color: var(--accent); margin-bottom: 8px; }
 .seg button[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: #06101f; font-weight: 600; }
 .card-body h3 { margin: 14px 0 4px; font-size: 0.9rem; color: var(--text); text-transform: none; letter-spacing: 0; }
+.findings { padding-left: 1.1rem; margin: 6px 0; }
+.findings > li { margin: 6px 0; }
+.findings details { margin: 2px 0 0; }
+.findings summary { cursor: pointer; color: var(--dim); font-size: 0.8rem; }
+.findings blockquote { margin: 6px 0; padding-left: 10px; border-left: 2px solid var(--line); font-size: 0.85rem; }
+.findings .cells { font-size: 0.8rem; margin: 4px 0; padding-left: 1rem; }
+.findings.compact { font-size: 0.85rem; padding-left: 1rem; }
+.k-nasa_stated { color: var(--good); border-color: #2c5a37; }

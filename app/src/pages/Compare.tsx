@@ -3,6 +3,7 @@ import { useApp } from '../App'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, fmtRange } from '../lib/data'
 import type { Investigation, RangeCond } from '../lib/types'
 import { Cond } from './Explorer'
+import Findings from '../components/Findings'
 
 function overlap(cs: (RangeCond | null)[], unit: string): string {
   const known = cs.filter((c): c is RangeCond => !!c && c.max !== null)
@@ -17,6 +18,7 @@ export default function Compare() {
   const invs = compare.map((id) => data.investigations.find((i) => i.psi_id === id)).filter((i): i is Investigation => !!i)
   const rows: [string, (i: Investigation) => ReactNode, ((i: Investigation) => string) | null, string?][] = [
     ['Summary', (i) => i.summary.text, null],
+    ['Key findings', (i) => <Findings inv={i} compact />, null],
     ['Fire-safety role', (i) => ROLE_LABEL[i.fire_safety_role], (i) => i.fire_safety_role],
     ['Fuel type', (i) => FUEL_LABEL[i.fuel_class], (i) => i.fuel_class],
     ['Fuels', (i) => i.fuel_materials.join(', '), null],

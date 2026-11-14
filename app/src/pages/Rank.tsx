@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useApp } from '../App'
 import EnvPicker from '../components/EnvPicker'
+import Findings from '../components/Findings'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, SRC_LABEL, fmtRange } from '../lib/data'
 import { flatRank, saveCsv, saveJson } from '../lib/export'
 import { explain, rank } from '../lib/ranker'
@@ -49,6 +50,8 @@ function Card({ item, idx }: { item: RankedItem; idx: number }) {
         <div className="card-body">
           <p>{i.summary.text}</p>
           <p className="ai-note">AI-drafted summary, based only on the PSI record text. Check the PSI record before relying on it.</p>
+          <h3>Key findings</h3>
+          <Findings inv={i} />
           <h3>How this score was computed</h3>
           <ul>{explain(item).map((s) => <li key={s}>{s}</li>)}</ul>
           <table className="mini">
