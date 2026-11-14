@@ -100,6 +100,9 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .pubs ul { list-style: none; margin: 8px 0 0; padding: 0; max-height: 260px; overflow-y: auto; border-top: 1px solid var(--line); }
 .pubs li { font-size: 0.8rem; padding: 6px 0; border-bottom: 1px solid var(--line); }
 .pubs li a { color: var(--text); }
+.drawer .table-wrap { margin: 10px 0; }
+.drawer table.grav-cmp { font-size: 0.78rem; }
+.drawer table.grav-cmp th, .drawer table.grav-cmp td { padding: 5px 8px; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; }
 .src { font-size: 0.76rem; word-break: break-word; }
 

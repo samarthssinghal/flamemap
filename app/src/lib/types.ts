@@ -40,6 +40,11 @@ export interface Investigation {
   publications: { title: string; doi: string | null }[]
   related_modeling: { psi_id: string; title: string; url: string }[]
   verified: { by: string | null; date: string | null }
+  gravity_comparison?: {
+    caveat: string
+    source: string
+    rows: { sample: string; material: string; o2_percent: string; microgravity_burn: string; one_g_burn: string }[]
+  }
 }
 
 export interface RunPoint {

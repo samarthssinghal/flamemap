@@ -164,6 +164,30 @@ const RUN_STATS = {
   o2_ge_30_and_p_le_75_recorded: { 'PSI-10': 18, 'PSI-159': 48, 'PSI-69': 17 },
 }
 
+// SAFFIRE-II (PSI-99) is the one PSI record that measured the same solid-fuel samples in both
+// microgravity and normal gravity (NASA-STD-6001B Test 1 is a 1-g standard; this table is the only
+// place any PSI investigation pairs it against a microgravity result). Transcribed from
+// PSI-99_Experimental table_SAFFIRE-2.csv (9 real burn samples; 2 rows are pre-test camera
+// calibration and 4 are footnotes, excluded here). See context-limitations.md B3 for why this is
+// shown as context only, not a general claim about how materials behave below 1 g.
+const GRAVITY_COMPARISON = {
+  'PSI-99': {
+    caveat: 'NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Shown for context only — not a general rule for how any material behaves below 1 g.',
+    source: 'PSI-99 experimental table (SAFFIRE-2.csv)',
+    rows: [
+      { sample: '2-1', material: 'Silicone, 0.27 mm', o2_percent: '~21.5%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: 'Complete (29 cm)' },
+      { sample: '2-2', material: 'Silicone, 0.61 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: '7.6 cm' },
+      { sample: '2-3', material: 'Silicone, 1.03 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: '~0 cm (self-extinguished)' },
+      { sample: '2-4', material: 'Silicone, 0.37 mm', o2_percent: '~22.1%', microgravity_burn: '~0 cm (self-extinguished)', one_g_burn: 'Complete (29 cm)' },
+      { sample: '2-5', material: 'Cotton-fiberglass (SIBAL)', o2_percent: '~22.1%', microgravity_burn: '29 cm (full sample)', one_g_burn: 'Complete (29 cm)' },
+      { sample: '2-6', material: 'Cotton-fiberglass (SIBAL)', o2_percent: '~22.1%', microgravity_burn: '29 cm (full sample)', one_g_burn: 'Complete (29 cm)' },
+      { sample: '2-7', material: 'PMMA & Nomex', o2_percent: '~22.1%', microgravity_burn: 'PMMA 5 cm; Nomex not ignited', one_g_burn: 'PMMA consumed; Nomex not ignited' },
+      { sample: '2-8', material: 'PMMA', o2_percent: '22.1% to 22.0%', microgravity_burn: '~10 cm of visible damage', one_g_burn: 'Complete (29 cm)' },
+      { sample: '2-9', material: 'PMMA', o2_percent: '22.0% to 21.9%', microgravity_burn: '~10 cm of visible damage', one_g_burn: 'Complete (29 cm)' },
+    ],
+  },
+}
+
 // ---------- build investigations ----------
 const byId = Object.fromEntries(I.map((x) => [x.id, x]))
 const investigations = I.map((x) => ({
@@ -177,6 +201,7 @@ const investigations = I.map((x) => ({
   n_publications: x.pubs, publications: PUBLICATIONS[x.id] ?? [],
   related_modeling: MODELING.filter((m) => m.parents.includes(x.id)).map((m) => ({ psi_id: m.psi_id, title: m.title, url: url(m.psi_id) })),
   verified: { by: null, date: null },
+  ...(GRAVITY_COMPARISON[x.id] ? { gravity_comparison: GRAVITY_COMPARISON[x.id] } : {}),
 }))
 
 // ---------- runs ----------
@@ -306,6 +331,7 @@ for (const i of investigations) {
   if (words(i.summary.text) > 80) throw new Error(`summary too long ${i.psi_id}: ${words(i.summary.text)}`)
   if (words(i.summary.why_it_matters) > 35) throw new Error(`why too long ${i.psi_id}: ${words(i.summary.why_it_matters)}`)
   if (i.publications.length !== i.n_publications) throw new Error(`publications count mismatch ${i.psi_id}: list has ${i.publications.length}, PSI record says ${i.n_publications}`)
+  if (i.gravity_comparison && i.gravity_comparison.rows.length !== 9) throw new Error(`gravity_comparison row count unexpected for ${i.psi_id}`)
 }
 for (const r of runs) if (!byId[r.psi_id]) throw new Error('run without investigation')
 

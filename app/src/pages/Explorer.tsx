@@ -47,6 +47,25 @@ function Detail({ i, close }: { i: Investigation; close: () => void }) {
         <dt>Data</dt><dd>{AVAIL_LABEL[i.evidence.data_availability]}; {i.evidence.n_runs} table rows; {i.evidence.raw_data_gb} GB of files on PSI</dd>
         <dt>License</dt><dd>{i.license}</dd>
       </dl>
+      {i.gravity_comparison && (
+        <>
+          <h3>1-g vs. microgravity burn length</h3>
+          <p className="ai-note">{i.gravity_comparison.caveat}</p>
+          <div className="table-wrap">
+            <table className="grav-cmp">
+              <thead><tr><th scope="col">Sample</th><th scope="col">Material</th><th scope="col">O2</th><th scope="col">Microgravity burn</th><th scope="col">1-g burn</th></tr></thead>
+              <tbody>
+                {i.gravity_comparison.rows.map((r) => (
+                  <tr key={r.sample}>
+                    <td>{r.sample}</td><td>{r.material}</td><td>{r.o2_percent}</td><td>{r.microgravity_burn}</td><td>{r.one_g_burn}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="dim src">Source: {i.gravity_comparison.source}</p>
+        </>
+      )}
       {i.publications.length > 0 && (
         <details className="pubs">
           <summary>Publications ({i.publications.length} listed on the PSI record)</summary>

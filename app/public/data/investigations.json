@@ -554,6 +554,75 @@
   "verified": {
    "by": null,
    "date": null
+  },
+  "gravity_comparison": {
+   "caveat": "NASA’s normal-gravity flammability screening (NASA-STD-6001B Test 1) is a 1-g test. SAFFIRE-II is the only PSI investigation that measured burn length for the same samples in both microgravity and normal gravity, so it is the only place in this app where that comparison is possible. Shown for context only — not a general rule for how any material behaves below 1 g.",
+   "source": "PSI-99 experimental table (SAFFIRE-2.csv)",
+   "rows": [
+    {
+     "sample": "2-1",
+     "material": "Silicone, 0.27 mm",
+     "o2_percent": "~21.5%",
+     "microgravity_burn": "~0 cm (self-extinguished)",
+     "one_g_burn": "Complete (29 cm)"
+    },
+    {
+     "sample": "2-2",
+     "material": "Silicone, 0.61 mm",
+     "o2_percent": "~22.1%",
+     "microgravity_burn": "~0 cm (self-extinguished)",
+     "one_g_burn": "7.6 cm"
+    },
+    {
+     "sample": "2-3",
+     "material": "Silicone, 1.03 mm",
+     "o2_percent": "~22.1%",
+     "microgravity_burn": "~0 cm (self-extinguished)",
+     "one_g_burn": "~0 cm (self-extinguished)"
+    },
+    {
+     "sample": "2-4",
+     "material": "Silicone, 0.37 mm",
+     "o2_percent": "~22.1%",
+     "microgravity_burn": "~0 cm (self-extinguished)",
+     "one_g_burn": "Complete (29 cm)"
+    },
+    {
+     "sample": "2-5",
+     "material": "Cotton-fiberglass (SIBAL)",
+     "o2_percent": "~22.1%",
+     "microgravity_burn": "29 cm (full sample)",
+     "one_g_burn": "Complete (29 cm)"
+    },
+    {
+     "sample": "2-6",
+     "material": "Cotton-fiberglass (SIBAL)",
+     "o2_percent": "~22.1%",
+     "microgravity_burn": "29 cm (full sample)",
+     "one_g_burn": "Complete (29 cm)"
+    },
+    {
+     "sample": "2-7",
+     "material": "PMMA & Nomex",
+     "o2_percent": "~22.1%",
+     "microgravity_burn": "PMMA 5 cm; Nomex not ignited",
+     "one_g_burn": "PMMA consumed; Nomex not ignited"
+    },
+    {
+     "sample": "2-8",
+     "material": "PMMA",
+     "o2_percent": "22.1% to 22.0%",
+     "microgravity_burn": "~10 cm of visible damage",
+     "one_g_burn": "Complete (29 cm)"
+    },
+    {
+     "sample": "2-9",
+     "material": "PMMA",
+     "o2_percent": "22.0% to 21.9%",
+     "microgravity_burn": "~10 cm of visible damage",
+     "one_g_burn": "Complete (29 cm)"
+    }
+   ]
   }
  },
  {
