@@ -130,13 +130,13 @@
    "pressure_kpa": 29.6,
    "gravity_g": 0,
    "flow_cm_s": null,
-   "note": "The challenge statement gives 100% O2 at 4.3 psi (29.6 kPa). Gravity is set to orbital free fall; a surface spacewalk would differ.",
+   "note": "100% O2 per the challenge statement. NASA 2022 chamber tests of simulated EVAs instead used 85% O2 at the same 4.3 psi. Gravity is set to orbital free fall; a surface spacewalk would differ.",
    "sources": [
     {
      "field": "o2_percent",
      "status": "from_challenge_statement",
-     "note": "100% O2",
-     "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/"
+     "note": "100% O2; NASA chamber tests of simulated EVAs used 85% O2 at 4.3 psi",
+     "url": "https://ntrs.nasa.gov/api/citations/20230007403/downloads/AsMA%202023%20-%20Abercromby%20-%20Habitability%20and%20Lessons%20Learned%20v1.pdf"
     },
     {
      "field": "pressure_kpa",
@@ -148,6 +148,62 @@
      "field": "gravity_g",
      "status": "nominal_assumption",
      "note": "Orbital spacewalk assumed"
+    }
+   ]
+  },
+  {
+   "id": "exploration_atm",
+   "name": "NASA Exploration Atmosphere",
+   "o2_percent": 34,
+   "pressure_kpa": 56.5,
+   "gravity_g": 0.166,
+   "flow_cm_s": null,
+   "note": "NASA’s proposed Exploration Atmosphere for Artemis habitats: 8.2 psia, 34% O2. Not yet finalized; shown here at lunar surface gravity.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "verified",
+     "note": "NASA Exploration Atmosphere, 34% O2 (revised from 32%)",
+     "url": "https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "verified",
+     "note": "8.2 psia = 56.5 kPa",
+     "url": "https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf"
+    },
+    {
+     "field": "gravity_g",
+     "status": "reference",
+     "note": "Lunar surface gravity, about one sixth of Earth"
+    }
+   ]
+  },
+  {
+   "id": "exploration_10_2psi",
+   "name": "NASA Exploration Atmosphere (10.2 psia)",
+   "o2_percent": 26.5,
+   "pressure_kpa": 70.3,
+   "gravity_g": 0.166,
+   "flow_cm_s": null,
+   "note": "A second point from the same NASA table: 10.2 psia, 26.5% O2. Artemis habitat and suit atmospheres are not finalized.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "verified",
+     "note": "26.5% O2 at 10.2 psia, from the same NASA Exploration Atmosphere table",
+     "url": "https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "verified",
+     "note": "10.2 psia = 70.3 kPa",
+     "url": "https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf"
+    },
+    {
+     "field": "gravity_g",
+     "status": "reference",
+     "note": "Lunar surface gravity, about one sixth of Earth"
     }
    ]
   },

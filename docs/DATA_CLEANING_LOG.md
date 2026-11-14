@@ -38,3 +38,8 @@ mmHg x 0.133322 = kPa; atm x 101.325 = kPa; bar x 100 = kPa; mole fraction x 100
 
 ## Excluded
 PSI-108 (STDCE-1) and PSI-181 (solder study) appear in the "combustion" search but are not combustion investigations.
+
+## Environment presets added 2026-11-14 (post-deploy)
+Added two presets from NASA's proposed Exploration Atmosphere table (NTRS 20220011152): "NASA Exploration Atmosphere" (8.2 psia, 34% O2) and a second point from the same table (10.2 psia, 26.5% O2). Both are marked `verified` with a source URL, per `claude/context-limitations.md` B7. Also updated the spacesuit preset's note to flag that NASA's 2022 chamber tests of simulated EVAs used 85% O2 at the same 4.3 psi, rather than the challenge statement's 100% O2 (the ranker still uses 100%, since that's what the challenge statement specifies; the note is informational).
+
+The "combined" gap text for these two new presets (how many of the 1,138 run points are near the preset) was summed directly from the rounded display bins in `pipeline/build_data.mjs`'s `BINS` constant, not from the original full-resolution tables like the other presets' numbers were. Spot-checking this method against `moon_base` (which has both a bin-based and an original full-resolution count) reproduced the same number (23) for its only matching investigation, but reproduced the `iss` preset's count as 392 instead of the original 387 — a small rounding-boundary effect at the edges of the +/-5 O2 / +/-10 kPa window. The six original presets keep their original, more precise numbers; only the two new presets use the bin-based method, since there is no more-precise number to compare against for them.

@@ -153,6 +153,11 @@ const RUN_STATS = {
     iss: { 'PSI-10': 74, 'PSI-159': 44, 'PSI-25': 112, 'PSI-39': 47, 'PSI-69': 110 },
     moon_base: { 'PSI-69': 23 }, rover: { 'PSI-69': 23 }, mars_base: { 'PSI-69': 23 },
     spacesuit: {}, earth: { 'PSI-10': 74, 'PSI-159': 44, 'PSI-25': 112, 'PSI-39': 47, 'PSI-69': 110 },
+    // These two counts, unlike the ones above, are summed directly from the rounded BINS used for the
+    // Evidence Map scatter chart (see docs/DATA_CLEANING_LOG.md), so they can be off by a point or two
+    // at a bin edge versus a recompute from the full-resolution table. Added 2026-11-14 for the two new
+    // NASA Exploration Atmosphere presets below.
+    exploration_atm: { 'PSI-10': 2, 'PSI-159': 29 }, exploration_10_2psi: { 'PSI-69': 43 },
   },
   o2_ge_30: { 'PSI-10': 222, 'PSI-159': 230, 'PSI-69': 24 },
   o2_ge_30_and_p_le_75_recorded: { 'PSI-10': 18, 'PSI-159': 48, 'PSI-69': 17 },
@@ -199,8 +204,12 @@ const environments = {
       sources: [st('o2_percent', 'from_challenge_statement', 'at least 30% O2', CH), st('pressure_kpa', 'from_challenge_statement', 'at or below 10.2 psi', CH), st('gravity_g', 'reference', 'Lunar surface gravity')] },
     { id: 'mars_base', name: 'Mars surface habitat', o2_percent: 30, pressure_kpa: 70.3, gravity_g: 0.38, flow_cm_s: null, note: 'Atmosphere is our assumption (same as the lunar habitat). Change it with the sliders.',
       sources: [st('o2_percent', 'nominal_assumption', 'Assumed equal to the lunar habitat'), st('pressure_kpa', 'nominal_assumption', 'Assumed equal to the lunar habitat'), st('gravity_g', 'reference', 'Mars surface gravity, about 0.38 of Earth')] },
-    { id: 'spacesuit', name: 'Spacesuit (spacewalk)', o2_percent: 100, pressure_kpa: 29.6, gravity_g: 0, flow_cm_s: null, note: 'The challenge statement gives 100% O2 at 4.3 psi (29.6 kPa). Gravity is set to orbital free fall; a surface spacewalk would differ.',
-      sources: [st('o2_percent', 'from_challenge_statement', '100% O2', CH), st('pressure_kpa', 'from_challenge_statement', '4.3 psi', CH), st('gravity_g', 'nominal_assumption', 'Orbital spacewalk assumed')] },
+    { id: 'spacesuit', name: 'Spacesuit (spacewalk)', o2_percent: 100, pressure_kpa: 29.6, gravity_g: 0, flow_cm_s: null, note: '100% O2 per the challenge statement. NASA 2022 chamber tests of simulated EVAs instead used 85% O2 at the same 4.3 psi. Gravity is set to orbital free fall; a surface spacewalk would differ.',
+      sources: [st('o2_percent', 'from_challenge_statement', '100% O2; NASA chamber tests of simulated EVAs used 85% O2 at 4.3 psi', 'https://ntrs.nasa.gov/api/citations/20230007403/downloads/AsMA%202023%20-%20Abercromby%20-%20Habitability%20and%20Lessons%20Learned%20v1.pdf'), st('pressure_kpa', 'from_challenge_statement', '4.3 psi', CH), st('gravity_g', 'nominal_assumption', 'Orbital spacewalk assumed')] },
+    { id: 'exploration_atm', name: 'NASA Exploration Atmosphere', o2_percent: 34, pressure_kpa: 56.5, gravity_g: 0.166, flow_cm_s: null, note: 'NASA’s proposed Exploration Atmosphere for Artemis habitats: 8.2 psia, 34% O2. Not yet finalized; shown here at lunar surface gravity.',
+      sources: [st('o2_percent', 'verified', 'NASA Exploration Atmosphere, 34% O2 (revised from 32%)', 'https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf'), st('pressure_kpa', 'verified', '8.2 psia = 56.5 kPa', 'https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf'), st('gravity_g', 'reference', 'Lunar surface gravity, about one sixth of Earth')] },
+    { id: 'exploration_10_2psi', name: 'NASA Exploration Atmosphere (10.2 psia)', o2_percent: 26.5, pressure_kpa: 70.3, gravity_g: 0.166, flow_cm_s: null, note: 'A second point from the same NASA table: 10.2 psia, 26.5% O2. Artemis habitat and suit atmospheres are not finalized.',
+      sources: [st('o2_percent', 'verified', '26.5% O2 at 10.2 psia, from the same NASA Exploration Atmosphere table', 'https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf'), st('pressure_kpa', 'verified', '10.2 psia = 70.3 kPa', 'https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf'), st('gravity_g', 'reference', 'Lunar surface gravity, about one sixth of Earth')] },
     { id: 'earth', name: 'Earth (reference)', o2_percent: 21, pressure_kpa: 101.3, gravity_g: 1, flow_cm_s: null, note: 'Sea-level air at normal gravity, for comparison.',
       sources: [st('o2_percent', 'reference', 'Sea-level air'), st('pressure_kpa', 'reference', '14.7 psi'), st('gravity_g', 'reference', '1 g')] },
   ],
