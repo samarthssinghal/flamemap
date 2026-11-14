@@ -6,8 +6,8 @@ import { flatRank, saveCsv, saveJson } from '../lib/export'
 import { explain, rank } from '../lib/ranker'
 import type { Factor, RankedItem, Weights } from '../lib/types'
 
-const STATUS_TEXT: Record<string, string> = { inside: 'inside tested range', outside: 'outside tested range', unknown: 'not recorded', match: 'match', partial: 'partial match', mismatch: 'no match' }
-const ICON: Record<string, string> = { inside: '✓', match: '✓', outside: '!', partial: '~', mismatch: '✕', unknown: '?' }
+const STATUS_TEXT: Record<string, string> = { inside: 'inside tested range', outside: 'outside tested range', unknown: 'not recorded (counted as untested)', not_set: 'not set for this environment', match: 'match', partial: 'partial match', mismatch: 'no match' }
+const ICON: Record<string, string> = { inside: '✓', match: '✓', outside: '!', partial: '~', mismatch: '✕', unknown: '?', not_set: '–' }
 
 function FactorBar({ f }: { f: Factor }) {
   const pct = f.distance === null ? 0 : Math.round((1 - f.distance) * 100)
@@ -15,7 +15,7 @@ function FactorBar({ f }: { f: Factor }) {
     <div className={`fbar s-${f.status}`} title={`${f.label}: ${STATUS_TEXT[f.status]}`}>
       <span className="flabel">{f.label}</span>
       <span className="track" aria-hidden="true">{f.distance !== null && <span className="fill" style={{ width: `${Math.max(pct, 3)}%` }} />}</span>
-      <span className="fval"><span aria-hidden="true">{ICON[f.status]} </span>{f.distance === null ? 'not recorded' : `${pct}%`}{f.distance !== null && <span className="sr-only">, {STATUS_TEXT[f.status]}</span>}</span>
+      <span className="fval"><span aria-hidden="true">{ICON[f.status]} </span>{f.distance === null ? 'not set' : f.status === 'unknown' ? `${pct}%, not recorded` : `${pct}%`}{f.distance !== null && <span className="sr-only">, {STATUS_TEXT[f.status]}</span>}</span>
     </div>
   )
 }
@@ -40,7 +40,7 @@ function Card({ item, idx }: { item: RankedItem; idx: number }) {
         <span className="score">
           <b>{item.relevance}</b>
           <span className="dim">match / 100</span>
-          <span className="dim">{item.n_known} of 5 factors scored</span>
+          <span className="dim">{item.n_known} of {item.n_scored} factors recorded</span>
         </span>
       </button>
       <div className="fbars">{item.breakdown.map((f) => <FactorBar key={f.factor} f={f} />)}</div>
@@ -59,7 +59,7 @@ function Card({ item, idx }: { item: RankedItem; idx: number }) {
                   <td>{f.label}</td>
                   <td>{f.factor === 'task' ? `${ROLE_LABEL[i.fire_safety_role]}, ${FUEL_LABEL[i.fuel_class]}` : f.factor === 'gravity' ? `${i.conditions.gravity_g.values.join(', ')} g` : fmtRange({ min: f.tested_min, max: f.tested_max }, f.unit)}</td>
                   <td>{f.env_value === null ? 'not set' : `${f.env_value}${f.factor === 'task' ? '' : ' ' + f.unit}`}</td>
-                  <td>{f.distance === null ? 'not scored' : f.distance.toFixed(3)}</td>
+                  <td>{f.distance === null ? 'not scored' : f.status === 'unknown' ? `${f.distance.toFixed(3)} (not recorded)` : f.distance.toFixed(3)}</td>
                   <td>{f.weight.toFixed(2)}</td>
                   <td>{f.source ? <><span className={`chip c-${f.confidence}`}>{SRC_LABEL[f.source.type]}</span> <span className="dim src">{f.source.ref}</span></> : f.factor === 'task' ? <span className="dim">role and fuel classification</span> : <span className="dim">not recorded</span>}</td>
                 </tr>
@@ -126,7 +126,7 @@ export default function Rank() {
               </label>
             ))}
             <button className="link" onClick={() => setWeights(data.env.default_weights)}>Reset to defaults</button>
-            <p className="note">Weights are a judgment call. Factors that were not recorded are skipped and the remaining weights are rescaled.</p>
+            <p className="note">Weights are a judgment call. A factor the investigation did not record counts as untested (distance 1, the maximum). A factor the environment does not set is skipped for every investigation, and the remaining weights are rescaled.</p>
           </div>
         )}
         <p className="sr-only" role="status" aria-live="polite">{copied || `Ranking updated for ${env.name}, ${task.name}. Top match: ${ranked[0].inv.acronym}, ${ranked[0].relevance} out of 100.`}</p>

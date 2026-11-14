@@ -5,7 +5,7 @@ FlameMap helps researchers, students and engineers find which NASA microgravity 
 
 ## Project details
 - **What it does.** Rank page with per-factor breakdown; evidence map of 875 runs by oxygen and pressure with the chosen environment marked; explorer with search and filters; side-by-side comparison; CSV and JSON export.
-- **How it works.** We read the PSI records and their experimental tables, converted units, and stored every condition with its source and a confidence label. The ranking is transparent arithmetic: distance from the environment to the tested range for each factor, combined with adjustable weights. Unknown values are skipped, never treated as zero.
+- **How it works.** We read the PSI records and their experimental tables, converted units, and stored every condition with its source and a confidence label. The ranking is transparent arithmetic: distance from the environment to the tested range for each factor, combined with adjustable weights. A condition a study did not record counts as untested, so missing data never raises a score; for experiments in station cabin air with no oxygen or pressure column, cabin air is assumed and labeled.
 - **What we found for a lunar habitat (30% O2, 70.3 kPa, 0.166 g).** The highest oxygen level in any solid-fuel data table is 22.2% (BASS-II). 37 runs reach 30% oxygen or more at 75 kPa or less, all with gas or liquid-droplet fuels. No solid-fuel table records pressure. None of the 19 investigations ran at partial gravity.
 - **Limits.** It is a research-navigation aid. It does not predict fire behavior or certify safety.
 - **Tools.** TypeScript, React, Vite, Recharts, Node.js, Vitest.

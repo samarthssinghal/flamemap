@@ -6,7 +6,7 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | ID | Impact | Effort | Status | Issue |
 |---|---|---|---|---|
 | R01 | Critical | 1–2 h | done | Inverse-flame O2 (burner oxidizer stream) treated as ambient O2 |
-| R02 | Critical | 1 h | todo | Missing data raises the score (renormalization rewards unknowns) |
+| R02 | Critical | 1 h | done | Missing data raises the score (renormalization rewards unknowns) |
 | R03 | High | — | todo | No "findings": app ranks conditions, never interprets results (done via R06a) |
 | R04 | High | 2–3 h | done | Pipeline not reproducible: hand-copied constants, no raw data in repo |
 | R05 | High | 1–2 h (human) | todo | Human verification steps not done (H1, H4, H5, links, phone) |
@@ -58,6 +58,7 @@ In inverse flames the chamber holds fuel + N2 (`Xf before test`); `XO2` is the O
 ### R02 — Missing data raises the score (Critical)
 `ranker.ts:65-68` skips unknown factors and rescales weights. Spacesuit + prevention ranks BASS and SAFFIRE-III #1/#2 though neither recorded O2.
 - Fix options: unknown factor → fixed distance (e.g. 0.5); or relevance × completeness; or sort by completeness band first. Update tests (spec test 6 changes) and the About page text.
+- Done 2026-11-14: unrecorded factor → distance 1 (`UNKNOWN_DISTANCE` in `ranker.ts`); factor the environment does not set → skipped for all (`not_set` status). 0.5 was tried: spacesuit still ranked ACME CLD/E-FIELD (nothing recorded) first. Added cabin-air O2 assumption (21%, low confidence) for 7 cabin-air studies, matching the existing cabin-pressure assumption, so SAME/SAME-R/DAFT stay top for detection. Spacesuit + prevention now: CFI-G, BASS-II, SAFFIRE-II, SAFFIRE-I, BASS (all 44–45). Tests 6, 10 updated; 12, 13 added. Cards show "n of m factors recorded"; CSV export adds `factors_recorded`.
 
 ### R03 — No findings / interpretation (High)
 Challenge: "summarizes, ranks, and interprets those findings". Summaries say what was done, not what was learned. Tables have outcome columns (CFI-G hot ignition, burn time, self-extinction; SAFFIRE-II burn length; FLEX extinction).

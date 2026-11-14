@@ -199,7 +199,16 @@
   ],
   "geometry": "Flat fabric, spheres and cylinders in a 76 mm x 76 mm flow duct",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -646,7 +655,16 @@
   ],
   "geometry": "Large sample, 94 cm x 40.6 cm",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -749,7 +767,16 @@
   ],
   "geometry": "Overheated samples in the glovebox",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -910,7 +937,16 @@
   ],
   "geometry": "Overheated samples in the glovebox",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -1021,7 +1057,16 @@
   ],
   "geometry": "Aerosol held in 15-liter Mylar bags",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -2877,7 +2922,16 @@
   ],
   "geometry": "Gas-jet nozzles of 0.41, 0.76 and 1.6 mm in a coflow duct",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,
@@ -3009,7 +3063,16 @@
   ],
   "geometry": "Exchangeable burner tubes in a fan-driven flow duct",
   "conditions": {
-   "o2_percent": null,
+   "o2_percent": {
+    "min": 21,
+    "max": 21,
+    "unit": "%",
+    "source": {
+     "type": "assumed_platform",
+     "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+    },
+    "confidence": "low"
+   },
    "pressure_kpa": {
     "min": 101.3,
     "max": 101.3,

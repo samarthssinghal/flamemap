@@ -86,8 +86,8 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .fill { display: block; height: 100%; background: var(--good); }
 .s-outside .fill, .s-partial .fill { background: var(--warn); }
 .s-mismatch .fill { background: var(--bad); }
-.s-unknown .track { background: repeating-linear-gradient(45deg, #0c1426 0 5px, #1b2740 5px 10px); }
-.s-unknown .fval { color: var(--dim); }
+.s-unknown .track, .s-not_set .track { background: repeating-linear-gradient(45deg, #0c1426 0 5px, #1b2740 5px 10px); }
+.s-unknown .fval, .s-not_set .fval { color: var(--dim); }
 .s-outside .fval, .s-partial .fval { color: var(--warn); }
 .s-inside .fval, .s-match .fval { color: var(--good); }
 .s-mismatch .fval { color: #ff9aa8; }

@@ -33,7 +33,7 @@ export default function About() {
           <li>Gravity distance is the difference in g between the environment and the nearest gravity level tested.</li>
           <li>Task fit = 0.6 × role match + 0.4 × fuel-type match. Role match is 1 for the primary role, 0.5 for a secondary role and 0.25 for fundamental studies.</li>
           <li>Match = 100 × (1 − weighted average distance). Default weights: oxygen {w.o2}, pressure {w.pressure}, airflow {w.flow}, gravity {w.gravity}, task fit {w.task}. You can change them.</li>
-          <li>A factor that was not recorded is skipped, never treated as zero, and each card says how many of the 5 factors were scored.</li>
+          <li>If the investigation did not record a factor the environment sets, that factor counts as untested (distance 1, the maximum): a value that was not recorded is no evidence that the condition was tested, so missing data never raises a score. Where an experiment ran in station or Cygnus cabin air and its table has no oxygen or pressure column, about 21% O2 and 101.3 kPa are assumed and labeled "assumed". A factor the environment does not set (for example airflow on most presets) is left out for every investigation, and the other weights are rescaled. Each card says how many factors were recorded.</li>
         </ol>
       </section>
       <section className="panel">
