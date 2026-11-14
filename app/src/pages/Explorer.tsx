@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../App'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, SRC_LABEL, fmtRange } from '../lib/data'
 import { flatInv, saveCsv, saveJson } from '../lib/export'
@@ -11,10 +11,17 @@ export function Cond({ c, unit }: { c: RangeCond | null; unit: string }) {
 
 function Detail({ i, close }: { i: Investigation; close: () => void }) {
   const { compare, toggleCompare } = useApp()
+  const closeRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    closeRef.current?.focus()
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [i.psi_id, close])
   return (
-    <aside className="drawer" aria-label={`${i.acronym} details`}>
-      <button className="close" onClick={close} aria-label="Close details">×</button>
-      <h2>{i.acronym}</h2>
+    <div className="drawer" role="dialog" aria-labelledby="drawer-title">
+      <button ref={closeRef} className="close" onClick={close} aria-label="Close details">×</button>
+      <h2 id="drawer-title">{i.acronym}</h2>
       <p className="dim">{i.title} · {i.psi_id}</p>
       <p className="chips"><span className={`chip role-${i.fire_safety_role}`}>{ROLE_LABEL[i.fire_safety_role]}</span>{i.secondary_roles.map((r) => <span key={r} className="chip">also {ROLE_LABEL[r].toLowerCase()}</span>)}<span className="chip">{FUEL_LABEL[i.fuel_class]}</span></p>
       <p>{i.summary.text}</p>
@@ -47,7 +54,7 @@ function Detail({ i, close }: { i: Investigation; close: () => void }) {
         <a href={`https://doi.org/${i.doi}`} target="_blank" rel="noreferrer">DOI {i.doi}</a>
         <button className="link" onClick={() => toggleCompare(i.psi_id)}>{compare.includes(i.psi_id) ? 'Remove from compare' : 'Add to compare'}</button>
       </p>
-    </aside>
+    </div>
   )
 }
 
@@ -58,6 +65,8 @@ export default function Explorer() {
   const [fuel, setFuel] = useState('')
   const [avail, setAvail] = useState('')
   const [sel, setSel] = useState<string | null>(null)
+  const lastBtn = useRef<HTMLElement | null>(null)
+  const closeDetail = useMemo(() => () => { setSel(null); lastBtn.current?.focus() }, [])
   const rows = useMemo(() => data.investigations.filter((i) => {
     const hay = [i.acronym, i.title, i.psi_id, i.fuel_materials.join(' '), i.summary.text, i.sensors.join(' '), i.variables_varied.join(' '), i.hardware ?? ''].join(' ').toLowerCase()
     return (!q || hay.includes(q.toLowerCase())) && (!role || i.fire_safety_role === role || i.secondary_roles.includes(role as never)) && (!fuel || i.fuel_class === fuel) && (!avail || i.evidence.data_availability === avail)
@@ -71,7 +80,7 @@ export default function Explorer() {
         <p>{data.insights.n_investigations} flight investigations, {data.insights.n_table_rows.toLocaleString()} experimental-table rows and {data.insights.n_publications_listed} listed publications. Every condition shows where it came from.</p>
       </div>
       <section className="panel filters">
-        <label>Search<input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="fuel, sensor, acronym…" /></label>
+        <label>Search<input type="search" aria-label="Search investigations" value={q} onChange={(e) => setQ(e.target.value)} placeholder="fuel, sensor, acronym…" /></label>
         <label>Fire-safety role<select value={role} onChange={(e) => setRole(e.target.value)}><option value="">All</option>{opt(ROLE_LABEL)}</select></label>
         <label>Fuel type<select value={fuel} onChange={(e) => setFuel(e.target.value)}><option value="">All</option>{opt(FUEL_LABEL)}</select></label>
         <label>Data available<select value={avail} onChange={(e) => setAvail(e.target.value)}><option value="">All</option>{opt(AVAIL_LABEL)}</select></label>
@@ -87,8 +96,8 @@ export default function Explorer() {
           <thead><tr><th>Investigation</th><th>Role</th><th>Fuel</th><th>Oxygen</th><th>Pressure</th><th>Airflow</th><th>Rows</th><th>Data</th></tr></thead>
           <tbody>
             {rows.map((i) => (
-              <tr key={i.psi_id} className={sel === i.psi_id ? 'sel' : ''} onClick={() => setSel(i.psi_id)} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && setSel(i.psi_id)}>
-                <td><b>{i.acronym}</b><div className="dim">{i.psi_id}</div></td>
+              <tr key={i.psi_id} className={sel === i.psi_id ? 'sel' : ''} onClick={() => setSel(i.psi_id)}>
+                <td><button className="link rowbtn" aria-label={`${i.acronym}, show details`} onClick={(e) => { lastBtn.current = e.currentTarget; setSel(i.psi_id) }}>{i.acronym}</button><div className="dim">{i.psi_id}</div></td>
                 <td>{ROLE_LABEL[i.fire_safety_role]}</td>
                 <td>{FUEL_LABEL[i.fuel_class]}</td>
                 <td><Cond c={i.conditions.o2_percent} unit="%" /></td>
@@ -102,7 +111,7 @@ export default function Explorer() {
           </tbody>
         </table>
       </div>
-      {selInv && <Detail i={selInv} close={() => setSel(null)} />}
+      {selInv && <Detail i={selInv} close={closeDetail} />}
     </>
   )
 }

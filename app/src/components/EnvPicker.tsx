@@ -23,9 +23,9 @@ export default function EnvPicker({ showTask = true }: { showTask?: boolean }) {
       <div className="pick-row">
         <div>
           <h2>1. Environment</h2>
-          <div className="seg" role="radiogroup" aria-label="Environment">
+          <div className="seg" role="group" aria-label="Environment">
             {[...data.env.environments, custom].map((e) => (
-              <button key={e.id} role="radio" aria-checked={envId === e.id} className={envId === e.id ? 'on' : ''} onClick={() => setEnvId(e.id)}>
+              <button key={e.id} aria-pressed={envId === e.id} className={envId === e.id ? 'on' : ''} onClick={() => setEnvId(e.id)}>
                 {e.id === 'custom' ? 'Custom' : e.name}
               </button>
             ))}
@@ -34,9 +34,9 @@ export default function EnvPicker({ showTask = true }: { showTask?: boolean }) {
         {showTask && (
           <div>
             <h2>2. Fire-safety task</h2>
-            <div className="seg" role="radiogroup" aria-label="Task">
+            <div className="seg" role="group" aria-label="Fire-safety task">
               {data.env.tasks.map((t) => (
-                <button key={t.id} role="radio" aria-checked={taskId === t.id} className={taskId === t.id ? 'on' : ''} onClick={() => setTaskId(t.id)}>
+                <button key={t.id} aria-pressed={taskId === t.id} className={taskId === t.id ? 'on' : ''} onClick={() => setTaskId(t.id)}>
                   {t.name}
                 </button>
               ))}

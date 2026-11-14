@@ -8,3 +8,5 @@
 - Environment presets: lunar habitat, rover and spacesuit values come from the challenge statement. The Mars habitat atmosphere is our assumption. Station values cite the PSI-20 objectives text.
 - Tailwind was not used; one plain CSS file.
 - Earth applications and history links are a section of the "Method and sources" page instead of a separate page.
+- Shareable links: the selection is stored after the # in the address (env, task, w, c, cmp). The address always follows the on-screen state, so editing it in an open tab has no effect; open the link in a new tab.
+- Accessibility: skip link, labeled button groups, status text next to every icon, live announcement when the ranking changes, details panel as a dialog with focus handling, and a data-table alternative to the chart.

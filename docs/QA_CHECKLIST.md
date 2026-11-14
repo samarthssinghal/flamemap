@@ -7,7 +7,9 @@
 - [ ] Deployed URL opens in a private window on desktop and phone
 - [ ] Every external link opens
 - [ ] Exports open in a spreadsheet
-- [ ] Keyboard: tab through the Rank page
-- [ ] Lighthouse accessibility 90 or higher
+- [x] Automated accessibility scan (axe-core, WCAG 2 A/AA and best-practice rules) on all five pages and the details panel: 0 violations (2026-11-14)
+- [x] Shareable links: a copied link reopens the same environment, task, weights, custom values and compare selection; invalid values fall back to defaults
+- [ ] Keyboard: tab through every page by hand (skip link, details panel opens and closes with Esc)
+- [ ] Screen-reader spot check
 - [ ] Second person re-checks 10 data fields against PSI
 - [ ] All summaries read by a person

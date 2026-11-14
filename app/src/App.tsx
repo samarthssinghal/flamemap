@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { HashRouter, NavLink, Route, Routes } from 'react-router-dom'
+import { HashRouter, NavLink, Route, Routes, useLocation, useSearchParams } from 'react-router-dom'
 import { loadData, type AppData } from './lib/data'
 import type { Environment, Task, Weights } from './lib/types'
 import Rank from './pages/Rank'
@@ -22,12 +22,52 @@ interface Ctx {
   setWeights: (w: Weights) => void
   compare: string[]
   toggleCompare: (id: string) => void
+  setCompare: (ids: string[]) => void
 }
 const AppCtx = createContext<Ctx | null>(null)
 export const useApp = () => useContext(AppCtx) as Ctx
 
 export const DISCLAIMER =
   'FlameMap is a student hackathon project and a research-navigation aid. It ranks how closely past NASA experiments match a chosen environment. It does not predict fire behavior, assess risk or certify safety, and it is not NASA guidance. Always consult the original PSI records and publications.'
+
+const TITLES: Record<string, string> = { '/': 'Rank', '/map': 'Evidence map', '/explorer': 'Explorer', '/compare': 'Compare', '/about': 'Method and sources' }
+const num = (s: string | undefined) => (s === undefined || s === '' || s === 'x' || isNaN(Number(s)) ? null : Number(s))
+
+/** Keeps the selection in the address (after the #) so a view can be shared as a link. */
+function UrlSync() {
+  const { data, envId, setEnvId, taskId, setTaskId, weights, setWeights, custom, setCustom, compare, setCompare } = useApp()
+  const [params, setParams] = useSearchParams()
+  const loc = useLocation()
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    const e = params.get('env')
+    if (e && (e === 'custom' || data.env.environments.some((x) => x.id === e))) setEnvId(e)
+    const t = params.get('task')
+    if (t && data.env.tasks.some((x) => x.id === t)) setTaskId(t)
+    const w = params.get('w')?.split('_').map(Number)
+    if (w && w.length === 5 && w.every((x) => !isNaN(x) && x >= 0 && x <= 1)) setWeights({ o2: w[0], pressure: w[1], flow: w[2], gravity: w[3], task: w[4] })
+    const c = params.get('c')?.split('_')
+    if (c && c.length === 4 && num(c[0]) !== null && num(c[1]) !== null && num(c[2]) !== null) setCustom({ ...custom, o2_percent: num(c[0]), pressure_kpa: num(c[1]), gravity_g: num(c[2]) as number, flow_cm_s: num(c[3]) })
+    const cmp = params.get('cmp')?.split('_').map((n) => `PSI-${n}`).filter((id) => data.investigations.some((i) => i.psi_id === id)).slice(0, 3)
+    if (cmp?.length) setCompare(cmp)
+    setReady(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  useEffect(() => {
+    if (!ready) return
+    const p = new URLSearchParams()
+    p.set('env', envId)
+    p.set('task', taskId)
+    const d = data.env.default_weights
+    if ((Object.keys(d) as (keyof typeof d)[]).some((k) => d[k] !== weights[k])) p.set('w', [weights.o2, weights.pressure, weights.flow, weights.gravity, weights.task].join('_'))
+    if (envId === 'custom') p.set('c', [custom.o2_percent, custom.pressure_kpa, custom.gravity_g, custom.flow_cm_s ?? 'x'].join('_'))
+    if (compare.length) p.set('cmp', compare.map((id) => id.replace('PSI-', '')).join('_'))
+    if (p.toString() !== params.toString()) setParams(p, { replace: true })
+    document.title = `${TITLES[loc.pathname] ?? 'FlameMap'} | FlameMap`
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, envId, taskId, weights, custom, compare, loc.pathname, params.toString()])
+  return null
+}
 
 export default function App() {
   const [data, setData] = useState<AppData | null>(null)
@@ -49,7 +89,7 @@ export default function App() {
     return {
       data, envId, setEnvId, custom, setCustom, env, taskId, setTaskId, task,
       weights: weights ?? data.env.default_weights, setWeights,
-      compare,
+      compare, setCompare,
       toggleCompare: (id) => setCompare((c) => (c.includes(id) ? c.filter((x) => x !== id) : c.length >= 3 ? [...c.slice(1), id] : [...c, id])),
     }
   }, [data, envId, custom, taskId, weights, compare])
@@ -60,6 +100,8 @@ export default function App() {
   return (
     <AppCtx.Provider value={ctx}>
       <HashRouter>
+        <UrlSync />
+        <a className="skip" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById('main')?.focus() }}>Skip to main content</a>
         <header className="top">
           <div className="brand">
             <span className="logo" aria-hidden="true" />
@@ -76,7 +118,7 @@ export default function App() {
             <NavLink to="/about">Method and sources</NavLink>
           </nav>
         </header>
-        <main>
+        <main id="main" tabIndex={-1}>
           <Routes>
             <Route path="/" element={<Rank />} />
             <Route path="/map" element={<EvidenceMap />} />

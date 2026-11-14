@@ -15,7 +15,7 @@ function FactorBar({ f }: { f: Factor }) {
     <div className={`fbar s-${f.status}`} title={`${f.label}: ${STATUS_TEXT[f.status]}`}>
       <span className="flabel">{f.label}</span>
       <span className="track" aria-hidden="true">{f.distance !== null && <span className="fill" style={{ width: `${Math.max(pct, 3)}%` }} />}</span>
-      <span className="fval"><span aria-hidden="true">{ICON[f.status]} </span>{f.distance === null ? 'not recorded' : `${pct}%`}</span>
+      <span className="fval"><span aria-hidden="true">{ICON[f.status]} </span>{f.distance === null ? 'not recorded' : `${pct}%`}{f.distance !== null && <span className="sr-only">, {STATUS_TEXT[f.status]}</span>}</span>
     </div>
   )
 }
@@ -27,7 +27,7 @@ function Card({ item, idx }: { item: RankedItem; idx: number }) {
   return (
     <li className="card">
       <button className="card-head" onClick={() => setOpen(!open)} aria-expanded={open}>
-        <span className="rankno">{idx + 1}</span>
+        <span className="rankno"><span className="sr-only">Rank </span>{idx + 1}</span>
         <span className="card-title">
           <b>{i.acronym}</b>
           <span className="dim">{i.title}</span>
@@ -49,7 +49,7 @@ function Card({ item, idx }: { item: RankedItem; idx: number }) {
         <div className="card-body">
           <p>{i.summary.text}</p>
           <p className="ai-note">AI-drafted summary, based only on the PSI record text. Check the PSI record before relying on it.</p>
-          <h4>How this score was computed</h4>
+          <h3>How this score was computed</h3>
           <ul>{explain(item).map((s) => <li key={s}>{s}</li>)}</ul>
           <table className="mini">
             <thead><tr><th>Factor</th><th>Tested</th><th>This environment</th><th>Distance</th><th>Weight</th><th>Where the value comes from</th></tr></thead>
@@ -80,6 +80,11 @@ function Card({ item, idx }: { item: RankedItem; idx: number }) {
 export default function Rank() {
   const { data, env, task, weights, setWeights, envId } = useApp()
   const [showW, setShowW] = useState(false)
+  const [copied, setCopied] = useState('')
+  const copyLink = () => {
+    const done = (ok: boolean) => { setCopied(ok ? 'Link copied' : 'Copy the address from the browser bar'); setTimeout(() => setCopied(''), 4000) }
+    try { navigator.clipboard.writeText(window.location.href).then(() => done(true), () => done(false)) } catch { done(false) }
+  }
   const ranked = useMemo(() => rank(env, task, weights, data.investigations, data.env.reference_spans), [env, task, weights, data])
   const gaps = (data.gaps.find((g) => g.environment_id === envId)?.gaps ?? []).filter((g) => g.severity !== 'info')
   const info = (data.gaps.find((g) => g.environment_id === envId)?.gaps ?? []).filter((g) => g.severity === 'info')
@@ -107,6 +112,7 @@ export default function Rank() {
           <h2>Ranked investigations</h2>
           <div className="actions">
             <button onClick={() => setShowW(!showW)} aria-expanded={showW}>{showW ? 'Hide weights' : 'Adjust weights'}</button>
+            <button onClick={copyLink}>Copy link to this view</button>
             <button onClick={() => saveCsv('flamemap_ranking.csv', ranked.map(flatRank))}>Export CSV</button>
             <button onClick={() => saveJson('flamemap_ranking.json', { ...exportMeta, ranking: ranked.map(flatRank) })}>Export JSON</button>
           </div>
@@ -123,6 +129,8 @@ export default function Rank() {
             <p className="note">Weights are a judgment call. Factors that were not recorded are skipped and the remaining weights are rescaled.</p>
           </div>
         )}
+        <p className="sr-only" role="status" aria-live="polite">{copied || `Ranking updated for ${env.name}, ${task.name}. Top match: ${ranked[0].inv.acronym}, ${ranked[0].relevance} out of 100.`}</p>
+        {copied && <p className="info" aria-hidden="true">{copied}</p>}
         <p className="dim">Match = 100 × (1 − weighted distance). A distance of 0 means the environment value lies inside the range that was tested.</p>
         <ol className="cards">{ranked.map((r, idx) => <Card key={r.inv.psi_id} item={r} idx={idx} />)}</ol>
       </section>

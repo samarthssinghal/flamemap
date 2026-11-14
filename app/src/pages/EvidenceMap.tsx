@@ -35,6 +35,16 @@ export default function EvidenceMap() {
   const total = data.runs.reduce((s, r) => s + r.n, 0)
   const withO2 = data.investigations.filter((i) => i.conditions.o2_percent).sort((a, b) => (b.conditions.o2_percent!.max as number) - (a.conditions.o2_percent!.max as number))
   const ins = data.insights
+  const tableRows = useMemo(() => {
+    const by: Record<string, { acr: string; fuel: FuelClass; n: number; o: [number, number]; p: [number, number]; assumed: boolean }> = {}
+    data.runs.forEach((r) => {
+      const b = (by[r.psi_id] ??= { acr: r.acronym, fuel: r.fuel_class, n: 0, o: [Infinity, -Infinity], p: [Infinity, -Infinity], assumed: r.pressure_assumed })
+      b.n += r.n
+      b.o = [Math.min(b.o[0], r.o2_percent as number), Math.max(b.o[1], r.o2_percent as number)]
+      b.p = [Math.min(b.p[0], r.pressure_kpa as number), Math.max(b.p[1], r.pressure_kpa as number)]
+    })
+    return Object.entries(by)
+  }, [data])
 
   return (
     <>
@@ -75,6 +85,13 @@ export default function EvidenceMap() {
           </ResponsiveContainer>
         </div>
         <p className="dim">Runs are grouped to the nearest 1% oxygen and 5 kPa for display; mark size shows the number of runs. Source: experimental tables of BASS-II, FLEX, CFI, ACME Flame Design and ACME CFI-G in NASA PSI. Dashed rings are the other preset environments.</p>
+        <details className="alt">
+          <summary>Chart data as a table</summary>
+          <table className="grid">
+            <thead><tr><th>Investigation</th><th>Fuel type</th><th>Runs on the chart</th><th>Oxygen (grouped), %</th><th>Pressure (grouped), kPa</th></tr></thead>
+            <tbody>{tableRows.map(([id, b]) => <tr key={id}><td>{b.acr} ({id})</td><td>{FUEL_LABEL[b.fuel]}</td><td>{b.n}</td><td>{b.o[0]} to {b.o[1]}</td><td>{b.p[0] === b.p[1] ? b.p[0] : `${b.p[0]} to ${b.p[1]}`}{b.assumed ? ' (assumed)' : ''}</td></tr>)}</tbody>
+          </table>
+        </details>
         {near && (
           <p className="callout">
             <b>{near.total}</b> of {total.toLocaleString()} runs are within 5 oxygen points and 10 kPa of {env.name.toLowerCase()}
