@@ -7,10 +7,15 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 |---|---|---|---|---|
 | R01 | Critical | 1–2 h | todo | Inverse-flame O2 (burner oxidizer stream) treated as ambient O2 |
 | R02 | Critical | 1 h | todo | Missing data raises the score (renormalization rewards unknowns) |
-| R03 | High | 3–4 h | todo | No "findings": app ranks conditions, never interprets results |
+| R03 | High | — | todo | No "findings": app ranks conditions, never interprets results (done via R06a) |
 | R04 | High | 2–3 h | todo | Pipeline not reproducible: hand-copied constants, no raw data in repo |
 | R05 | High | 1–2 h (human) | todo | Human verification steps not done (H1, H4, H5, links, phone) |
-| R06 | High | 2–4 h | todo | "SI-powered" is thin: no runtime AI, summaries unreviewed and unchecked |
+| R06 | Critical | see subtasks | todo | Add the super-intelligence (SI) layer the challenge title asks for (subtasks R06a–R06e) |
+| R06a | Critical | 3–4 h | todo | SI: AI-extracted key findings per investigation, each with a quote and source (merges with R03) |
+| R06b | Critical | 2–3 h | todo | SI: AI interpretation brief for each environment + task (what the evidence says, what's missing) |
+| R06c | High | 3–4 h | todo | SI: "Ask the evidence" Q&A in the app, answers cited to PSI records only |
+| R06d | High | 1 h | todo | SI guardrails: machine check that every number/quote in AI text exists in the source; label AI text |
+| R06e | Medium | 1 h | todo | SI: AI-suggested related investigations ("studies like this one") with reasons |
 | R07 | High | 30 min | todo | Same metric shows two numbers (387 vs 392); custom env has no gaps |
 | R08 | Medium | 2–3 h | todo | Exports not useful for modeling: ranges and bins only, no per-run rows or outcomes |
 | R09 | Medium | 1 h | todo | Gravity factor never discriminates; SAFFIRE-II 1-g data not used |
@@ -57,8 +62,23 @@ Values were transcribed by hand into constants; `pipeline/raw/` is empty. PSI is
 ### R05 — Human verification outstanding (High, human)
 H1 (`SUBMISSION_REQUIREMENTS.md` empty: demo/slide limits unconfirmed), H4 (10 fields vs live PSI), H5 (read 19 summaries; `human_reviewed` all false), external link check, phone check, keyboard/screen-reader check.
 
-### R06 — "SI-powered" is thin (High)
-No AI at runtime; P4.2 summary number-check not implemented; summaries unreviewed. Options: (a) static, AI-extracted findings with quotes + a machine check (pairs with R03); (b) citation-grounded "ask the evidence" Q&A (PLAN forbade live chat; team decision).
+### R06 — Add the super-intelligence (SI) layer (Critical)
+The challenge is "SI-Powered Fire Safety Insights": an SI-powered dashboard that summarizes, ranks and **interprets**. Today the only AI is 19 offline summaries, unreviewed, with the planned number check (PLAN P4.2) never built. The ranking stays plain arithmetic (that's a validity strength); AI does the reading and interpreting, always grounded in cited sources.
+
+Note: PLAN.md section 10 forbids "live LLM chat". R06c overrides that and needs a team decision (logged in `docs/DECISIONS.md`).
+
+**R06a — Key findings extraction (static, build time).** Model reads each record's objective/approach/impacts text, table outcome columns and publication titles/abstracts, and outputs 3–5 findings: `{text, quote, source_type, source_ref, confidence}`. Shown on Rank cards, Explorer, Compare. Covers R03.
+
+**R06b — Environment + task interpretation brief (static for presets).** For each preset × task, the model writes a short brief from the computed ranking, gaps and R06a findings: most relevant evidence, how far it is from the environment, what is untested, what a researcher should look at next. Every sentence cites a PSI ID or a computed gap. Precomputed into `briefs.json`; Custom environment shows the nearest preset's brief plus the computed gaps.
+
+**R06c — "Ask the evidence" Q&A (runtime).** Question box; retrieval over investigations, findings and gaps in the browser; model answers only from retrieved items with citations; refuses outside scope (no risk prediction). GitHub Pages has no backend, so pick one:
+1. User pastes their own API key (stored only in the browser). No server; judges must have a key.
+2. Small proxy (e.g. Cloudflare Worker) holding the team's key, with rate limit and spend cap. Works for judges; costs money and needs abuse protection.
+3. Precomputed answers to ~20 curated questions (static, always works), with option 1 or 2 for free-form questions.
+
+**R06d — Guardrails.** Build-time check: every number and quote in AI text must appear in the cited source or computed data; fail the build otherwise. Labels "AI-generated, based on PSI record text" and a link to the source on every AI sentence. Human review (H5) before submission.
+
+**R06e — Related studies.** Model suggests 2–3 related investigations per record with a one-line reason (shared hardware, fuel, condition range); checked against the data.
 
 ### R07 — Inconsistent counts; no gaps for custom env (High)
 Rank page "combined" gap uses `RUN_STATS.near` (ISS 387); Evidence Map recounts from bins (`EvidenceMap.tsx:28-34`, ISS 392).
