@@ -1,0 +1,13 @@
+# QA checklist
+- [x] `node pipeline/build_data.mjs` passes its validation
+- [x] `npm run test` passes (11 tests)
+- [x] `npm run build` passes
+- [x] Pages render at 1280 px and 390 px with no console errors (headless Chrome)
+- [x] No "NaN", "undefined" or "null" in page text
+- [ ] Deployed URL opens in a private window on desktop and phone
+- [ ] Every external link opens
+- [ ] Exports open in a spreadsheet
+- [ ] Keyboard: tab through the Rank page
+- [ ] Lighthouse accessibility 90 or higher
+- [ ] Second person re-checks 10 data fields against PSI
+- [ ] All summaries read by a person

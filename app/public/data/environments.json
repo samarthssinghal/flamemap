@@ -1,0 +1,209 @@
+{
+ "reference_spans": {
+  "o2_percent": 79,
+  "pressure_kpa": 71.7,
+  "flow_cm_s": 20,
+  "gravity_g": 1
+ },
+ "default_weights": {
+  "o2": 0.3,
+  "pressure": 0.2,
+  "flow": 0.1,
+  "gravity": 0.15,
+  "task": 0.25
+ },
+ "environments": [
+  {
+   "id": "iss",
+   "name": "Space station cabin",
+   "o2_percent": 21,
+   "pressure_kpa": 101.3,
+   "gravity_g": 0,
+   "flow_cm_s": null,
+   "note": "Sea-level-like atmosphere in microgravity.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "verified",
+     "note": "PSI-20 objectives list \"14.7 psia, 21 % oxygen\" as a NASA-considered atmosphere",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "verified",
+     "note": "14.7 psia = 101.3 kPa (same source)",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20"
+    },
+    {
+     "field": "gravity_g",
+     "status": "reference",
+     "note": "Orbital free fall"
+    }
+   ]
+  },
+  {
+   "id": "moon_base",
+   "name": "Lunar surface habitat",
+   "o2_percent": 30,
+   "pressure_kpa": 70.3,
+   "gravity_g": 0.166,
+   "flow_cm_s": null,
+   "note": "The challenge statement expects at least 30% O2 at or below 10.2 psi (70.3 kPa). The boundary values are used here.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "from_challenge_statement",
+     "note": "at least 30% O2",
+     "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "from_challenge_statement",
+     "note": "at or below 10.2 psi",
+     "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/"
+    },
+    {
+     "field": "gravity_g",
+     "status": "reference",
+     "note": "Lunar surface gravity, about one sixth of Earth"
+    }
+   ]
+  },
+  {
+   "id": "rover",
+   "name": "Pressurized lunar rover",
+   "o2_percent": 30,
+   "pressure_kpa": 70.3,
+   "gravity_g": 0.166,
+   "flow_cm_s": null,
+   "note": "Same atmosphere expectation as the lunar habitat in the challenge statement.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "from_challenge_statement",
+     "note": "at least 30% O2",
+     "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "from_challenge_statement",
+     "note": "at or below 10.2 psi",
+     "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/"
+    },
+    {
+     "field": "gravity_g",
+     "status": "reference",
+     "note": "Lunar surface gravity"
+    }
+   ]
+  },
+  {
+   "id": "mars_base",
+   "name": "Mars surface habitat",
+   "o2_percent": 30,
+   "pressure_kpa": 70.3,
+   "gravity_g": 0.38,
+   "flow_cm_s": null,
+   "note": "Atmosphere is our assumption (same as the lunar habitat). Change it with the sliders.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "nominal_assumption",
+     "note": "Assumed equal to the lunar habitat"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "nominal_assumption",
+     "note": "Assumed equal to the lunar habitat"
+    },
+    {
+     "field": "gravity_g",
+     "status": "reference",
+     "note": "Mars surface gravity, about 0.38 of Earth"
+    }
+   ]
+  },
+  {
+   "id": "spacesuit",
+   "name": "Spacesuit (spacewalk)",
+   "o2_percent": 100,
+   "pressure_kpa": 29.6,
+   "gravity_g": 0,
+   "flow_cm_s": null,
+   "note": "The challenge statement gives 100% O2 at 4.3 psi (29.6 kPa). Gravity is set to orbital free fall; a surface spacewalk would differ.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "from_challenge_statement",
+     "note": "100% O2",
+     "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "from_challenge_statement",
+     "note": "4.3 psi",
+     "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/"
+    },
+    {
+     "field": "gravity_g",
+     "status": "nominal_assumption",
+     "note": "Orbital spacewalk assumed"
+    }
+   ]
+  },
+  {
+   "id": "earth",
+   "name": "Earth (reference)",
+   "o2_percent": 21,
+   "pressure_kpa": 101.3,
+   "gravity_g": 1,
+   "flow_cm_s": null,
+   "note": "Sea-level air at normal gravity, for comparison.",
+   "sources": [
+    {
+     "field": "o2_percent",
+     "status": "reference",
+     "note": "Sea-level air"
+    },
+    {
+     "field": "pressure_kpa",
+     "status": "reference",
+     "note": "14.7 psi"
+    },
+    {
+     "field": "gravity_g",
+     "status": "reference",
+     "note": "1 g"
+    }
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "id": "prevent",
+   "name": "Material flammability and fire prevention",
+   "role": "prevention",
+   "preferred_fuel_classes": [
+    "solid"
+   ]
+  },
+  {
+   "id": "detect",
+   "name": "Smoke and fire detection",
+   "role": "detection",
+   "preferred_fuel_classes": [
+    "aerosol",
+    "solid"
+   ]
+  },
+  {
+   "id": "suppress",
+   "name": "Fire suppression and extinguishment",
+   "role": "suppression",
+   "preferred_fuel_classes": [
+    "liquid_droplet",
+    "solid"
+   ]
+  }
+ ]
+}

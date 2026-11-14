@@ -1,0 +1,39 @@
+{
+ "spinoffs": [
+  {
+   "title": "Fireman's Air Tanks",
+   "era": "1970s",
+   "blurb": "Spacesuit technology adapted for firefighter breathing equipment.",
+   "url": "https://spinoff.nasa.gov/node/9582"
+  },
+  {
+   "title": "Fire Detector",
+   "era": "1970s",
+   "blurb": "A shuttle-era smoke detector that tells smoke from dust, which cuts nuisance alarms.",
+   "url": "https://spinoff.nasa.gov/node/9407"
+  },
+  {
+   "title": "New Technology for the Fire Attire",
+   "era": "1980s",
+   "blurb": "Spacesuit technology applied to firefighter clothing.",
+   "url": "https://spinoff.nasa.gov/node/9918"
+  }
+ ],
+ "history": [
+  {
+   "title": "Apollo 1",
+   "blurb": "Fire during a pre-launch test; investigation and lessons learned.",
+   "url": "https://sma.nasa.gov/sma-disciplines/accllp/apollo-1"
+  },
+  {
+   "title": "Apollo 13",
+   "blurb": "Oxygen tank explosion; investigation and lessons learned.",
+   "url": "https://sma.nasa.gov/sma-disciplines/accllp/apollo-13"
+  },
+  {
+   "title": "Fire aboard space station Mir",
+   "blurb": "The 1997 fire caused by an oxygen generator failure.",
+   "url": "https://www.nasa.gov/history/25-years-ago-fire-aboard-space-station-mir/"
+  }
+ ]
+}

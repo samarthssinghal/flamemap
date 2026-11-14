@@ -1,0 +1,356 @@
+[
+ {
+  "environment_id": "iss",
+  "gaps": [
+   {
+    "id": "combined",
+    "severity": "info",
+    "text": "Of 1138 runs with both oxygen and pressure, 387 are within 5 oxygen points and 10 kPa of this environment (ACME Flame Design: 74, ACME CFI-G: 44, BASS-II: 112, CFI: 47, FLEX: 110). Fuel types: gas-fuel, solid-fuel, liquid-droplet.",
+    "computed_from": {
+     "metric": "runs within +/-5 O2 points and +/-10 kPa",
+     "value": 387
+    },
+    "sources": [
+     "PSI-10",
+     "PSI-159",
+     "PSI-25",
+     "PSI-39",
+     "PSI-69"
+    ]
+   }
+  ]
+ },
+ {
+  "environment_id": "moon_base",
+  "gaps": [
+   {
+    "id": "partial_gravity",
+    "severity": "high",
+    "text": "None of the 19 flight investigations ran at 0.166 g. All of them ran in microgravity, so there is no partial-gravity evidence here.",
+    "computed_from": {
+     "metric": "investigations with a gravity level within 0.05 g of 0.166",
+     "value": 0
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100",
+     "PSI-102",
+     "PSI-101",
+     "PSI-47",
+     "PSI-69",
+     "PSI-68",
+     "PSI-39",
+     "PSI-20",
+     "PSI-10",
+     "PSI-159",
+     "PSI-21",
+     "PSI-22",
+     "PSI-23",
+     "PSI-107",
+     "PSI-106"
+    ]
+   },
+   {
+    "id": "o2_solids",
+    "severity": "high",
+    "text": "The highest oxygen level in any solid-fuel data table is 22.2% (BASS-II). This environment has 30%, which is 7.8 points higher.",
+    "computed_from": {
+     "metric": "max tabulated O2 % among solid-fuel investigations",
+     "value": 22.2
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-98",
+     "PSI-99"
+    ]
+   },
+   {
+    "id": "low_pressure",
+    "severity": "high",
+    "text": "5 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "computed_from": {
+     "metric": "investigations whose recorded pressure range includes 70.3 kPa",
+     "value": 5
+    },
+    "sources": [
+     "PSI-69",
+     "PSI-68",
+     "PSI-39",
+     "PSI-10",
+     "PSI-159"
+    ]
+   },
+   {
+    "id": "combined",
+    "severity": "info",
+    "text": "Of 1138 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
+    "computed_from": {
+     "metric": "runs within +/-5 O2 points and +/-10 kPa",
+     "value": 23
+    },
+    "sources": [
+     "PSI-69"
+    ]
+   }
+  ]
+ },
+ {
+  "environment_id": "rover",
+  "gaps": [
+   {
+    "id": "partial_gravity",
+    "severity": "high",
+    "text": "None of the 19 flight investigations ran at 0.166 g. All of them ran in microgravity, so there is no partial-gravity evidence here.",
+    "computed_from": {
+     "metric": "investigations with a gravity level within 0.05 g of 0.166",
+     "value": 0
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100",
+     "PSI-102",
+     "PSI-101",
+     "PSI-47",
+     "PSI-69",
+     "PSI-68",
+     "PSI-39",
+     "PSI-20",
+     "PSI-10",
+     "PSI-159",
+     "PSI-21",
+     "PSI-22",
+     "PSI-23",
+     "PSI-107",
+     "PSI-106"
+    ]
+   },
+   {
+    "id": "o2_solids",
+    "severity": "high",
+    "text": "The highest oxygen level in any solid-fuel data table is 22.2% (BASS-II). This environment has 30%, which is 7.8 points higher.",
+    "computed_from": {
+     "metric": "max tabulated O2 % among solid-fuel investigations",
+     "value": 22.2
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-98",
+     "PSI-99"
+    ]
+   },
+   {
+    "id": "low_pressure",
+    "severity": "high",
+    "text": "5 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "computed_from": {
+     "metric": "investigations whose recorded pressure range includes 70.3 kPa",
+     "value": 5
+    },
+    "sources": [
+     "PSI-69",
+     "PSI-68",
+     "PSI-39",
+     "PSI-10",
+     "PSI-159"
+    ]
+   },
+   {
+    "id": "combined",
+    "severity": "info",
+    "text": "Of 1138 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
+    "computed_from": {
+     "metric": "runs within +/-5 O2 points and +/-10 kPa",
+     "value": 23
+    },
+    "sources": [
+     "PSI-69"
+    ]
+   }
+  ]
+ },
+ {
+  "environment_id": "mars_base",
+  "gaps": [
+   {
+    "id": "partial_gravity",
+    "severity": "high",
+    "text": "None of the 19 flight investigations ran at 0.38 g. All of them ran in microgravity, so there is no partial-gravity evidence here.",
+    "computed_from": {
+     "metric": "investigations with a gravity level within 0.05 g of 0.38",
+     "value": 0
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100",
+     "PSI-102",
+     "PSI-101",
+     "PSI-47",
+     "PSI-69",
+     "PSI-68",
+     "PSI-39",
+     "PSI-20",
+     "PSI-10",
+     "PSI-159",
+     "PSI-21",
+     "PSI-22",
+     "PSI-23",
+     "PSI-107",
+     "PSI-106"
+    ]
+   },
+   {
+    "id": "o2_solids",
+    "severity": "high",
+    "text": "The highest oxygen level in any solid-fuel data table is 22.2% (BASS-II). This environment has 30%, which is 7.8 points higher.",
+    "computed_from": {
+     "metric": "max tabulated O2 % among solid-fuel investigations",
+     "value": 22.2
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-98",
+     "PSI-99"
+    ]
+   },
+   {
+    "id": "low_pressure",
+    "severity": "high",
+    "text": "5 investigations have a recorded pressure range that includes 70.3 kPa (FLEX, FLEX-2, CFI, ACME Flame Design, ACME CFI-G). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "computed_from": {
+     "metric": "investigations whose recorded pressure range includes 70.3 kPa",
+     "value": 5
+    },
+    "sources": [
+     "PSI-69",
+     "PSI-68",
+     "PSI-39",
+     "PSI-10",
+     "PSI-159"
+    ]
+   },
+   {
+    "id": "combined",
+    "severity": "info",
+    "text": "Of 1138 runs with both oxygen and pressure, 23 are within 5 oxygen points and 10 kPa of this environment (FLEX: 23). Fuel types: liquid-droplet.",
+    "computed_from": {
+     "metric": "runs within +/-5 O2 points and +/-10 kPa",
+     "value": 23
+    },
+    "sources": [
+     "PSI-69"
+    ]
+   }
+  ]
+ },
+ {
+  "environment_id": "spacesuit",
+  "gaps": [
+   {
+    "id": "o2_solids",
+    "severity": "high",
+    "text": "The highest oxygen level in any solid-fuel data table is 22.2% (BASS-II). This environment has 100%, which is 77.8 points higher.",
+    "computed_from": {
+     "metric": "max tabulated O2 % among solid-fuel investigations",
+     "value": 22.2
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-98",
+     "PSI-99"
+    ]
+   },
+   {
+    "id": "o2_any",
+    "severity": "high",
+    "text": "No investigation of any fuel type has a tabulated oxygen level as high as 100%. The highest is 85% (ACME Flame Design, ACME CFI-G, gas fuels).",
+    "computed_from": {
+     "metric": "max tabulated O2 % across all investigations",
+     "value": 85
+    },
+    "sources": [
+     "PSI-10"
+    ]
+   },
+   {
+    "id": "low_pressure",
+    "severity": "high",
+    "text": "0 investigations have a recorded pressure range that includes 29.6 kPa (none). None of them burned solid fuels: no solid-fuel table records pressure at all.",
+    "computed_from": {
+     "metric": "investigations whose recorded pressure range includes 29.6 kPa",
+     "value": 0
+    },
+    "sources": []
+   },
+   {
+    "id": "combined",
+    "severity": "high",
+    "text": "Of 1138 runs with both oxygen and pressure, none is within 5 oxygen points and 10 kPa of this environment.",
+    "computed_from": {
+     "metric": "runs within +/-5 O2 points and +/-10 kPa",
+     "value": 0
+    },
+    "sources": []
+   }
+  ]
+ },
+ {
+  "environment_id": "earth",
+  "gaps": [
+   {
+    "id": "partial_gravity",
+    "severity": "high",
+    "text": "None of the 19 flight investigations ran at 1 g. All of them ran in microgravity, so there is no partial-gravity evidence here.",
+    "computed_from": {
+     "metric": "investigations with a gravity level within 0.05 g of 1",
+     "value": 0
+    },
+    "sources": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100",
+     "PSI-102",
+     "PSI-101",
+     "PSI-47",
+     "PSI-69",
+     "PSI-68",
+     "PSI-39",
+     "PSI-20",
+     "PSI-10",
+     "PSI-159",
+     "PSI-21",
+     "PSI-22",
+     "PSI-23",
+     "PSI-107",
+     "PSI-106"
+    ]
+   },
+   {
+    "id": "combined",
+    "severity": "info",
+    "text": "Of 1138 runs with both oxygen and pressure, 387 are within 5 oxygen points and 10 kPa of this environment (ACME Flame Design: 74, ACME CFI-G: 44, BASS-II: 112, CFI: 47, FLEX: 110). Fuel types: gas-fuel, solid-fuel, liquid-droplet.",
+    "computed_from": {
+     "metric": "runs within +/-5 O2 points and +/-10 kPa",
+     "value": 387
+    },
+    "sources": [
+     "PSI-10",
+     "PSI-159",
+     "PSI-25",
+     "PSI-39",
+     "PSI-69"
+    ]
+   }
+  ]
+ }
+]
