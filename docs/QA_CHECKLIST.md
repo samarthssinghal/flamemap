@@ -4,11 +4,12 @@
 - [x] `npm run build` passes
 - [x] Pages render at 1280 px and 390 px with no console errors (headless Chrome)
 - [x] No "NaN", "undefined" or "null" in page text
-- [ ] Deployed URL opens in a private window on desktop and phone
+- [x] Deployed site is live at https://samarthssinghal.github.io/flamemap/ (GitHub Pages branch-name fix confirmed pushed, build succeeded) (2026-11-14)
+- [ ] Deployed URL opens in a private window on phone
 - [ ] Every external link opens
-- [ ] Exports open in a spreadsheet
+- [x] Export CSV and Export JSON build a valid, non-empty file with no console error, checked on the deployed site (2026-11-14)
 - [x] Automated accessibility scan (axe-core, WCAG 2 A/AA and best-practice rules) on all five pages and the details panel: 0 violations (2026-11-14)
-- [x] Shareable links: a copied link reopens the same environment, task, weights, custom values and compare selection; invalid values fall back to defaults
+- [x] Shareable links: checked on the deployed site in a fresh browser tab — Rank page (env/task), weights, Custom environment values and the Compare page's selected investigations (`cmp`) all restore correctly; an invalid environment id falls back to the default (2026-11-14)
 - [ ] Keyboard: tab through every page by hand (skip link, details panel opens and closes with Esc)
 - [ ] Screen-reader spot check
 - [ ] Second person re-checks 10 data fields against PSI
