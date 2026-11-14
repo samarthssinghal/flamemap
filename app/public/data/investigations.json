@@ -91,7 +91,76 @@
    "human_reviewed": false
   },
   "n_publications": 17,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Microgravity flammability boundary for PMMA rods in axial stagnation flow: Experimental results and energy balance analyses",
+    "doi": "10.1016/j.combustflame.2017.03.001"
+   },
+   {
+    "title": "Temperature and CO2 fields of a downward spreading flame over thin cellulose: A comparison of experimental and computational results",
+    "doi": "10.1016/j.proci.2014.05.093"
+   },
+   {
+    "title": "Opposed-flow flame spread: A comparison of microgravity and normal gravity experiments to establish the thermal regime",
+    "doi": "10.1016/j.firesaf.2015.11.011"
+   },
+   {
+    "title": "The critical flow velocity for radiative extinction in opposed-flow flame spread in a microgravity environment: A comparison of experimental, computational, and theoretical results",
+    "doi": "10.1016/j.combustflame.2015.10.023"
+   },
+   {
+    "title": "Experimental validation of a correlation capturing the boundary layer effect on spread rate in the kinetic regime of opposed-flow flame spread",
+    "doi": "10.1016/j.proci.2014.06.125"
+   },
+   {
+    "title": "Results from on-board CSA-CP and CDM Sensor Readings during the Burning and Suppression of Solids - II (BASS-II) Experiment in the Microgravity Science Glovebox (MSG)",
+    "doi": null
+   },
+   {
+    "title": "Modeling and Analysis of Intermediate Thickness PMMA Sheets Burning in Microgravity Opposed Flow",
+    "doi": null
+   },
+   {
+    "title": "Concurrent flame growth, spread and extinction over composite fabric samples in low speed purely forced flow in microgravity",
+    "doi": null
+   },
+   {
+    "title": "Radiative, thermal, and kinetic regimes of opposed-flow flame spread: A comparison between experiment and theory",
+    "doi": "10.1016/j.proci.2016.06.025"
+   },
+   {
+    "title": "Concurrent flame growth, spread, and quenching over composite fabric samples in low speed purely forced flow in microgravity",
+    "doi": "10.1016/j.proci.2016.06.028"
+   },
+   {
+    "title": "A Study of the Effectiveness of a Narrow Channel Apparatus in Simulating Microgravity Flame Spread over Thin Fuels",
+    "doi": "10.2514/6.2012-3493"
+   },
+   {
+    "title": "BASS-II Summary Report",
+    "doi": null
+   },
+   {
+    "title": "Correlation of normal gravity mixed convection blowoff limits with microgravity forced flow blowoff limits",
+    "doi": null
+   },
+   {
+    "title": "Fire in Microgravity",
+    "doi": "10.1511/2016.118.44"
+   },
+   {
+    "title": "Microgravity Flammability of PMMA Rods in Concurrent Flow",
+    "doi": null
+   },
+   {
+    "title": "Using a Narrow Channel Apparatus to Study Thermally-Intermediate Fuel Combustion in a Simulated 0g Environment",
+    "doi": null
+   },
+   {
+    "title": "Burning and Suppression of Solids – II Fire Safety Investigation for the Microgravity Science Glovebox",
+    "doi": null
+   }
+  ],
   "related_modeling": [
    {
     "psi_id": "PSI-62",
@@ -187,7 +256,48 @@
    "human_reviewed": false
   },
   "n_publications": 10,
-  "publications": [],
+  "publications": [
+   {
+    "title": "The Microgravity Science Glovebox as a Platform for Exploration Research on the International Space Station",
+    "doi": "10.2514/6.2006-941"
+   },
+   {
+    "title": "Opposed-flow flame spread: A comparison of microgravity and normal gravity experiments to establish the thermal regime",
+    "doi": "10.1016/j.firesaf.2015.11.011"
+   },
+   {
+    "title": "Simplified model for predicting difference between flammability limits of a thin material in normal gravity and microgravity environments",
+    "doi": "10.1016/j.proci.2014.07.017"
+   },
+   {
+    "title": "A Correlation for an Effective Flow Velocity for Capturing the Boundary Layer Effect in Opposed-Flow Flame Spread over Thin Fuels",
+    "doi": "10.1080/00102202.2014.900056"
+   },
+   {
+    "title": "Radiation signature in opposed-flow flame spread",
+    "doi": "10.1504/PCFD.2012.048249"
+   },
+   {
+    "title": "OS24-1 The Effect of Boundary Layer on Blow-Off Extinction in Opposed-Flow Flame Spread: Results of Experiments and Simplified Analysis(invited,Scale modeling on solid combustion,OS24 Scale modeling,FLUID AND THERMODYNAMICS)",
+    "doi": "10.1299/jsmeatem.2015.14.289"
+   },
+   {
+    "title": "Role of Gas Radiation in the Mechanism of Opposed-Flow Flame Spread in a Microgravity Environment",
+    "doi": null
+   },
+   {
+    "title": "Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment",
+    "doi": null
+   },
+   {
+    "title": "A novel apparatus for flame spread study",
+    "doi": "10.1016/j.proci.2012.05.076"
+   },
+   {
+    "title": "Opposed-Flow Flame Spread in a Narrow Channel Apparatus over Thin PMMA Sheets",
+    "doi": null
+   }
+  ],
   "related_modeling": [
    {
     "psi_id": "PSI-62",
@@ -286,7 +396,32 @@
    "human_reviewed": false
   },
   "n_publications": 6,
-  "publications": [],
+  "publications": [
+   {
+    "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status",
+    "doi": null
+   },
+   {
+    "title": "Buoyant Effects on the Flammability of Silicone Samples Planned for the Spacecraft Fire Experiment (Saffire)",
+    "doi": null
+   },
+   {
+    "title": "Flame spread: Effects of microgravity and scale",
+    "doi": "10.1016/j.combustflame.2018.10.012"
+   },
+   {
+    "title": "Transient flame growth and spread processes over a large solid fabric in concurrent low-speed flows in microgravity – Model versus experiment",
+    "doi": "10.1016/j.proci.2018.05.168"
+   },
+   {
+    "title": "Fire safety in space – beyond flammability testing of small samples",
+    "doi": "10.1016/j.actaastro.2014.11.025"
+   },
+   {
+    "title": "Operation and Development Status of the Spacecraft Fire Experiments (Saffire)",
+    "doi": null
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -385,7 +520,36 @@
    "human_reviewed": false
   },
   "n_publications": 7,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Buoyant Effects on the Flammability of Silicone Samples Planned for the Spacecraft Fire Experiment (Saffire), Conference: 45th International Conference on Environmental Systems ICES-2015-[293] 12-16 July 2015, Bellevue, Washington",
+    "doi": null
+   },
+   {
+    "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status",
+    "doi": null
+   },
+   {
+    "title": "Flame spread: Effects of microgravity and scale",
+    "doi": "10.1016/j.combustflame.2018.10.012"
+   },
+   {
+    "title": "Buoyancy effects on concurrent flame spread over thick PMMA",
+    "doi": "10.1016/j.combustflame.2018.10.016"
+   },
+   {
+    "title": "Concurrent Flame Spread Over Two-Sided Thick PMMA Slabs in Microgravity",
+    "doi": "10.1007/s10694-019-00863-3"
+   },
+   {
+    "title": "Transient flame growth and spread processes over a large solid fabric in concurrent low-speed flows in microgravity – Model versus experiment",
+    "doi": "10.1016/j.proci.2018.05.168"
+   },
+   {
+    "title": "Evaluation of gas and particle sensors for detecting spacecraft-relevant fire emissions",
+    "doi": "10.1016/j.firesaf.2020.102977"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -471,7 +635,20 @@
    "human_reviewed": false
   },
   "n_publications": 3,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Buoyant Effects on the Flammability of Silicone Samples Planned for the Spacecraft Fire Experiment (Saffire), 45th International Conference on Environmental Systems ICES-2015-[293] 12-16 July 2015, Bellevue, Washington",
+    "doi": null
+   },
+   {
+    "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status",
+    "doi": null
+   },
+   {
+    "title": "Operation and Development Status of the Spacecraft Fire Experiments (Saffire), 46th International Conference on Environmental Systems (ICES), July 2016",
+    "doi": null
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -561,7 +738,72 @@
    "human_reviewed": false
   },
   "n_publications": 16,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Measurement of Smoke Particle Size under Low-Gravity Conditions",
+    "doi": "10.4271/2008-01-2089"
+   },
+   {
+    "title": "Properties of Smoke from Overheated Spacecraft Materials in Low-Gravity",
+    "doi": null
+   },
+   {
+    "title": "Smoke Particle Sizes in Low-Gravity and Implications for Spacecraft Smoke Detector Design",
+    "doi": "10.4271/2009-01-2468"
+   },
+   {
+    "title": "Spacecraft Fire Detection: Smoke Properties and Transport in Low-Gravity",
+    "doi": "10.2514/6.2008-806"
+   },
+   {
+    "title": "ISS Destiny Laboratory Smoke Detection Model",
+    "doi": "10.4271/2007-01-3076"
+   },
+   {
+    "title": "Smoke: Characterization of Smoke Particulate for Spacecraft Fire Detection, Seventh International Microgravity Combustion Workshop",
+    "doi": null
+   },
+   {
+    "title": "Smoke: Characterization of Smoke Particulate for Spacecraft Fire Detection",
+    "doi": null
+   },
+   {
+    "title": "Characterization of Nuisance Particulates in the ISS: Space Smoke Aerosols and Lunar Dust Abatement",
+    "doi": "10.1017/S1431927610060563"
+   },
+   {
+    "title": "Combustion Research on the International Space Station",
+    "doi": null
+   },
+   {
+    "title": "Detection of Smoke from Microgravity Fires",
+    "doi": null
+   },
+   {
+    "title": "A Research Plan for Fire Prevention, Detection and Suppression in Crewed Exploration Systems",
+    "doi": "10.2514/6.2005-341"
+   },
+   {
+    "title": "Pyrolysis Smoke Generated Under Low-Gravity Conditions",
+    "doi": "10.1080/02786826.2015.1025125"
+   },
+   {
+    "title": "Smoke Characterization and Feasibility of the Moment Method for Spacecraft Fire Detection",
+    "doi": "10.1080/02786826.2015.1025124"
+   },
+   {
+    "title": "Evaluation of spacecraft smoke detector performance in the low-gravity environment",
+    "doi": "10.1016/j.firesaf.2018.04.004"
+   },
+   {
+    "title": "The Microgravity Science Glovebox (MSG), a Resource for Gravity-Dependent Phenomena Research on the International Space Station (ISS)",
+    "doi": "10.2514/6.2007-546"
+   },
+   {
+    "title": "AN OVERVIEW OF THE MICROGRAVITY SCIENCE GLOVEBOX (MSG) FACILITY, AND THE GRAVITY-DEPENDENT PHENOMENARESEARCH PERFORMED IN THE MSG ON THE INTERNATIONAL SPACE STATION (ISS)",
+    "doi": null
+   }
+  ],
   "related_modeling": [
    {
     "psi_id": "PSI-115",
@@ -657,7 +899,32 @@
    "human_reviewed": false
   },
   "n_publications": 6,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Smoke Aerosol Measurement Experiment-2: Comparison of Flight Experiment Results with Ground Test Results",
+    "doi": "10.2514/6.2013-3433"
+   },
+   {
+    "title": "Evaluation of Low-Gravity Smoke Particulate for Spacecraft Fire Detection",
+    "doi": null
+   },
+   {
+    "title": "Particle Morphology and Size Results from the Smoke Aerosol Measurement Experiment-2",
+    "doi": "10.2514/6.2012-3536"
+   },
+   {
+    "title": "Preliminary Results from the Smoke Aerosol Measurement Experiment - Reflight",
+    "doi": null
+   },
+   {
+    "title": "Detection of Smoke from Microgravity Fires",
+    "doi": null
+   },
+   {
+    "title": "Evaluation of spacecraft smoke detector performance in the low-gravity environment",
+    "doi": "10.1016/j.firesaf.2018.04.004"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -732,7 +999,16 @@
    "human_reviewed": false
   },
   "n_publications": 2,
-  "publications": [],
+  "publications": [
+   {
+    "title": "A Research Plan for Fire Prevention, Detection and Suppression in Crewed Exploration Systems",
+    "doi": "10.2514/6.2005-341"
+   },
+   {
+    "title": "Detection of Smoke from Microgravity Fires",
+    "doi": "10.4271/2005-01-2930"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -823,7 +1099,212 @@
    "human_reviewed": false
   },
   "n_publications": 51,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Methanol Droplet Combustion in Oxygen-Inert Environments in Microgravity",
+    "doi": null
+   },
+   {
+    "title": "Methanol Droplet Extinction in Oxygen/Carbon-dioxide/Nitrogen Mixtures in Microgravity: Results from the International Space Station Experiments",
+    "doi": null
+   },
+   {
+    "title": "A Numerical Study On The Extinction Characteristics Of Droplet Combustion Under Microgravity Conditions",
+    "doi": "10.2514/6.2012-1252"
+   },
+   {
+    "title": "Tethered methanol droplet combustion in carbon-dioxide enriched environment under microgravity conditions",
+    "doi": "10.1016/j.combustflame.2011.06.014"
+   },
+   {
+    "title": "FLEX: A Decisive Step Forward in NASA's Combustion Research Program",
+    "doi": null
+   },
+   {
+    "title": "Dynamics of Water Absorption and Evaporation During Methanol Droplet Combustion in Microgravity",
+    "doi": null
+   },
+   {
+    "title": "Activation energy asymptotics for methanol droplet extinction in microgravity",
+    "doi": "10.1016/j.combustflame.2013.05.011"
+   },
+   {
+    "title": "Experimental Study of Initial Diameter Effects on Convection-free Droplet Combustion in the Standard Atmosphere for n-Heptane, n-Octane, and n-Decane: International Space Station and Ground-based Experiments",
+    "doi": "10.2514/6.2014-1019"
+   },
+   {
+    "title": "Isolated n-heptane droplet combustion in microgravity: “Cool Flames” – Two-stage combustion",
+    "doi": "10.1016/j.combustflame.2013.09.011"
+   },
+   {
+    "title": "Theory of the propagation dynamics of spiral edges of diffusion flames in von Kármán swirling flows",
+    "doi": "10.1016/j.combustflame.2010.08.015"
+   },
+   {
+    "title": "Analysis of the melt phase of a rotating polymer disc supporting a diffusion flame",
+    "doi": "10.1017/jfm.2011.349"
+   },
+   {
+    "title": "Partial-Burning Regime for Quasi-Steady Droplet Combustion Supported by Cool Flames",
+    "doi": "10.2514/1.J054437"
+   },
+   {
+    "title": "Asymptotic analysis of quasi-steady n-heptane droplet combustion supported by cool-flame chemistry",
+    "doi": "10.1080/13647830.2016.1248494"
+   },
+   {
+    "title": "n-Butanol droplet combustion: Numerical modeling and reduced gravity experiments",
+    "doi": "10.1016/j.proci.2014.06.043"
+   },
+   {
+    "title": "Droplet Combustion Experiments Aboard the International Space Station",
+    "doi": "10.1007/s12217-014-9372-2"
+   },
+   {
+    "title": "Computational modeling of the effects of support fibers on evaporation of fiber-supported droplets in reduced gravity",
+    "doi": null
+   },
+   {
+    "title": "Oxygen Lewis Number Effects on Reduced Gravity Combustion of Methanol and n-Heptane Droplets",
+    "doi": "10.1080/00102202.2015.1072176"
+   },
+   {
+    "title": "ISS Droplet Combustion Experiments - Uncertainties in Droplet Sizes and Burning Rates",
+    "doi": "10.1007/s12217-014-9377-x"
+   },
+   {
+    "title": "Combustion of n-Butanol, Gasoline, and n-Butanol/Gasoline Mixture Droplets",
+    "doi": "10.1021/acs.energyfuels.5b00158"
+   },
+   {
+    "title": "Computational Modeling of Unsupported and Fiber-Supported n-Heptane Droplet Combustion in Reduced Gravity: A Study of Fiber Effects",
+    "doi": "10.1080/00102202.2014.971950"
+   },
+   {
+    "title": "The effect of support fibers on micro-convection in droplet combustion experiments",
+    "doi": "10.1016/j.proci.2014.07.022"
+   },
+   {
+    "title": "Cool-flame extinction during n-alkane droplet combustion in microgravity",
+    "doi": "10.1016/j.combustflame.2015.01.012"
+   },
+   {
+    "title": "A short mechanism for the low-temperature ignition of n-heptane at high pressures",
+    "doi": "10.1016/j.fuel.2014.08.063"
+   },
+   {
+    "title": "The role of cool-flame chemistry in quasi-steady combustion and extinction of n-heptane droplets",
+    "doi": "10.1080/13647830.2014.934296"
+   },
+   {
+    "title": "Combustion of Submillimeter Heptane/Methanol and Heptane/Ethanol Droplets in Reduced Gravity",
+    "doi": "10.1155/2013/154202"
+   },
+   {
+    "title": "Sub-millimeter sized methyl butanoate droplet combustion: Microgravity experiments and detailed numerical modeling",
+    "doi": "10.1016/j.proci.2012.07.074"
+   },
+   {
+    "title": "On the spherically symmetrical combustion of methyl decanoate droplets and comparisons with detailed numerical modeling",
+    "doi": "10.1016/j.combustflame.2012.11.006"
+   },
+   {
+    "title": "The spherically symmetric droplet burning characteristics of Jet-A and biofuels derived from camelina and tallow",
+    "doi": "10.1016/j.fuel.2013.02.025"
+   },
+   {
+    "title": "Spherically symmetric droplet combustion of three and four component miscible mixtures as surrogates for Jet-A",
+    "doi": "10.1016/j.proci.2012.05.065"
+   },
+   {
+    "title": "AUTOMATED DATA ANALYSIS FOR CONSECUTIVE IMAGES FROM DROPLET COMBUSTION EXPERIMENTS",
+    "doi": "10.5566/ias.v31.p137-148"
+   },
+   {
+    "title": "On the extinction characteristics of alcohol droplet combustion under microgravity conditions – A numerical study",
+    "doi": "10.1016/j.combustflame.2012.04.005"
+   },
+   {
+    "title": "A comparison of the spherical flame characteristics of sub-millimeter droplets of binary mixtures of n-heptane/iso-octane and n-heptane/toluene with a commercial unleaded gasoline",
+    "doi": "10.1016/j.combustflame.2011.08.015"
+   },
+   {
+    "title": "Comparison of the Burning Characteristics of Indolene and Commercial Grade Gasoline Droplets without Convection",
+    "doi": "10.1021/ef3007849"
+   },
+   {
+    "title": "Can cool flames support quasi-steady alkane droplet burning?",
+    "doi": "10.1016/j.combustflame.2012.07.012"
+   },
+   {
+    "title": "Experiments on Submillimeter Free Droplet Flame Extinction",
+    "doi": "10.1080/00102202.2012.759946"
+   },
+   {
+    "title": "Influences of support fibers on vaporizing fuel droplets",
+    "doi": "10.1016/j.compfluid.2013.02.005"
+   },
+   {
+    "title": "Numerical studies of flows over liquid droplets on cylindrical fibers",
+    "doi": "10.1016/j.compfluid.2013.02.011"
+   },
+   {
+    "title": "Interpretation of Backlit Droplet Images from ISS Droplet Combustion Experiments",
+    "doi": "10.2478/gsr-2014-0007"
+   },
+   {
+    "title": "Combustion of Methanol Droplets in Air-Diluent Environments with Reduced and Normal Gravity",
+    "doi": "10.1155/2012/587987"
+   },
+   {
+    "title": "Microgravity droplet combustion: effect of tethering fiber on burning rate and flame structure",
+    "doi": "10.1080/13647830.2010.547601"
+   },
+   {
+    "title": "Influence of Gravity and Ambient Pressure on Combustion and Flammability of n-Heptane and 1-Propanol Droplets in Air-Diluent Environments",
+    "doi": "10.1080/00102202.2010.498798"
+   },
+   {
+    "title": "Ignition and combustion of n-heptane droplets in carbon dioxide enriched environments",
+    "doi": "10.1016/j.icheatmasstransfer.2009.10.006"
+   },
+   {
+    "title": "Computational modeling of n-heptane droplet combustion in air–diluent environments under reduced-gravity",
+    "doi": "10.1016/j.ijheatmasstransfer.2010.08.005"
+   },
+   {
+    "title": "Numerical Simulation of Unsteady Flows and Shape Oscillations in Liquid Droplets Induced by Deployment Needle Retraction",
+    "doi": "10.1007/s12217-008-9096-2"
+   },
+   {
+    "title": "Nonane droplet combustion with and without buoyant convection: Flame structure, burning rate and extinction in air and helium",
+    "doi": "10.1016/j.proci.2008.06.221"
+   },
+   {
+    "title": "Temperature and fiber optic spectroscopy composition measurements of heated propanol–acetone droplets",
+    "doi": "10.1016/j.optlaseng.2009.05.004"
+   },
+   {
+    "title": "Laser-induced fluorescence imaging of acetone inside evaporating and burning fuel droplets",
+    "doi": "10.1016/j.optlaseng.2008.08.002"
+   },
+   {
+    "title": "Reduced Gravity Combustion of Propanol Droplets in Oxygen-Inert Environments",
+    "doi": "10.1080/00102200903190851"
+   },
+   {
+    "title": "PROPANOL DROPLET FLAMMABILITY AND COMBUSTION IN AIR-DILUENT ENVIRONMENTS UNDER NORMAL AND REDUCED GRAVITY",
+    "doi": "10.1080/00102200601057394"
+   },
+   {
+    "title": "Developing Surrogates for Liquid Transportation Fuels: The Role of Spherically Symmetric Droplet Combustion",
+    "doi": "10.1007/978-81-322-2211-8_16"
+   },
+   {
+    "title": "Detailed results from the flame extinugishment experiment (FLEX) - March 2009 to December 2011",
+    "doi": null
+   }
+  ],
   "related_modeling": [
    {
     "psi_id": "PSI-117",
@@ -940,7 +1421,200 @@
    "human_reviewed": false
   },
   "n_publications": 48,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Experimental Study of Initial Diameter Effects on Convection-free Droplet Combustion in the Standard Atmosphere for n-Heptane, n-Octane, and n-Decane: International Space Station and Ground-based Experiments",
+    "doi": "10.2514/6.2014-1019"
+   },
+   {
+    "title": "n-Butanol droplet combustion: Numerical modeling and reduced gravity experiments",
+    "doi": null
+   },
+   {
+    "title": "Droplet Combustion Experiments Aboard the International Space Station",
+    "doi": "10.1007/s12217-014-9372-2"
+   },
+   {
+    "title": "Multistage oscillatory “Cool Flame” behavior for isolated alkane droplet combustion in elevated pressure microgravity condition",
+    "doi": null
+   },
+   {
+    "title": "Computational modeling of the effects of support fibers on evaporation of fiber-supported droplets in reduced gravity",
+    "doi": null
+   },
+   {
+    "title": "Oxygen Lewis Number Effects on Reduced Gravity Combustion of Methanol and Heptane Droplets",
+    "doi": "10.1080/00102202.2015.1072176"
+   },
+   {
+    "title": "ISS Droplet Combustion Experiments - Uncertainties in Droplet Sizes and Burning Rates",
+    "doi": "10.1007/s12217-014-9377-x"
+   },
+   {
+    "title": "Combustion of Butanol, Gasoline, and Butanol/Gasoline Mixture Droplets",
+    "doi": "10.1021/acs.energyfuels.5b00158"
+   },
+   {
+    "title": "Computational Modeling of Unsupported and Fiber-Supported n-Heptane Droplet Combustion in Reduced Gravity: A Study of Fiber Effects",
+    "doi": "10.1080/00102202.2014.971950"
+   },
+   {
+    "title": "The effect of support fibers on micro-convection in droplet combustion experiments",
+    "doi": null
+   },
+   {
+    "title": "Cool-flame extinction during n-alkane droplet combustion in microgravity",
+    "doi": null
+   },
+   {
+    "title": "A short mechanism for the low-temperature ignition of n-heptane at high pressures",
+    "doi": null
+   },
+   {
+    "title": "The role of cool-flame chemistry in quasi-steady combustion and extinction of n-heptane droplets",
+    "doi": "10.1080/13647830.2014.934296"
+   },
+   {
+    "title": "Combustion of Submillimeter Heptane/Methanol and Heptane/Ethanol Droplets in Reduced Gravity",
+    "doi": "10.1155/2013/154202"
+   },
+   {
+    "title": "Isolated n-heptane droplet combustion in microgravity: “Cool Flames” – Two-stage combustion",
+    "doi": "10.1016/j.combustflame.2013.09.011"
+   },
+   {
+    "title": "Sub-millimeter sized methyl butanoate droplet combustion: Microgravity experiments and detailed numerical modeling",
+    "doi": "10.1016/j.proci.2012.07.074"
+   },
+   {
+    "title": "On the spherically symmetrical combustion of methyl decanoate droplets and comparisons with detailed numerical modeling",
+    "doi": null
+   },
+   {
+    "title": "The spherically symmetric droplet burning characteristics of Jet-A and biofuels derived from camelina and tallow",
+    "doi": null
+   },
+   {
+    "title": "Spherically symmetric droplet combustion of three and four component miscible mixtures as surrogates for Jet-A",
+    "doi": null
+   },
+   {
+    "title": "AUTOMATED DATA ANALYSIS FOR CONSECUTIVE IMAGES FROM DROPLET COMBUSTION EXPERIMENTS",
+    "doi": "10.5566/ias.v31.p137-148"
+   },
+   {
+    "title": "On the extinction characteristics of alcohol droplet combustion under microgravity conditions – A numerical study",
+    "doi": "10.1016/j.combustflame.2012.04.005"
+   },
+   {
+    "title": "A comparison of the spherical flame characteristics of sub-millimeter droplets of binary mixtures of n-heptane/iso-octane and n-heptane/toluene with a commercial unleaded gasoline",
+    "doi": "10.1016/j.combustflame.2011.08.015"
+   },
+   {
+    "title": "Comparison of the Burning Characteristics of Indolene and Commercial Grade Gasoline Droplets without Convection",
+    "doi": "10.1021/ef3007849"
+   },
+   {
+    "title": "Can cool flames support quasi-steady alkane droplet burning?",
+    "doi": "10.1016/j.combustflame.2012.07.012"
+   },
+   {
+    "title": "Experiments on Submillimeter Free Droplet Flame Extinction",
+    "doi": "10.1080/00102202.2012.759946"
+   },
+   {
+    "title": "Influences of support fibers on vaporizing fuel droplets",
+    "doi": null
+   },
+   {
+    "title": "Combustion of Methanol Droplets in Air-Diluent Environments with Reduced and Normal Gravity",
+    "doi": "10.1155/2012/587987"
+   },
+   {
+    "title": "Microgravity droplet combustion: effect of tethering fiber on burning rate and flame structure",
+    "doi": "10.1080/13647830.2010.547601"
+   },
+   {
+    "title": "Influence of Gravity and Ambient Pressure on Combustion and Flammability of n-Heptane and 1-Propanol Droplets in Air-Diluent Environments",
+    "doi": "10.1080/00102202.2010.498798"
+   },
+   {
+    "title": "Ignition and combustion of n-heptane droplets in carbon dioxide enriched environments",
+    "doi": "10.1016/j.icheatmasstransfer.2009.10.006"
+   },
+   {
+    "title": "Computational modeling of n-heptane droplet combustion in air–diluent environments under reduced-gravity",
+    "doi": "10.1016/j.ijheatmasstransfer.2010.08.005"
+   },
+   {
+    "title": "Numerical Simulation of Unsteady Flows and Shape Oscillations in Liquid Droplets Induced by Deployment Needle Retraction",
+    "doi": "10.1007/s12217-008-9096-2"
+   },
+   {
+    "title": "Nonane droplet combustion with and without buoyant convection: Flame structure, burning rate and extinction in air and helium",
+    "doi": "10.1016/j.proci.2008.06.221"
+   },
+   {
+    "title": "Temperature and fiber optic spectroscopy composition measurements of heated propanol–acetone droplets",
+    "doi": "10.1016/j.optlaseng.2009.05.004"
+   },
+   {
+    "title": "Laser-induced fluorescence imaging of acetone inside evaporating and burning fuel droplets",
+    "doi": null
+   },
+   {
+    "title": "Reduced Gravity Combustion of Propanol Droplets in Oxygen-Inert Environments",
+    "doi": "10.1080/00102200903190851"
+   },
+   {
+    "title": "PROPANOL DROPLET FLAMMABILITY AND COMBUSTION IN AIR-DILUENT ENVIRONMENTS UNDER NORMAL AND REDUCED GRAVITY",
+    "doi": "10.1080/00102200601057394"
+   },
+   {
+    "title": "Developing Surrogates for Liquid Transportation Fuels: The Role of Spherically Symmetric Droplet Combustion",
+    "doi": "10.1007/978-81-322-2211-8_16"
+   },
+   {
+    "title": "Experimental Observations of the Low-Temperature Burning of Decane/Hexanol Droplets in Microgravity",
+    "doi": "10.1080/00102202.2016.1225730"
+   },
+   {
+    "title": "Cool-flame dodecane-droplet extinction diameters",
+    "doi": "10.1016/j.combustflame.2019.10.036"
+   },
+   {
+    "title": "Quasi-steady combustion of normal-alkane droplets supported by Cool-Flame chemistry near diffusive extinction",
+    "doi": "10.1080/13647830.2019.1588380"
+   },
+   {
+    "title": "Radiative extinction of burner-supported spherical diffusion flames: A scaling analysis",
+    "doi": "10.1016/j.combustflame.2019.04.027"
+   },
+   {
+    "title": "Unsteady droplet combustion with fuel thermal expansion",
+    "doi": "10.1016/j.combustflame.2018.01.035"
+   },
+   {
+    "title": "Radiative extinction of large n-alkane droplets in oxygen-inert mixtures in microgravity",
+    "doi": "10.1016/j.combustflame.2018.04.023"
+   },
+   {
+    "title": "A Burke-Schumann analysis of dual-flame structure supported by a burning droplet",
+    "doi": "10.1016/j.icheatmasstransfer.2017.06.016"
+   },
+   {
+    "title": "A Burke–Schumann analysis of diffusion-flame structures supported by a burning droplet",
+    "doi": "10.1080/13647830.2017.1280182"
+   },
+   {
+    "title": "Dynamic Differential Image Circle Diameter Measurement Precision Assessment: Application to Burning Droplets",
+    "doi": null
+   },
+   {
+    "title": "Interpretation of Backlit Droplet Images from ISS Droplet Combustion Experiments",
+    "doi": "10.2478/gsr-2014-0007"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1029,7 +1703,36 @@
    "human_reviewed": false
   },
   "n_publications": 7,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Can cool flames support quasi-steady alkane droplet burning?",
+    "doi": "10.1016/j.combustflame.2012.07.012"
+   },
+   {
+    "title": "Cool-flame extinction during n-alkane droplet combustion in microgravity",
+    "doi": "10.1016/j.combustflame.2015.01.012"
+   },
+   {
+    "title": "Partial-Burning Regime for Quasi-Steady Droplet Combustion Supported by Cool Flames",
+    "doi": "10.2514/1.J054437"
+   },
+   {
+    "title": "The role of cool-flame chemistry in quasi-steady combustion and extinction of n-heptane droplets",
+    "doi": "10.1080/13647830.2014.934296"
+   },
+   {
+    "title": "Asymptotic analysis of quasi-steady n-heptane droplet combustion supported by cool-flame chemistry",
+    "doi": "10.1080/13647830.2016.1248494"
+   },
+   {
+    "title": "Science in Short: Cool Flames",
+    "doi": null
+   },
+   {
+    "title": "Low Temperature n-Dodecane Droplet Combustion Experiments Aboard the International Space Station",
+    "doi": "10.1007/s12217-024-10115-x"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1109,7 +1812,72 @@
    "human_reviewed": false
   },
   "n_publications": 16,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Burning on flat wicks at various orientations",
+    "doi": "10.1177/0734904113495650"
+   },
+   {
+    "title": "A Gas Burner to Emulate Condensed-Phase Burning",
+    "doi": "10.3850/978-981-07-5936-0_03-01"
+   },
+   {
+    "title": "Experimental Investigation of Liquid and Gas Fueled Flames Towards the Development of a Burning Rate Emulator (BRE) for Microgravity Applications",
+    "doi": null
+   },
+   {
+    "title": "Burning in microgravity: Experimental results and analysis",
+    "doi": "10.1016/j.combustflame.2021.01.035"
+   },
+   {
+    "title": "Transient dynamics of radiative extinction in low-momentum microgravity diffusion flames",
+    "doi": "10.1016/j.proci.2020.06.110"
+   },
+   {
+    "title": "Emulation of condensed fuel flames with gaseous fuels supplied through a porous copper calorimeter",
+    "doi": "10.1002/fam.2896"
+   },
+   {
+    "title": "Radiative Extinction of Laminar Diffusion Flame above the Flat Porous Burner in Microgravity: A Computational Study",
+    "doi": "10.1134/S0010508220040036"
+   },
+   {
+    "title": "Transient ellipsoidal combustion model for a porous burner in microgravity",
+    "doi": "10.1016/j.combustflame.2019.09.030"
+   },
+   {
+    "title": "Measuring heat flux to a porous burner in microgravity",
+    "doi": "10.1016/j.proci.2018.05.006"
+   },
+   {
+    "title": "Analysis of extinction and sustained ignition",
+    "doi": "10.1016/j.firesaf.2019.02.003"
+   },
+   {
+    "title": "A Burning Rate Emulator (BRE) for study of condensed fuel burning in microgravity",
+    "doi": "10.1016/j.combustflame.2018.01.044"
+   },
+   {
+    "title": "Study of ignition and extinction of small-scale fires in experiments with an emulating gas burner",
+    "doi": "10.1016/j.firesaf.2016.11.003"
+   },
+   {
+    "title": "Emulation of condensed fuel flames with gases in microgravity",
+    "doi": "10.1016/j.combustflame.2015.05.005"
+   },
+   {
+    "title": "Flammability maps for microgravity burning of a small flat material in a quiescent ambient",
+    "doi": "10.1016/j.combustflame.2023.112809"
+   },
+   {
+    "title": "Demonstrating steady burning for small flat materials in microgravity in a quiescent ambient",
+    "doi": "10.1016/j.proci.2022.08.107"
+   },
+   {
+    "title": "Theoretical analysis and predictions of burning in microgravity using a burning emulator",
+    "doi": "10.1016/j.combustflame.2021.111572"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1203,7 +1971,140 @@
    "human_reviewed": false
   },
   "n_publications": 33,
-  "publications": [],
+  "publications": [
+   {
+    "title": "The kinetics and warm flame chemistry associated with radiative extinction of spherical diffusion flames",
+    "doi": "10.1080/13647830.2024.2326830"
+   },
+   {
+    "title": "Soot Formation in Spherical Diffusion Flames",
+    "doi": "10.3390/math11020261"
+   },
+   {
+    "title": "On the existence of steady-state gaseous microgravity spherical diffusion flames in the presence of radiation heat loss",
+    "doi": "10.1016/j.proci.2022.07.049"
+   },
+   {
+    "title": "Critical temperature and reactant mass flux for radiative extinction of ethylene microgravity spherical diffusion flames at 1 bar",
+    "doi": "10.1016/j.proci.2022.07.043"
+   },
+   {
+    "title": "An investigation of thermal radiation from laminar diffusion flames in a tri-coflow burner with central oxygen",
+    "doi": "10.1016/j.combustflame.2022.112158"
+   },
+   {
+    "title": "SPHERICAL DIFFUSION FLAME IN MICROGRAVITY CONDITIONS: FIRST RESULTS OF JOINT RUSSIAN-AMERICAN SPACE EXPERIMENT FLAME DESIGN - ADAMANT",
+    "doi": "10.30826/NEPCAP9B-13"
+   },
+   {
+    "title": "Observations of long duration microgravity spherical diffusion flames aboard the International Space Station",
+    "doi": "10.1016/j.combustflame.2021.02.019"
+   },
+   {
+    "title": "Double blue zones in inverse and normal laminar jet diffusion flames",
+    "doi": "10.1016/j.combustflame.2019.09.014"
+   },
+   {
+    "title": "Dilution effects on laminar jet diffusion flame lengths",
+    "doi": "10.1016/j.proci.2018.06.085"
+   },
+   {
+    "title": "A new method of flame temperature measurement utilizing the acoustic emissions from laser-induced plasmas",
+    "doi": "10.1016/j.proci.2018.07.096"
+   },
+   {
+    "title": "Structure and extinction of spherical burner-stabilized diffusion flames that are attached to the burner surface",
+    "doi": "10.1016/j.combustflame.2017.08.024"
+   },
+   {
+    "title": "Effects of Inert Placement (Z st) on Soot and Radiative Heat Flux in Turbulent Diffusion Flames",
+    "doi": "10.1021/acs.energyfuels.7b01092"
+   },
+   {
+    "title": "Observation of water–gas shift equilibrium in diffusion flames",
+    "doi": "10.1016/j.combustflame.2016.07.025"
+   },
+   {
+    "title": "An Approach to Thermocouple Measurements That Reduces Uncertainties in High-Temperature Environments",
+    "doi": "10.1021/acs.energyfuels.5b00071"
+   },
+   {
+    "title": "Modeled quenching limits of spherical hydrogen diffusion flames",
+    "doi": "10.1016/j.proci.2012.07.029"
+   },
+   {
+    "title": "Simplifying the complexity of diffusion flames through interpretation in C/O ratio space",
+    "doi": "10.1016/j.camwa.2013.01.008"
+   },
+   {
+    "title": "Numerical study of flame structure and soot inception interpreted in carbon-to-oxygen atom ratio space",
+    "doi": "10.1016/j.proci.2012.06.043"
+   },
+   {
+    "title": "Stability of spray combustion for water/alcohols mixtures in oxygen-enriched air",
+    "doi": "10.1016/j.proci.2012.05.088"
+   },
+   {
+    "title": "Numerical investigation of spherical diffusion flames at their sooting limits",
+    "doi": "10.1016/j.combustflame.2011.05.022"
+   },
+   {
+    "title": "Kinetic and radiative extinctions of spherical burner-stabilized diffusion flames",
+    "doi": "10.1016/j.combustflame.2010.12.007"
+   },
+   {
+    "title": "Extremely weak hydrogen flames",
+    "doi": "10.1016/j.combustflame.2010.07.024"
+   },
+   {
+    "title": "Characteristics of non-premixed oxygen-enhanced combustion: II. Flame structure effects on soot precursor kinetics resulting in soot-free flames",
+    "doi": "10.1016/j.combustflame.2010.04.013"
+   },
+   {
+    "title": "Characteristics of non-premixed oxygen-enhanced combustion: I. The presence of appreciable oxygen at the location of maximum temperature",
+    "doi": "10.1016/j.combustflame.2009.07.009"
+   },
+   {
+    "title": "Soot inception limits in laminar diffusion flames with application to oxy–fuel combustion",
+    "doi": "10.1016/j.combustflame.2008.03.008"
+   },
+   {
+    "title": "Radiative extinction of gaseous spherical diffusion flames in microgravity",
+    "doi": "10.1016/j.combustflame.2007.08.009"
+   },
+   {
+    "title": "Numerical and experimental observations of spherical diffusion flames",
+    "doi": "10.1080/13647830601161567"
+   },
+   {
+    "title": "The effects of elevated pressure on the kinetics and extinction of hot, warm, and cool gaseous ethylene spherical diffusion flames",
+    "doi": "10.1016/j.proci.2024.105400"
+   },
+   {
+    "title": "On Soot Inception in Nonpremixed Flames and the Effects of Flame Structure",
+    "doi": "10.1080/00102209808952065"
+   },
+   {
+    "title": "Measurement and analysis of soot inception limits of oxygen-enriched coflow flames",
+    "doi": "10.1016/j.combustflame.2006.08.004"
+   },
+   {
+    "title": "Scalar dissipation rate at extinction and the effects of oxygen-enriched combustion",
+    "doi": "10.1016/j.combustflame.2005.02.008"
+   },
+   {
+    "title": "A theoretical study on soot inception in spherical burner-stabilized diffusion flames",
+    "doi": "10.1016/j.combustflame.2004.08.016"
+   },
+   {
+    "title": "SOOTING LIMITS OF MICROGRAVITY SPHERICAL DIFFUSION FLAMES IN OXYGEN-ENRICHED AIR AND DILUTED FUEL",
+    "doi": "10.1080/00102200490514994"
+   },
+   {
+    "title": "Effects of structure and hydrodynamics on the sooting behavior of spherical microgravity diffusion flames",
+    "doi": "10.1016/S0010-2180(02)00424-8"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1295,7 +2196,16 @@
    "human_reviewed": false
   },
   "n_publications": 2,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Spherical gas-fueled cool diffusion flames",
+    "doi": "10.1016/j.proci.2022.07.015"
+   },
+   {
+    "title": "Cool diffusion flames in a stably stratified stagnation flow",
+    "doi": "10.1016/j.combustflame.2023.112852"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1365,7 +2275,80 @@
    "human_reviewed": false
   },
   "n_publications": 18,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Analysis of CH* concentration and flame heat release rate in laminar coflow diffusion flames under microgravity and normal gravity",
+    "doi": "10.1016/j.combustflame.2016.02.012"
+   },
+   {
+    "title": "Signal-to-noise ratio improvements in laser flow diagnostics using time-resolved image averaging and high dynamic range imaging",
+    "doi": "10.1007/s00348-016-2218-5"
+   },
+   {
+    "title": "A computational and experimental study of coflow laminar methane/air diffusion flames: Effects of fuel dilution, inlet velocity, and gravity",
+    "doi": "10.1016/j.proci.2014.05.138"
+   },
+   {
+    "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions",
+    "doi": "10.1080/00102202.2022.2041621"
+   },
+   {
+    "title": "Constrained-temperature solutions of coflow laminar diffusion flames",
+    "doi": "10.1016/j.proci.2020.06.034"
+   },
+   {
+    "title": "Effects of pressure and fuel dilution on coflow laminar methane–air diffusion flames: A computational and experimental study",
+    "doi": "10.1080/13647830.2017.1403051"
+   },
+   {
+    "title": "Effect of soot self-absorption on color-ratio pyrometry in laminar coflow diffusion flames",
+    "doi": "10.1364/OL.43.001103"
+   },
+   {
+    "title": "A computational and experimental study of coflow laminar methane/air diffusion flames: Effects of fuel dilution, inlet velocity, and gravity",
+    "doi": "10.1016/j.proci.2014.05.138"
+   },
+   {
+    "title": "An experimental and computational study of soot formation in a coflow jet flame under microgravity and normal gravity",
+    "doi": "10.1016/j.proci.2014.05.064"
+   },
+   {
+    "title": "Absolute light calibration using S-type thermocouples",
+    "doi": "10.1016/j.proci.2012.05.030"
+   },
+   {
+    "title": "A comparison of Raman signatures and laser-induced incandescence with direct numerical simulation of soot growth in non-premixed ethylene/air flames",
+    "doi": "10.1016/j.carbon.2011.07.050"
+   },
+   {
+    "title": "Soot and thin-filament pyrometry using a color digital camera",
+    "doi": "10.1016/j.proci.2010.05.006"
+   },
+   {
+    "title": "IMAGING FLAMES: FROM ADVANCED LASER DIAGNOSTICS TO SNAPSHOTS",
+    "doi": "10.1142/9789814295789_0004"
+   },
+   {
+    "title": "A paradigm shift in the interaction of experiments and computations in combustion research",
+    "doi": "10.1016/j.proci.2008.05.066"
+   },
+   {
+    "title": "Computational and experimental investigation of the interaction of soot and NO in coflow diffusion flames",
+    "doi": "10.1016/j.proci.2008.06.182"
+   },
+   {
+    "title": "Distributed-memory parallel computation of a forced, time-dependent, sooting, ethylene/air coflow diffusion flame",
+    "doi": "10.1080/13647830903159293"
+   },
+   {
+    "title": "Measurements and calculations of formaldehyde concentrations in a methane/N2/air, non-premixed flame: Implications for heat release rate",
+    "doi": "10.1016/j.proci.2008.05.083"
+   },
+   {
+    "title": "Computational and experimental study of a forced, time-dependent, methane–air coflow diffusion flame",
+    "doi": "10.1016/j.proci.2006.08.109"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1433,7 +2416,108 @@
    "human_reviewed": false
   },
   "n_publications": 25,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Ion Current and Flame Changes with Electric Fields in Microgravity",
+    "doi": null
+   },
+   {
+    "title": "Electric Field Induced Changes of a Diffusion Flame and Heat Transfer near an Impinging Surface",
+    "doi": "10.3390/en11051235"
+   },
+   {
+    "title": "Electrical Aspects of Impinging Flames",
+    "doi": null
+   },
+   {
+    "title": "The Influence of Electric Field Power Systems on Flame Behavior",
+    "doi": null
+   },
+   {
+    "title": "Ionization and chemiluminescence during the progressive aeration of methane flames",
+    "doi": "10.1016/j.combustflame.2009.08.008"
+   },
+   {
+    "title": "Modelling electric field driven convection in small combustion plasmas and surrounding gases",
+    "doi": "10.1080/13647830701383814"
+   },
+   {
+    "title": "Canceling buoyancy of gaseous fuel flames in a gravitational environment using an ion-driven wind.",
+    "doi": "10.1196/annals.1362.038"
+   },
+   {
+    "title": "Detailed characterization of DC electric field effects on small non-premixed flames",
+    "doi": "10.1016/j.combustflame.2015.03.019"
+   },
+   {
+    "title": "Microgravity burner-generated spherical diffusion flames: experiment and computation. Currently at Department of Mechanical and Aerospace Engineering, Case Western Reserve University, Cleveland, OH 44106.",
+    "doi": "10.1016/S0010-2180(01)00247-4"
+   },
+   {
+    "title": "PLIF and chemiluminescence in a small laminar coflow methane-air diffusion flame at elevated pressures",
+    "doi": "10.1016/j.combustflame.2022.112067"
+   },
+   {
+    "title": "Ion current and carbon monoxide release from an impinging methane/air coflow flame in an electric field",
+    "doi": "10.1016/j.combustflame.2019.03.022"
+   },
+   {
+    "title": "Non-premixed axisymmetric flames driven by ion currents",
+    "doi": "10.1016/j.combustflame.2018.10.036"
+   },
+   {
+    "title": "Impinging nonpremixed coflow methane–air flames with unity Lewis number",
+    "doi": "10.1016/j.proci.2016.06.193"
+   },
+   {
+    "title": "Characterizing I-V Curves for Non-Premixed Methane Flames Stabilized on Different Burner Configurations",
+    "doi": "10.1080/00102202.2017.1331218"
+   },
+   {
+    "title": "CO emission from an impinging non-premixed flame",
+    "doi": "10.1016/j.combustflame.2016.09.004"
+   },
+   {
+    "title": "Electrical aspects of flame quenching",
+    "doi": "10.1016/j.proci.2012.07.007"
+   },
+   {
+    "title": "Behavior of a small diffusion flame as an electrically active component in a high-voltage circuit",
+    "doi": "10.1016/j.combustflame.2011.06.002"
+   },
+   {
+    "title": "Numerical prediction of ion current from a small methane jet flame",
+    "doi": "10.1016/j.combustflame.2009.02.002"
+   },
+   {
+    "title": "Electric field-controlled mesoscale burners",
+    "doi": "10.1016/j.combustflame.2007.07.007"
+   },
+   {
+    "title": "Numerical simulation of a tubular ion-driven wind generator",
+    "doi": "10.1016/j.elstat.2007.04.003"
+   },
+   {
+    "title": "Using large electric fields to control transport in microgravity.",
+    "doi": "10.1196/annals.1362.037"
+   },
+   {
+    "title": "Maximizing ion-driven gas flows",
+    "doi": "10.1016/j.elstat.2005.09.005"
+   },
+   {
+    "title": "Inducing gas flow and swirl in tubes using ionic wind from corona discharges",
+    "doi": "10.1007/s00348-005-0062-0"
+   },
+   {
+    "title": "Modeling of Elevated Pressure Diffusion Flames with Water Addition",
+    "doi": "10.1080/00102202.2023.2182205"
+   },
+   {
+    "title": "Electric-field effects on methane coflow flames aboard the international space station (ISS): ACME E-FIELD flames",
+    "doi": "10.1016/j.combustflame.2022.112443"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1515,7 +2599,184 @@
    "human_reviewed": false
   },
   "n_publications": 44,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Opportunities and challenges of combustion in microgravity",
+    "doi": "10.1016/0360-1285(94)90006-X"
+   },
+   {
+    "title": "On burner-stabilized cylindrical premixed flames in microgravity",
+    "doi": "10.1016/S0082-0784(06)80819-2"
+   },
+   {
+    "title": "On the structure, stabilization, and dual response of flat-burner flames",
+    "doi": "10.1016/0010-2180(94)00102-X"
+   },
+   {
+    "title": "Extinction mechanisms of near-limit premixed flames and extended limits of flammability",
+    "doi": "10.1016/S0082-0784(96)80296-7"
+   },
+   {
+    "title": "On the spreading of unsteady cylindrical diffusion flames",
+    "doi": "10.1016/S0010-2180(97)00069-2"
+   },
+   {
+    "title": "On the response of spherical premixed flames under rotation",
+    "doi": "10.1016/S0010-2180(97)00051-5"
+   },
+   {
+    "title": "Role of flamefront motion and criterion for global quasi-steadiness in droplet burning",
+    "doi": "10.1016/S0082-0784(98)80038-6"
+   },
+   {
+    "title": "On micro-buoyancy spherical diffusion flames and a double luminous zone structure of the hydrogen/methane flame",
+    "doi": "10.1016/S0082-0784(98)80108-2"
+   },
+   {
+    "title": "Structure, aerodynamics, and geometry of premixed flamelets",
+    "doi": "10.1016/S0360-1285(00)00018-6"
+   },
+   {
+    "title": "Microgravity burner-generated spherical diffusion flames: experiment and computation‡‡Currently at Department of Mechanical and Aerospace Engineering, Case Western Reserve University, Cleveland, OH 44106.",
+    "doi": "10.1016/S0010-2180(01)00247-4"
+   },
+   {
+    "title": "Chemiluminescent OH* and CH* flame structure and aerodynamic scaling of weakly buoyant, nearly spherical diffusion flames",
+    "doi": "10.1016/S1540-7489(02)80204-8"
+   },
+   {
+    "title": "Oscillatory extinction of spherical diffusion flames: Micro-buoyancy experiment and computation",
+    "doi": "10.1016/S1540-7489(02)80008-6"
+   },
+   {
+    "title": "Development of Comprehensive Detailed and Reduced Reaction Mechanisms for Combustion Modeling",
+    "doi": "10.2514/2.7289"
+   },
+   {
+    "title": "Response of spherical diffusion flames under rotation with general Lewis numbers",
+    "doi": "10.1080/13647830500098423"
+   },
+   {
+    "title": "Porous spherical burner for combustion experimentation",
+    "doi": "10.1063/1.2212399"
+   },
+   {
+    "title": "On intrinsic oscillation in radiation-affected diffusion flames",
+    "doi": "10.1016/j.proci.2006.07.183"
+   },
+   {
+    "title": "Effects of variable density on response of spherical diffusion flames under rotation",
+    "doi": "10.1016/j.ijheatmasstransfer.2006.12.014"
+   },
+   {
+    "title": "A mechanistic study of Soret diffusion in hydrogen–air flames",
+    "doi": "10.1016/j.combustflame.2009.09.018"
+   },
+   {
+    "title": "Self-similar accelerative propagation of expanding wrinkled flames and explosion triggering",
+    "doi": "10.1103/PhysRevE.83.026305"
+   },
+   {
+    "title": "Response of spherical diffusion flames subjected to rotation: Microgravity experimentation and computational simulation",
+    "doi": "10.1016/j.combustflame.2011.07.013"
+   },
+   {
+    "title": "Fuel Options for Next-Generation Chemical Propulsion",
+    "doi": "10.2514/1.J051328"
+   },
+   {
+    "title": "A mechanistic evaluation of Soret diffusion in heptane/air flames",
+    "doi": "10.1016/j.combustflame.2012.03.005"
+   },
+   {
+    "title": "An experimental investigation on self-acceleration of cellular spherical flames",
+    "doi": "10.1016/j.proci.2012.05.068"
+   },
+   {
+    "title": "Initiation and propagation of laminar premixed cool flames",
+    "doi": "10.1016/j.fuel.2015.11.025"
+   },
+   {
+    "title": "On colliding spherical flames: Morphology, corner dynamics, and flame-generated vorticity",
+    "doi": "10.1016/j.combustflame.2015.10.029"
+   },
+   {
+    "title": "Extended flammability limits of n-heptane/air mixtures with cool flames",
+    "doi": "10.1016/j.combustflame.2017.06.015"
+   },
+   {
+    "title": "Theory of first-stage ignition delay in hydrocarbon NTC chemistry",
+    "doi": "10.1016/j.combustflame.2017.10.003"
+   },
+   {
+    "title": "Direct Numerical Simulation of turbulent nonpremixed “cool” flames: Applicability of flamelet models",
+    "doi": "10.1016/j.proci.2018.06.191"
+   },
+   {
+    "title": "On Radical-Induced Ignition in Combustion Systems",
+    "doi": "10.1146/annurev-chembioeng-060718-030141"
+   },
+   {
+    "title": "Binary collision of a burning droplet and a non-burning droplet of xylene: Outcome regimes and flame dynamics",
+    "doi": "10.1016/j.proci.2018.06.198"
+   },
+   {
+    "title": "Stabilization mechanisms and burning rates of cylindrical burner flames",
+    "doi": "10.2514/6.1994-571"
+   },
+   {
+    "title": "On burner-supported, spherical diffusion flames under micro-buoyancy conditions",
+    "doi": "10.2514/6.1998-563"
+   },
+   {
+    "title": "Microgravity burner-generated spherical diffusion flames - Experiment and computation",
+    "doi": null
+   },
+   {
+    "title": "Thin-Flame Theory for Droplet Combustion at Low Grashof Numbers",
+    "doi": "10.2514/6.2005-1140"
+   },
+   {
+    "title": "Nonlinear Analysis of Pulsating Instabilities in Diffusion Flames",
+    "doi": "10.2514/6.2005-544"
+   },
+   {
+    "title": "An Experimental Study on the Response of Spherical Diffusion Flames Subjected to Rotation and Nonequidiffusion",
+    "doi": "10.2514/6.2005-1141"
+   },
+   {
+    "title": "A  Mechanistic Study of Soret Diffusion in Hydrogen-Air Flames",
+    "doi": "10.2514/6.2009-988"
+   },
+   {
+    "title": "A comprehensive evaluation of soret diffusion in heptane-air flames",
+    "doi": null
+   },
+   {
+    "title": "Dynamics and morphology of spherical diffusion flames under rotation",
+    "doi": "10.2514/6.2012-1251"
+   },
+   {
+    "title": "Dynamics and morphology of colliding spherical flames",
+    "doi": null
+   },
+   {
+    "title": "On the structure and dynamics of stationary and rotating spherical diffusion flames",
+    "doi": null
+   },
+   {
+    "title": "Weakly Buoyant Spherical Diffusion Flames: Properties of Hydrogen-CO Ethylene Flames",
+    "doi": null
+   },
+   {
+    "title": "Computational Simulation of Spherical Diffusion Flame Dynamics and Extinction in Microgravity",
+    "doi": null
+   },
+   {
+    "title": "Combustion Science: A Researcher's Guide to International Space Station",
+    "doi": null
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,
@@ -1605,7 +2866,44 @@
    "human_reviewed": false
   },
   "n_publications": 9,
-  "publications": [],
+  "publications": [
+   {
+    "title": "Laminar Smoke Points in Coflow Measured Aboard the International Space Station",
+    "doi": "10.2514/6.2010-1105"
+   },
+   {
+    "title": "Scaling of Gas-Jet Flame Lengths in Elevated Gravity",
+    "doi": "10.1007/978-1-4020-8682-3_22"
+   },
+   {
+    "title": "The Microgravity Science Glovebox (MSG), a Resource for Gravity-Dependent Phenomena Research on the International Space Station (ISS)",
+    "doi": null
+   },
+   {
+    "title": "The Microgravity Science Glovebox as a Platform for Exploration Research on the International Space Station",
+    "doi": "10.2514/6.2006-941"
+   },
+   {
+    "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions",
+    "doi": "10.1080/00102202.2022.2041621"
+   },
+   {
+    "title": "Shapes of nonbuoyant round hydrocarbon-fueled laminar-jet diffusion flames in still air",
+    "doi": "10.1016/j.combustflame.2004.12.009"
+   },
+   {
+    "title": "Shapes of nonbuoyant round luminous hydrocarbon/air laminar jet diffusion flames",
+    "doi": "10.1016/S0010-2180(98)00100-X"
+   },
+   {
+    "title": "Smoke Points of Microgravity and Normal Gravity Coflow Diffusion",
+    "doi": null
+   },
+   {
+    "title": "Laminar smoke points of coflowing flames in microgravity",
+    "doi": "10.1016/j.firesaf.2011.08.002"
+   }
+  ],
   "related_modeling": [
    {
     "psi_id": "PSI-60",
@@ -1693,7 +2991,28 @@
    "human_reviewed": false
   },
   "n_publications": 5,
-  "publications": [],
+  "publications": [
+   {
+    "title": "A computational and experimental study of coflow laminar methane/air diffusion flames: Effects of fuel dilution, inlet velocity, and gravity",
+    "doi": "10.1016/j.proci.2014.05.138"
+   },
+   {
+    "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions",
+    "doi": "10.1080/00102202.2022.2041621"
+   },
+   {
+    "title": "Effects of Fuel Dilution and Gravity on Laminar Coflow Methane-Air Diffusion Flames: A Computational and Experimental Investigation",
+    "doi": null
+   },
+   {
+    "title": "An experimental and computational study of soot formation in a coflow jet flame under microgravity and normal gravity",
+    "doi": "10.1016/j.proci.2014.05.064"
+   },
+   {
+    "title": "Analysis of CH* concentration and flame heat release rate in laminar coflow diffusion flames under microgravity and normal gravity",
+    "doi": "10.1016/j.combustflame.2016.02.012"
+   }
+  ],
   "related_modeling": [],
   "verified": {
    "by": null,

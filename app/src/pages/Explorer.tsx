@@ -45,9 +45,20 @@ function Detail({ i, close }: { i: Investigation; close: () => void }) {
         <dt>Platform</dt><dd>{i.platform}</dd>
         <dt>Dates</dt><dd>{i.start_date ?? '?'} to {i.end_date ?? '?'}</dd>
         <dt>Data</dt><dd>{AVAIL_LABEL[i.evidence.data_availability]}; {i.evidence.n_runs} table rows; {i.evidence.raw_data_gb} GB of files on PSI</dd>
-        <dt>Publications</dt><dd>{i.n_publications} listed on the PSI record</dd>
         <dt>License</dt><dd>{i.license}</dd>
       </dl>
+      {i.publications.length > 0 && (
+        <details className="pubs">
+          <summary>Publications ({i.publications.length} listed on the PSI record)</summary>
+          <ul>
+            {i.publications.map((p, idx) => (
+              <li key={idx}>
+                {p.doi ? <a href={`https://doi.org/${p.doi}`} target="_blank" rel="noreferrer">{p.title}</a> : <span>{p.title} <span className="dim">(no DOI on record)</span></span>}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
       {i.related_modeling.length > 0 && (<><h3>Related modeling studies in PSI</h3><ul>{i.related_modeling.map((m) => <li key={m.psi_id}><a href={m.url} target="_blank" rel="noreferrer">{m.psi_id}: {m.title}</a></li>)}</ul></>)}
       <p className="links">
         <a href={i.url} target="_blank" rel="noreferrer">Open the PSI record</a>

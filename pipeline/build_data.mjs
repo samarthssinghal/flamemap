@@ -5,6 +5,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { PUBLICATIONS } from './publications_data.mjs'
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'app', 'public', 'data')
 mkdirSync(OUT, { recursive: true })
@@ -173,7 +174,7 @@ const investigations = I.map((x) => ({
   diluents: x.dil, variables_varied: x.varied, sensors: x.sensors,
   evidence: { n_runs: x.n, table_files: x.files.map((f) => `${x.id}_Experimental table_${f}`), data_availability: x.avail, raw_data_gb: x.gb },
   summary: { text: x.sum, why_it_matters: x.why, generated_by: 'AI-drafted from the PSI record text', human_reviewed: false },
-  n_publications: x.pubs, publications: [],
+  n_publications: x.pubs, publications: PUBLICATIONS[x.id] ?? [],
   related_modeling: MODELING.filter((m) => m.parents.includes(x.id)).map((m) => ({ psi_id: m.psi_id, title: m.title, url: url(m.psi_id) })),
   verified: { by: null, date: null },
 }))
@@ -304,6 +305,7 @@ for (const i of investigations) {
   const words = (s) => s.trim().split(/\s+/).length
   if (words(i.summary.text) > 80) throw new Error(`summary too long ${i.psi_id}: ${words(i.summary.text)}`)
   if (words(i.summary.why_it_matters) > 35) throw new Error(`why too long ${i.psi_id}: ${words(i.summary.why_it_matters)}`)
+  if (i.publications.length !== i.n_publications) throw new Error(`publications count mismatch ${i.psi_id}: list has ${i.publications.length}, PSI record says ${i.n_publications}`)
 }
 for (const r of runs) if (!byId[r.psi_id]) throw new Error('run without investigation')
 
