@@ -1,6 +1,11 @@
 # Plan: AI as the entry point to FlameMap
 
-Status: planned 2026-11-14. Supersedes the "live mode" part of `AI_PLAN.md` §2 for the submission; the key-based mode stays as a documented extension.
+Status: **built 2026-11-14** on branch `ai-first-briefing`, all six phases. Supersedes the "live mode" part of `AI_PLAN.md` §2 for the submission; the key-based mode stays as a documented extension. Differences from the plan below:
+- "How the AI works" is its own page (`#/ai`, AI nav group); "Method and sources" stays in the Data group and links to it.
+- Ask has 66 checked questions with 198 paraphrases, not ~150: beyond that the questions became near-duplicates or ones the data cannot answer under the checker's rules.
+- The in-browser download is about 30 MB (model 16 MB + WebAssembly runtime 14 MB, compressed), loaded only when someone uses the question box. transformers.js 4.3.2 needs `localModelPath` as a path, not a URL, or it skips the tokenizer.
+- Check counts are published in the AI label of `briefs.json`/`qa.json`/`related.json` (`checks`) rather than a separate `ai_meta.json`.
+- Human sign-off: SS, hash 3ffc50f926db (66 questions). Study summaries are still unreviewed.
 
 ## Goal
 The challenge asks for an "SI-powered dashboard". Today the AI text is a panel on the Rank page and the 4th nav item. This plan makes the AI the first thing a visitor (and a judge) sees, and tells the story of *how* the AI is used:
