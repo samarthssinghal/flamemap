@@ -180,3 +180,27 @@ details.alt summary { cursor: pointer; color: var(--accent); margin-bottom: 8px;
 .findings .cells { font-size: 0.8rem; margin: 4px 0; padding-left: 1rem; }
 .findings.compact { font-size: 0.85rem; padding-left: 1rem; }
 .k-nasa_stated { color: var(--good); border-color: #2c5a37; }
+.k-record_stated { color: var(--accent); border-color: #24466e; }
+.k-limitation { color: var(--warn); border-color: #6b4c22; }
+.brief .lead { font-size: 1.02rem; font-weight: 500; }
+.brief h2 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.brief-points { margin: 8px 0; display: grid; gap: 8px; }
+.brief-points > div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 10px; }
+.brief-points dt { color: var(--dim); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; padding-top: 2px; }
+.brief-points dd { margin: 0; }
+@media (max-width: 600px) { .brief-points > div { grid-template-columns: 1fr; gap: 0; } }
+.k-ai { color: var(--violet); border-color: #4b3a72; }
+.cites { display: inline; }
+.cite { display: inline-block; font-size: 0.72rem; padding: 0 7px; margin: 0 2px; border-radius: 999px; border: 1px solid var(--line); background: #0f1830; color: var(--accent); text-decoration: none; white-space: nowrap; vertical-align: 1px; }
+.cite:hover { border-color: var(--accent); }
+.cite.calc { color: var(--dim); cursor: help; }
+.ask label { font-weight: 600; display: block; margin-bottom: 6px; }
+.ask-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.ask-row input { flex: 1 1 260px; min-width: 0; }
+.answer h3 { text-transform: none; letter-spacing: 0; color: var(--text); font-size: 1rem; margin-top: 0; }
+.qlist { padding-left: 1.1rem; columns: 2 320px; }
+.qlist li { margin: 4px 0; break-inside: avoid; }
+.related { padding-left: 1.1rem; }
+.related li { margin: 6px 0; }
+.brief-points dd { font-weight: 400; }
+.qlist button { text-align: left; }

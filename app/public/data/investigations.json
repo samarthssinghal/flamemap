@@ -174,6 +174,7 @@
   },
   "findings": [
    {
+    "id": "F1",
     "kind": "nasa_stated",
     "text": "NASA's normal-gravity screening test for spacecraft materials (NASA-STD-6001 Test 1) is not conservative: materials can keep burning at lower oxygen levels in microgravity than on Earth.",
     "quote": "Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.",
@@ -191,6 +192,7 @@
     ]
    },
    {
+    "id": "F2",
     "kind": "nasa_stated",
     "text": "Spraying suppressant locally at a flame did not put it out: the jet pulled in air and kept the flame burning, even with the ventilation airflow turned off.",
     "quote": "current findings show that local application of suppressant is not adequate for flame extinguishment. The local jet entrains air and sustains the flame even when the ambient airflow is turned off.",
@@ -208,6 +210,7 @@
     ]
    },
    {
+    "id": "F3",
     "kind": "nasa_stated",
     "text": "Nitrogen applied to a burning sample as a suppressant could make the flame stronger, because the gas stream drew oxygen into it.",
     "quote": "it is possible that the suppressant stream will be ineffective or might actually make the flame worse through the entrainment of oxygen. Early results have demonstrated that nitrogen applied to the flame can actually strengthen it because of this effect.",
@@ -222,6 +225,48 @@
     "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
     "also_on": [
      "PSI-26"
+    ]
+   },
+   {
+    "id": "F18",
+    "kind": "nasa_context",
+    "text": "For flames spreading over solid materials, the lowest oxygen level that supports burning occurs at an airflow of about 10 cm/s, the typical speed of spacecraft ventilation, where spread rate is also highest.",
+    "quote": "For flame spread across solid materials, the characteristic gas velocity of the minimum in the curve is on the order of 10 cm/s and also corresponds to a maximum in the flame spread rate. To give perspective, this is the velocity typical of that of spacecraft ventilation systems.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for flame spread over solids in microgravity in general, from several classes of experiments. BASS, BASS-II and the Saffire flights are the PSI studies that burned solids in forced airflow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-26",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100"
+    ]
+   },
+   {
+    "id": "F19",
+    "kind": "nasa_context",
+    "text": "At low airflow in space, a thin fuel lit in the middle spreads its flame upstream into the oncoming air, the opposite of normal gravity, where flames always spread with the buoyant flow.",
+    "quote": "Completely contrary to normal-gravity behavior, the flame spreads upstream, into the oncoming airflow, in space when the forced-flow velocities are low (Figure 9); whereas, the flame always spreads downstream, in the buoyant flow direction, in normal gravity, even in the absence of forced flow.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for thin solid fuels in microgravity in general. BASS, BASS-II and the Saffire flights burned solids in opposed and concurrent flow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-26",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100"
     ]
    }
   ]
@@ -373,6 +418,7 @@
   },
   "findings": [
    {
+    "id": "F1",
     "kind": "nasa_stated",
     "text": "NASA's normal-gravity screening test for spacecraft materials (NASA-STD-6001 Test 1) is not conservative: materials can keep burning at lower oxygen levels in microgravity than on Earth.",
     "quote": "Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.",
@@ -390,6 +436,7 @@
     ]
    },
    {
+    "id": "F2",
     "kind": "nasa_stated",
     "text": "Spraying suppressant locally at a flame did not put it out: the jet pulled in air and kept the flame burning, even with the ventilation airflow turned off.",
     "quote": "current findings show that local application of suppressant is not adequate for flame extinguishment. The local jet entrains air and sustains the flame even when the ambient airflow is turned off.",
@@ -407,6 +454,7 @@
     ]
    },
    {
+    "id": "F3",
     "kind": "nasa_stated",
     "text": "Nitrogen applied to a burning sample as a suppressant could make the flame stronger, because the gas stream drew oxygen into it.",
     "quote": "it is possible that the suppressant stream will be ineffective or might actually make the flame worse through the entrainment of oxygen. Early results have demonstrated that nitrogen applied to the flame can actually strengthen it because of this effect.",
@@ -421,6 +469,48 @@
     "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
     "also_on": [
      "PSI-25"
+    ]
+   },
+   {
+    "id": "F18",
+    "kind": "nasa_context",
+    "text": "For flames spreading over solid materials, the lowest oxygen level that supports burning occurs at an airflow of about 10 cm/s, the typical speed of spacecraft ventilation, where spread rate is also highest.",
+    "quote": "For flame spread across solid materials, the characteristic gas velocity of the minimum in the curve is on the order of 10 cm/s and also corresponds to a maximum in the flame spread rate. To give perspective, this is the velocity typical of that of spacecraft ventilation systems.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for flame spread over solids in microgravity in general, from several classes of experiments. BASS, BASS-II and the Saffire flights are the PSI studies that burned solids in forced airflow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100"
+    ]
+   },
+   {
+    "id": "F19",
+    "kind": "nasa_context",
+    "text": "At low airflow in space, a thin fuel lit in the middle spreads its flame upstream into the oncoming air, the opposite of normal gravity, where flames always spread with the buoyant flow.",
+    "quote": "Completely contrary to normal-gravity behavior, the flame spreads upstream, into the oncoming airflow, in space when the forced-flow velocities are low (Figure 9); whereas, the flame always spreads downstream, in the buoyant flow direction, in normal gravity, even in the absence of forced flow.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for thin solid fuels in microgravity in general. BASS, BASS-II and the Saffire flights burned solids in opposed and concurrent flow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-98",
+     "PSI-99",
+     "PSI-100"
     ]
    }
   ]
@@ -544,6 +634,7 @@
   },
   "findings": [
    {
+    "id": "F8",
     "kind": "from_data",
     "text": "At the same 20 cm/s airflow, the flame spreading with the flow (concurrent) burned for 420 s, while the flame spreading against it (opposed) burned for 70 s.",
     "quote": null,
@@ -588,6 +679,48 @@
     "attribution_note": null,
     "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
     "also_on": []
+   },
+   {
+    "id": "F18",
+    "kind": "nasa_context",
+    "text": "For flames spreading over solid materials, the lowest oxygen level that supports burning occurs at an airflow of about 10 cm/s, the typical speed of spacecraft ventilation, where spread rate is also highest.",
+    "quote": "For flame spread across solid materials, the characteristic gas velocity of the minimum in the curve is on the order of 10 cm/s and also corresponds to a maximum in the flame spread rate. To give perspective, this is the velocity typical of that of spacecraft ventilation systems.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for flame spread over solids in microgravity in general, from several classes of experiments. BASS, BASS-II and the Saffire flights are the PSI studies that burned solids in forced airflow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-99",
+     "PSI-100"
+    ]
+   },
+   {
+    "id": "F19",
+    "kind": "nasa_context",
+    "text": "At low airflow in space, a thin fuel lit in the middle spreads its flame upstream into the oncoming air, the opposite of normal gravity, where flames always spread with the buoyant flow.",
+    "quote": "Completely contrary to normal-gravity behavior, the flame spreads upstream, into the oncoming airflow, in space when the forced-flow velocities are low (Figure 9); whereas, the flame always spreads downstream, in the buoyant flow direction, in normal gravity, even in the absence of forced flow.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for thin solid fuels in microgravity in general. BASS, BASS-II and the Saffire flights burned solids in opposed and concurrent flow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-99",
+     "PSI-100"
+    ]
    }
   ]
  },
@@ -720,6 +853,7 @@
   },
   "findings": [
    {
+    "id": "F9",
     "kind": "from_data",
     "text": "None of the four silicone samples burned in microgravity (about 0 cm). In the 1-g comparison, two of them burned completely and one burned 7.6 cm.",
     "quote": null,
@@ -796,6 +930,7 @@
     "also_on": []
    },
    {
+    "id": "F10",
     "kind": "from_data",
     "text": "Both PMMA samples burned completely in 1-g but showed only about 10 cm of significant damage in microgravity. On one of them the flame stayed anchored at the base of the sample, which regressed only 0.01 to 0.04 mm/s.",
     "quote": "The flames remain anchored at the base of the sample which has a very slow regression rate (0.01 to 0.04 mm/s)",
@@ -837,6 +972,7 @@
     "also_on": []
    },
    {
+    "id": "F11",
     "kind": "from_data",
     "text": "The cotton-fiberglass fabric (SIBAL) burned its full 29 cm length in microgravity, as it did in 1-g.",
     "quote": null,
@@ -876,6 +1012,48 @@
     "attribution_note": null,
     "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
     "also_on": []
+   },
+   {
+    "id": "F18",
+    "kind": "nasa_context",
+    "text": "For flames spreading over solid materials, the lowest oxygen level that supports burning occurs at an airflow of about 10 cm/s, the typical speed of spacecraft ventilation, where spread rate is also highest.",
+    "quote": "For flame spread across solid materials, the characteristic gas velocity of the minimum in the curve is on the order of 10 cm/s and also corresponds to a maximum in the flame spread rate. To give perspective, this is the velocity typical of that of spacecraft ventilation systems.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for flame spread over solids in microgravity in general, from several classes of experiments. BASS, BASS-II and the Saffire flights are the PSI studies that burned solids in forced airflow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-100"
+    ]
+   },
+   {
+    "id": "F19",
+    "kind": "nasa_context",
+    "text": "At low airflow in space, a thin fuel lit in the middle spreads its flame upstream into the oncoming air, the opposite of normal gravity, where flames always spread with the buoyant flow.",
+    "quote": "Completely contrary to normal-gravity behavior, the flame spreads upstream, into the oncoming airflow, in space when the forced-flow velocities are low (Figure 9); whereas, the flame always spreads downstream, in the buoyant flow direction, in normal gravity, even in the absence of forced flow.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for thin solid fuels in microgravity in general. BASS, BASS-II and the Saffire flights burned solids in opposed and concurrent flow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-100"
+    ]
    }
   ],
   "gravity_comparison": {
@@ -1061,7 +1239,50 @@
    "by": null,
    "date": null
   },
-  "findings": []
+  "findings": [
+   {
+    "id": "F18",
+    "kind": "nasa_context",
+    "text": "For flames spreading over solid materials, the lowest oxygen level that supports burning occurs at an airflow of about 10 cm/s, the typical speed of spacecraft ventilation, where spread rate is also highest.",
+    "quote": "For flame spread across solid materials, the characteristic gas velocity of the minimum in the curve is on the order of 10 cm/s and also corresponds to a maximum in the flame spread rate. To give perspective, this is the velocity typical of that of spacecraft ventilation systems.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for flame spread over solids in microgravity in general, from several classes of experiments. BASS, BASS-II and the Saffire flights are the PSI studies that burned solids in forced airflow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-99"
+    ]
+   },
+   {
+    "id": "F19",
+    "kind": "nasa_context",
+    "text": "At low airflow in space, a thin fuel lit in the middle spreads its flame upstream into the oncoming air, the opposite of normal gravity, where flames always spread with the buoyant flow.",
+    "quote": "Completely contrary to normal-gravity behavior, the flame spreads upstream, into the oncoming airflow, in space when the forced-flow velocities are low (Figure 9); whereas, the flame always spreads downstream, in the buoyant flow direction, in normal gravity, even in the absence of forced flow.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 31",
+     "page": 31,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for thin solid fuels in microgravity in general. BASS, BASS-II and the Saffire flights burned solids in opposed and concurrent flow.",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-25",
+     "PSI-26",
+     "PSI-98",
+     "PSI-99"
+    ]
+   }
+  ]
  },
  {
   "psi_id": "PSI-102",
@@ -1234,6 +1455,7 @@
   },
   "findings": [
    {
+    "id": "F7",
     "kind": "nasa_context",
     "text": "Smoke particles from fires in microgravity differ greatly in size from those on Earth, so a terrestrial smoke detector used in space would be looking for the wrong signature.",
     "quote": "Fundamental research in microgravity highlighted the vastly different particulate size associated with flames in microgravity. Since many fire detectors operate by sensing fire-generated particulates, they would need to use different signatures to detect fires in microgravity. If terrestrial fire detectors were used in space, they would be “looking” for something different than they should.",
@@ -1245,6 +1467,24 @@
      "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
     },
     "attribution_note": "NASA states this about microgravity smoke research in general. SAME and SAME-R are the PSI studies that measured smoke particle size from spacecraft materials (Guide page 26).",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-101"
+    ]
+   },
+   {
+    "id": "F15",
+    "kind": "limitation",
+    "text": "The particle samples from the first SAME flight could not be used: every electron-microscope grid came back contaminated with unidentified particles. This is one reason SAME-R reflew.",
+    "quote": "One of the problems encountered during the SAME investigation was that after the thermal precipitators were returned to the ground, it was found that all the TEM grids were severely contaminated with some unidentified foreign particles, making these grids unusable although some of them showed shapes of certain types of smoke particles.",
+    "cells": [],
+    "source": {
+     "type": "psi_text",
+     "label": "PSI record PSI-101, Objective",
+     "field": "objective",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101"
+    },
+    "attribution_note": null,
     "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
     "also_on": [
      "PSI-101"
@@ -1377,6 +1617,7 @@
   },
   "findings": [
    {
+    "id": "F7",
     "kind": "nasa_context",
     "text": "Smoke particles from fires in microgravity differ greatly in size from those on Earth, so a terrestrial smoke detector used in space would be looking for the wrong signature.",
     "quote": "Fundamental research in microgravity highlighted the vastly different particulate size associated with flames in microgravity. Since many fire detectors operate by sensing fire-generated particulates, they would need to use different signatures to detect fires in microgravity. If terrestrial fire detectors were used in space, they would be “looking” for something different than they should.",
@@ -1388,6 +1629,24 @@
      "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
     },
     "attribution_note": "NASA states this about microgravity smoke research in general. SAME and SAME-R are the PSI studies that measured smoke particle size from spacecraft materials (Guide page 26).",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-102"
+    ]
+   },
+   {
+    "id": "F15",
+    "kind": "limitation",
+    "text": "The particle samples from the first SAME flight could not be used: every electron-microscope grid came back contaminated with unidentified particles. This is one reason SAME-R reflew.",
+    "quote": "One of the problems encountered during the SAME investigation was that after the thermal precipitators were returned to the ground, it was found that all the TEM grids were severely contaminated with some unidentified foreign particles, making these grids unusable although some of them showed shapes of certain types of smoke particles.",
+    "cells": [],
+    "source": {
+     "type": "psi_text",
+     "label": "PSI record PSI-101, Objective",
+     "field": "objective",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101"
+    },
+    "attribution_note": null,
     "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
     "also_on": [
      "PSI-102"
@@ -1797,6 +2056,7 @@
   },
   "findings": [
    {
+    "id": "F4",
     "kind": "nasa_stated",
     "text": "The flammability limit is lower in microgravity, so inert-gas suppressant standards set on Earth give less safety margin in space.",
     "quote": "The research to date has shown that the flammability limit is lower in reduced gravity. The implication is that terrestrial standards for inert gas suppressants in low gravity do not offer the same margin of safety as in normal gravity.",
@@ -1812,6 +2072,7 @@
     "also_on": []
    },
    {
+    "id": "F5",
     "kind": "nasa_stated",
     "text": "For heptane and methanol droplets, the lowest oxygen level that still supports burning (limiting oxygen index) was significantly lower than in normal gravity, and lower than predicted.",
     "quote": "identified an LOI that is both significantly lower than in normal gravity and lower than previously predicted and anticipated.",
@@ -1827,6 +2088,7 @@
     "also_on": []
    },
    {
+    "id": "F6",
     "kind": "nasa_stated",
     "text": "After the visible flame around a heptane droplet went out, a stable cool flame formed and kept burning. NASA calls this the most significant observation of these experiments.",
     "quote": "The most significant observation from these experiments, however, is the identification of stable, quasi-steady cool flames that form after radiative extinction of the visible flame for heptane droplet combustion",
@@ -1835,6 +2097,38 @@
      "type": "nasa_guide",
      "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 36",
      "page": 36,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "id": "F16",
+    "kind": "limitation",
+    "text": "In some atmospheres the droplet size at flame extinction was too small to be observed or measured with the instruments on board.",
+    "quote": "There were ambient conditions where the extinction droplet sizes at all ambient oxygen mole fractions were too small to either be observed or measured with the available diagnostics.",
+    "cells": [],
+    "source": {
+     "type": "psi_text",
+     "label": "PSI record PSI-69, Approach",
+     "field": "approach",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "id": "F17",
+    "kind": "nasa_stated",
+    "text": "FLEX showed that a cool flame can keep burning for a prolonged time after the visible flame goes out, a result many researchers had thought impossible.",
+    "quote": "The FLEX tests showed that the cool flame can burn for a prolonged period of time.",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 34",
+     "page": 34,
      "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
     },
     "attribution_note": null,
@@ -2406,7 +2700,56 @@
    "by": null,
    "date": null
   },
-  "findings": []
+  "findings": [
+   {
+    "id": "F12",
+    "kind": "record_stated",
+    "text": "Gas flames emulating burning PMMA and Nylon kept burning steadily in microgravity with no airflow, even though shutting off ventilation is an established step in putting out spacecraft fires.",
+    "quote": "Quasi-steady burning corresponding to various condensed-phase materials (such as PMMA and Nylon) was observed in microgravity despite the absence of air flow, where the cessation of ventilation is an established step in putting out spacecraft fires.",
+    "cells": [],
+    "source": {
+     "type": "psi_text",
+     "label": "PSI record PSI-20, Research Impacts/Earth Benefits",
+     "field": "researchImpacts",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "id": "F13",
+    "kind": "record_stated",
+    "text": "Burning without airflow continued in the elevated-oxygen atmospheres considered for future spacecraft, while the same flames in 21% oxygen went out in a short time.",
+    "quote": "The ongoing combustion without air flow was notably seen in elevated-oxygen atmospheres which are being considered for use in future spacecraft, whereas such flames in a normal atmosphere of 21% oxygen self-extinguished in a short time.",
+    "cells": [],
+    "source": {
+     "type": "psi_text",
+     "label": "PSI record PSI-20, Research Impacts/Earth Benefits",
+     "field": "researchImpacts",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   },
+   {
+    "id": "F14",
+    "kind": "record_stated",
+    "text": "The team calls the results preliminary, but they suggest NASA may want to rely more on its cone-calorimeter flammability test (Test 2), which measures the material properties that matched the microgravity flames.",
+    "quote": "While BRE’s results are still preliminary, they suggest that NASA may want to increase use of its alternative flammability Test 2, with the cone calorimeter, where that test can measure material properties corresponding to the microgravity flames observed with the BRE burner.",
+    "cells": [],
+    "source": {
+     "type": "psi_text",
+     "label": "PSI record PSI-20, Research Impacts/Earth Benefits",
+     "field": "researchImpacts",
+     "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20"
+    },
+    "attribution_note": null,
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": []
+   }
+  ]
  },
  {
   "psi_id": "PSI-10",
@@ -3453,7 +3796,26 @@
    "by": null,
    "date": null
   },
-  "findings": []
+  "findings": [
+   {
+    "id": "F20",
+    "kind": "nasa_context",
+    "text": "In low gravity, gas-jet flames start producing smoke at substantially different conditions than on Earth, contrary to earlier predictions, and their soot particles differ in size and structure.",
+    "quote": "The onset of smoke production found in low gravity is substantially different than in normal gravity and contrary to predictions in prior literature. The experiments also show significant differences in the size of the primary soot particles and in the larger fractal dimension of the soot agglomerates",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 32",
+     "page": 32,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for microgravity gas-jet flame studies in general (drop towers and space). SPICE measured smoke points of gas-jet flames on the ISS and SLICE used the SPICE hardware (Guide pp. 13-14).",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-106"
+    ]
+   }
+  ]
  },
  {
   "psi_id": "PSI-106",
@@ -3566,6 +3928,25 @@
    "by": null,
    "date": null
   },
-  "findings": []
+  "findings": [
+   {
+    "id": "F20",
+    "kind": "nasa_context",
+    "text": "In low gravity, gas-jet flames start producing smoke at substantially different conditions than on Earth, contrary to earlier predictions, and their soot particles differ in size and structure.",
+    "quote": "The onset of smoke production found in low gravity is substantially different than in normal gravity and contrary to predictions in prior literature. The experiments also show significant differences in the size of the primary soot particles and in the larger fractal dimension of the soot agglomerates",
+    "cells": [],
+    "source": {
+     "type": "nasa_guide",
+     "label": "NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. 32",
+     "page": 32,
+     "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf"
+    },
+    "attribution_note": "NASA states this for microgravity gas-jet flame studies in general (drop towers and space). SPICE measured smoke points of gas-jet flames on the ISS and SLICE used the SPICE hardware (Guide pp. 13-14).",
+    "generated_by": "Written with Claude Code from the quoted source; quotes and cells checked at build time",
+    "also_on": [
+     "PSI-107"
+    ]
+   }
+  ]
  }
 ]

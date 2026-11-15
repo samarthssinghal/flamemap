@@ -1,0 +1,930 @@
+{
+ "generated_with": "Claude Code (Claude Opus 5.5), in a development session, from pipeline/ai/context.md",
+ "model": "claude-opus-5-5",
+ "date": "2026-11-14",
+ "checked": "Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).",
+ "human_reviewed": false,
+ "briefs": [
+  {
+   "env_ids": [
+    "iss"
+   ],
+   "task_id": "prevent",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "At 21% oxygen and sea-level pressure, the solid-fuel flight studies match the station cabin well, but every one of them ran in glovebox or Cygnus cabin air, so pressure is assumed, not recorded.",
+     "cites": [
+      "env",
+      "PSI-25",
+      "PSI-26",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "BASS-II, BASS and the three Saffire flights all score 100: solid fuels, a prevention role, and oxygen at or near 21%.",
+     "cites": [
+      "PSI-25",
+      "PSI-26",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "NASA states that its 1-g screening test for spacecraft materials is not conservative, because materials can burn at lower oxygen in microgravity, and that flame spread over solids is worst near 10 cm/s, the typical ventilation speed.",
+     "cites": [
+      "F1",
+      "F18"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "SAFFIRE-II shows how material-specific this is: silicone barely burned in microgravity, while the cotton-fiberglass fabric burned its full 29 cm.",
+     "cites": [
+      "PSI-99",
+      "F9",
+      "F11"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "No solid-fuel table records pressure, and BASS and SAFFIRE-III did not record oxygen either, so part of this match rests on assumed cabin values.",
+     "cites": [
+      "PSI-26",
+      "PSI-100",
+      "stat:solid_investigations_with_recorded_pressure"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Start with the BASS-II experimental table: 112 of its runs fall within 5 oxygen points and 10 kPa of this cabin, the most of any solid-fuel study.",
+     "cites": [
+      "PSI-25",
+      "gap:combined"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "iss"
+   ],
+   "task_id": "detect",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "Detection evidence for the station cabin comes from two smoke studies and one instrument check, all run in station air.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "SAME-R, SAME and DAFT score 100, but their oxygen and pressure are assumed from the platform rather than recorded in their tables.",
+     "cites": [
+      "PSI-101",
+      "PSI-102",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "NASA notes that smoke particles from microgravity fires differ greatly in size from those on Earth, so a terrestrial smoke detector would be looking for the wrong signature.",
+     "cites": [
+      "F7"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "The particle samples from the first SAME flight came back contaminated and unusable, one reason SAME-R reflew; DAFT burned nothing and only checked a particle counter.",
+     "cites": [
+      "F15",
+      "PSI-102",
+      "PSI-101",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "For detector design, start with SAME-R, which reflew with broader conditions and a new instrument to measure smoke particle size.",
+     "cites": [
+      "PSI-101"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "iss"
+   ],
+   "task_id": "suppress",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "Suppression evidence at cabin conditions is strongest for fuel droplets: FLEX matches the cabin atmosphere on every recorded factor.",
+     "cites": [
+      "PSI-69"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "FLEX scores 100, followed by BASS-II, BASS and FLEX-2 at 92 and CFI at 88.",
+     "cites": [
+      "PSI-69",
+      "PSI-25",
+      "PSI-26",
+      "PSI-68",
+      "PSI-39"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "FLEX found the flammability limit is lower in microgravity, so inert-gas suppressant standards set on Earth give less safety margin in space.",
+     "cites": [
+      "PSI-69",
+      "F4"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "For burning solids, BASS found that a local suppressant jet did not put the flame out, and nitrogen could even strengthen it by drawing in oxygen.",
+     "cites": [
+      "PSI-26",
+      "F2",
+      "F3"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "Droplet results may not carry over to burning materials, and the solid-fuel suppression findings come from BASS, whose oxygen and pressure are assumed.",
+     "cites": [
+      "PSI-26"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Compare FLEX with BASS-II to see droplet and solid-fuel evidence side by side.",
+     "cites": [
+      "PSI-69",
+      "PSI-25"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "moon_base",
+    "rover",
+    "mars_base"
+   ],
+   "task_id": "prevent",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "No solid fuel in PSI has burned in anything like a 30% oxygen, 70.3 kPa habitat atmosphere.",
+     "cites": [
+      "env",
+      "gap:o2_solids",
+      "gap:low_pressure"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "BASS-II, the three Saffire flights and BASS rank highest because they are solid-fuel prevention studies, not because their conditions match.",
+     "cites": [
+      "PSI-25",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100",
+      "PSI-26"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "The highest oxygen in any solid-fuel table is 22.2% (BASS-II), 7.8 points below this atmosphere, and no solid-fuel table records pressure at all.",
+     "cites": [
+      "PSI-25",
+      "gap:o2_solids",
+      "gap:low_pressure"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "Every study ran in microgravity, so PSI holds no partial-gravity evidence for the Moon or Mars.",
+     "cites": [
+      "gap:partial_gravity"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "The one direct hint comes from ACME BRE: gas flames emulating burning materials kept going without airflow in elevated-oxygen atmospheres, while in 21% oxygen they went out.",
+     "cites": [
+      "PSI-20",
+      "F13"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Read BRE alongside BASS-II; the BRE team calls its results preliminary but suggests NASA rely more on its cone-calorimeter test.",
+     "cites": [
+      "PSI-20",
+      "PSI-25",
+      "F14"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "moon_base",
+    "rover",
+    "mars_base"
+   ],
+   "task_id": "detect",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "There is no smoke-detection evidence at habitat conditions: the detection studies all ran in station air at an assumed 21% oxygen and cabin pressure.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "SAME-R, SAME and DAFT rank highest on task fit alone; on oxygen they fall 9 points short of this atmosphere.",
+     "cites": [
+      "PSI-101",
+      "PSI-102",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "Microgravity smoke particles differ greatly in size from those on Earth, so detectors tuned for Earth would look for the wrong signature.",
+     "cites": [
+      "F7"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "Smoke from materials at 30% oxygen and 70.3 kPa has not been sampled in these records, and no study ran at partial gravity.",
+     "cites": [
+      "env",
+      "PSI-101",
+      "PSI-102",
+      "gap:partial_gravity"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Use the SAME and SAME-R particle-size data as the microgravity baseline, keeping in mind that the first SAME flight's particle samples were unusable.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "F15"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "moon_base",
+    "rover",
+    "mars_base"
+   ],
+   "task_id": "suppress",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "Suppression is the best-covered task for this habitat: 23 FLEX droplet runs fall within 5 oxygen points and 10 kPa of it.",
+     "cites": [
+      "PSI-69",
+      "gap:combined"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "FLEX ranks first, then FLEX-2 and CFI, whose recorded pressure ranges also include 70.3 kPa.",
+     "cites": [
+      "PSI-69",
+      "PSI-68",
+      "PSI-39",
+      "gap:low_pressure"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "FLEX found a lower flammability limit in microgravity, with a limiting oxygen index significantly lower than in normal gravity, so Earth standards for inert-gas suppressants give less margin.",
+     "cites": [
+      "PSI-69",
+      "F4",
+      "F5"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "Suppression of burning solids was tested only by BASS, in cabin air near 21% oxygen, so whether local suppressant jets also fail at 30% is untested.",
+     "cites": [
+      "PSI-26",
+      "F2",
+      "env"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Read the FLEX runs nearest this atmosphere, noting that in some atmospheres the droplet size at extinction was too small to measure.",
+     "cites": [
+      "PSI-69",
+      "F16"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "exploration_atm"
+   ],
+   "task_id": "prevent",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "NASA's proposed 34% oxygen, 56.5 kPa exploration atmosphere lies well outside every solid-fuel test in PSI.",
+     "cites": [
+      "env",
+      "gap:o2_solids"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "BASS-II, BASS and the three Saffire flights tie at 78 on task fit, but on oxygen they fall 11.8 to 13 points short.",
+     "cites": [
+      "PSI-25",
+      "PSI-26",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "No solid-fuel table records pressure; the only studies whose recorded pressure covers 56.5 kPa are FLEX-2, CFI and ACME CFI-G, none of which burned solids.",
+     "cites": [
+      "gap:low_pressure",
+      "PSI-68",
+      "PSI-39",
+      "PSI-159"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "NASA's 1-g materials test is already not conservative at cabin oxygen, and ACME BRE saw emulated material flames keep burning without airflow at elevated oxygen.",
+     "cites": [
+      "F1",
+      "PSI-20",
+      "F13"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "The 19 ACME CFI-G runs near this atmosphere are the only runs in PSI close to it, and they are gas flames, not burning materials.",
+     "cites": [
+      "gap:combined",
+      "PSI-159"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "exploration_atm"
+   ],
+   "task_id": "detect",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "No detection study ran above cabin air: SAME, SAME-R and DAFT assume 21% oxygen, 13 points below this atmosphere.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "SAME-R and SAME score 78, matching the detection task but not the atmosphere.",
+     "cites": [
+      "PSI-101",
+      "PSI-102"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "Microgravity smoke particles differ greatly in size from those on Earth, so terrestrial detectors would look for the wrong signature.",
+     "cites": [
+      "F7"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "No study ran at lunar gravity, and the only runs near this atmosphere are gas flames, so smoke at these conditions is unmeasured.",
+     "cites": [
+      "gap:partial_gravity",
+      "gap:combined"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Start with SAME-R's particle-size data, since the first SAME flight's particle samples were contaminated.",
+     "cites": [
+      "PSI-101",
+      "PSI-102",
+      "F15"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "exploration_atm"
+   ],
+   "task_id": "suppress",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "FLEX is the strongest suppression evidence for this atmosphere, scoring 93.",
+     "cites": [
+      "PSI-69"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "FLEX covers 34% oxygen, but 56.5 kPa is 13.7 kPa below its lowest recorded pressure; FLEX-2 covers that pressure but tops out 4 points short on oxygen.",
+     "cites": [
+      "PSI-69",
+      "PSI-68",
+      "env"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "FLEX found the flammability limit is lower in microgravity, so Earth standards for inert-gas suppressants give less safety margin.",
+     "cites": [
+      "PSI-69",
+      "F4"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "Suppression of burning solids was tested only in cabin air, and BASS found local suppressant jets can sustain a flame rather than put it out.",
+     "cites": [
+      "PSI-26",
+      "F2"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "FLEX-2 has no stated findings in PSI or NASA's Guide yet, so its publications are the place to look for results nearer this pressure.",
+     "cites": [
+      "PSI-68"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "exploration_10_2psi"
+   ],
+   "task_id": "prevent",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "At 26.5% oxygen and 70.3 kPa, this is the exploration atmosphere closest to tested solid-fuel conditions, but it is still 4.3 points above the highest solid-fuel oxygen.",
+     "cites": [
+      "env",
+      "gap:o2_solids"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "BASS-II, SAFFIRE-II and SAFFIRE-I score 86, with BASS and SAFFIRE-III at 85.",
+     "cites": [
+      "PSI-25",
+      "PSI-99",
+      "PSI-98",
+      "PSI-26",
+      "PSI-100"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "NASA states that materials can burn at lower oxygen in microgravity than the 1-g test shows, and that flame spread over solids is worst near 10 cm/s, the typical ventilation speed.",
+     "cites": [
+      "F1",
+      "F18"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "No solid-fuel table records pressure, and no study ran at lunar gravity.",
+     "cites": [
+      "gap:low_pressure",
+      "gap:partial_gravity"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Read the high-oxygen end of the BASS-II table, which reaches 22.2%, the closest any solid-fuel study comes.",
+     "cites": [
+      "PSI-25",
+      "gap:o2_solids"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "exploration_10_2psi"
+   ],
+   "task_id": "detect",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "Smoke detection has no evidence at this atmosphere: the detection studies assume 21% oxygen, 5.5 points lower, and cabin pressure.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "SAME-R and SAME score 85 on task fit, with DAFT close behind.",
+     "cites": [
+      "PSI-101",
+      "PSI-102",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "Microgravity smoke particles differ greatly in size from those on Earth, so terrestrial detectors would look for the wrong signature.",
+     "cites": [
+      "F7"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "No study ran at partial gravity, and none sampled smoke at reduced pressure.",
+     "cites": [
+      "gap:partial_gravity",
+      "PSI-101",
+      "PSI-102"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Use SAME-R's particle-size measurements as the baseline, since the first SAME flight's samples were unusable.",
+     "cites": [
+      "PSI-101",
+      "PSI-102",
+      "F15"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "exploration_10_2psi"
+   ],
+   "task_id": "suppress",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "FLEX matches this atmosphere closely, scoring 97, with 43 runs within 5 oxygen points and 10 kPa.",
+     "cites": [
+      "PSI-69",
+      "gap:combined"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "FLEX ranks first; BASS-II and BASS add solid-fuel suppression evidence at 77, though from cabin air.",
+     "cites": [
+      "PSI-69",
+      "PSI-25",
+      "PSI-26"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "FLEX found a limiting oxygen index significantly lower than in normal gravity, so inert-gas suppressant standards from Earth give less margin.",
+     "cites": [
+      "PSI-69",
+      "F4",
+      "F5"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "Solid-fuel suppression has not been tested at this oxygen level or pressure.",
+     "cites": [
+      "PSI-26",
+      "gap:o2_solids",
+      "gap:low_pressure"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Read the 43 FLEX runs near this atmosphere, and note that after the visible flame went out, a cool flame could keep burning for a long time.",
+     "cites": [
+      "PSI-69",
+      "gap:combined",
+      "F17"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "spacesuit"
+   ],
+   "task_id": "prevent",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "Nothing in PSI comes close to a 100% oxygen suit at 29.6 kPa: no run of any fuel is within 5 oxygen points and 10 kPa of it.",
+     "cites": [
+      "env",
+      "gap:combined"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "ACME CFI-G, BASS-II and SAFFIRE-II lead with 45 out of 100, a low score that reflects distance, not a match.",
+     "cites": [
+      "PSI-159",
+      "PSI-25",
+      "PSI-99"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "The highest oxygen in any table is 40%, in gas flames, and the highest for solid fuels is 22.2%; no recorded pressure range includes 29.6 kPa.",
+     "cites": [
+      "gap:o2_any",
+      "gap:o2_solids",
+      "gap:low_pressure"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "The only related hint is from ACME BRE: emulated material flames kept burning without airflow at elevated oxygen but went out at 21%.",
+     "cites": [
+      "PSI-20",
+      "F13"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "PSI cannot answer this one; NASA's suit-atmosphere chamber tests, at 85% oxygen and 4.3 psi, sit outside PSI.",
+     "cites": [
+      "env"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "spacesuit"
+   ],
+   "task_id": "detect",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "No smoke-detection data exists anywhere near a pure-oxygen suit atmosphere.",
+     "cites": [
+      "env",
+      "gap:combined"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "ACME CFI-G edges out SAME-R, SAME and DAFT at 45 against 44, because its oxygen reaches 40%; none of them is a close match.",
+     "cites": [
+      "PSI-159",
+      "PSI-101",
+      "PSI-102",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "The detection studies assume 21% oxygen and cabin pressure, 79 points of oxygen below this environment.",
+     "cites": [
+      "PSI-101",
+      "PSI-102",
+      "PSI-47"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "Smoke in microgravity differs from smoke on Earth, so detectors need microgravity data, and none exists at suit conditions.",
+     "cites": [
+      "F7"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Treat this as an open gap: no record in PSI covers it.",
+     "cites": [
+      "gap:o2_any",
+      "gap:low_pressure"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "spacesuit"
+   ],
+   "task_id": "suppress",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "Suppression evidence for a suit atmosphere is distant: FLEX leads at 60.",
+     "cites": [
+      "PSI-69"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "FLEX, FLEX-2 and CFI rank highest; FLEX's oxygen tops out 66 points below 100%.",
+     "cites": [
+      "PSI-69",
+      "PSI-68",
+      "PSI-39",
+      "env"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "FLEX found Earth standards for inert-gas suppressants give less margin in microgravity, and that margin is unknown at pure oxygen.",
+     "cites": [
+      "PSI-69",
+      "F4"
+     ]
+    },
+    {
+     "kind": "untested",
+     "text": "No run of any fuel is within 5 oxygen points and 10 kPa of this environment.",
+     "cites": [
+      "gap:combined"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "Use FLEX's oxygen and diluent trends only as a direction; they do not reach this environment.",
+     "cites": [
+      "PSI-69"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "earth"
+   ],
+   "task_id": "prevent",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "The atmosphere matches Earth, but every study here ran in microgravity, so this view compares space results with ground conditions rather than offering ground evidence.",
+     "cites": [
+      "env",
+      "gap:partial_gravity"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "BASS-II, BASS and the three Saffire flights score 83, losing points only on gravity.",
+     "cites": [
+      "PSI-25",
+      "PSI-26",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "SAFFIRE-II is the one study with matching 1-g burns: PMMA burned completely in 1-g but only about 10 cm in microgravity, while silicone burned in 1-g but not in microgravity.",
+     "cites": [
+      "PSI-99",
+      "F10",
+      "F9"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "The other direction matters too: NASA states the 1-g materials test is not conservative, since materials can burn at lower oxygen in microgravity.",
+     "cites": [
+      "F1"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "The Saffire records name fire safety in mines, airplanes and submarines as Earth benefits of fire studies in small sealed spaces.",
+     "cites": [
+      "PSI-98"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "earth"
+   ],
+   "task_id": "detect",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "Atmosphere matches, gravity does not: the detection studies show why Earth detectors cannot simply be flown.",
+     "cites": [
+      "env",
+      "gap:partial_gravity"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "SAME-R and SAME score 83.",
+     "cites": [
+      "PSI-101",
+      "PSI-102"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "Microgravity smoke particles differ greatly in size from those on Earth, so a terrestrial detector would look for the wrong signature.",
+     "cites": [
+      "F7"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "The SAME records name submarines and underwater laboratories as Earth uses for detectors built on these results.",
+     "cites": [
+      "PSI-102"
+     ]
+    }
+   ]
+  },
+  {
+   "env_ids": [
+    "earth"
+   ],
+   "task_id": "suppress",
+   "points": [
+    {
+     "kind": "headline",
+     "text": "FLEX scores 83 for Earth, matching the atmosphere and losing points only on gravity.",
+     "cites": [
+      "PSI-69"
+     ]
+    },
+    {
+     "kind": "found",
+     "text": "FLEX found the flammability limit is lower in microgravity, so suppressant standards set on Earth give less margin in space.",
+     "cites": [
+      "PSI-69",
+      "F4"
+     ]
+    },
+    {
+     "kind": "closest",
+     "text": "BASS-II and BASS follow at 75, with the solid-fuel suppression finding that local jets can feed a flame.",
+     "cites": [
+      "PSI-25",
+      "PSI-26",
+      "F2"
+     ]
+    },
+    {
+     "kind": "next",
+     "text": "The FLEX record expects its suppressant results, for CO2, He and SF6, to help design less harmful suppression systems on Earth.",
+     "cites": [
+      "PSI-69"
+     ]
+    }
+   ]
+  }
+ ]
+}

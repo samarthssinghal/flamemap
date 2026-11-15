@@ -14,8 +14,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
       - run: node pipeline/build_data.mjs
+      # AI text (R06): fails if any number, cite or named study is not backed by the computed data,
+      # or if the data changed since the AI writer context was generated.
+      - run: node pipeline/ai_build.mjs --context && git diff --exit-code pipeline/ai/context.json
+      - run: node pipeline/ai_build.mjs
       - run: npm ci && npm run test && npm run build
         working-directory: app
       - uses: actions/upload-pages-artifact@v3

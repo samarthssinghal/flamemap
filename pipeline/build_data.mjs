@@ -212,10 +212,11 @@ const GRAVITY_COMPARISON = {
 const GUIDE_PATH = join(HERE, '..', 'reference', 'researchers-guide-2015.txt')
 const GUIDE_PAGES = Object.fromEntries([...readFileSync(GUIDE_PATH, 'utf8').matchAll(/=== page (\d+) ===\n([\s\S]*?)(?=\n=== page |$)/g)].map((m) => [Number(m[1]), m[2]]))
 const ws = (s) => s.replace(/\s+/g, ' ').trim()
+const FIELD_LABEL = { objective: 'Objective', approach: 'Approach', hypothesis: 'Hypothesis', researchImpacts: 'Research Impacts/Earth Benefits' }
 const numbersIn = (s) => [...s.matchAll(/\d+(?:\.\d+)?/g)].map((m) => m[0])
 const FINDINGS = JSON.parse(readFileSync(join(HERE, 'findings.json'), 'utf8')).findings.map((f, k) => {
   const where = `findings.json #${k + 1} (${f.psi_ids.join(', ')})`
-  if (!['nasa_stated', 'nasa_context', 'from_data'].includes(f.kind)) throw new Error(`${where}: bad kind ${f.kind}`)
+  if (!['nasa_stated', 'nasa_context', 'record_stated', 'limitation', 'from_data'].includes(f.kind)) throw new Error(`${where}: bad kind ${f.kind}`)
   let corpus = f.quote ?? ''
   if (f.source.type === 'nasa_guide') {
     const page = GUIDE_PAGES[f.source.page]
@@ -232,13 +233,19 @@ const FINDINGS = JSON.parse(readFileSync(join(HERE, 'findings.json'), 'utf8')).f
       corpus += ` ${c.column} ${c.value}`
     }
     if (!f.quote && !(f.cells ?? []).length) throw new Error(`${where}: table finding needs a quote or cells`)
+  } else if (f.source.type === 'psi_text') {
+    const id = f.source.psi_id ?? f.psi_ids[0]
+    if (!['objective', 'approach', 'hypothesis', 'researchImpacts'].includes(f.source.field)) throw new Error(`${where}: bad PSI text field ${f.source.field}`)
+    if (!f.quote || !clean(rec(id)[f.source.field]).includes(ws(f.quote))) throw new Error(`${where}: quote not found in ${id} ${f.source.field}: ${f.quote}`)
   } else throw new Error(`${where}: unknown source type ${f.source.type}`)
   for (const n of numbersIn(f.text)) if (!numbersIn(corpus).includes(n)) throw new Error(`${where}: number ${n} in text is not in the quote or cited cells`)
   for (const id of f.psi_ids) if (!byId[id]) throw new Error(`${where}: unknown investigation ${id}`)
   const source = f.source.type === 'nasa_guide'
     ? { type: 'nasa_guide', label: `NASA, A Researcher's Guide to: ISS Combustion Science (2015), p. ${f.source.page}`, page: f.source.page, url: GUIDE_URL }
-    : { type: 'psi_table', label: f.source.file, file: f.source.file, url: url(f.psi_ids[0]) }
-  return { psi_ids: f.psi_ids, kind: f.kind, text: f.text, quote: f.quote ?? null, cells: f.cells ?? [], source, attribution_note: f.attribution_note ?? null, generated_by: 'Written with Claude Code from the quoted source; quotes and cells checked at build time' }
+    : f.source.type === 'psi_text'
+      ? { type: 'psi_text', label: `PSI record ${f.source.psi_id ?? f.psi_ids[0]}, ${FIELD_LABEL[f.source.field]}`, field: f.source.field, url: url(f.source.psi_id ?? f.psi_ids[0]) }
+      : { type: 'psi_table', label: f.source.file, file: f.source.file, url: url(f.psi_ids[0]) }
+  return { id: `F${k + 1}`, psi_ids: f.psi_ids, kind: f.kind, text: f.text, quote: f.quote ?? null, cells: f.cells ?? [], source, attribution_note: f.attribution_note ?? null, generated_by: 'Written with Claude Code from the quoted source; quotes and cells checked at build time' }
 })
 
 // ---------- human sign-offs (pipeline/reviews.json): H5 summaries, H4 field checks ----------
@@ -449,7 +456,7 @@ if (diffs.length && process.argv.includes('--accept')) {
 }
 
 const w = (f, o) => writeFileSync(join(OUT, f), JSON.stringify(o, null, 1))
-w('investigations.json', investigations); w('runs.json', runs); w('environments.json', environments); w('gaps.json', gaps); w('insights.json', insights); w('sources.json', sources); w('earth_applications.json', earth)
+w('investigations.json', investigations); w('runs.json', runs); w('environments.json', environments); w('gaps.json', gaps); w('insights.json', insights); w('sources.json', sources); w('earth_applications.json', earth); w('findings.json', FINDINGS)
 console.log(`OK: ${investigations.length} investigations, ${runs.length} bins (${RUN_STATS.total_points} runs), ${gaps.length} environments`)
 console.log(JSON.stringify(insights, null, 1))
 gaps.filter((g) => g.environment_id === 'moon_base').forEach((g) => g.gaps.forEach((x) => console.log('-', x.severity, x.text)))
