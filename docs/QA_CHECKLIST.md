@@ -1,16 +1,21 @@
 # QA checklist
 - [x] `node pipeline/build_data.mjs` passes its validation
-- [x] `npm run test` passes (11 tests)
+- [x] `node pipeline/ai_build.mjs` passes: 18 briefs (all 24 views), 16 answers, 42 related links; four injected errors were all caught (2026-11-14)
+- [x] `npm run test` passes (13 tests)
 - [x] `npm run build` passes
 - [x] Pages render at 1280 px and 390 px with no console errors (headless Chrome)
+- [x] Rank brief, Ask the evidence (with a typed question and `?q=`) and the Explorer "Studies like this one" section render in headless Chrome at 1280 px; `#/explorer?open=PSI-25` opens the drawer (2026-11-14, local preview)
+- [ ] Ask the evidence, brief and related studies checked at 390 px and on the deployed site
+- [ ] Accessibility scan re-run after R06 (new page, citation chips)
 - [x] No "NaN", "undefined" or "null" in page text
 - [x] Deployed site is live at https://samarthssinghal.github.io/flamemap/ (GitHub Pages branch-name fix confirmed pushed, build succeeded) (2026-11-14)
 - [ ] Deployed URL opens in a private window on phone
 - [x] Every external link responds: 40 URLs HTTP 200, 242 DOIs registered, 24 PSI IDs exist in the PSI API (script, 2026-11-14; see VERIFICATION_LOG.md). A person should still click through once.
 - [x] Export CSV and Export JSON build a valid, non-empty file with no console error, checked on the deployed site (2026-11-14)
-- [x] Automated accessibility scan (axe-core, WCAG 2 A/AA and best-practice rules) on all five pages and the details panel: 0 violations (2026-11-14)
+- [x] Automated accessibility scan (axe-core, WCAG 2 A/AA and best-practice rules) on all five pages and the details panel: 0 violations (2026-11-14, before the Ask page was added)
 - [x] Shareable links: checked on the deployed site in a fresh browser tab — Rank page (env/task), weights, Custom environment values and the Compare page's selected investigations (`cmp`) all restore correctly; an invalid environment id falls back to the default (2026-11-14)
 - [ ] Keyboard: tab through every page by hand (skip link, details panel opens and closes with Esc)
 - [ ] Screen-reader spot check
 - [ ] Second person re-checks 10 data fields against PSI
-- [ ] All summaries read by a person
+- [ ] All summaries read by a person (H5, `docs/SUMMARY_REVIEW.md`)
+- [ ] All AI briefs, answers and related-study reasons read by a person (H5, `docs/AI_TEXT_REVIEW.md`)

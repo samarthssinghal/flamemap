@@ -1,5 +1,12 @@
 # Plan: adding AI ("super intelligence") without a backend
 
+> **Status (2026-11-14):** built as planned for R06a, R06b, R06d, R06e and R06c option 3, with the content written by Claude Code in a development session (option 1 under "Who generates"). Not built yet: the free-form "bring your own key" mode, the re-runnable generator script with an API key (option 2), and findings from PSI reports (R35). Differences from the plan below:
+> - Findings: 20 for 11 of 19 studies, from the Guide, PSI record text and PSI tables (`pipeline/findings.json`, checked by `build_data.mjs`). PSI record text states few results, so 8 studies still have none.
+> - Briefs: 18 files cover all 24 preset × task views (Moon, rover and Mars share a brief per task). No brief for a custom environment, since it cannot be checked ahead of time; a note shows when weights differ from the defaults.
+> - Q&A: 16 curated questions; the "Ask the evidence" page matches typed questions to them by keywords. No live model call anywhere in the site.
+> - Related: 42 links. All PSI `related_glds` links are required; every claimed basis (PSI link, hardware family, fuel, role, shared finding) is checked against the data.
+> - Verifier: `pipeline/ai_build.mjs` (it imports the app's `ranker.ts`, so it checks against exactly what the app shows). Human review: `docs/AI_TEXT_REVIEW.md`, signed off with a content hash in `pipeline/ai/meta.json`. Details in REVIEW_ISSUES R06.
+
 The idea is to split the AI work into two parts. The heavy AI work runs ahead of time and is saved as static JSON files, which GitHub Pages can serve. An optional live mode runs entirely in the visitor's browser with their own API key. Nothing needs a server, and the site costs nothing to run.
 
 ```
@@ -57,6 +64,6 @@ Recommended: both. Claude Code writes the content now so nothing is blocked, and
 
 R01 and R02 should come first, since the briefs would otherwise repeat their wrong numbers.
 
-## Open decision
+## Decision (resolved)
 
-Go with "Claude Code writes the content now, plus the script for later", and start with R01?
+Claude Code wrote the content first (done 2026-11-14, after R01 and R02). The generator script for later is still open.

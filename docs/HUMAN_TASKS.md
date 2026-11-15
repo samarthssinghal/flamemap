@@ -27,9 +27,16 @@ Sheet: `docs/SUMMARY_REVIEW.md` (19 entries; each summary sits above its PSI rec
 - [ ] If not fine: write the problem under "Notes" for that entry and leave it unapproved. The agent will fix it, and you review it again (the hash changes).
 - [ ] Run `node pipeline/build_data.mjs` (it must pass; it stops if a hash doesn't match).
 
+## 3b. Read the AI briefs, answers and related studies (H5), 30–40 min
+Sheet: `docs/AI_TEXT_REVIEW.md` (18 briefs, 16 answers, 42 related-study reasons; every sentence has its citations expanded under it, including the quote each finding comes from). It is regenerated on every `node pipeline/ai_build.mjs`.
+- [ ] For each sentence: does it say what its sources say, without overstating? Would it mislead a mission designer? The rankings it describes are in `pipeline/ai/context.md`.
+- [ ] Also read the 20 key findings once in the app or in `pipeline/findings.json` (9 were added for R06; quotes are machine-checked, the plain-language wording is not).
+- [ ] If everything is fine: in `pipeline/ai/meta.json` set `"human_reviewed": true`, `"reviewed_by"`, `"reviewed_date"` and `"reviewed_hash"` (the hash printed at the top of the sheet). Run `node pipeline/ai_build.mjs` (it must pass). The app then shows "Reviewed by the team" instead of "Not yet reviewed by a person".
+- [ ] If not: write the problem under "Notes" at the end of the sheet (or tell the agent) and leave it unsigned. After a fix the hash changes and the sign-off must be redone.
+
 ## 4. Hands-on checks of the live site, 20 min
 Site: https://samarthssinghal.github.io/flamemap/
-- [ ] **Phone:** open the site in a private or incognito window on a real phone. All five pages load, nothing is cut off, the details panel opens and closes.
+- [ ] **Phone:** open the site in a private or incognito window on a real phone. All six pages load (including Ask the evidence), nothing is cut off, the details panel opens and closes, and the citation chips in the Rank page brief are tappable.
 - [ ] **Keyboard:** tab through every page without a mouse. The skip link appears first, focus is always visible, the details panel opens with Enter and closes with Esc, and the sliders work with the arrow keys.
 - [ ] **Screen reader** (VoiceOver: Cmd+F5 on Mac): on the Rank page, headings and the top card's score and explanation are read in a sensible order; buttons have names.
 - [ ] **Links:** click each external link on the About and Method & sources pages, plus one PSI and one DOI link on a card. Each opens the right page, not just any page.
@@ -40,7 +47,7 @@ Field list: `docs/SUBMISSION_REQUIREMENTS.md`.
 - [ ] Decide the demo format: **7-slide deck or video of 30 s or less** (one is enough). Slides must show the team name, team members' names and the challenge.
 - [ ] Upload the demo with a public link (no login) and test it in a private window.
 - [ ] Any AI-generated image or video in the demo carries a visible watermark.
-- [ ] Fill every project-page field from `docs/PROJECT_PAGE.md`. Replace the `[Edit: …]` note in the AI section with what the team actually checked (sections 2 and 3 above).
+- [ ] Fill every project-page field from `docs/PROJECT_PAGE.md`. Replace the `[Edit: …]` note in the AI section with what the team actually checked (sections 2, 3 and 3b above).
 - [ ] Optional: request a FortiGuard Web Filter Classification for the site (Category: Education or Web-based Application; Company Name: N/A).
 - [ ] Tick "Terms and Conditions" and "Confirm All Work is Original", then **Submit for Judging**. Confirm the success banner. (You can resubmit until the deadline.)
 

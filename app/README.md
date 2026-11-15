@@ -1,32 +1,16 @@
-# React + TypeScript + Vite
+# FlameMap app
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Vite + React + TypeScript single-page app, served as static files. It loads `public/data/*.json`, which is written by `pipeline/build_data.mjs` and `pipeline/ai_build.mjs` (see the top-level README).
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+npm install
+npm run dev      # local site
+npm run test     # ranker unit tests (Vitest)
+npm run lint     # oxlint
+npm run build    # type check + static build in dist/
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- `src/lib/ranker.ts`: scoring arithmetic (also imported by `pipeline/ai_build.mjs`, so keep it free of runtime imports other than types).
+- `src/pages/`: Rank, EvidenceMap, Explorer, Ask, Compare, About.
+- `src/components/`: EnvPicker, Findings (checked key findings), Brief ("What the evidence says"), Cites (citation chips and the AI label).
+- Routing uses `HashRouter`. The selection is kept in the address after `#`; `#/explorer?open=PSI-25` opens a study and `#/ask?q=...` opens with a question.

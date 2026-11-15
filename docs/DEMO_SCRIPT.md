@@ -1,13 +1,17 @@
-# Demo script (30 seconds maximum; confirm the limit in the live Project Submission Guide)
+# Demo script (30 seconds maximum; see SUBMISSION_REQUIREMENTS.md: a 7-slide deck or a video of 30 s or less)
 
-About 70 spoken words. Record at 1080p, browser zoom 100%, captions on, hard cut at 29 s.
+About 75 spoken words. Record at 1080p, browser zoom 100%, captions on, hard cut at 29 s.
 
 | Time | Screen | Voice-over |
 |---|---|---|
 | 0-5 s | Rank page, "Space station cabin" selected | "NASA has decades of microgravity fire experiments. Which ones apply to a Moon habitat?" |
-| 5-12 s | Click "Lunar surface habitat"; the list reorders | "FlameMap ranks every investigation by how closely its tested conditions match your environment." |
-| 12-18 s | Open the top card: factor bars and source table | "Every score shows its math and links to the NASA record." |
-| 18-25 s | Evidence map: red ring on the lunar habitat; stat tiles | "It also shows what is missing: no solid fuel tested above 22.2% oxygen, and nothing at lunar gravity." |
-| 25-30 s | Export button, then the site address | "Export the data for modeling. Built on NASA's PSI database." |
+| 5-11 s | Click "Lunar surface habitat"; the list reorders | "FlameMap ranks every investigation by how closely its tested conditions match, and shows the math." |
+| 11-18 s | "What the evidence says" brief; hover a citation chip | "An AI brief explains the evidence. Every sentence cites NASA sources and is checked against the data." |
+| 18-24 s | Red evidence-gaps panel | "It also shows what is missing: no solid fuel tested above 22.2% oxygen, nothing at lunar gravity." |
+| 24-30 s | Ask the evidence: "Does shutting off ventilation put a fire out?", then the site address | "Ask a question, get answers from NASA's records only. Built on NASA's PSI database." |
 
-Numbers used (from `insights.json`): 22.2% is the highest oxygen level in any solid-fuel data table (BASS-II); 0 investigations at partial gravity.
+Numbers used (from `insights.json` and `gaps.json`): 22.2% is the highest oxygen level in any solid-fuel data table (BASS-II); 0 investigations at partial gravity.
+
+Direct links for recording: `#/?env=moon_base&task=prevent` and `#/ask?q=Does%20shutting%20off%20ventilation%20put%20a%20fire%20out`.
+
+If a video is AI-generated or AI-edited in any way, it needs a visible watermark (SUBMISSION_REQUIREMENTS.md). A plain screen recording with a human voice-over does not.

@@ -1,7 +1,7 @@
 # Verification log
 
 ## Done on 2026-11-14 (automated, by the build agent)
-- Ranker: 11 unit tests pass, including hand-computed cases (PLAN.md section 5).
+- Ranker: 11 unit tests pass (13 since R02), including hand-computed cases (PLAN.md section 5).
 - Hand check: lunar habitat + prevention, BASS-II. O2 gap 7.8 / 79 = 0.0987; pressure gap 31.0 / 71.7 = 0.4324; gravity 0.166; task 0; airflow not set. (0.30 x 0.0987 + 0.20 x 0.4324 + 0.15 x 0.166) / 0.90 = 0.1567, match = 84. The app shows 84.
 - Range cross-check: the ranges below were computed twice in the browser by two separate code paths (a column profiler and the mapping code) and agree: BASS-II O2 13.6 to 22.2; SAME-R flow 0 to 8.1; SAME flow 5 to 10; FLEX O2 0.12 to 0.34 and pressure max 2319.9 mmHg (309.3 kPa); CFI O2 0.17 to 0.21; Flame Design XO2 0.198 to 0.850 and pinit 0.425 to 3.008 atm (43.0 to 304.8 kPa; corrected to 3.0076 atm = 304.7 kPa when R04 recomputed from the raw table, see DATA_CLEANING_LOG.md); CFI-G XO2 0.12 to 0.85 and pressure 0.495 to 3.310 bar; SPICE air rate -5.92 to 85.28.
 - Run bins: the build fails unless the copied bins sum to the browser-computed counts per investigation (129, 273, 87, 316, 333; total 1,138). It passes.
@@ -36,3 +36,10 @@ The script above already agrees with every row; this is the independent human ch
 - [ ] H4: the 10 rows above.
 - [ ] H5: read all 19 summaries in `docs/SUMMARY_REVIEW.md` (includes role and fuel-class labels) and add approvals to `pipeline/reviews.json`.
 - [ ] Click through the external links on the deployed site once (script found none broken; this catches pages that load but show the wrong thing).
+
+## AI text check, 2026-11-14 (automated, for R06d)
+- `node pipeline/ai_build.mjs` passes: 18 briefs covering all 24 preset × task views, 16 curated answers, 42 related-study links; every sentence has resolving citations, its numbers appear in what it cites, every study it names is cited, and "closest evidence" studies are in the computed top 5 (default weights).
+- Negative test: four errors were injected into `briefs.json` (a run count changed from 112 to 113, a score from 78 to 79, an uncited study named, a non-top-5 study cited as closest). All four were reported and the build failed. The file was then restored and passes.
+- While writing, the check caught real mistakes: two briefs and one answer named SAME without citing it; a related-study reason claimed BRE and Flame Design share a fire-safety role (they don't: prevention vs. fundamental); one sentence used "1-g" without a source for the number.
+- All 9 new findings pass `build_data.mjs` (record-text quotes found word for word in the named field; Guide quotes on the stated page).
+- Not yet done: a person reading the AI text (H5, `docs/AI_TEXT_REVIEW.md`).

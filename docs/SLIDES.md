@@ -3,8 +3,8 @@
 The official hard limit is **7 slides, no more**. The ~30-words-per-slide rule below is our own
 readability guideline from PLAN.md, not a NASA rule — treat it as a target, not a disqualifier.
 All numbers below are pulled directly from `app/public/data/insights.json` and `gaps.json`
-(snapshot date 2026-11-14) and were spot-checked against live PSI pages — see
-`claude/build-status.md` and `docs/DATA_CLEANING_LOG.md`.
+(snapshot date 2026-11-14) and were checked against live PSI records — see
+`docs/VERIFICATION_LOG.md` and `docs/DATA_CLEANING_LOG.md`.
 
 ---
 
@@ -31,15 +31,16 @@ Code: https://github.com/samarthssinghal/flamemap
 ## Slide 3 — Solution
 - Pick a crewed environment and a fire-safety task.
 - FlameMap ranks all 19 PSI investigations by how closely their tested conditions match — the math is shown for every score.
+- An AI brief says what the closest evidence found and what was never tested; "Ask the evidence" answers researcher questions. Every sentence cites its NASA source.
 
-*Visual: screenshot of the Rank page.*
+*Visual: screenshot of the Rank page with the "What the evidence says" brief.*
 
 ---
 
 ## Slide 4 — Data and method
 - PSI records and tables → unit conversion → a source on every value → static JSON → ranker in the browser.
 - Match = 100 × (1 − weighted distance to the tested range).
-- AI extracts and summarizes; the arithmetic ranks.
+- AI reads and interprets, citing every sentence; arithmetic ranks.
 
 *Visual: the 4-step pipeline diagram above, drawn simply.*
 
@@ -49,14 +50,16 @@ Code: https://github.com/samarthssinghal/flamemap
 - No solid-fuel test in PSI has reached 30% oxygen — the highest is 22.2% (BASS-II).
 - 37 of 875 run points reach 30% O2 or more at 75 kPa or less; none of them used solid fuel.
 - 0 of 19 investigations ran at partial gravity — a real evidence gap, not just a low score.
+- One hint: ACME BRE reports flames kept burning with no airflow at elevated oxygen, but went out at 21%.
 
 *Visual: Evidence Map screenshot with the lunar-habitat marker sitting outside the tested cluster.*
 
 ---
 
 ## Slide 6 — Validity and limits
-- 11 hand-computed unit tests pass.
-- Every value traces to a PSI table, record text, or a cited NASA source — including NASA's own proposed Exploration Atmosphere preset (34% O2, 8.2 psia), added and sourced today.
+- 13 hand-computed unit tests pass.
+- A script checks every AI sentence: quotes word for word, numbers and cited studies against the data. Build fails otherwise.
+- Every value traces to a PSI table, record text, or a cited NASA source.
 - Labeled a screening aid, not a safety certification.
 
 *Visual: a single data card showing its "source" chips.*
@@ -66,7 +69,7 @@ Code: https://github.com/samarthssinghal/flamemap
 ## Slide 7 — Impact and next steps
 - Built for researchers, students and engineers — the audience the challenge names.
 - Exports the ranked data for further modeling.
-- Next: add partial-gravity data as LUCI and FM2 publish it; pull in NTRS publication text.
+- Next: findings from PSI's own final reports; partial-gravity data as LUCI and FM2 publish it.
 
 *Visual: none needed — end on the live URL and repo link again.*
 
@@ -74,4 +77,5 @@ Code: https://github.com/samarthssinghal/flamemap
 
 ### Small print (bottom of relevant slides)
 Data: NASA Physical Sciences Informatics (PSI), psi.nasa.gov, snapshot 2026-11-14. Exploration
-Atmosphere figures: NASA, NTRS 20220011152. AI assistance disclosed in `docs/PROJECT_PAGE.md`.
+Atmosphere figures: NASA, NTRS 20220011152. Findings: NASA, A Researcher's Guide to ISS Combustion
+Science (2015). AI assistance disclosed in `docs/PROJECT_PAGE.md`.

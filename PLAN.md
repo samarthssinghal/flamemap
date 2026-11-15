@@ -73,16 +73,22 @@ repo/
     build_data.mjs         # classification, text-derived fields, summaries, environments, gaps, insights, validation
     expected.json          # regression snapshot of every computed number (build fails on a difference)
     raw/                   # committed snapshot: <ID>.json, tables/*.csv, manifest.json
-    (not built yet: number-traceability check for AI text, planned as 06_check_summaries; see REVIEW_ISSUES R06d)
+    findings.json          # key findings with quote / record text / table cells; checked by build_data.mjs (R03, R06a)
+    reviews.json           # human sign-offs: summaries (H5) and field checks (H4)
+    ai_build.mjs           # AI-text check (R06d): runs ranker.ts for every view, checks every AI sentence, writes review sheet
+    ai/                    # context.md/.json (AI writer input, generated), briefs.json, qa.json, related.json, meta.json
+  reference/               # challenge text, NASA resources, Researcher's Guide text (researchers-guide-2015.txt)
   app/
-    public/data/           # investigations.json runs.json environments.json gaps.json insights.json earth_applications.json sources.json
+    public/data/           # investigations.json runs.json environments.json gaps.json insights.json earth_applications.json
+                           # sources.json findings.json briefs.json qa.json related.json
     src/
       lib/ranker.ts  lib/ranker.test.ts  lib/types.ts  lib/data.ts  lib/export.ts
-      pages/  Rank.tsx  EvidenceMap.tsx  Explorer.tsx  Compare.tsx  Earth.tsx  About.tsx
-      components/ ...
+      pages/  Rank.tsx  EvidenceMap.tsx  Explorer.tsx  Ask.tsx  Compare.tsx  About.tsx   (Earth panel lives in About)
+      components/ EnvPicker.tsx  Findings.tsx  Brief.tsx  Cites.tsx
   docs/
-    DECISIONS.md  DATA_CLEANING_LOG.md  VERIFICATION_LOG.md  BLOCKERS.md
+    DECISIONS.md  DATA_CLEANING_LOG.md  VERIFICATION_LOG.md  BLOCKERS.md  REVIEW_ISSUES.md  AI_PLAN.md
     SUBMISSION_REQUIREMENTS.md  DEMO_SCRIPT.md  SLIDES.md  PROJECT_PAGE.md  QA_CHECKLIST.md
+    HUMAN_TASKS.md  SUMMARY_REVIEW.md  AI_TEXT_REVIEW.md
   .github/workflows/deploy.yml
 ```
 
@@ -372,6 +378,12 @@ Rules: use only that record's `text.*` fields and its computed conditions; no ou
 **P4.3** Set `generated_by` and leave `human_reviewed: false` until **[HUMAN] H5** reads all summaries (about 20 minutes) and flips the flag.
 Accept: check exits 0.
 
+**Phase 4 as built (2026-11-14, REVIEW_ISSUES R03, R06).** The AI layer grew beyond summaries:
+- Summaries (P4.1) live in `build_data.mjs`; the number check (P4.2) is built into it; H5 sign-off goes in `pipeline/reviews.json` with a hash (sheet: `docs/SUMMARY_REVIEW.md`).
+- Key findings (`pipeline/findings.json`, 20 for 11 studies): from NASA's Researcher's Guide (quote + page), PSI record text (quote + field) or PSI table cells; checked by `build_data.mjs`.
+- Interpretation briefs (Rank page), curated "Ask the evidence" answers and related-study reasons: written by AI from `pipeline/ai/context.md` (computed rankings, gaps, findings) and checked sentence by sentence by `pipeline/ai_build.mjs` (cites resolve, numbers appear in what is cited, named studies are cited, "closest" studies are in the computed top 5). Review sheet: `docs/AI_TEXT_REVIEW.md`; sign-off with a content hash in `pipeline/ai/meta.json`.
+- The ranking is still not AI. See `docs/AI_PLAN.md` for the design.
+
 ### PHASE 5 — Environment presets (Track A, 45 min; before G3)
 
 **P5.1** Build `environments.json` from Appendix C. For each value marked "verify", search for a NASA source and record the URL; otherwise keep `status: "nominal_assumption"`. Values marked "from challenge statement" keep that status and link to the challenge page.
@@ -380,7 +392,7 @@ Accept: every value has a status; none is unlabeled.
 ### PHASE 6 — QA (both, 2 hours; after feature freeze)
 
 Write results into `docs/QA_CHECKLIST.md`.
-1. `npm run test` green; `node pipeline/build_data.mjs` exits 0 (and the AI-text number check, once built per R06d).
+1. `npm run test` green; `node pipeline/build_data.mjs` and `node pipeline/ai_build.mjs` exit 0.
 2. Hand-check: for 3 environments × 1 task, compute the top investigation's relevance by hand (spreadsheet or calculator) from `investigations.json` and compare to the app. Must match exactly.
 3. Every page loads from the deployed URL in a private window on desktop Chrome, Safari or Firefox, and on one phone. No console errors.
 4. Click every external link (PSI, DOI, NASA). No dead links.
@@ -462,6 +474,7 @@ Write these sections (adapt headings to the fields found in H1):
 3. Fire-safety controls view: investigations grouped by prevention / detection / suppression with counts and condition coverage.
 4. Add the four partial-table ACME records (PSI-21, 22, 23) and SLICE (PSI-106) if not already ranked.
 Do **not** build: live LLM chat, user accounts, a backend, a predictive ML model, 3D graphics.
+("Ask the evidence" respects this: it matches questions to answers checked at build time and generates nothing in the browser. Items 1 and 2 above are built.)
 
 **Cut order if behind:** Compare page polish → Earth page (reduce to links on About) → weights sliders → O2 range bar chart → text-derived fields (P1.6) beyond the 6 thinnest records. **Never cut:** real PSI data with provenance, ranker tests, Rank page, Evidence Map, gap flags, About/Sources/disclaimer, demo, slides, dry run.
 
