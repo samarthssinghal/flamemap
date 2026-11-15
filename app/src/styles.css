@@ -204,3 +204,34 @@ details.alt summary { cursor: pointer; color: var(--accent); margin-bottom: 8px;
 .related li { margin: 6px 0; }
 .brief-points dd { font-weight: 400; }
 .qlist button { text-align: left; }
+
+/* Mission briefing (home) */
+.hero-ask { margin-top: 12px; max-width: 780px; }
+.hero-ask input { font-size: 1rem; padding: 10px 12px; }
+.hero-ask button { background: var(--violet); border-color: var(--violet); color: #12082a; font-weight: 600; }
+.env-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin-bottom: 8px; }
+.env-card { display: grid; gap: 2px; text-align: left; padding: 10px 12px; }
+.env-card[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: #06101f; }
+.env-card[aria-pressed='true'] .dim { color: #10223f; }
+.panel h2 + .seg { margin-bottom: 2px; }
+.panel .env-cards + .dim { margin-bottom: 14px; }
+.top3 { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 8px; }
+.top3 li { display: grid; grid-template-columns: 38px 1fr auto; gap: 12px; align-items: center; background: var(--panel2); border-radius: 10px; padding: 10px 12px; }
+.top3 .score b { font-size: 1.4rem; }
+.honesty { border: 1px solid #4b3a72; background: #17122b; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; }
+.honesty h2 { color: var(--violet); }
+.honesty ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.honesty li { display: grid; gap: 4px; }
+.honesty b { font-size: 1.6rem; line-height: 1; color: var(--violet); }
+.honesty span { color: var(--dim); font-size: 0.85rem; }
+.brief-line .chip { margin: 0 4px 0 0; }
+.navgroup { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.navgroup + .navgroup { border-left: 1px solid var(--line); padding-left: 8px; margin-left: 4px; }
+.navlabel { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); margin-right: 2px; }
+.navgroup.ai .navlabel { color: var(--violet); }
+@media (max-width: 820px) {
+  .honesty ul { grid-template-columns: 1fr 1fr; }
+  .top3 li { grid-template-columns: 34px 1fr; }
+  .top3 .score { grid-column: 2; }
+  .navgroup + .navgroup { border-left: none; padding-left: 0; margin-left: 0; }
+}

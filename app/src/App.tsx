@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { HashRouter, NavLink, Route, Routes, useLocation, useSearchParams } from 'react-router-dom'
+import { HashRouter, NavLink, Route, Routes, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { loadData, type AppData } from './lib/data'
 import type { Environment, Task, Weights } from './lib/types'
+import Briefing from './pages/Briefing'
 import Rank from './pages/Rank'
 import EvidenceMap from './pages/EvidenceMap'
 import Explorer from './pages/Explorer'
@@ -31,7 +32,7 @@ export const useApp = () => useContext(AppCtx) as Ctx
 export const DISCLAIMER =
   'FlameMap is a student hackathon project and a research-navigation aid. It ranks how closely past NASA experiments match a chosen environment. It does not predict fire behavior, assess risk or certify safety, and it is not NASA guidance. Always consult the original PSI records and publications.'
 
-const TITLES: Record<string, string> = { '/': 'Rank', '/map': 'Evidence map', '/explorer': 'Explorer', '/compare': 'Compare', '/ask': 'Ask the evidence', '/about': 'Method and sources' }
+const TITLES: Record<string, string> = { '/': 'Mission briefing', '/rank': 'Rank', '/map': 'Evidence map', '/explorer': 'Explorer', '/compare': 'Compare', '/ask': 'Ask the evidence', '/about': 'Method and sources' }
 const num = (s: string | undefined) => (s === undefined || s === '' || s === 'x' || isNaN(Number(s)) ? null : Number(s))
 
 /** Keeps the selection in the address (after the #) so a view can be shared as a link. */
@@ -39,6 +40,7 @@ function UrlSync() {
   const { data, envId, setEnvId, taskId, setTaskId, weights, setWeights, custom, setCustom, compare, setCompare } = useApp()
   const [params, setParams] = useSearchParams()
   const loc = useLocation()
+  const navigate = useNavigate()
   const [ready, setReady] = useState(false)
   useEffect(() => {
     const e = params.get('env')
@@ -51,6 +53,8 @@ function UrlSync() {
     if (c && c.length === 4 && num(c[0]) !== null && num(c[1]) !== null && num(c[2]) !== null) setCustom({ ...custom, o2_percent: num(c[0]), pressure_kpa: num(c[1]), gravity_g: num(c[2]) as number, flow_cm_s: num(c[3]) })
     const cmp = params.get('cmp')?.split('_').map((n) => `PSI-${n}`).filter((id) => data.investigations.some((i) => i.psi_id === id)).slice(0, 3)
     if (cmp?.length) setCompare(cmp)
+    // Links shared before the briefing became the home page pointed at the ranking; ones that carry ranking-only settings still open it.
+    if (loc.pathname === '/' && (params.has('w') || params.has('cmp') || e === 'custom')) navigate(`/rank?${params.toString()}`, { replace: true })
     setReady(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -108,21 +112,29 @@ export default function App() {
             <span className="logo" aria-hidden="true" />
             <div>
               <strong>FlameMap</strong>
-              <span className="tag">Fire-safety evidence ranker for crewed space environments</span>
+              <span className="tag">SI-powered fire-safety evidence briefings for crewed space missions</span>
             </div>
           </div>
           <nav aria-label="Main">
-            <NavLink to="/" end>Rank</NavLink>
-            <NavLink to="/map">Evidence map</NavLink>
-            <NavLink to="/explorer">Explorer</NavLink>
-            <NavLink to="/ask">Ask the evidence</NavLink>
-            <NavLink to="/compare">Compare{compare.length ? ` (${compare.length})` : ''}</NavLink>
-            <NavLink to="/about">Method and sources</NavLink>
+            <div className="navgroup ai" role="group" aria-label="AI">
+              <span className="navlabel" aria-hidden="true">AI</span>
+              <NavLink to="/" end>Briefing</NavLink>
+              <NavLink to="/ask">Ask the evidence</NavLink>
+            </div>
+            <div className="navgroup" role="group" aria-label="Data">
+              <span className="navlabel" aria-hidden="true">Data</span>
+              <NavLink to="/rank">Rank</NavLink>
+              <NavLink to="/map">Evidence map</NavLink>
+              <NavLink to="/explorer">Explorer</NavLink>
+              <NavLink to="/compare">Compare{compare.length ? ` (${compare.length})` : ''}</NavLink>
+              <NavLink to="/about">Method and sources</NavLink>
+            </div>
           </nav>
         </header>
         <main id="main" tabIndex={-1}>
           <Routes>
-            <Route path="/" element={<Rank />} />
+            <Route path="/" element={<Briefing />} />
+            <Route path="/rank" element={<Rank />} />
             <Route path="/map" element={<EvidenceMap />} />
             <Route path="/explorer" element={<Explorer />} />
             <Route path="/compare" element={<Compare />} />
