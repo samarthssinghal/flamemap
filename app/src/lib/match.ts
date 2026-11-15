@@ -29,9 +29,17 @@ export function similarities(q: ArrayLike<number>, items: VectorItem[]): Map<str
 }
 
 /** Above this, a checked answer is shown as an answer to the question. */
-export const ANSWER_AT = 0.5
+export const ANSWER_AT = 0.55
 /** Above this (and below ANSWER_AT), it is offered as a nearby question instead. */
-export const NEARBY_AT = 0.35
+export const NEARBY_AT = 0.4
+/** A small boost for shared key words, so that, say, "spacesuit" prefers the spacesuit answer among close ones. */
+export const KW_WEIGHT = 0.03
+
+/** Combined score per question id: similarity by meaning plus a capped keyword boost. Sorted, best first. */
+export function rankQuestions(sims: Map<string, number>, q: string, qa: QA[]): { id: string; s: number }[] {
+  const kw = keywordScores(q, qa)
+  return qa.map((x) => ({ id: x.id, s: (sims.get(`qa:${x.id}`) ?? 0) + KW_WEIGHT * Math.min(kw.get(x.id) ?? 0, 3) })).sort((a, b) => b.s - a.s)
+}
 
 // ---------- keyword fallback (used until the model has loaded, or if it cannot load) ----------
 const STOP = new Set('a an and any are as at be by can could do does for from has have how i in is it its of on or than that the there this to was were what when where which who why will with would'.split(' '))
@@ -44,7 +52,7 @@ export function keywordScores(q: string, qa: QA[]): Map<string, number> {
   const out = new Map<string, number>()
   if (!want.size) return out
   for (const x of qa) {
-    const head = new Set(words(`${x.question} ${x.tags.join(' ')}`))
+    const head = new Set(words(`${x.question} ${(x.paraphrases ?? []).join(' ')} ${x.tags.join(' ')}`))
     const body = new Set(words(x.answer.map((a) => a.text).join(' ')))
     let score = 0
     for (const w of want) score += head.has(w) ? 2 : body.has(w) ? 1 : 0

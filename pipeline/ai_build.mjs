@@ -116,6 +116,17 @@ if (process.argv.includes('--context')) {
   for (const [e, gs] of Object.entries(gapsByEnv)) for (const g of gs) md += `- gap:${e}/${g.id} (${g.severity}): ${g.text}\n`
   md += '\n## Findings\n'
   for (const f of FINDINGS) md += `- ${f.id} [${f.kind}] ${f.psi_ids.join(', ')}: ${f.text}\n`
+  // What each investigation tested, as the checker sees it (invText). "assumed" values were not recorded.
+  const cond = (c, unit) => {
+    if (!c || (c.min === null && c.max === null)) return 'not recorded'
+    const r = c.min === c.max ? `${c.min}` : `${c.min ?? '?'} to ${c.max ?? '?'}`
+    return `${r} ${unit}${c.confidence === 'low' ? ' (assumed, not recorded)' : ''}`
+  }
+  md += '\n## Investigations\n'
+  for (const i of INV) md += `- ${i.psi_id} ${i.acronym}: ${i.title}. Role ${i.fire_safety_role}${i.secondary_roles.length ? ` (also ${i.secondary_roles.join(', ')})` : ''}; fuel class ${i.fuel_class}. O2 ${cond(i.conditions.o2_percent, '%')}; pressure ${cond(i.conditions.pressure_kpa, 'kPa')}; airflow ${cond(i.conditions.flow_cm_s, 'cm/s')}; gravity ${i.conditions.gravity_g.values.join(', ')} g. Runs ${i.evidence.n_runs} (${i.evidence.data_availability}); publications ${i.n_publications}; dates ${i.start_date ?? 'not listed'} to ${i.end_date ?? 'not listed'}. Fuels: ${i.fuel_materials.join(', ')}. Geometry: ${i.geometry ?? 'not listed'}. Hardware: ${i.hardware ?? 'not listed'}.\n`
+  md += '\n## Statistics (cite as stat:<key>)\n'
+  for (const [k, v] of Object.entries(INSIGHTS)) md += `- stat:${k} = ${JSON.stringify(v)}\n`
+  ctx.investigations = INV.map((i) => ({ psi_id: i.psi_id, acronym: i.acronym, title: i.title, role: i.fire_safety_role, secondary_roles: i.secondary_roles, fuel_class: i.fuel_class, conditions: i.conditions, runs: i.evidence.n_runs, data_availability: i.evidence.data_availability, publications: i.n_publications, start_date: i.start_date, end_date: i.end_date, fuels: i.fuel_materials, geometry: i.geometry, hardware: i.hardware }))
   writeFileSync(join(AI, 'context.json'), JSON.stringify(ctx, null, 1) + '\n')
   writeFileSync(join(AI, 'context.md'), md)
   console.log('wrote pipeline/ai/context.json and context.md')
@@ -152,9 +163,20 @@ const qa = qaIn.map((q, k) => {
   const where = `qa.json ${q.id ?? '#' + (k + 1)}`
   if (!q.id || !q.question || !Array.isArray(q.answer) || !q.answer.length) errors.push(`${where}: needs id, question and answer`)
   q.answer.forEach((s, j) => errors.push(...checkSentence(`${where} sentence ${j + 1}`, s)))
-  return { id: q.id, question: q.question, tags: q.tags ?? [], answer: q.answer.map(({ text, cites }) => ({ text, cites })) }
+  // Paraphrases only help match a visitor's wording to this question (pipeline/embed.mjs); they are reviewed with it.
+  const paraphrases = q.paraphrases ?? []
+  if (!Array.isArray(paraphrases) || paraphrases.some((p) => typeof p !== 'string' || !p.trim())) errors.push(`${where}: paraphrases must be non-empty strings`)
+  return { id: q.id, question: q.question, tags: q.tags ?? [], paraphrases, answer: q.answer.map(({ text, cites }) => ({ text, cites })) }
 })
 if (new Set(qa.map((q) => q.id)).size !== qa.length) errors.push('qa.json: duplicate id')
+{
+  const seen = new Map()
+  for (const q of qa) for (const p of [q.question, ...q.paraphrases]) {
+    const k = p.toLowerCase().replace(/[^a-z0-9%]+/g, ' ').trim()
+    if (seen.has(k) && seen.get(k) !== q.id) errors.push(`qa.json ${q.id}: "${p}" is also a wording of ${seen.get(k)}`)
+    seen.set(k, q.id)
+  }
+}
 
 // ---------- R06e related investigations ----------
 // A reason may only claim a connection the data supports.
@@ -229,8 +251,11 @@ md += `**What a person checks:** does each sentence say what its sources say, wi
 md += `**Sign-off:** when every item below is fine, set in \`pipeline/ai/meta.json\`: \`"human_reviewed": true, "reviewed_by": "<initials>", "reviewed_date": "<YYYY-MM-DD>", "reviewed_hash": "${CONTENT_HASH}"\`, then run \`node pipeline/ai_build.mjs\`. Write problems under Notes at the end and leave it unsigned; the text will be fixed and the hash will change.\n\n`
 md += `## Briefs (${briefs.length}, shown on the Rank page)\n\n`
 for (const b of briefs) md += `### ${b.env_ids.map((e) => envById[e].name).join(' / ')} · ${ENV.tasks.find((t) => t.id === b.task_id).name}\n\n${b.points.map((p) => sentence(p, b.env_ids)).join('')}\n`
-md += `## Ask the evidence (${qa.length} questions)\n\n`
-for (const q of qa) md += `### ${q.question}\n\n${q.answer.map((s) => sentence(s)).join('')}\n`
+const prevIds = new Set(GEN.previous_review?.qa_ids ?? [])
+const nNew = qa.filter((q) => !prevIds.has(q.id)).length
+md += `## Ask the evidence (${qa.length} questions${prevIds.size ? `; ${nNew} marked **NEW** since the review of ${GEN.previous_review.reviewed_date}, the others were reviewed then and have only gained paraphrases` : ''})\n\n`
+md += `Paraphrases (_Also matches_) are not shown on the site; they decide which answer a visitor's wording reaches, so check that each one is really the same question.\n\n`
+for (const q of qa) md += `### ${prevIds.size && !prevIds.has(q.id) ? '**NEW** ' : ''}${q.question}\n\n${q.paraphrases.length ? `_Also matches:_ ${q.paraphrases.map((p) => `“${p}”`).join(' · ')}\n\n` : ''}${q.answer.map((s) => sentence(s)).join('')}\n`
 md += `## Studies like this one (${Object.values(related).flat().length} links, Explorer drawer)\n\n`
 for (const [from, list] of Object.entries(related)) md += `### ${byId[from].acronym} (${from})\n\n${list.map((r) => `- **${byId[r.psi_id].acronym}** [${r.basis.join(', ')}]: ${r.reason}\n`).join('')}\n`
 md += `## Notes\n\n-\n`

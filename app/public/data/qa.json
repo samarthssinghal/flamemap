@@ -3,19 +3,17 @@
  "model": "claude-opus-5-5",
  "date": "2026-11-14",
  "checked": "Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).",
- "human_reviewed": true,
- "reviewed_by": "SS",
- "reviewed_date": "2026-11-14",
- "content_hash": "5fc69c3e745f",
+ "human_reviewed": false,
+ "content_hash": "3ffc50f926db",
  "checks": {
-  "sentences": 172,
-  "citations": 399,
-  "numbers": 144,
-  "named_studies": 205,
+  "sentences": 295,
+  "citations": 667,
+  "numbers": 311,
+  "named_studies": 328,
   "closest_claims": 18,
   "related_bases": 143,
   "findings": 20,
-  "context_kb": 40
+  "context_kb": 49
  },
  "questions": [
   {
@@ -26,6 +24,11 @@
     "oxygen",
     "solid",
     "habitat"
+   ],
+   "paraphrases": [
+    "Have materials been burned at high oxygen levels in space?",
+    "Is there solid fuel data above 30 percent oxygen?",
+    "What is the highest oxygen any burning material was tested at?"
    ],
    "answer": [
     {
@@ -61,6 +64,11 @@
     "airflow",
     "ventilation"
    ],
+   "paraphrases": [
+    "If the fans are turned off, does a fire go out?",
+    "Does stopping airflow extinguish a fire in space?",
+    "Will cutting the ventilation starve a fire on a spacecraft?"
+   ],
    "answer": [
     {
      "text": "Not reliably. ACME BRE saw flames emulating PMMA and Nylon keep burning steadily with no airflow, even though stopping ventilation is an established step in fighting spacecraft fires.",
@@ -92,6 +100,11 @@
     "materials",
     "standards"
    ],
+   "paraphrases": [
+    "Are Earth flammability tests good enough for spacecraft materials?",
+    "Does NASA-STD-6001 Test 1 predict how materials burn in space?",
+    "Can a material pass on Earth but burn in microgravity?"
+   ],
    "answer": [
     {
      "text": "Not always. NASA states that the 1-g screening test (NASA-STD-6001 Test 1) is not conservative, because materials can burn at lower oxygen levels in microgravity than on Earth.",
@@ -120,6 +133,11 @@
     "moon",
     "oxygen",
     "pressure"
+   ],
+   "paraphrases": [
+    "What experiments match a Moon base atmosphere?",
+    "Is there fire data for a lunar habitat?",
+    "How well is a 30% oxygen, 10.2 psi Moon habitat covered by tests?"
    ],
    "answer": [
     {
@@ -152,6 +170,11 @@
     "oxygen",
     "pressure",
     "artemis"
+   ],
+   "paraphrases": [
+    "Is there fire data for 34% oxygen at 8.2 psi?",
+    "Has anything been tested in the Artemis exploration atmosphere?",
+    "What experiments match NASA's exploration atmosphere?"
    ],
    "answer": [
     {
@@ -186,6 +209,11 @@
     "moon",
     "mars"
    ],
+   "paraphrases": [
+    "Has any fire experiment run at lunar or Martian gravity?",
+    "Is there fire data at one-sixth g?",
+    "Do we know how flames behave in partial gravity?"
+   ],
    "answer": [
     {
      "text": "No. All 19 flight investigations ran in microgravity, so there is no partial-gravity evidence in this collection.",
@@ -210,6 +238,11 @@
    "tags": [
     "detection",
     "smoke"
+   ],
+   "paraphrases": [
+    "Can we use normal smoke alarms in space?",
+    "Do smoke detectors designed on Earth work in microgravity?",
+    "Why do spacecraft need different smoke detectors?"
    ],
    "answer": [
     {
@@ -242,6 +275,11 @@
     "suppression",
     "standards"
    ],
+   "paraphrases": [
+    "Do fire extinguishing gases work in microgravity?",
+    "Is nitrogen or CO2 suppression less effective in space?",
+    "Are inert-gas fire suppression standards safe for spacecraft?"
+   ],
    "answer": [
     {
      "text": "FLEX found the flammability limit is lower in microgravity, so inert-gas suppressant standards set on Earth give less margin of safety in space.",
@@ -273,6 +311,11 @@
     "airflow",
     "ventilation"
    ],
+   "paraphrases": [
+    "At what ventilation speed do materials burn best in space?",
+    "Which air speed makes fires worst on a spacecraft?",
+    "Does ventilation airflow make fires spread faster?"
+   ],
    "answer": [
     {
      "text": "NASA states that for flame spread over solids, the lowest oxygen that supports burning occurs near 10 cm/s, the typical speed of spacecraft ventilation, where spread rate is also highest.",
@@ -295,6 +338,11 @@
    "tags": [
     "prevention",
     "airflow"
+   ],
+   "paraphrases": [
+    "How do flames spread in space?",
+    "Do fires spread upstream in microgravity?",
+    "Is flame spread different without gravity?"
    ],
    "answer": [
     {
@@ -322,6 +370,11 @@
     "suppression",
     "droplets",
     "cool flames"
+   ],
+   "paraphrases": [
+    "What is a cool flame?",
+    "Can a fire keep burning after the flame goes out?",
+    "Why are cool flames dangerous?"
    ],
    "answer": [
     {
@@ -355,6 +408,11 @@
     "pressure",
     "solid"
    ],
+   "paraphrases": [
+    "Was pressure measured in the solid-fuel experiments?",
+    "Do we know the pressure for the material burning tests?",
+    "Which material flammability tests ran at low pressure?"
+   ],
    "answer": [
     {
      "text": "None. No solid-fuel table in PSI records pressure, so FlameMap assumes cabin pressure for them and labels it as assumed.",
@@ -384,6 +442,11 @@
     "oxygen",
     "pressure"
    ],
+   "paraphrases": [
+    "Is a spacesuit a fire risk?",
+    "Has anything been burned in pure oxygen at low pressure?",
+    "Is there fire data for 100% oxygen?"
+   ],
    "answer": [
     {
      "text": "No. Of 875 runs with both oxygen and pressure, none is within 5 oxygen points and 10 kPa of 100% oxygen at 29.6 kPa.",
@@ -409,6 +472,11 @@
     "gravity",
     "materials"
    ],
+   "paraphrases": [
+    "Which materials were tested in both 1 g and microgravity?",
+    "Is there a direct comparison of burning on Earth and in space?",
+    "Do materials burn more in space or on Earth?"
+   ],
    "answer": [
     {
      "text": "Only SAFFIRE-II lists both. None of its four silicone samples burned in microgravity, though two burned completely in 1-g.",
@@ -431,6 +499,11 @@
    "question": "Which studies reached the highest oxygen levels?",
    "tags": [
     "oxygen"
+   ],
+   "paraphrases": [
+    "What is the highest oxygen level tested in any experiment?",
+    "Which experiments used high oxygen?",
+    "Has anything been burned at 40% oxygen?"
    ],
    "answer": [
     {
@@ -460,6 +533,11 @@
     "detection",
     "soot"
    ],
+   "paraphrases": [
+    "Is soot different in microgravity?",
+    "Do flames in space produce more smoke?",
+    "How is smoke from gas flames different in low gravity?"
+   ],
    "answer": [
     {
      "text": "Yes. NASA states that gas-jet flames start producing smoke at substantially different conditions in low gravity than on Earth, contrary to earlier predictions.",
@@ -472,6 +550,1667 @@
      "cites": [
       "PSI-107",
       "PSI-106"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-bass-ii",
+   "question": "What did BASS-II study?",
+   "tags": [
+    "prevention",
+    "suppression",
+    "solid",
+    "materials"
+   ],
+   "paraphrases": [
+    "Tell me about BASS-II",
+    "What is the Burning and Suppression of Solids II experiment?",
+    "What were the BASS-II results?"
+   ],
+   "answer": [
+    {
+     "text": "BASS-II burned PMMA films and sheets of several thicknesses in a small wind tunnel in the station glovebox, with flames spreading both against and with the airflow.",
+     "cites": [
+      "PSI-25"
+     ]
+    },
+    {
+     "text": "It varied oxygen from 13.6% to 22.2% and airflow up to 40 cm/s over 129 runs; pressure was not recorded and is assumed to be cabin pressure.",
+     "cites": [
+      "PSI-25"
+     ]
+    },
+    {
+     "text": "With BASS, it is the basis for NASA's statement that the 1-g material screening test is not conservative.",
+     "cites": [
+      "PSI-25",
+      "PSI-26",
+      "F1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-bass",
+   "question": "What did BASS study?",
+   "tags": [
+    "prevention",
+    "suppression",
+    "solid",
+    "materials"
+   ],
+   "paraphrases": [
+    "Tell me about the BASS experiment",
+    "What is Burning and Suppression of Solids?",
+    "What did the first BASS experiment find?"
+   ],
+   "answer": [
+    {
+     "text": "BASS burned cotton-fiberglass fabric, Nomex, Ultem and PMMA spheres and cylinders in a 76 mm flow duct in the station glovebox.",
+     "cites": [
+      "PSI-26"
+     ]
+    },
+    {
+     "text": "PSI keeps its 122 runs as a run log; oxygen and pressure were not recorded and are assumed to be cabin air.",
+     "cites": [
+      "PSI-26"
+     ]
+    },
+    {
+     "text": "It found that a local suppressant jet could keep a flame burning by pulling in air, and that nitrogen could strengthen a flame by drawing oxygen into it.",
+     "cites": [
+      "PSI-26",
+      "F2",
+      "F3"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-saffire-i",
+   "question": "What was Saffire-I?",
+   "tags": [
+    "prevention",
+    "solid",
+    "materials",
+    "airflow"
+   ],
+   "paraphrases": [
+    "Tell me about the first Saffire experiment",
+    "What happened in the Saffire-I fire test on Cygnus?",
+    "What was burned in Saffire 1?"
+   ],
+   "answer": [
+    {
+     "text": "SAFFIRE-I burned one large cotton-fiberglass fabric sample, about 0.94 m long and 0.4 m wide, in an enclosure inside a Cygnus cargo vehicle.",
+     "cites": [
+      "PSI-98"
+     ]
+    },
+    {
+     "text": "At the same 20 cm/s airflow, the flame spreading with the flow burned for 420 s and the flame spreading against it for 70 s.",
+     "cites": [
+      "PSI-98",
+      "F8"
+     ]
+    },
+    {
+     "text": "Pressure was not recorded and is assumed to be cabin pressure.",
+     "cites": [
+      "PSI-98"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-saffire-ii",
+   "question": "What did Saffire-II test?",
+   "tags": [
+    "prevention",
+    "solid",
+    "materials",
+    "gravity"
+   ],
+   "paraphrases": [
+    "Tell me about Saffire-II",
+    "Which materials burned in the Saffire-II experiment?",
+    "What were the Saffire 2 results?"
+   ],
+   "answer": [
+    {
+     "text": "SAFFIRE-II burned 9 samples, each 5 cm by 29 cm, of silicone, cotton-fiberglass fabric, PMMA and PMMA with Nomex in a Cygnus cargo module, at airflow of 20 to 30 cm/s.",
+     "cites": [
+      "PSI-99"
+     ]
+    },
+    {
+     "text": "None of the silicone samples burned in microgravity and the PMMA samples were damaged over only about 10 cm, while the fabric burned its full 29 cm.",
+     "cites": [
+      "PSI-99",
+      "F9",
+      "F10",
+      "F11"
+     ]
+    },
+    {
+     "text": "It is the only study here that lists normal-gravity burns next to its microgravity results.",
+     "cites": [
+      "PSI-99",
+      "F9"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-saffire-iii",
+   "question": "What was Saffire-III?",
+   "tags": [
+    "prevention",
+    "solid",
+    "materials"
+   ],
+   "paraphrases": [
+    "Tell me about the Saffire-III fire experiment",
+    "What did the third Saffire flight burn?",
+    "Saffire 3 results"
+   ],
+   "answer": [
+    {
+     "text": "SAFFIRE-III burned a large cotton-fiberglass fabric sample, 94 cm by 40.6 cm, in an enclosure inside a Cygnus cargo vehicle, at 30 cm/s airflow.",
+     "cites": [
+      "PSI-100"
+     ]
+    },
+    {
+     "text": "PSI holds only a partial table of 2 runs, and oxygen and pressure were not recorded; FlameMap assumes cabin air for both.",
+     "cites": [
+      "PSI-100"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-same",
+   "question": "What did SAME measure?",
+   "tags": [
+    "detection",
+    "smoke"
+   ],
+   "paraphrases": [
+    "Tell me about the Smoke and Aerosol Measurement Experiment",
+    "What was the SAME experiment?",
+    "What smoke did SAME study?"
+   ],
+   "answer": [
+    {
+     "text": "SAME overheated Teflon, Kapton, silicone rubber, lampwick and dibutyl phthalate in the station glovebox and measured the smoke with the Comparative Soot Diagnostic hardware.",
+     "cites": [
+      "PSI-102"
+     ]
+    },
+    {
+     "text": "Its particle samples came back contaminated and could not be used, one reason SAME-R reflew.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "F15"
+     ]
+    },
+    {
+     "text": "The aim was a microgravity baseline: smoke particles from fires in microgravity differ greatly in size from those on Earth.",
+     "cites": [
+      "F7"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-same-r",
+   "question": "What did SAME-R measure?",
+   "tags": [
+    "detection",
+    "smoke"
+   ],
+   "paraphrases": [
+    "Tell me about the SAME reflight",
+    "What is the Smoke Aerosol Measurement Experiment Reflight?",
+    "What were the SAME-R results?"
+   ],
+   "answer": [
+    {
+     "text": "SAME-R repeated the smoke measurements, overheating Kapton, silicone, lampwick, Teflon and Pyrell foam in the station glovebox at airflow up to 8.1 cm/s.",
+     "cites": [
+      "PSI-101"
+     ]
+    },
+    {
+     "text": "PSI lists 109 runs in a partial table; oxygen and pressure were not recorded and are assumed to be cabin air.",
+     "cites": [
+      "PSI-101"
+     ]
+    },
+    {
+     "text": "It reflew partly because the first SAME flight's particle samples were contaminated.",
+     "cites": [
+      "PSI-101",
+      "PSI-102",
+      "F15"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-daft",
+   "question": "What was DAFT?",
+   "tags": [
+    "detection",
+    "smoke"
+   ],
+   "paraphrases": [
+    "Tell me about the Dust and Aerosol Measurement Feasibility Test",
+    "What did DAFT-2 test?",
+    "What is DAFT on the space station?"
+   ],
+   "answer": [
+    {
+     "text": "DAFT and DAFT-2 tested a TSI P-Trak particle counter on a test dust, Arizona Road Dust, held in 15-liter Mylar bags.",
+     "cites": [
+      "PSI-47"
+     ]
+    },
+    {
+     "text": "They measured a test dust, not smoke from a fire, and PSI keeps only a run log of 2 runs.",
+     "cites": [
+      "PSI-47"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-flex",
+   "question": "What did FLEX find?",
+   "tags": [
+    "suppression",
+    "droplets",
+    "cool flames"
+   ],
+   "paraphrases": [
+    "Tell me about the Flame Extinguishment Experiment",
+    "What was FLEX on the space station?",
+    "What did the FLEX droplet experiments show?"
+   ],
+   "answer": [
+    {
+     "text": "FLEX burned single methanol and heptane droplets, about 1 to 5 mm across, in the Combustion Integrated Rack, at 12% to 34% oxygen and 70.2 to 309.3 kPa.",
+     "cites": [
+      "PSI-69"
+     ]
+    },
+    {
+     "text": "It found that the flammability limit is lower in microgravity, so inert-gas suppressant standards set on Earth leave less safety margin in space.",
+     "cites": [
+      "PSI-69",
+      "F4"
+     ]
+    },
+    {
+     "text": "It also found cool flames that keep burning after the visible flame goes out.",
+     "cites": [
+      "PSI-69",
+      "F6",
+      "F17"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-flex-2",
+   "question": "What did FLEX-2 study?",
+   "tags": [
+    "suppression",
+    "droplets",
+    "pressure"
+   ],
+   "paraphrases": [
+    "Tell me about FLEX-2",
+    "What is the Flame Extinguishment Experiment 2?",
+    "Which fuels were burned in FLEX-2?"
+   ],
+   "answer": [
+    {
+     "text": "FLEX-2 burned droplets of iso-octane, n-octane, heptane, decane, ethanol and fuel mixtures, 1.5 to 5 mm across, in the Combustion Integrated Rack.",
+     "cites": [
+      "PSI-68"
+     ]
+    },
+    {
+     "text": "Its conditions span 17% to 30% oxygen, 50.7 to 304 kPa and slow airflow up to 5 cm/s; 50.7 kPa is the lowest pressure recorded in any table.",
+     "cites": [
+      "PSI-68",
+      "stat:min_recorded_pressure"
+     ]
+    },
+    {
+     "text": "PSI lists 48 publications for it.",
+     "cites": [
+      "PSI-68"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-cfi",
+   "question": "What is the Cool Flames Investigation?",
+   "tags": [
+    "droplets",
+    "cool flames",
+    "pressure"
+   ],
+   "paraphrases": [
+    "Tell me about CFI",
+    "What did the CFI experiment study?",
+    "What fuels were used in the cool flames investigation?"
+   ],
+   "answer": [
+    {
+     "text": "CFI burned n-dodecane and n-dodecane / iso-dodecane droplets suspended on needles or fibers in the Combustion Integrated Rack.",
+     "cites": [
+      "PSI-39"
+     ]
+    },
+    {
+     "text": "It covered 17% to 21% oxygen and a wide pressure range, 50.7 to 506.6 kPa, over 87 runs.",
+     "cites": [
+      "PSI-39"
+     ]
+    },
+    {
+     "text": "It studies the cool flames that FLEX found, which can keep burning after the visible flame goes out.",
+     "cites": [
+      "PSI-39",
+      "PSI-69",
+      "F6"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-acme-bre",
+   "question": "What did ACME BRE find?",
+   "tags": [
+    "prevention",
+    "materials",
+    "airflow",
+    "oxygen"
+   ],
+   "paraphrases": [
+    "Tell me about the Burning Rate Emulator",
+    "What is the ACME burning rate emulator experiment?",
+    "What did BRE show about burning materials?"
+   ],
+   "answer": [
+    {
+     "text": "ACME BRE used gas flames on porous burners, 25 and 50 mm across, to emulate burning solid materials, at 21% to 40% oxygen.",
+     "cites": [
+      "PSI-20"
+     ]
+    },
+    {
+     "text": "Its flames emulating PMMA and Nylon kept burning with no airflow in elevated-oxygen atmospheres, but went out in a short time at 21% oxygen.",
+     "cites": [
+      "PSI-20",
+      "F12",
+      "F13"
+     ]
+    },
+    {
+     "text": "The team calls the results preliminary, but suggests NASA may want to rely more on its cone-calorimeter test.",
+     "cites": [
+      "PSI-20",
+      "F14"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-acme-flame-design",
+   "question": "What was ACME Flame Design?",
+   "tags": [
+    "oxygen",
+    "soot"
+   ],
+   "paraphrases": [
+    "Tell me about the Flame Design experiment",
+    "What did ACME Flame Design study?",
+    "What are normal and inverse flames in ACME?"
+   ],
+   "answer": [
+    {
+     "text": "ACME Flame Design burned spherical diffusion flames of ethylene and propane, both normal and inverse, in the Combustion Integrated Rack.",
+     "cites": [
+      "PSI-10"
+     ]
+    },
+    {
+     "text": "PSI lists 327 runs at 19.8% to 40% oxygen and 94.4 to 131.4 kPa.",
+     "cites": [
+      "PSI-10"
+     ]
+    },
+    {
+     "text": "Its runs make up 131 of the 270 runs at 30% oxygen or more.",
+     "cites": [
+      "PSI-10",
+      "stat:runs_o2_ge_30"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-acme-cfi-g",
+   "question": "What did ACME CFI-G study?",
+   "tags": [
+    "cool flames",
+    "oxygen",
+    "pressure",
+    "artemis"
+   ],
+   "paraphrases": [
+    "Tell me about the cool flames investigation with gases",
+    "What is CFI-G?",
+    "Which gases were burned in ACME CFI-G?"
+   ],
+   "answer": [
+    {
+     "text": "ACME CFI-G burned ethane, propane and butane as spherical diffusion flames, normal and inverse, to study cool flames with gaseous fuels.",
+     "cites": [
+      "PSI-159"
+     ]
+    },
+    {
+     "text": "PSI lists 333 runs at 18% to 40% oxygen and 50.7 to 304 kPa.",
+     "cites": [
+      "PSI-159"
+     ]
+    },
+    {
+     "text": "Its 19 runs are the only ones within 5 oxygen points and 10 kPa of NASA's Exploration Atmosphere.",
+     "cites": [
+      "PSI-159",
+      "gap:exploration_atm/combined"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-acme-cld",
+   "question": "What was the ACME CLD Flame experiment?",
+   "tags": [
+    "soot"
+   ],
+   "paraphrases": [
+    "Tell me about the coflow laminar diffusion flame experiment",
+    "What is CLD Flame?",
+    "What did the ACME coflow flames study?"
+   ],
+   "answer": [
+    {
+     "text": "ACME CLD Flame burned methane and ethylene on a coflow burner in the Combustion Integrated Rack to study laminar diffusion flames.",
+     "cites": [
+      "PSI-21"
+     ]
+    },
+    {
+     "text": "Its partial table of 32 runs records neither oxygen nor pressure, so FlameMap counts both as untested for it.",
+     "cites": [
+      "PSI-21"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-acme-efield",
+   "question": "What was the ACME E-FIELD Flames experiment?",
+   "tags": [
+    "soot"
+   ],
+   "paraphrases": [
+    "Tell me about the electric field flames experiment",
+    "Did NASA test electric fields on flames in space?",
+    "What is E-FIELD Flames?"
+   ],
+   "answer": [
+    {
+     "text": "ACME E-FIELD Flames studied how an electric field affects methane and ethylene flames, using gas-jet and coflow burners with a mesh electrode.",
+     "cites": [
+      "PSI-22"
+     ]
+    },
+    {
+     "text": "Its partial table of 32 runs records neither oxygen nor pressure.",
+     "cites": [
+      "PSI-22"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-acme-s-flame",
+   "question": "What was ACME s-Flame?",
+   "tags": [
+    "oxygen"
+   ],
+   "paraphrases": [
+    "Tell me about the structure and response of spherical diffusion flames",
+    "What is s-Flame?",
+    "Which fuels did s-Flame burn?"
+   ],
+   "answer": [
+    {
+     "text": "ACME s-Flame burned hydrogen, methane and ethylene on a spherical porous burner to study the structure and response of spherical diffusion flames.",
+     "cites": [
+      "PSI-23"
+     ]
+    },
+    {
+     "text": "It covers 21% to 30% oxygen, but records no pressure, in a partial table of 18 runs.",
+     "cites": [
+      "PSI-23"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-spice",
+   "question": "What did SPICE study?",
+   "tags": [
+    "detection",
+    "soot",
+    "smoke"
+   ],
+   "paraphrases": [
+    "Tell me about the Smoke Point In Co-flow Experiment",
+    "What did SPICE find about soot?",
+    "Which gases were burned in SPICE?"
+   ],
+   "answer": [
+    {
+     "text": "SPICE burned methane, ethylene, propane, propylene and propylene mixtures from gas-jet nozzles of 0.41, 0.76 and 1.6 mm in a coflow duct in the station glovebox.",
+     "cites": [
+      "PSI-107"
+     ]
+    },
+    {
+     "text": "It studied when such flames start to produce smoke: in low gravity that happens at substantially different conditions than on Earth, and the soot particles differ in size and structure.",
+     "cites": [
+      "PSI-107",
+      "F20"
+     ]
+    },
+    {
+     "text": "PSI lists 469 runs, with oxygen and pressure assumed to be cabin air.",
+     "cites": [
+      "PSI-107"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inv-slice",
+   "question": "What did SLICE study?",
+   "tags": [
+    "soot"
+   ],
+   "paraphrases": [
+    "Tell me about the Structure and Liftoff In Combustion Experiment",
+    "What was the SLICE experiment on the space station?",
+    "What gases were burned in SLICE?"
+   ],
+   "answer": [
+    {
+     "text": "SLICE burned methane, ethylene, ethane and nitrogen-diluted mixtures from exchangeable burner tubes in a fan-driven flow duct, to study flame structure and liftoff.",
+     "cites": [
+      "PSI-106"
+     ]
+    },
+    {
+     "text": "PSI keeps a run log of 12 runs, so its conditions are not tabulated.",
+     "cites": [
+      "PSI-106"
+     ]
+    },
+    {
+     "text": "NASA's finding on smoke from gas-jet flames covers it together with SPICE: in low gravity they start producing smoke at substantially different conditions than on Earth.",
+     "cites": [
+      "PSI-106",
+      "PSI-107",
+      "F20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "local-suppressant",
+   "question": "Does spraying suppressant at a flame put it out in microgravity?",
+   "tags": [
+    "suppression",
+    "airflow"
+   ],
+   "paraphrases": [
+    "Can a fire extinguisher jet make a fire worse in space?",
+    "Does a local extinguisher spray work on a burning sample?",
+    "Why did the BASS suppressant jets fail?"
+   ],
+   "answer": [
+    {
+     "text": "Not in BASS and BASS-II: a suppressant jet aimed at the flame pulled in air and kept it burning, even with the ventilation airflow turned off.",
+     "cites": [
+      "PSI-26",
+      "PSI-25",
+      "F2"
+     ]
+    },
+    {
+     "text": "Nitrogen used as the suppressant could even make the flame stronger, by drawing oxygen into it.",
+     "cites": [
+      "F3"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cone-calorimeter",
+   "question": "Which NASA flammability test best matches microgravity flames?",
+   "tags": [
+    "prevention",
+    "materials",
+    "standards"
+   ],
+   "paraphrases": [
+    "Should NASA use the cone calorimeter test for spacecraft materials?",
+    "What is NASA Test 2 and does it matter for space?",
+    "Which material test predicts burning in microgravity?"
+   ],
+   "answer": [
+    {
+     "text": "The ACME BRE team suggests NASA may want to rely more on its cone-calorimeter test (Test 2), which measures the material properties that matched the microgravity flames.",
+     "cites": [
+      "PSI-20",
+      "F14"
+     ]
+    },
+    {
+     "text": "They call the results preliminary.",
+     "cites": [
+      "F14"
+     ]
+    },
+    {
+     "text": "NASA also states that its 1-g screening test (Test 1) is not conservative, because materials can burn at lower oxygen in microgravity.",
+     "cites": [
+      "F1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "same-contamination",
+   "question": "Why did the SAME experiment fly again?",
+   "tags": [
+    "detection",
+    "smoke"
+   ],
+   "paraphrases": [
+    "What went wrong with SAME?",
+    "Were the SAME smoke samples usable?",
+    "Why was there a SAME reflight?"
+   ],
+   "answer": [
+    {
+     "text": "The particle samples from the first SAME flight could not be used: every electron-microscope grid came back contaminated with unidentified particles.",
+     "cites": [
+      "PSI-102",
+      "F15"
+     ]
+    },
+    {
+     "text": "That is one reason SAME-R reflew; PSI lists 109 runs for it.",
+     "cites": [
+      "PSI-101",
+      "F15"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "flex-limits",
+   "question": "Were there limits to what FLEX could measure?",
+   "tags": [
+    "suppression",
+    "droplets"
+   ],
+   "paraphrases": [
+    "Could FLEX measure droplet size at extinction?",
+    "What are the limitations of the FLEX data?",
+    "Why are some FLEX extinction sizes missing?"
+   ],
+   "answer": [
+    {
+     "text": "Yes. In some atmospheres the droplet at flame extinction was too small to be observed or measured with the instruments on board.",
+     "cites": [
+      "PSI-69",
+      "F16"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pmma",
+   "question": "How did PMMA burn in microgravity compared with Earth?",
+   "tags": [
+    "prevention",
+    "materials",
+    "gravity",
+    "solid"
+   ],
+   "paraphrases": [
+    "Does acrylic burn less in space?",
+    "What happened to PMMA in Saffire-II?",
+    "Is PMMA more or less flammable in microgravity?"
+   ],
+   "answer": [
+    {
+     "text": "In SAFFIRE-II, both PMMA samples burned completely in 1-g but showed only about 10 cm of significant damage in microgravity.",
+     "cites": [
+      "PSI-99",
+      "F10"
+     ]
+    },
+    {
+     "text": "On one of them the flame stayed anchored at the base, and the sample regressed only 0.01 to 0.04 mm/s.",
+     "cites": [
+      "F10"
+     ]
+    },
+    {
+     "text": "BASS-II burned PMMA films and sheets at 13.6% to 22.2% oxygen.",
+     "cites": [
+      "PSI-25"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fabric",
+   "question": "Does cotton-fiberglass fabric burn in microgravity?",
+   "tags": [
+    "prevention",
+    "materials",
+    "solid"
+   ],
+   "paraphrases": [
+    "Is SIBAL fabric flammable in space?",
+    "Which material burned completely in Saffire-II?",
+    "Do fabrics burn in microgravity?"
+   ],
+   "answer": [
+    {
+     "text": "Yes. In SAFFIRE-II, the cotton-fiberglass fabric (SIBAL) burned its full 29 cm length in microgravity, as it did in 1-g.",
+     "cites": [
+      "PSI-99",
+      "F11"
+     ]
+    },
+    {
+     "text": "The same fabric was the large sample in SAFFIRE-I and SAFFIRE-III, and one of the materials in BASS.",
+     "cites": [
+      "PSI-98",
+      "PSI-100",
+      "PSI-26"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "concurrent-opposed",
+   "question": "Do flames spreading with the airflow burn longer?",
+   "tags": [
+    "prevention",
+    "airflow",
+    "ventilation"
+   ],
+   "paraphrases": [
+    "What is the difference between concurrent and opposed flame spread?",
+    "Does fire spread faster with or against the air on a spacecraft?",
+    "How long did the Saffire-I flames burn?"
+   ],
+   "answer": [
+    {
+     "text": "In SAFFIRE-I at the same 20 cm/s airflow, the flame spreading with the flow (concurrent) burned for 420 s, while the flame spreading against it (opposed) burned for 70 s.",
+     "cites": [
+      "PSI-98",
+      "F8"
+     ]
+    },
+    {
+     "text": "BASS-II also burned samples in both opposed and concurrent flow.",
+     "cites": [
+      "PSI-25"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lower-oxygen",
+   "question": "Can fuels burn at lower oxygen in microgravity?",
+   "tags": [
+    "prevention",
+    "suppression",
+    "oxygen"
+   ],
+   "paraphrases": [
+    "Is the limiting oxygen index lower in space?",
+    "What is the minimum oxygen for burning in microgravity?",
+    "Do droplets keep burning at lower oxygen in space?"
+   ],
+   "answer": [
+    {
+     "text": "Yes, for droplets: FLEX found the limiting oxygen index for heptane and methanol was significantly lower than in normal gravity, and lower than predicted.",
+     "cites": [
+      "PSI-69",
+      "F5"
+     ]
+    },
+    {
+     "text": "For solids, NASA states that materials can burn at lower oxygen in microgravity than on Earth, with the minimum near an airflow of 10 cm/s.",
+     "cites": [
+      "F1",
+      "F18"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "materials-least",
+   "question": "Which materials burned least in microgravity?",
+   "tags": [
+    "prevention",
+    "materials",
+    "solid"
+   ],
+   "paraphrases": [
+    "Does silicone burn in microgravity?",
+    "Which spacecraft materials are least flammable in space?",
+    "Did any material refuse to burn in space?"
+   ],
+   "answer": [
+    {
+     "text": "In SAFFIRE-II, silicone did not burn at all in microgravity and PMMA was damaged over only about 10 cm, while cotton-fiberglass fabric burned its full 29 cm.",
+     "cites": [
+      "PSI-99",
+      "F9",
+      "F10",
+      "F11"
+     ]
+    },
+    {
+     "text": "That is one card of 9 samples in cabin air, so it says little about the higher-oxygen atmospheres planned for exploration.",
+     "cites": [
+      "PSI-99",
+      "gap:moon_base/o2_solids"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "why-different",
+   "question": "Why do fires behave differently in microgravity?",
+   "tags": [
+    "prevention",
+    "airflow",
+    "gravity"
+   ],
+   "paraphrases": [
+    "How is fire different in space?",
+    "Why does gravity matter for flames?",
+    "What makes fires in microgravity unusual?"
+   ],
+   "answer": [
+    {
+     "text": "Without gravity there is no buoyant flow, so at low airflow a flame lit in the middle of a thin fuel spreads upstream into the oncoming air, the opposite of normal gravity.",
+     "cites": [
+      "F19"
+     ]
+    },
+    {
+     "text": "Ventilation airflow then controls burning: for solids, the lowest oxygen that supports burning and the fastest spread both occur near 10 cm/s, the typical spacecraft ventilation speed.",
+     "cites": [
+      "F18"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "detection-studies",
+   "question": "Which experiments studied smoke detection?",
+   "tags": [
+    "detection",
+    "smoke"
+   ],
+   "paraphrases": [
+    "What fire detection research has NASA done in space?",
+    "Which studies measured smoke particles?",
+    "Are there smoke detector experiments in PSI?"
+   ],
+   "answer": [
+    {
+     "text": "Three investigations have detection as their role: SAME, SAME-R and DAFT / DAFT-2.",
+     "cites": [
+      "stat:by_role",
+      "PSI-102",
+      "PSI-101",
+      "PSI-47"
+     ]
+    },
+    {
+     "text": "SAME and SAME-R measured smoke from overheated spacecraft materials; DAFT tested a particle counter on a test dust.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "PSI-47"
+     ]
+    },
+    {
+     "text": "SPICE and SLICE add how smoke and soot form in gas-jet flames.",
+     "cites": [
+      "PSI-107",
+      "PSI-106",
+      "F20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "suppression-studies",
+   "question": "Which experiments studied fire suppression?",
+   "tags": [
+    "suppression"
+   ],
+   "paraphrases": [
+    "What extinguishment research exists in microgravity?",
+    "Which studies tested putting fires out?",
+    "Is there data on fire suppression in space?"
+   ],
+   "answer": [
+    {
+     "text": "FLEX is the one investigation with suppression as its main role; FLEX-2, BASS and BASS-II list it as a secondary role.",
+     "cites": [
+      "stat:by_role",
+      "PSI-69",
+      "PSI-68",
+      "PSI-26",
+      "PSI-25"
+     ]
+    },
+    {
+     "text": "FLEX found that inert-gas suppressant standards set on Earth give less margin in space, and BASS found that a local suppressant jet could keep a flame burning.",
+     "cites": [
+      "PSI-69",
+      "F4",
+      "PSI-26",
+      "F2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "prevention-studies",
+   "question": "Which experiments studied material flammability?",
+   "tags": [
+    "prevention",
+    "materials"
+   ],
+   "paraphrases": [
+    "Which studies burned spacecraft materials?",
+    "What experiments tested how materials catch fire in space?",
+    "Which investigations are about fire prevention?"
+   ],
+   "answer": [
+    {
+     "text": "Six investigations have prevention as their role: BASS, BASS-II, SAFFIRE-I, SAFFIRE-II, SAFFIRE-III and ACME BRE.",
+     "cites": [
+      "stat:by_role",
+      "PSI-26",
+      "PSI-25",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100",
+      "PSI-20"
+     ]
+    },
+    {
+     "text": "All but ACME BRE burned real solids; BRE used gas burners to emulate them.",
+     "cites": [
+      "PSI-20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "droplet-studies",
+   "question": "Which experiments burned liquid fuel droplets?",
+   "tags": [
+    "droplets",
+    "suppression",
+    "pressure"
+   ],
+   "paraphrases": [
+    "Is there data on liquid fuel fires in space?",
+    "Which studies used fuel droplets?",
+    "What liquid fuels were burned in microgravity?"
+   ],
+   "answer": [
+    {
+     "text": "Three: FLEX (methanol and heptane), FLEX-2 (octanes, heptane, decane, ethanol and mixtures) and CFI (n-dodecane and mixtures).",
+     "cites": [
+      "stat:by_fuel_class",
+      "PSI-69",
+      "PSI-68",
+      "PSI-39"
+     ]
+    },
+    {
+     "text": "Together they cover the widest pressure range in PSI, from 50.7 to 506.6 kPa.",
+     "cites": [
+      "PSI-68",
+      "PSI-39",
+      "stat:min_recorded_pressure"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gas-studies",
+   "question": "Which experiments burned gaseous fuels?",
+   "tags": [
+    "oxygen",
+    "soot"
+   ],
+   "paraphrases": [
+    "Is there data on gas fires in microgravity?",
+    "Which studies used gas flames?",
+    "What gases were burned on the space station?"
+   ],
+   "answer": [
+    {
+     "text": "Eight: ACME BRE, ACME Flame Design, ACME CFI-G, ACME CLD Flame, ACME E-FIELD Flames, ACME s-Flame, SPICE and SLICE.",
+     "cites": [
+      "stat:by_fuel_class",
+      "PSI-20",
+      "PSI-10",
+      "PSI-159",
+      "PSI-21",
+      "PSI-22",
+      "PSI-23",
+      "PSI-107",
+      "PSI-106"
+     ]
+    },
+    {
+     "text": "The highest oxygen tested in any investigation, 40%, was with gas flames.",
+     "cites": [
+      "stat:max_o2_any",
+      "PSI-20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "data-tables",
+   "question": "Which experiments have full data tables?",
+   "tags": [
+    "materials"
+   ],
+   "paraphrases": [
+    "Which studies have run-by-run data?",
+    "How complete is the PSI data for each experiment?",
+    "Which investigations recorded their test conditions?"
+   ],
+   "answer": [
+    {
+     "text": "Eight investigations have run tables with conditions, eight have partial tables and three only a run log.",
+     "cites": [
+      "stat:by_data_availability"
+     ]
+    },
+    {
+     "text": "The full tables are BASS-II, SAFFIRE-I, SAFFIRE-II, FLEX, FLEX-2, CFI, ACME Flame Design and ACME CFI-G.",
+     "cites": [
+      "PSI-25",
+      "PSI-98",
+      "PSI-99",
+      "PSI-69",
+      "PSI-68",
+      "PSI-39",
+      "PSI-10",
+      "PSI-159"
+     ]
+    },
+    {
+     "text": "BASS, DAFT / DAFT-2 and SLICE have only run logs.",
+     "cites": [
+      "PSI-26",
+      "PSI-47",
+      "PSI-106"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dataset-size",
+   "question": "How much data does FlameMap use?",
+   "tags": [],
+   "paraphrases": [
+    "How many experiments are in FlameMap?",
+    "How many runs does the PSI data include?",
+    "What is in the FlameMap dataset?"
+   ],
+   "answer": [
+    {
+     "text": "19 flight investigations from NASA's PSI database, with 1993 experimental-table rows.",
+     "cites": [
+      "stat:n_investigations",
+      "stat:n_table_rows"
+     ]
+    },
+    {
+     "text": "875 runs record both oxygen and pressure, and the records list 325 publications.",
+     "cites": [
+      "stat:n_run_points",
+      "stat:n_publications_listed"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hardware",
+   "question": "What hardware did the experiments use?",
+   "tags": [
+    "materials"
+   ],
+   "paraphrases": [
+    "Where on the space station were the fire experiments run?",
+    "Which experiments used the glovebox?",
+    "Which experiments flew on Cygnus?"
+   ],
+   "answer": [
+    {
+     "text": "The ACME experiments, FLEX, FLEX-2 and CFI ran in the Combustion Integrated Rack.",
+     "cites": [
+      "PSI-10",
+      "PSI-159",
+      "PSI-20",
+      "PSI-21",
+      "PSI-22",
+      "PSI-23",
+      "PSI-69",
+      "PSI-68",
+      "PSI-39"
+     ]
+    },
+    {
+     "text": "BASS, BASS-II, SPICE, SAME and SAME-R used the station's glovebox.",
+     "cites": [
+      "PSI-26",
+      "PSI-25",
+      "PSI-107",
+      "PSI-102",
+      "PSI-101"
+     ]
+    },
+    {
+     "text": "SAFFIRE-I, SAFFIRE-II and SAFFIRE-III burned their samples inside Cygnus cargo vehicles.",
+     "cites": [
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "high-o2-low-p",
+   "question": "Has anything burned at high oxygen and low pressure?",
+   "tags": [
+    "habitat",
+    "oxygen",
+    "pressure",
+    "artemis"
+   ],
+   "paraphrases": [
+    "Is there data at 30% oxygen and reduced pressure?",
+    "Which runs match a low-pressure, oxygen-rich habitat?",
+    "Any tests at high oxygen and 10 psi?"
+   ],
+   "answer": [
+    {
+     "text": "37 runs had at least 30% oxygen at 75 kPa or less: 20 from ACME CFI-G gas flames and 17 from FLEX droplets.",
+     "cites": [
+      "stat:runs_o2_ge_30_and_p_le_75",
+      "PSI-159",
+      "PSI-69"
+     ]
+    },
+    {
+     "text": "None of them burned a solid fuel.",
+     "cites": [
+      "stat:runs_o2_ge_30_and_p_le_75"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lowest-pressure",
+   "question": "What is the lowest pressure any fire experiment tested?",
+   "tags": [
+    "pressure",
+    "habitat"
+   ],
+   "paraphrases": [
+    "Has anything been burned at low pressure?",
+    "What is the minimum cabin pressure tested in PSI?",
+    "Is there data below 70 kPa?"
+   ],
+   "answer": [
+    {
+     "text": "50.7 kPa, in FLEX-2 droplet tests; CFI and ACME CFI-G also reach 50.7 kPa.",
+     "cites": [
+      "stat:min_recorded_pressure",
+      "PSI-68",
+      "PSI-39",
+      "PSI-159"
+     ]
+    },
+    {
+     "text": "No solid-fuel table records pressure at all.",
+     "cites": [
+      "stat:solid_investigations_with_recorded_pressure"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "publications",
+   "question": "Which experiment has the most publications?",
+   "tags": [],
+   "paraphrases": [
+    "Which study is the most published?",
+    "Where is the most research literature?",
+    "Which investigation has the most papers?"
+   ],
+   "answer": [
+    {
+     "text": "FLEX lists the most, 51 publications, followed by FLEX-2 with 48 and ACME s-Flame with 44.",
+     "cites": [
+      "PSI-69",
+      "PSI-68",
+      "PSI-23"
+     ]
+    },
+    {
+     "text": "Across all records PSI lists 325 publications.",
+     "cites": [
+      "stat:n_publications_listed"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "saffire",
+   "question": "What were the Saffire experiments?",
+   "tags": [
+    "prevention",
+    "materials",
+    "solid"
+   ],
+   "paraphrases": [
+    "What is the Saffire program?",
+    "Tell me about the Saffire experiments",
+    "How big were the Saffire fires?"
+   ],
+   "answer": [
+    {
+     "text": "SAFFIRE-I and SAFFIRE-III each burned one large cotton-fiberglass sample, about 0.94 m by 0.4 m and 94 cm by 40.6 cm, inside Cygnus cargo vehicles.",
+     "cites": [
+      "PSI-98",
+      "PSI-100"
+     ]
+    },
+    {
+     "text": "SAFFIRE-II burned 9 smaller samples of different materials on one card.",
+     "cites": [
+      "PSI-99"
+     ]
+    },
+    {
+     "text": "Their airflow ranged from 20 to 30 cm/s, and pressure is assumed to be cabin pressure.",
+     "cites": [
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "acme",
+   "question": "What is ACME?",
+   "tags": [
+    "oxygen",
+    "cool flames"
+   ],
+   "paraphrases": [
+    "What are the Advanced Combustion via Microgravity Experiments?",
+    "Which experiments are part of ACME?",
+    "What did the ACME gas flame experiments study?"
+   ],
+   "answer": [
+    {
+     "text": "ACME (Advanced Combustion via Microgravity Experiments) is a set of gas-flame investigations in the Combustion Integrated Rack: ACME BRE, Flame Design, CFI-G, CLD Flame, E-FIELD Flames and s-Flame.",
+     "cites": [
+      "PSI-20",
+      "PSI-10",
+      "PSI-159",
+      "PSI-21",
+      "PSI-22",
+      "PSI-23"
+     ]
+    },
+    {
+     "text": "ACME BRE is the one aimed directly at fire safety, emulating burning solids.",
+     "cites": [
+      "PSI-20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mars-habitat",
+   "question": "What evidence applies to a Mars habitat?",
+   "tags": [
+    "mars",
+    "habitat",
+    "gravity",
+    "oxygen",
+    "pressure"
+   ],
+   "paraphrases": [
+    "Is there fire safety data for Mars?",
+    "Which experiments are closest to a Mars base?",
+    "How well is fire on Mars covered by tests?"
+   ],
+   "answer": [
+    {
+     "text": "A Mars habitat at 30% oxygen and 70.3 kPa has the same gaps as a lunar one: the highest solid-fuel oxygen tested is 22.2%, and no solid-fuel table records pressure.",
+     "cites": [
+      "env:mars_base",
+      "gap:mars_base/o2_solids",
+      "gap:mars_base/low_pressure"
+     ]
+    },
+    {
+     "text": "None of the 19 investigations ran at 0.38 g.",
+     "cites": [
+      "gap:mars_base/partial_gravity"
+     ]
+    },
+    {
+     "text": "For materials, BASS-II and the Saffire flights come closest, all burned in microgravity.",
+     "cites": [
+      "PSI-25",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "station-cabin",
+   "question": "What evidence applies to the space station cabin?",
+   "tags": [
+    "materials",
+    "airflow"
+   ],
+   "paraphrases": [
+    "Is there fire data for ISS conditions?",
+    "Which experiments match station cabin air?",
+    "How well tested is fire safety on the space station?"
+   ],
+   "answer": [
+    {
+     "text": "The station cabin, at 21% oxygen and 101.3 kPa in microgravity, is the best-covered environment: 375 runs with both oxygen and pressure fall within 5 oxygen points and 10 kPa of it.",
+     "cites": [
+      "env:iss",
+      "gap:iss/combined"
+     ]
+    },
+    {
+     "text": "BASS-II, BASS and the three Saffire flights match it for materials, though their pressure is assumed rather than recorded.",
+     "cites": [
+      "PSI-25",
+      "PSI-26",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "exploration-10-2",
+   "question": "What evidence exists for the 10.2 psia Exploration Atmosphere?",
+   "tags": [
+    "habitat",
+    "oxygen",
+    "pressure",
+    "artemis"
+   ],
+   "paraphrases": [
+    "Is there fire data for 26.5% oxygen?",
+    "How close are experiments to 26.5% oxygen at 70.3 kPa?",
+    "What about NASA's 10.2 psi atmosphere?"
+   ],
+   "answer": [
+    {
+     "text": "It is the reduced-pressure atmosphere closest to tested solids: the highest solid-fuel oxygen, 22.2%, is 4.3 points below its 26.5%.",
+     "cites": [
+      "gap:exploration_10_2psi/o2_solids",
+      "env:exploration_10_2psi"
+     ]
+    },
+    {
+     "text": "43 runs fall within 5 oxygen points and 10 kPa of it, all FLEX droplets.",
+     "cites": [
+      "gap:exploration_10_2psi/combined",
+      "PSI-69"
+     ]
+    },
+    {
+     "text": "As for every reduced-pressure atmosphere, no solid-fuel table records pressure, and nothing ran at lunar gravity.",
+     "cites": [
+      "gap:exploration_10_2psi/low_pressure",
+      "gap:exploration_10_2psi/partial_gravity"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "earth-relevance",
+   "question": "Does the PSI data apply to fires on Earth?",
+   "tags": [
+    "gravity",
+    "standards"
+   ],
+   "paraphrases": [
+    "Can space fire research help on Earth?",
+    "Is there normal-gravity fire data in PSI?",
+    "How does this data relate to Earth fire safety?"
+   ],
+   "answer": [
+    {
+     "text": "Only indirectly. All 19 investigations ran in microgravity, so none matches 1 g.",
+     "cites": [
+      "gap:earth/partial_gravity"
+     ]
+    },
+    {
+     "text": "SAFFIRE-II is the exception: it lists 1-g comparison burns next to its microgravity results.",
+     "cites": [
+      "PSI-99",
+      "F9"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moon-detection",
+   "question": "Which experiments matter for fire detection in a lunar habitat?",
+   "tags": [
+    "detection",
+    "moon",
+    "habitat",
+    "smoke"
+   ],
+   "paraphrases": [
+    "How would we detect a fire on the Moon?",
+    "Is there smoke detection data for a Moon base?",
+    "Which smoke studies apply to a lunar habitat?"
+   ],
+   "answer": [
+    {
+     "text": "SAME, SAME-R and DAFT / DAFT-2 rank highest, but all ran in assumed cabin air in microgravity, below the habitat's oxygen and above its pressure.",
+     "cites": [
+      "PSI-102",
+      "PSI-101",
+      "PSI-47",
+      "env:moon_base"
+     ]
+    },
+    {
+     "text": "NASA notes that smoke particles from microgravity fires differ greatly in size from those on Earth, and no study measured smoke at lunar gravity.",
+     "cites": [
+      "F7",
+      "gap:moon_base/partial_gravity"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moon-suppression",
+   "question": "Which experiments matter for fire suppression in a lunar habitat?",
+   "tags": [
+    "suppression",
+    "moon",
+    "habitat"
+   ],
+   "paraphrases": [
+    "How would we put out a fire on the Moon?",
+    "Is there extinguishment data for a Moon base?",
+    "Which suppression studies apply to a lunar habitat?"
+   ],
+   "answer": [
+    {
+     "text": "FLEX and FLEX-2 rank highest: they recorded pressure ranges that include 70.3 kPa, and FLEX burned droplets at up to 34% oxygen.",
+     "cites": [
+      "PSI-69",
+      "PSI-68",
+      "gap:moon_base/low_pressure"
+     ]
+    },
+    {
+     "text": "FLEX found that inert-gas suppressant standards set on Earth give less safety margin in microgravity.",
+     "cites": [
+      "PSI-69",
+      "F4"
+     ]
+    },
+    {
+     "text": "All of it is microgravity data; nothing ran at lunar gravity.",
+     "cites": [
+      "gap:moon_base/partial_gravity"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lunar-rover",
+   "question": "Is a pressurized lunar rover different from a lunar habitat?",
+   "tags": [
+    "moon",
+    "habitat",
+    "oxygen",
+    "pressure"
+   ],
+   "paraphrases": [
+    "What about fire safety in a lunar rover?",
+    "Is there fire data for a pressurized rover?",
+    "Does the Moon rover atmosphere have any test data?"
+   ],
+   "answer": [
+    {
+     "text": "Not in this data: the rover preset uses the same 30% oxygen, 70.3 kPa and 0.166 g as the lunar habitat, so its rankings and gaps are the same.",
+     "cites": [
+      "env:rover",
+      "env:moon_base"
+     ]
+    },
+    {
+     "text": "23 runs fall within 5 oxygen points and 10 kPa of it, all FLEX droplets, and none ran at lunar gravity.",
+     "cites": [
+      "gap:rover/combined",
+      "PSI-69",
+      "gap:rover/partial_gravity"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "biggest-gaps",
+   "question": "What are the biggest gaps in microgravity fire data?",
+   "tags": [
+    "gravity",
+    "oxygen",
+    "pressure",
+    "habitat"
+   ],
+   "paraphrases": [
+    "What has never been tested in space fire research?",
+    "What fire experiments are still missing?",
+    "Where is the evidence weakest?"
+   ],
+   "answer": [
+    {
+     "text": "No experiment ran at partial gravity: all 19 flight investigations ran in microgravity.",
+     "cites": [
+      "gap:moon_base/partial_gravity"
+     ]
+    },
+    {
+     "text": "No solid fuel was burned above 22.2% oxygen, and no solid-fuel table records pressure.",
+     "cites": [
+      "stat:max_o2_solid",
+      "stat:solid_investigations_with_recorded_pressure"
+     ]
+    },
+    {
+     "text": "Nothing comes near a spacesuit's 100% oxygen at 29.6 kPa; the highest oxygen in any table is 40%.",
+     "cites": [
+      "gap:spacesuit/combined",
+      "gap:spacesuit/o2_any",
+      "env:spacesuit"
      ]
     }
    ]

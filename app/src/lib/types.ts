@@ -135,5 +135,5 @@ export interface Cited { text: string; cites: string[] }
 export interface AiChecks { sentences: number; citations: number; numbers: number; named_studies: number; closest_claims: number; related_bases: number; findings: number; context_kb: number }
 export interface AiLabel { generated_with: string; model: string; date: string; checked: string; human_reviewed: boolean; reviewed_by?: string; reviewed_date?: string; content_hash: string; checks: AiChecks }
 export interface Brief { env_ids: string[]; task_id: string; points: (Cited & { kind: 'headline' | 'closest' | 'found' | 'untested' | 'next' })[] }
-export interface QA { id: string; question: string; tags: string[]; answer: Cited[] }
+export interface QA { id: string; question: string; tags: string[]; paraphrases?: string[]; answer: Cited[] }
 export interface Related { psi_id: string; reason: string; basis: string[]; hardware_family: string | null }

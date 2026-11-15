@@ -5,7 +5,7 @@
 // through lib/verify.ts before showing them.
 import type { AppData } from './data'
 import type { Cited, Finding } from './types'
-import { ANSWER_AT, NEARBY_AT, keywordScores, similarities, words } from './match'
+import { ANSWER_AT, NEARBY_AT, keywordScores, rankQuestions, similarities, words } from './match'
 import { loadSemantic, type SemanticIndex } from './semantic'
 
 export interface Answer { id: string; question: string; sentences: Cited[]; source: 'checked' | 'live'; score: number }
@@ -18,7 +18,6 @@ export interface AnswerResult {
 }
 export interface AnswerProvider { id: string; ask: (q: string, data: AppData) => Promise<AnswerResult> }
 
-const KW_WEIGHT = 0.06 // a small boost for shared key words, so "spacesuit" prefers the spacesuit answer
 const MAX_ANSWERS = 3
 const ANSWER_SPREAD = 0.08 // show further answers only if nearly as close as the best one
 
@@ -38,10 +37,7 @@ export function keywordAnswers(q: string, data: AppData): AnswerResult {
 
 export async function semanticAnswers(q: string, data: AppData, index: SemanticIndex): Promise<AnswerResult> {
   const sims = similarities(await index.embed(q), index.items)
-  const kw = keywordScores(q, data.qa)
-  const scored = data.qa
-    .map((x) => ({ id: x.id, s: (sims.get(`qa:${x.id}`) ?? 0) + KW_WEIGHT * Math.min(kw.get(x.id) ?? 0, 3) }))
-    .sort((a, b) => b.s - a.s)
+  const scored = rankQuestions(sims, q, data.qa)
   const best = scored[0]?.s ?? 0
   const answers = scored.filter((r) => r.s >= ANSWER_AT && r.s >= best - ANSWER_SPREAD).slice(0, MAX_ANSWERS).map((r) => toAnswer(data, r.id, r.s))
   const nearby = scored.filter((r) => r.s >= NEARBY_AT && !answers.some((a) => a.id === r.id)).slice(0, answers.length ? 2 : 3).map((r) => ({ id: r.id, question: data.qa.find((x) => x.id === r.id)!.question }))

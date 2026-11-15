@@ -1,7 +1,7 @@
 // Semantic search for "Ask the evidence" (AI_FIRST_PLAN.md §2). Run after ai_build.mjs and `npm ci` in app/:
 //   node pipeline/embed.mjs
 //
-// Embeds every checked question (plus its paraphrases, if pipeline/ai/qa.json has any) and every key finding
+// Embeds every checked question (and its reviewed paraphrases) and every key finding
 // with a small sentence-embedding model, and writes app/public/data/qa_vectors.json (int8, base64).
 // It also copies the model and the ONNX WebAssembly runtime into app/public/ (gitignored), so the browser
 // loads both from the site itself: no third-party request, no API key. The browser embeds only the
@@ -26,11 +26,10 @@ env.cacheDir = join(HERE, '.cache', 'models')
 
 const load = (p) => JSON.parse(readFileSync(p, 'utf8'))
 const qa = load(join(PUB, 'data', 'qa.json')).questions
-const paraphrases = Object.fromEntries(load(join(HERE, 'ai', 'qa.json')).questions.map((q) => [q.id, q.paraphrases ?? []]))
 const findings = load(join(PUB, 'data', 'findings.json'))
 
 const items = [
-  ...qa.flatMap((q) => [q.question, ...(paraphrases[q.id] ?? [])].map((text) => ({ kind: 'qa', id: q.id, text }))),
+  ...qa.flatMap((q) => [q.question, ...(q.paraphrases ?? [])].map((text) => ({ kind: 'qa', id: q.id, text }))),
   ...findings.map((f) => ({ kind: 'finding', id: f.id, text: f.text })),
 ]
 

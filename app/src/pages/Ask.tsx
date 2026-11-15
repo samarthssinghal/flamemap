@@ -84,7 +84,11 @@ export default function Ask() {
       <section aria-label="Questions with checked answers">
         <h2>Questions with checked answers</h2>
         <ul className="qlist">
-          {data.qa.map((x) => <li key={x.id}><button className="link" onClick={() => ask(x.question)}>{x.question}</button></li>)}
+          {data.qa.filter((x) => !x.id.startsWith('inv-')).map((x) => <li key={x.id}><button className="link" onClick={() => ask(x.question)}>{x.question}</button></li>)}
+        </ul>
+        <h3>About each investigation</h3>
+        <ul className="qlist">
+          {data.qa.filter((x) => x.id.startsWith('inv-')).map((x) => <li key={x.id}><button className="link" onClick={() => ask(x.question)}>{x.question}</button></li>)}
         </ul>
       </section>
     </>
