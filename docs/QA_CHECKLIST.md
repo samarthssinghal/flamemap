@@ -6,7 +6,7 @@
 - [x] No "NaN", "undefined" or "null" in page text
 - [x] Deployed site is live at https://samarthssinghal.github.io/flamemap/ (GitHub Pages branch-name fix confirmed pushed, build succeeded) (2026-11-14)
 - [ ] Deployed URL opens in a private window on phone
-- [ ] Every external link opens
+- [x] Every external link responds: 40 URLs HTTP 200, 242 DOIs registered, 24 PSI IDs exist in the PSI API (script, 2026-11-14; see VERIFICATION_LOG.md). A person should still click through once.
 - [x] Export CSV and Export JSON build a valid, non-empty file with no console error, checked on the deployed site (2026-11-14)
 - [x] Automated accessibility scan (axe-core, WCAG 2 A/AA and best-practice rules) on all five pages and the details panel: 0 violations (2026-11-14)
 - [x] Shareable links: checked on the deployed site in a fresh browser tab — Rank page (env/task), weights, Custom environment values and the Compare page's selected investigations (`cmp`) all restore correctly; an invalid environment id falls back to the default (2026-11-14)

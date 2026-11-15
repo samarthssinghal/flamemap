@@ -1,0 +1,5 @@
+{
+ "_note": "Human sign-offs read by build_data.mjs (REVIEW_ISSUES R05). summaries: H5, one entry per approved summary; hash is shown in docs/SUMMARY_REVIEW.md and must match the current text, or the build fails. fields: H4, investigations whose values a person checked against the live PSI page (see docs/VERIFICATION_LOG.md).",
+ "summaries": {},
+ "fields": {}
+}

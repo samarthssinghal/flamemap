@@ -9,7 +9,7 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | R02 | Critical | 1 h | done | Missing data raises the score (renormalization rewards unknowns) |
 | R03 | High | — | done | No "findings": app ranks conditions, never interprets results (done via R06a) |
 | R04 | High | 2–3 h | done | Pipeline not reproducible: hand-copied constants, no raw data in repo |
-| R05 | High | 1–2 h (human) | todo | Human verification steps not done (H1, H4, H5, links, phone) |
+| R05 | High | 1 h (human) | in progress | Human verification steps not done (H1, H4, H5, links, phone) |
 | R06 | Critical | see subtasks | todo | Add the super-intelligence (SI) layer the challenge title asks for (subtasks R06a–R06e) |
 | R06a | Critical | 3–4 h | todo | SI: AI-extracted key findings per investigation, each with a quote and source (merges with R03) |
 | R06b | Critical | 2–3 h | todo | SI: AI interpretation brief for each environment + task (what the evidence says, what's missing) |
@@ -72,6 +72,14 @@ Values were transcribed by hand into constants; `pipeline/raw/` is empty. PSI is
 
 ### R05 — Human verification outstanding (High, human)
 H1 (`SUBMISSION_REQUIREMENTS.md` empty: demo/slide limits unconfirmed), H4 (10 fields vs live PSI), H5 (read 19 summaries; `human_reviewed` all false), external link check, phone check, keyboard/screen-reader check.
+- Prepared 2026-11-14 (agent):
+  - H1: `docs/SUBMISSION_REQUIREMENTS.md` filled from the live guides. **Deadline Sun 15 Nov 2026, 11:59 p.m. local-event time.** Demo is a 7-slide deck *or* a ≤30-s video (one is enough). SI-generated code and data must be acknowledged in descriptive text and metadata; SI images or video need a visible watermark.
+  - Live PSI check (all 24 records, 5 tables, 18 range values) and link check (40 URLs, 242 DOIs): no errors. Results in `docs/VERIFICATION_LOG.md`.
+  - H4: 10 rows pre-filled in `VERIFICATION_LOG.md` for a person to initial.
+  - Checklist for the person: `docs/HUMAN_TASKS.md`.
+  - H5: `docs/SUMMARY_REVIEW.md` shows each summary next to its PSI text, with a ready-made approval line. Sign-offs go in `pipeline/reviews.json`; the build sets `human_reviewed` and `verified` from it and stops if a summary changes after it was approved.
+- Left for a person: H2 (all members registered for the same Local Event), H4 and H5 sign-offs, phone check in a private window, keyboard and screen-reader pass, one click-through of the links.
+- Found for other items: the project page has no "Other references" list (tools and libraries), a required form field (→ R25); README does not say the code was written with an AI assistant, which the SI rule asks for (→ R25).
 
 ### R06 — Add the super-intelligence (SI) layer (Critical)
 The challenge is "SI-Powered Fire Safety Insights": an SI-powered dashboard that summarizes, ranks and **interprets**. Today the only AI is 19 offline summaries, unreviewed, with the planned number check (PLAN P4.2) never built. The ranking stays plain arithmetic (that's a validity strength); AI does the reading and interpreting, always grounded in cited sources.
