@@ -241,6 +241,23 @@ const FINDINGS = JSON.parse(readFileSync(join(HERE, 'findings.json'), 'utf8')).f
   return { psi_ids: f.psi_ids, kind: f.kind, text: f.text, quote: f.quote ?? null, cells: f.cells ?? [], source, attribution_note: f.attribution_note ?? null, generated_by: 'Written with Claude Code from the quoted source; quotes and cells checked at build time' }
 })
 
+// ---------- human sign-offs (pipeline/reviews.json): H5 summaries, H4 field checks ----------
+const REVIEWS = JSON.parse(readFileSync(join(HERE, 'reviews.json'), 'utf8'))
+const summaryHash = (x) => createHash('sha256').update(`${x.sum}\n${x.why}`).digest('hex').slice(0, 12)
+for (const id of [...Object.keys(REVIEWS.summaries), ...Object.keys(REVIEWS.fields)]) if (!I.some((x) => x.id === id)) throw new Error(`reviews.json: unknown investigation ${id}`)
+const reviewed = (x) => {
+  const rv = REVIEWS.summaries[x.id]
+  if (!rv) return false
+  if (!rv.by || !rv.date) throw new Error(`reviews.json: summary review of ${x.id} needs "by" and "date"`)
+  if (rv.hash !== summaryHash(x)) throw new Error(`reviews.json: ${x.id} summary changed since ${rv.by} reviewed it (hash ${rv.hash}, now ${summaryHash(x)}); review it again`)
+  return true
+}
+const verifiedBy = (id) => {
+  const v = REVIEWS.fields[id]
+  if (v && (!v.by || !v.date)) throw new Error(`reviews.json: field check of ${id} needs "by" and "date"`)
+  return v ? { by: v.by, date: v.date } : { by: null, date: null }
+}
+
 // ---------- build investigations ----------
 const investigations = I.map((x) => {
   const r = rec(x.id), t = TABLES[x.id]
@@ -255,10 +272,10 @@ const investigations = I.map((x) => {
     conditions: { o2_percent: x.o2, pressure_kpa: x.p, flow_cm_s: x.flow, gravity_g: { values: [0], source: { type: 'psi_text', ref: `Project Type: ${r.projectType}` }, confidence: 'high' } },
     diluents: x.dil, variables_varied: x.varied, sensors: x.sensors,
     evidence: { n_runs: t.n_runs, table_files: t.files, data_availability: x.avail, raw_data_gb: Math.round(r.totalFileSize / 1e8) / 10 },
-    summary: { text: x.sum, why_it_matters: x.why, generated_by: 'AI-drafted from the PSI record text', human_reviewed: false },
+    summary: { text: x.sum, why_it_matters: x.why, generated_by: 'AI-drafted from the PSI record text', human_reviewed: reviewed(x) },
     n_publications: (r.publications ?? []).length, publications: (r.publications ?? []).map((p) => ({ title: clean(p.title), doi: p.doi || null })),
     related_modeling: MODELING.filter((m) => m.parents.includes(x.id)).map((m) => ({ psi_id: m.psi_id, title: m.title, url: url(m.psi_id) })),
-    verified: { by: null, date: null },
+    verified: verifiedBy(x.id),
     findings: FINDINGS.filter((f) => f.psi_ids.includes(x.id)).map(({ psi_ids, ...f }) => ({ ...f, also_on: psi_ids.filter((id) => id !== x.id) })),
     ...(GRAVITY_COMPARISON[x.id] ? { gravity_comparison: GRAVITY_COMPARISON[x.id] } : {}),
   }
