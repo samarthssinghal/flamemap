@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useApp } from '../App'
-import { AiNote } from '../components/Cites'
+import { AiNote, CitedText } from '../components/Cites'
 import Findings from '../components/Findings'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, SRC_LABEL, fmtRange } from '../lib/data'
 import { flatInv, saveCsv, saveJson } from '../lib/export'
@@ -17,6 +17,8 @@ const BASIS: Record<string, string> = { psi_link: 'linked on PSI', hardware: 'sa
 function Detail({ i, close, open }: { i: Investigation; close: () => void; open: (id: string) => void }) {
   const { data, compare, toggleCompare } = useApp()
   const related = data.related[i.psi_id] ?? []
+  // The checked "What did X study?" answer for this investigation, if there is one.
+  const brief = data.qa.find((x) => x.id.startsWith('inv-') && x.answer[0]?.cites.includes(i.psi_id))
   const closeRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     closeRef.current?.focus()
@@ -30,11 +32,36 @@ function Detail({ i, close, open }: { i: Investigation; close: () => void; open:
       <h2 id="drawer-title">{i.acronym}</h2>
       <p className="dim">{i.title} · {i.psi_id}</p>
       <p className="chips"><span className={`chip role-${i.fire_safety_role}`}>{ROLE_LABEL[i.fire_safety_role]}</span>{i.secondary_roles.map((r) => <span key={r} className="chip">also {ROLE_LABEL[r].toLowerCase()}</span>)}<span className="chip">{FUEL_LABEL[i.fuel_class]}</span></p>
+      {brief && (
+        <section className="brief panel" aria-label="What the evidence says">
+          <h3 className="ai-h">{brief.question} <span className="chip k-ai">AI, checked</span></h3>
+          {brief.answer.map((s, k) => <p key={k}><CitedText s={s} /></p>)}
+          <AiNote what="This answer was" />
+        </section>
+      )}
+      <h3>Summary</h3>
       <p>{i.summary.text}</p>
       <p><b>Why it matters:</b> {i.summary.why_it_matters}</p>
       <p className="ai-note">AI-drafted summary, based only on the PSI record text. Check the PSI record before relying on it.</p>
       <h3>Key findings</h3>
       <Findings inv={i} />
+      {related.length > 0 && (
+        <>
+          <h3>Studies like this one <span className="chip k-ai">AI, checked</span></h3>
+          <ul className="related">
+            {related.map((r) => {
+              const t = data.investigations.find((x) => x.psi_id === r.psi_id)
+              return (
+                <li key={r.psi_id}>
+                  <button className="link" onClick={() => open(r.psi_id)}>{t?.acronym ?? r.psi_id}</button>: {r.reason}
+                  <span className="chips">{r.basis.map((b) => <span key={b} className="chip">{b === 'hardware' && r.hardware_family ? r.hardware_family : BASIS[b]}</span>)}</span>
+                </li>
+              )
+            })}
+          </ul>
+          <AiNote what="These reasons were" />
+        </>
+      )}
       <h3>Tested conditions</h3>
       <dl className="kv">
         <dt>Oxygen</dt><dd><Cond c={i.conditions.o2_percent} unit="%" />{i.conditions.o2_percent && <div className="dim src">{i.conditions.o2_percent.source.ref}</div>}</dd>
@@ -86,23 +113,6 @@ function Detail({ i, close, open }: { i: Investigation; close: () => void; open:
             ))}
           </ul>
         </details>
-      )}
-      {related.length > 0 && (
-        <>
-          <h3>Studies like this one</h3>
-          <ul className="related">
-            {related.map((r) => {
-              const t = data.investigations.find((x) => x.psi_id === r.psi_id)
-              return (
-                <li key={r.psi_id}>
-                  <button className="link" onClick={() => open(r.psi_id)}>{t?.acronym ?? r.psi_id}</button>: {r.reason}
-                  <span className="chips">{r.basis.map((b) => <span key={b} className="chip">{b === 'hardware' && r.hardware_family ? r.hardware_family : BASIS[b]}</span>)}</span>
-                </li>
-              )
-            })}
-          </ul>
-          <AiNote what="These reasons were" />
-        </>
       )}
       {i.related_modeling.length > 0 && (<><h3>Related modeling studies in PSI</h3><ul>{i.related_modeling.map((m) => <li key={m.psi_id}><a href={m.url} target="_blank" rel="noreferrer">{m.psi_id}: {m.title}</a></li>)}</ul></>)}
       <p className="links">

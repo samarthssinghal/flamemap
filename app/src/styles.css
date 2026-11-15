@@ -251,3 +251,16 @@ details.alt summary { cursor: pointer; color: var(--accent); margin-bottom: 8px;
 .checks li { color: var(--good); }
 code { font-size: 0.85em; background: #0c1426; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; word-break: break-word; }
 @media (max-width: 820px) { .honesty ul.six, .flow { grid-template-columns: 1fr 1fr; } }
+
+/* Ask: conversation thread */
+.thread { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 18px; }
+.turn { display: grid; gap: 10px; }
+.bubble { justify-self: end; max-width: min(640px, 90%); margin: 0; background: #1d1636; border: 1px solid #4b3a72; border-radius: 14px 14px 2px 14px; padding: 8px 14px; }
+.turn .answer, .turn .info, .turn .related-findings { margin-bottom: 0; }
+.answer h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.related-findings summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+.related-findings ul { margin-top: 8px; }
+.followups { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip-btn { font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; background: #0f1830; color: var(--accent); text-align: left; }
+.ai-h { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; text-transform: none; letter-spacing: 0; color: var(--text); font-size: 1rem; margin-top: 0; }
+.drawer .brief { margin: 12px 0; }
