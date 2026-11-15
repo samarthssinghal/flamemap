@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { DISCLAIMER, useApp } from '../App'
 
 export default function About() {
@@ -42,7 +43,7 @@ export default function About() {
           <li>AI helped read the PSI record text to fill in fuels, geometry, sensors and the variables each study changed, and drafted the short summaries. These are labeled in the app.</li>
           <li>The summaries use only the text of the PSI record. A team review of every summary is still pending for this build.</li>
           <li>Key findings were written with Claude Code from three sources only: NASA&apos;s Researcher&apos;s Guide to ISS Combustion Science (2015), the PSI record text and the PSI experimental tables. Each finding carries its exact quote or table cells, and the build fails if a quote, cell value or number does not match the source. Findings are labeled &quot;NASA-stated&quot;, &quot;NASA context&quot;, &quot;Stated in the PSI record&quot;, &quot;Data limitation&quot; or &quot;From the PSI data table&quot;.</li>
-          <li>The &quot;What the evidence says&quot; briefs, the answers on &quot;Ask the evidence&quot; and the &quot;Studies like this one&quot; reasons were written by AI from the computed rankings, gaps and checked findings, and nothing else. Every sentence cites its sources. When the site is built, a script fails the build if a sentence has a number not found in what it cites, names a study it does not cite, or calls a study &quot;closest evidence&quot; when it is not in the computed top five. Ask the evidence only matches your question to these checked answers; it never generates new text in your browser.</li>
+          <li>The briefings, the answers on &quot;Ask the evidence&quot; and the &quot;Studies like this one&quot; reasons were written by AI from the computed rankings, gaps and checked findings, checked sentence by sentence when the site is built, and reviewed by a person. <Link to="/ai">How the AI works</Link> has the full pipeline and what is checked.</li>
           <li>The ranking, gap statements and chart counts are computed from the data. No AI model produces a score.</li>
           <li>AI coding assistants helped write the software.</li>
         </ul>

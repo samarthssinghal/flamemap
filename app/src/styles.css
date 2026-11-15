@@ -235,3 +235,19 @@ details.alt summary { cursor: pointer; color: var(--accent); margin-bottom: 8px;
   .top3 .score { grid-column: 2; }
   .navgroup + .navgroup { border-left: none; padding-left: 0; margin-left: 0; }
 }
+
+/* How the AI works */
+.honesty ul.six { grid-template-columns: repeat(3, 1fr); }
+.honesty p { margin: 12px 0 0; }
+.flow { list-style: none; counter-reset: step; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.flow li { counter-increment: step; position: relative; display: grid; align-content: start; gap: 4px; background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; padding: 26px 12px 12px; font-size: 0.85rem; margin: 0; }
+.flow li::before { content: counter(step); position: absolute; top: 6px; left: 12px; font-size: 0.72rem; font-weight: 700; color: var(--dim); }
+.flow li.ai { border-color: #4b3a72; background: #1d1636; }
+.flow li.ai::before { content: counter(step) ' · AI'; color: var(--violet); }
+.flow li b { font-size: 0.95rem; }
+.flow li span { color: var(--dim); }
+.example { margin: 8px 0 12px; padding: 10px 14px; border-left: 3px solid var(--violet); background: var(--panel2); border-radius: 0 8px 8px 0; font-size: 1rem; }
+.checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.checks li { color: var(--good); }
+code { font-size: 0.85em; background: #0c1426; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; word-break: break-word; }
+@media (max-width: 820px) { .honesty ul.six, .flow { grid-template-columns: 1fr 1fr; } }

@@ -9,6 +9,7 @@ import Explorer from './pages/Explorer'
 import Compare from './pages/Compare'
 import About from './pages/About'
 import Ask from './pages/Ask'
+import HowAI from './pages/HowAI'
 
 interface Ctx {
   data: AppData
@@ -32,7 +33,7 @@ export const useApp = () => useContext(AppCtx) as Ctx
 export const DISCLAIMER =
   'FlameMap is a student hackathon project and a research-navigation aid. It ranks how closely past NASA experiments match a chosen environment. It does not predict fire behavior, assess risk or certify safety, and it is not NASA guidance. Always consult the original PSI records and publications.'
 
-const TITLES: Record<string, string> = { '/': 'Mission briefing', '/rank': 'Rank', '/map': 'Evidence map', '/explorer': 'Explorer', '/compare': 'Compare', '/ask': 'Ask the evidence', '/about': 'Method and sources' }
+const TITLES: Record<string, string> = { '/': 'Mission briefing', '/rank': 'Rank', '/map': 'Evidence map', '/explorer': 'Explorer', '/compare': 'Compare', '/ask': 'Ask the evidence', '/ai': 'How the AI works', '/about': 'Method and sources' }
 const num = (s: string | undefined) => (s === undefined || s === '' || s === 'x' || isNaN(Number(s)) ? null : Number(s))
 
 /** Keeps the selection in the address (after the #) so a view can be shared as a link. */
@@ -120,6 +121,7 @@ export default function App() {
               <span className="navlabel" aria-hidden="true">AI</span>
               <NavLink to="/" end>Briefing</NavLink>
               <NavLink to="/ask">Ask the evidence</NavLink>
+              <NavLink to="/ai">How the AI works</NavLink>
             </div>
             <div className="navgroup" role="group" aria-label="Data">
               <span className="navlabel" aria-hidden="true">Data</span>
@@ -139,6 +141,7 @@ export default function App() {
             <Route path="/explorer" element={<Explorer />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/ask" element={<Ask />} />
+            <Route path="/ai" element={<HowAI />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>

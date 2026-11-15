@@ -67,10 +67,18 @@ const ALIASES = INV.flatMap((i) => {
   return [...names].filter((n) => n.length >= 3).map((n) => ({ id: i.psi_id, re: new RegExp(`(?<![\\w-])${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w-])`) }))
 })
 
+// What the checks covered, published with the text so the app can show it ("How the AI works").
+const STATS = { sentences: 0, citations: 0, numbers: 0, named_studies: 0, closest_claims: 0, related_bases: 0 }
+
 /** Checks one sentence; returns error strings. envIds: environments the text is shown for. */
 function checkSentence(where, s, { envIds = [], viewKeys = [], closest = false } = {}) {
   const errs = []
   if (!s.text || !Array.isArray(s.cites) || s.cites.length === 0) return [`${where}: needs text and at least one cite`]
+  STATS.sentences++
+  STATS.citations += s.cites.length
+  STATS.numbers += numbersIn(s.text).length
+  STATS.named_studies += new Set(ALIASES.filter((a) => a.re.test(s.text)).map((a) => a.id)).size
+  if (closest) STATS.closest_claims++
   let corpus = ''
   const citedPsi = new Set()
   for (const c of s.cites) {
@@ -186,6 +194,7 @@ for (const [from, list] of Object.entries(relatedIn)) {
     const where = `related.json ${from} -> ${r.psi_id}`
     if (!byId[r.psi_id] || r.psi_id === from) errors.push(`${where}: bad target`)
     if (!r.basis?.length) errors.push(`${where}: needs a basis`)
+    STATS.related_bases += r.basis?.length ?? 0
     for (const b of r.basis ?? []) if (!BASIS[b]) errors.push(`${where}: unknown basis ${b}`); else if (byId[r.psi_id] && !BASIS[b](from, r.psi_id)) errors.push(`${where}: basis "${b}" is not supported by the data`)
     errors.push(...checkSentence(`${where} (${j + 1})`, { text: r.reason, cites: [from, r.psi_id, ...(r.cites ?? [])] }))
     return { psi_id: r.psi_id, reason: r.reason, basis: r.basis, hardware_family: r.basis?.includes('hardware') ? family(byId[from]) : null }
@@ -204,7 +213,14 @@ if (GEN.human_reviewed) {
   if (!GEN.reviewed_by || !GEN.reviewed_date) { console.error('meta.json: human_reviewed needs reviewed_by and reviewed_date'); process.exit(1) }
   if (GEN.reviewed_hash !== CONTENT_HASH) { console.error(`meta.json: AI text changed since ${GEN.reviewed_by} reviewed it (hash ${GEN.reviewed_hash}, now ${CONTENT_HASH}); review docs/AI_TEXT_REVIEW.md again`); process.exit(1) }
 }
-const label = { generated_with: GEN.generated_with, model: GEN.model, date: GEN.date, checked: 'Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).', human_reviewed: GEN.human_reviewed ?? false }
+const label = {
+  generated_with: GEN.generated_with, model: GEN.model, date: GEN.date,
+  checked: 'Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).',
+  human_reviewed: GEN.human_reviewed ?? false,
+  ...(GEN.human_reviewed ? { reviewed_by: GEN.reviewed_by, reviewed_date: GEN.reviewed_date } : {}),
+  content_hash: CONTENT_HASH,
+  checks: { ...STATS, findings: FINDINGS.length, context_kb: Math.round(readFileSync(join(AI, 'context.md')).length / 1024) },
+}
 const w = (f, o) => writeFileSync(join(DATA, f), JSON.stringify(o, null, 1))
 w('briefs.json', { ...label, briefs }); w('qa.json', { ...label, questions: qa }); w('related.json', { ...label, related })
 // ---------- review sheet ----------

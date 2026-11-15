@@ -36,7 +36,6 @@ export default function Briefing() {
   const [q, setQ] = useState('')
   const top = useMemo(() => rank(env, task, weights, data.investigations, data.env.reference_spans).slice(0, 3), [env, task, weights, data])
   const questions = useMemo(() => suggest(data.qa, envId, taskId), [data.qa, envId, taskId])
-  const nChecked = data.briefs.reduce((n, b) => n + b.points.length, 0) + data.qa.reduce((n, x) => n + x.answer.length, 0) + Object.values(data.related).reduce((n, r) => n + r.length, 0)
   const ask = (s: string) => navigate(`/ask?q=${encodeURIComponent(s)}`)
 
   return (
@@ -110,11 +109,12 @@ export default function Briefing() {
       <section className="honesty" aria-label="How this AI is kept honest">
         <h2>How this AI is kept honest</h2>
         <ul>
-          <li><b>{nChecked}</b><span>AI-written sentences, each checked at build time against the computed data</span></li>
+          <li><b>{data.ai.checks.sentences}</b><span>AI-written sentences, each checked at build time against the computed data</span></li>
           <li><b>0</b><span>unsupported numbers, studies or citations allowed: the build fails on any</span></li>
-          <li><b>{data.ai.human_reviewed ? 'Yes' : 'Pending'}</b><span>{data.ai.human_reviewed ? 'reviewed by a person' : 'human review not yet signed off'}</span></li>
+          <li><b>{data.ai.human_reviewed ? 'Yes' : 'Pending'}</b><span>{data.ai.human_reviewed ? `reviewed by a person (${data.ai.reviewed_date})` : 'human review not yet signed off'}</span></li>
           <li><b>0</b><span>API keys or AI servers needed at runtime: {data.ai.generated_with.split(',')[0]} wrote this text ahead of time</span></li>
         </ul>
+        <p><Link to="/ai">How the AI works →</Link></p>
       </section>
     </>
   )

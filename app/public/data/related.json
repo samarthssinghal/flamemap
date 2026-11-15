@@ -4,6 +4,19 @@
  "date": "2026-11-14",
  "checked": "Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).",
  "human_reviewed": true,
+ "reviewed_by": "SS",
+ "reviewed_date": "2026-11-14",
+ "content_hash": "5fc69c3e745f",
+ "checks": {
+  "sentences": 172,
+  "citations": 399,
+  "numbers": 144,
+  "named_studies": 205,
+  "closest_claims": 18,
+  "related_bases": 143,
+  "findings": 20,
+  "context_kb": 40
+ },
  "related": {
   "PSI-25": [
    {
