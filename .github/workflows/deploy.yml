@@ -20,7 +20,16 @@ jobs:
       # or if the data changed since the AI writer context was generated.
       - run: node pipeline/ai_build.mjs --context && git diff --exit-code pipeline/ai/context.json
       - run: node pipeline/ai_build.mjs
-      - run: npm ci && npm run test && npm run build
+      - run: npm ci
+        working-directory: app
+      # Semantic search for Ask the evidence: embeds the checked questions and copies the small embedding
+      # model and its WebAssembly runtime into the site, so the browser needs no third-party request or key.
+      - uses: actions/cache@v4
+        with:
+          path: pipeline/.cache
+          key: embed-model-Xenova-all-MiniLM-L6-v2-q8
+      - run: node pipeline/embed.mjs
+      - run: npm run test && npm run build
         working-directory: app
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -2,5 +2,32 @@
  "generated_with": "Claude Code (Claude Opus 5.5), in a development session, from pipeline/ai/context.md",
  "model": "claude-opus-5-5",
  "date": "2026-11-14",
- "human_reviewed": false
+ "human_reviewed": true,
+ "previous_review": {
+  "reviewed_by": "SS",
+  "reviewed_date": "2026-11-14",
+  "reviewed_hash": "5fc69c3e745f",
+  "covered": "18 briefs, 16 questions (without paraphrases), 42 related links",
+  "qa_ids": [
+   "solid-high-o2",
+   "ventilation-off",
+   "1g-test-conservative",
+   "lunar-habitat",
+   "exploration-atmosphere",
+   "partial-gravity",
+   "earth-detector",
+   "gas-suppressants",
+   "dangerous-airflow",
+   "flame-direction",
+   "cool-flames",
+   "solid-pressure",
+   "spacesuit",
+   "both-gravities",
+   "high-o2-any",
+   "smoke-jet-flames"
+  ]
+ },
+ "reviewed_by": "SS",
+ "reviewed_date": "2026-11-14",
+ "reviewed_hash": "3ffc50f926db"
 }

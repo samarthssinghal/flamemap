@@ -3,7 +3,20 @@
  "model": "claude-opus-5-5",
  "date": "2026-11-14",
  "checked": "Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).",
- "human_reviewed": false,
+ "human_reviewed": true,
+ "reviewed_by": "SS",
+ "reviewed_date": "2026-11-14",
+ "content_hash": "3ffc50f926db",
+ "checks": {
+  "sentences": 295,
+  "citations": 667,
+  "numbers": 311,
+  "named_studies": 328,
+  "closest_claims": 18,
+  "related_bases": 143,
+  "findings": 20,
+  "context_kb": 49
+ },
  "briefs": [
   {
    "env_ids": [

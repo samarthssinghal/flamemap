@@ -5680,5 +5680,1047 @@
    "run_log_only": 3,
    "run_table_partial": 8
   }
- }
+ },
+ "investigations": [
+  {
+   "psi_id": "PSI-25",
+   "acronym": "BASS-II",
+   "title": "Burning and Suppression of Solids - II",
+   "role": "prevention",
+   "secondary_roles": [
+    "suppression"
+   ],
+   "fuel_class": "solid",
+   "conditions": {
+    "o2_percent": {
+     "min": 13.6,
+     "max": 22.2,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-25_Experimental table_BASS-II.csv :: Calibrated initial O2 % by vol"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": null,
+     "max": 40,
+     "unit": "cm/s",
+     "source": {
+      "type": "psi_text",
+      "ref": "\"a small wind tunnel which could impose airflow speeds up to 40 cm/s\""
+     },
+     "confidence": "medium"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 129,
+   "data_availability": "run_table_with_conditions",
+   "publications": 17,
+   "start_date": "2010-01-01",
+   "end_date": "2022-12-31",
+   "fuels": [
+    "PMMA films and sheets of several thicknesses"
+   ],
+   "geometry": "Samples mounted in a small wind tunnel; opposed and concurrent flow",
+   "hardware": "Microgravity Science Glovebox (MSG)"
+  },
+  {
+   "psi_id": "PSI-26",
+   "acronym": "BASS",
+   "title": "Burning and Suppression of Solids",
+   "role": "prevention",
+   "secondary_roles": [
+    "suppression"
+   ],
+   "fuel_class": "solid",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+     },
+     "confidence": "low"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": null,
+     "max": 40,
+     "unit": "cm/s",
+     "source": {
+      "type": "psi_text",
+      "ref": "\"airflow speeds reaching as high as 40 cm/s\""
+     },
+     "confidence": "medium"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 122,
+   "data_availability": "run_log_only",
+   "publications": 10,
+   "start_date": "2009-10-01",
+   "end_date": "2013-06-30",
+   "fuels": [
+    "cotton-fiberglass fabric (SIBAL)",
+    "Nomex",
+    "Ultem",
+    "PMMA spheres"
+   ],
+   "geometry": "Flat fabric, spheres and cylinders in a 76 mm x 76 mm flow duct",
+   "hardware": "Microgravity Science Glovebox"
+  },
+  {
+   "psi_id": "PSI-98",
+   "acronym": "SAFFIRE-I",
+   "title": "Spacecraft Fire Safety Experiment-I",
+   "role": "prevention",
+   "secondary_roles": [],
+   "fuel_class": "solid",
+   "conditions": {
+    "o2_percent": {
+     "min": 21.5,
+     "max": 21.7,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-98_Experimental table_SAFFIRE-1.csv :: Percent O2"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": 20,
+     "max": 20,
+     "unit": "cm/s",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-98_Experimental table_SAFFIRE-1.csv :: Air Flow (cm/s)"
+     },
+     "confidence": "high"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 2,
+   "data_availability": "run_table_with_conditions",
+   "publications": 6,
+   "start_date": "2001-03-02",
+   "end_date": "2008-02-28",
+   "fuels": [
+    "cotton-fiberglass fabric (SIBAL)"
+   ],
+   "geometry": "One large sample, about 0.94 m long and 0.4 m wide, in a flow duct",
+   "hardware": "Saffire 1 enclosure in Cygnus"
+  },
+  {
+   "psi_id": "PSI-99",
+   "acronym": "SAFFIRE-II",
+   "title": "Spacecraft Fire Experiment-II",
+   "role": "prevention",
+   "secondary_roles": [],
+   "fuel_class": "solid",
+   "conditions": {
+    "o2_percent": {
+     "min": 21.5,
+     "max": 22.1,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-99_Experimental table_SAFFIRE-2.csv :: Percent O2 (Note 1)"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": 20,
+     "max": 30,
+     "unit": "cm/s",
+     "source": {
+      "type": "psi_text",
+      "ref": "\"conducted at an air flow velocity of either 20 or 30 cm/s\""
+     },
+     "confidence": "medium"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 9,
+   "data_availability": "run_table_with_conditions",
+   "publications": 7,
+   "start_date": "2016-09-30",
+   "end_date": "2017-04-01",
+   "fuels": [
+    "silicone",
+    "cotton-fiberglass fabric (SIBAL)",
+    "PMMA",
+    "PMMA with Nomex"
+   ],
+   "geometry": "9 samples, each 5 cm x 29 cm, on one sample card",
+   "hardware": "Cygnus Pressurized Cargo Module, SAFFIRE"
+  },
+  {
+   "psi_id": "PSI-100",
+   "acronym": "SAFFIRE-III",
+   "title": "Spacecraft Fire Experiment-III",
+   "role": "prevention",
+   "secondary_roles": [],
+   "fuel_class": "solid",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+     },
+     "confidence": "low"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": 30,
+     "max": 30,
+     "unit": "cm/s",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-100_Experimental table_SAFFIRE-3.csv :: Air Flow"
+     },
+     "confidence": "high"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 2,
+   "data_availability": "run_table_partial",
+   "publications": 3,
+   "start_date": "2017-04-18",
+   "end_date": null,
+   "fuels": [
+    "cotton-fiberglass fabric (SIBAL)"
+   ],
+   "geometry": "Large sample, 94 cm x 40.6 cm",
+   "hardware": "Saffire III enclosure in Cygnus"
+  },
+  {
+   "psi_id": "PSI-102",
+   "acronym": "SAME",
+   "title": "Smoke and Aerosol Measurement Experiment",
+   "role": "detection",
+   "secondary_roles": [],
+   "fuel_class": "aerosol",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+     },
+     "confidence": "low"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": 5,
+     "max": 10,
+     "unit": "cm/s",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-102_Experimental table_SAME.csv :: Air Flow (cm/s)"
+     },
+     "confidence": "high"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 8,
+   "data_availability": "run_table_partial",
+   "publications": 16,
+   "start_date": "2001-03-02",
+   "end_date": "2008-02-28",
+   "fuels": [
+    "Teflon",
+    "Kapton",
+    "silicone rubber",
+    "lampwick",
+    "dibutyl phthalate"
+   ],
+   "geometry": "Overheated samples in the glovebox",
+   "hardware": "Comparative Soot Diagnostic hardware"
+  },
+  {
+   "psi_id": "PSI-101",
+   "acronym": "SAME-R",
+   "title": "Smoke Aerosol Measurement Experiment-Reflight",
+   "role": "detection",
+   "secondary_roles": [],
+   "fuel_class": "aerosol",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+     },
+     "confidence": "low"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": 0,
+     "max": 8.1,
+     "unit": "cm/s",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-101_Experimental table_SAME-R.csv :: Inlet velocity (cm/s)"
+     },
+     "confidence": "high"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 109,
+   "data_availability": "run_table_partial",
+   "publications": 6,
+   "start_date": "2010-07-01",
+   "end_date": "2010-09-30",
+   "fuels": [
+    "Kapton",
+    "silicone",
+    "lampwick",
+    "Teflon",
+    "Pyrell foam"
+   ],
+   "geometry": "Overheated samples in the glovebox",
+   "hardware": "Comparative Soot Diagnostic hardware"
+  },
+  {
+   "psi_id": "PSI-47",
+   "acronym": "DAFT / DAFT-2",
+   "title": "Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2",
+   "role": "detection",
+   "secondary_roles": [],
+   "fuel_class": "aerosol",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+     },
+     "confidence": "low"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 2,
+   "data_availability": "run_log_only",
+   "publications": 2,
+   "start_date": "2003-03-01",
+   "end_date": "2009-06-01",
+   "fuels": [
+    "Arizona Road Dust (test aerosol)"
+   ],
+   "geometry": "Aerosol held in 15-liter Mylar bags",
+   "hardware": "TSI P-Trak"
+  },
+  {
+   "psi_id": "PSI-69",
+   "acronym": "FLEX",
+   "title": "Flame Extinguishment Experiment",
+   "role": "suppression",
+   "secondary_roles": [],
+   "fuel_class": "liquid_droplet",
+   "conditions": {
+    "o2_percent": {
+     "min": 12,
+     "max": 34,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-69_Experimental table_FLEX.csv :: O initial ambient composition; mole fraction"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 70.2,
+     "max": 309.3,
+     "unit": "kPa",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-69_Experimental table_FLEX.csv :: Ambient pressure; mmHg"
+     },
+     "confidence": "high"
+    },
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 274,
+   "data_availability": "run_table_with_conditions",
+   "publications": 51,
+   "start_date": "2007-08-01",
+   "end_date": "2016-07-31",
+   "fuels": [
+    "methanol",
+    "heptane"
+   ],
+   "geometry": "Single droplets, about 1 to 5 mm",
+   "hardware": "Combustion Integrated Rack (CIR), Multi-user Droplet Combustion Apparatus"
+  },
+  {
+   "psi_id": "PSI-68",
+   "acronym": "FLEX-2",
+   "title": "Flame Extinguishment Experiment - 2",
+   "role": "fundamental",
+   "secondary_roles": [
+    "suppression"
+   ],
+   "fuel_class": "liquid_droplet",
+   "conditions": {
+    "o2_percent": {
+     "min": 17,
+     "max": 30,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-68_Experimental table_Flex2.csv :: Oxygen Mole Fraction"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 50.7,
+     "max": 304,
+     "unit": "kPa",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-68_Experimental table_Flex2.csv :: Ambient Pressure (atm)"
+     },
+     "confidence": "high"
+    },
+    "flow_cm_s": {
+     "min": 0.1,
+     "max": 5,
+     "unit": "cm/s",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-68_Experimental table_Flex2.csv :: Flow Velocity (cm/s)"
+     },
+     "confidence": "high"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 8,
+   "data_availability": "run_table_with_conditions",
+   "publications": 48,
+   "start_date": "2016-08-12",
+   "end_date": "2019-09-30",
+   "fuels": [
+    "iso-octane",
+    "n-octane",
+    "heptane",
+    "decane",
+    "ethanol",
+    "propanol-glycerol",
+    "heptane-iso-octane"
+   ],
+   "geometry": "Droplets, 1.5 to 5 mm initial diameter",
+   "hardware": "Combustion Integrated Rack (CIR), Multi-user Droplet Combustion Apparatus (MDCA)"
+  },
+  {
+   "psi_id": "PSI-39",
+   "acronym": "CFI",
+   "title": "Cool Flames Investigation",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "liquid_droplet",
+   "conditions": {
+    "o2_percent": {
+     "min": 17,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-39_Experimental table_CFI.csv :: Oxygen"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 50.7,
+     "max": 506.6,
+     "unit": "kPa",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-39_Experimental table_CFI.csv :: Pressure"
+     },
+     "confidence": "high"
+    },
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 87,
+   "data_availability": "run_table_with_conditions",
+   "publications": 7,
+   "start_date": "2020-10-01",
+   "end_date": "2021-10-20",
+   "fuels": [
+    "n-dodecane",
+    "n-dodecane / iso-dodecane mixtures"
+   ],
+   "geometry": "Droplets suspended on needles or fibers",
+   "hardware": "Multi-User Droplet Combustion Apparatus (MDCA), Combustion Integrated Rack (CIR)"
+  },
+  {
+   "psi_id": "PSI-20",
+   "acronym": "ACME BRE",
+   "title": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator",
+   "role": "prevention",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 40,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-20_Experimental table_ACME BRE.csv :: Oxygen Conc (percent)"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": null,
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 18,
+   "data_availability": "run_table_partial",
+   "publications": 16,
+   "start_date": "2010-01-01",
+   "end_date": "2025-02-08",
+   "fuels": [
+    "ethylene (C2H4)",
+    "methane (CH4)",
+    "nitrogen-diluted mixtures"
+   ],
+   "geometry": "Porous circular burners, 25 and 50 mm diameter",
+   "hardware": "Combustion Integrated Rack (CIR), ACME"
+  },
+  {
+   "psi_id": "PSI-10",
+   "acronym": "ACME Flame Design",
+   "title": "Advanced Combustion via Microgravity Experiments / Flame Design",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": {
+     "min": 19.8,
+     "max": 40,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-10_Experimental table_Flame Design_Normal Flame.csv :: XO2 (init) (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 94.4,
+     "max": 131.4,
+     "unit": "kPa",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-10_Experimental table_Flame Design_Normal Flame.csv :: pinit (atm) (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
+     },
+     "confidence": "high"
+    },
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 327,
+   "data_availability": "run_table_with_conditions",
+   "publications": 33,
+   "start_date": "1999-01-14",
+   "end_date": "2025-04-30",
+   "fuels": [
+    "ethylene (C2H4)",
+    "propane (C3H8)"
+   ],
+   "geometry": "Spherical diffusion flames, normal and inverse",
+   "hardware": "Advanced Combustion via Microgravity Experiments (ACME), Combustion Integrated Rack"
+  },
+  {
+   "psi_id": "PSI-159",
+   "acronym": "ACME CFI-G",
+   "title": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": {
+     "min": 18,
+     "max": 40,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-159_Experimental table_CFI-G_Normal Flames.csv :: XO2 before test (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
+     },
+     "confidence": "high"
+    },
+    "pressure_kpa": {
+     "min": 50.7,
+     "max": 304,
+     "unit": "kPa",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-159_Experimental table_CFI-G_Normal Flames.csv :: approx p (bar) (normal-flame table only; inverse-flame XO2 is the burner oxidizer stream, the chamber holds fuel + N2)"
+     },
+     "confidence": "high"
+    },
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 333,
+   "data_availability": "run_table_with_conditions",
+   "publications": 2,
+   "start_date": null,
+   "end_date": null,
+   "fuels": [
+    "ethane",
+    "propane",
+    "butane"
+   ],
+   "geometry": "Spherical diffusion flames, normal and inverse",
+   "hardware": "ACME, Combustion Integrated Rack (CIR)"
+  },
+  {
+   "psi_id": "PSI-21",
+   "acronym": "ACME CLD Flame",
+   "title": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": null,
+    "pressure_kpa": null,
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 32,
+   "data_availability": "run_table_partial",
+   "publications": 18,
+   "start_date": "2006-10-01",
+   "end_date": "2022-05-31",
+   "fuels": [
+    "methane",
+    "ethylene"
+   ],
+   "geometry": "Coflow burner",
+   "hardware": "Combustion Integrated Rack (CIR), ACME"
+  },
+  {
+   "psi_id": "PSI-22",
+   "acronym": "ACME E-FIELD Flames",
+   "title": "Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": null,
+    "pressure_kpa": null,
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 32,
+   "data_availability": "run_table_partial",
+   "publications": 25,
+   "start_date": "2016-11-18",
+   "end_date": "2020-11-17",
+   "fuels": [
+    "methane",
+    "ethylene"
+   ],
+   "geometry": "Gas-jet and coflow burners with a mesh electrode",
+   "hardware": "Combustion Integrated Rack (CIR), ACME"
+  },
+  {
+   "psi_id": "PSI-23",
+   "acronym": "ACME s-Flame",
+   "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 30,
+     "unit": "%",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-23_Experimental table_ACME s-Flame.csv :: Atmosphere* (approximate values)"
+     },
+     "confidence": "medium"
+    },
+    "pressure_kpa": null,
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 18,
+   "data_availability": "run_table_partial",
+   "publications": 44,
+   "start_date": "2015-02-05",
+   "end_date": "2019-11-24",
+   "fuels": [
+    "hydrogen",
+    "methane",
+    "ethylene"
+   ],
+   "geometry": "Spherical porous burner",
+   "hardware": "Combustion Integrated Rack (CIR), ACME"
+  },
+  {
+   "psi_id": "PSI-107",
+   "acronym": "SPICE",
+   "title": "Smoke Point In Co-flow Experiment",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+     },
+     "confidence": "low"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": {
+     "min": -5.9,
+     "max": 85.3,
+     "unit": "cm/s",
+     "source": {
+      "type": "table_column",
+      "ref": "PSI-107_Experimental table_Spice.csv :: Air Rate (cm/s)"
+     },
+     "confidence": "high"
+    },
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 469,
+   "data_availability": "run_table_partial",
+   "publications": 9,
+   "start_date": null,
+   "end_date": null,
+   "fuels": [
+    "methane",
+    "ethylene",
+    "propane",
+    "propylene",
+    "propylene mixtures"
+   ],
+   "geometry": "Gas-jet nozzles of 0.41, 0.76 and 1.6 mm in a coflow duct",
+   "hardware": "Microgravity Science Glovebox (MSG)"
+  },
+  {
+   "psi_id": "PSI-106",
+   "acronym": "SLICE",
+   "title": "Structure and Liftoff In Combustion Experiment",
+   "role": "fundamental",
+   "secondary_roles": [],
+   "fuel_class": "gas",
+   "conditions": {
+    "o2_percent": {
+     "min": 21,
+     "max": 21,
+     "unit": "%",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); oxygen is not in the experimental table and the record does not say it was changed, so about 21% (sea-level-equivalent cabin air) is assumed"
+     },
+     "confidence": "low"
+    },
+    "pressure_kpa": {
+     "min": 101.3,
+     "max": 101.3,
+     "unit": "kPa",
+     "source": {
+      "type": "assumed_platform",
+      "ref": "Ran in cabin or module air (glovebox or Cygnus); pressure is not in the experimental table, so about 1 atm is assumed"
+     },
+     "confidence": "low"
+    },
+    "flow_cm_s": null,
+    "gravity_g": {
+     "values": [
+      0
+     ],
+     "source": {
+      "type": "psi_text",
+      "ref": "Project Type: Microgravity Investigation"
+     },
+     "confidence": "high"
+    }
+   },
+   "runs": 12,
+   "data_availability": "run_log_only",
+   "publications": 5,
+   "start_date": null,
+   "end_date": null,
+   "fuels": [
+    "methane",
+    "ethylene",
+    "ethane",
+    "nitrogen-diluted mixtures"
+   ],
+   "geometry": "Exchangeable burner tubes in a fan-driven flow duct",
+   "hardware": null
+  }
+ ]
 }

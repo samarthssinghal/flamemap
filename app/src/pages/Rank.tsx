@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useApp } from '../App'
-import Brief from '../components/Brief'
+import { BriefLine } from '../components/Brief'
 import EnvPicker from '../components/EnvPicker'
+import Gaps from '../components/Gaps'
 import Findings from '../components/Findings'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, SRC_LABEL, fmtRange } from '../lib/data'
 import { flatRank, saveCsv, saveJson } from '../lib/export'
@@ -82,7 +83,7 @@ function Card({ item, idx }: { item: RankedItem; idx: number }) {
 }
 
 export default function Rank() {
-  const { data, env, task, weights, setWeights, envId } = useApp()
+  const { data, env, task, weights, setWeights } = useApp()
   const [showW, setShowW] = useState(false)
   const [copied, setCopied] = useState('')
   const copyLink = () => {
@@ -90,8 +91,6 @@ export default function Rank() {
     try { navigator.clipboard.writeText(window.location.href).then(() => done(true), () => done(false)) } catch { done(false) }
   }
   const ranked = useMemo(() => rank(env, task, weights, data.investigations, data.env.reference_spans), [env, task, weights, data])
-  const gaps = (data.gaps.find((g) => g.environment_id === envId)?.gaps ?? []).filter((g) => g.severity !== 'info')
-  const info = (data.gaps.find((g) => g.environment_id === envId)?.gaps ?? []).filter((g) => g.severity === 'info')
   const wkeys: [keyof Weights, string][] = [['o2', 'Oxygen'], ['pressure', 'Pressure'], ['flow', 'Airflow'], ['gravity', 'Gravity'], ['task', 'Task fit']]
   const exportMeta = { environment: env, task, weights, snapshot: data.insights.snapshot_date }
   return (
@@ -103,15 +102,8 @@ export default function Rank() {
         </p>
       </div>
       <EnvPicker />
-      <Brief />
-      {gaps.length > 0 && (
-        <section className="gaps" aria-label="Evidence gaps">
-          <h2>Evidence gaps for this environment</h2>
-          <ul>{gaps.map((g) => <li key={g.id}><span className="gap-ico" aria-hidden="true">!</span><span>{g.text} <span className="dim">Computed from: {g.computed_from.metric} = {String(g.computed_from.value)}.</span></span></li>)}</ul>
-        </section>
-      )}
-      {info.map((g) => <p key={g.id} className="info">{g.text}</p>)}
-      {envId === 'custom' && <p className="info">Gap statements are precomputed for the preset environments. For a custom environment, read the per-factor results on each card and the evidence map.</p>}
+      <BriefLine />
+      <Gaps />
       <section>
         <div className="list-head">
           <h2>Ranked investigations</h2>

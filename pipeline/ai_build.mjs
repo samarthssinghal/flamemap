@@ -22,6 +22,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { explain, rank } from '../app/src/lib/ranker.ts'
+import { buildAliases, checkSentence as checkCited } from '../app/src/lib/verify.ts'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const DATA = join(HERE, '..', 'app', 'public', 'data')
@@ -57,53 +58,49 @@ const invText = (i, viewKeys) => {
   return s
 }
 const envText = (e) => `${e.name} ${e.o2_percent} % O2 ${e.pressure_kpa} kPa ${e.gravity_g} g ${e.note ?? ''} ${e.sources.map((s) => s.note ?? '').join(' ')}`
-// Digits inside formulas (O2, CO2, SF6, C2H4) are not quantities.
-const numbersIn = (s) => [...String(s).matchAll(/(?<![A-Za-z\d.])\d+(?:\.\d+)?/g)].map((m) => m[0].replace(/\.0+$/, ''))
+const ALIASES = buildAliases(INV)
 
-// Names a sentence can use for an investigation (acronym, without the ACME prefix, each half of "A / B").
-const ALIASES = INV.flatMap((i) => {
-  const names = new Set([i.acronym, i.acronym.replace(/^ACME /, ''), ...i.acronym.split(' / ')])
-  for (const n of [...names]) if (/^SAFFIRE/.test(n)) names.add(n.replace('SAFFIRE', 'Saffire'))
-  return [...names].filter((n) => n.length >= 3).map((n) => ({ id: i.psi_id, re: new RegExp(`(?<![\\w-])${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w-])`) }))
-})
+// What the checks covered, published with the text so the app can show it ("How the AI works").
+const STATS = { sentences: 0, citations: 0, numbers: 0, named_studies: 0, closest_claims: 0, related_bases: 0 }
 
-/** Checks one sentence; returns error strings. envIds: environments the text is shown for. */
+/** Checks one sentence (rules in app/src/lib/verify.ts); returns error strings. envIds: environments the text is shown for. */
 function checkSentence(where, s, { envIds = [], viewKeys = [], closest = false } = {}) {
-  const errs = []
-  if (!s.text || !Array.isArray(s.cites) || s.cites.length === 0) return [`${where}: needs text and at least one cite`]
-  let corpus = ''
-  const citedPsi = new Set()
-  for (const c of s.cites) {
+  // Rankings differ between the environments a shared brief covers, so a number must hold for all of them.
+  const resolve = (c) => {
     if (/^PSI-\d+$/.test(c)) {
-      if (byId[c]) { corpus += ' ' + invText(byId[c], viewKeys); citedPsi.add(c) } else if (modeling[c]) { corpus += ' ' + modeling[c].title; citedPsi.add(c) } else errs.push(`${where}: unknown investigation ${c}`)
-    } else if (/^F\d+$/.test(c)) {
+      if (byId[c]) return [{ text: invText(byId[c], viewKeys), psiId: c }]
+      if (modeling[c]) return [{ text: modeling[c].title, psiId: c }]
+      return [{ error: `unknown investigation ${c}` }]
+    }
+    if (/^F\d+$/.test(c)) {
       const f = findingById[c]
-      if (!f) { errs.push(`${where}: unknown finding ${c}`); continue }
-      corpus += ` ${f.text} ${f.quote ?? ''} ${f.cells.map((x) => `${x.column} ${x.value}`).join(' ')}`
-    } else if (c.startsWith('gap:')) {
+      return f ? [{ text: `${f.text} ${f.quote ?? ''} ${f.cells.map((x) => `${x.column} ${x.value}`).join(' ')}` }] : [{ error: `unknown finding ${c}` }]
+    }
+    if (c.startsWith('gap:')) {
       const [envId, gapId] = c.slice(4).includes('/') ? c.slice(4).split('/') : [null, c.slice(4)]
       const envs = envId ? [envId] : envIds
-      if (!envs.length) { errs.push(`${where}: ${c} needs an environment (gap:<env>/<id>)`); continue }
-      for (const e of envs) {
+      if (!envs.length) return [{ error: `${c} needs an environment (gap:<env>/<id>)` }]
+      return envs.map((e) => {
         const g = (gapsByEnv[e] ?? []).find((x) => x.id === gapId)
-        if (!g) errs.push(`${where}: environment ${e} has no computed gap ${gapId}`)
-        else corpus += ` ${g.text} ${g.computed_from.value}`
-      }
-    } else if (c === 'env' || c.startsWith('env:')) {
-      const envs = c === 'env' ? envIds : [c.slice(4)]
-      for (const e of envs) envById[e] ? (corpus += ' ' + envText(envById[e])) : errs.push(`${where}: unknown environment ${e}`)
-    } else if (c.startsWith('stat:')) {
+        return g ? { text: `${g.text} ${g.computed_from.value}` } : { error: `environment ${e} has no computed gap ${gapId}` }
+      })
+    }
+    if (c === 'env' || c.startsWith('env:')) return (c === 'env' ? envIds : [c.slice(4)]).map((e) => (envById[e] ? { text: envText(envById[e]) } : { error: `unknown environment ${e}` }))
+    if (c.startsWith('stat:')) {
       const v = INSIGHTS[c.slice(5)]
-      if (v === undefined) errs.push(`${where}: unknown insight ${c}`)
-      else corpus += ` ${c.slice(5).replace(/_/g, ' ')} ${JSON.stringify(v)}`
-    } else errs.push(`${where}: cite ${c} is not a PSI ID, finding, gap, env or stat`)
+      return v === undefined ? [{ error: `unknown insight ${c}` }] : [{ text: `${c.slice(5).replace(/_/g, ' ')} ${JSON.stringify(v)}` }]
+    }
+    return [{ error: `cite ${c} is not a PSI ID, finding, gap, env or stat` }]
   }
-  // Rankings differ between the environments a shared brief covers, so a number must hold for all of them.
-  const have = new Set(numbersIn(corpus))
-  for (const n of numbersIn(s.text)) if (!have.has(n)) errs.push(`${where}: number ${n} is not in what it cites (${s.cites.join(', ')})`)
-  for (const a of ALIASES) if (a.re.test(s.text) && !citedPsi.has(a.id)) errs.push(`${where}: names ${byId[a.id].acronym} but does not cite ${a.id}`)
-  if (closest) for (const k of viewKeys) for (const id of citedPsi) if (!views[k].top.includes(id)) errs.push(`${where}: ${id} is not in the top ${TOP} for ${k} (top: ${views[k].top.join(', ')})`)
-  return errs
+  const r = checkCited(where, s, resolve, ALIASES, closest ? viewKeys.map((k) => ({ key: k, top: views[k].top })) : [])
+  if (s.text && s.cites?.length) {
+    STATS.sentences++
+    STATS.citations += s.cites.length
+    STATS.numbers += r.numbers
+    STATS.named_studies += r.named
+    if (closest) STATS.closest_claims++
+  }
+  return r.errors
 }
 
 // ---------- context for the writer ----------
@@ -119,6 +116,17 @@ if (process.argv.includes('--context')) {
   for (const [e, gs] of Object.entries(gapsByEnv)) for (const g of gs) md += `- gap:${e}/${g.id} (${g.severity}): ${g.text}\n`
   md += '\n## Findings\n'
   for (const f of FINDINGS) md += `- ${f.id} [${f.kind}] ${f.psi_ids.join(', ')}: ${f.text}\n`
+  // What each investigation tested, as the checker sees it (invText). "assumed" values were not recorded.
+  const cond = (c, unit) => {
+    if (!c || (c.min === null && c.max === null)) return 'not recorded'
+    const r = c.min === c.max ? `${c.min}` : `${c.min ?? '?'} to ${c.max ?? '?'}`
+    return `${r} ${unit}${c.confidence === 'low' ? ' (assumed, not recorded)' : ''}`
+  }
+  md += '\n## Investigations\n'
+  for (const i of INV) md += `- ${i.psi_id} ${i.acronym}: ${i.title}. Role ${i.fire_safety_role}${i.secondary_roles.length ? ` (also ${i.secondary_roles.join(', ')})` : ''}; fuel class ${i.fuel_class}. O2 ${cond(i.conditions.o2_percent, '%')}; pressure ${cond(i.conditions.pressure_kpa, 'kPa')}; airflow ${cond(i.conditions.flow_cm_s, 'cm/s')}; gravity ${i.conditions.gravity_g.values.join(', ')} g. Runs ${i.evidence.n_runs} (${i.evidence.data_availability}); publications ${i.n_publications}; dates ${i.start_date ?? 'not listed'} to ${i.end_date ?? 'not listed'}. Fuels: ${i.fuel_materials.join(', ')}. Geometry: ${i.geometry ?? 'not listed'}. Hardware: ${i.hardware ?? 'not listed'}.\n`
+  md += '\n## Statistics (cite as stat:<key>)\n'
+  for (const [k, v] of Object.entries(INSIGHTS)) md += `- stat:${k} = ${JSON.stringify(v)}\n`
+  ctx.investigations = INV.map((i) => ({ psi_id: i.psi_id, acronym: i.acronym, title: i.title, role: i.fire_safety_role, secondary_roles: i.secondary_roles, fuel_class: i.fuel_class, conditions: i.conditions, runs: i.evidence.n_runs, data_availability: i.evidence.data_availability, publications: i.n_publications, start_date: i.start_date, end_date: i.end_date, fuels: i.fuel_materials, geometry: i.geometry, hardware: i.hardware }))
   writeFileSync(join(AI, 'context.json'), JSON.stringify(ctx, null, 1) + '\n')
   writeFileSync(join(AI, 'context.md'), md)
   console.log('wrote pipeline/ai/context.json and context.md')
@@ -155,9 +163,20 @@ const qa = qaIn.map((q, k) => {
   const where = `qa.json ${q.id ?? '#' + (k + 1)}`
   if (!q.id || !q.question || !Array.isArray(q.answer) || !q.answer.length) errors.push(`${where}: needs id, question and answer`)
   q.answer.forEach((s, j) => errors.push(...checkSentence(`${where} sentence ${j + 1}`, s)))
-  return { id: q.id, question: q.question, tags: q.tags ?? [], answer: q.answer.map(({ text, cites }) => ({ text, cites })) }
+  // Paraphrases only help match a visitor's wording to this question (pipeline/embed.mjs); they are reviewed with it.
+  const paraphrases = q.paraphrases ?? []
+  if (!Array.isArray(paraphrases) || paraphrases.some((p) => typeof p !== 'string' || !p.trim())) errors.push(`${where}: paraphrases must be non-empty strings`)
+  return { id: q.id, question: q.question, tags: q.tags ?? [], paraphrases, answer: q.answer.map(({ text, cites }) => ({ text, cites })) }
 })
 if (new Set(qa.map((q) => q.id)).size !== qa.length) errors.push('qa.json: duplicate id')
+{
+  const seen = new Map()
+  for (const q of qa) for (const p of [q.question, ...q.paraphrases]) {
+    const k = p.toLowerCase().replace(/[^a-z0-9%]+/g, ' ').trim()
+    if (seen.has(k) && seen.get(k) !== q.id) errors.push(`qa.json ${q.id}: "${p}" is also a wording of ${seen.get(k)}`)
+    seen.set(k, q.id)
+  }
+}
 
 // ---------- R06e related investigations ----------
 // A reason may only claim a connection the data supports.
@@ -186,6 +205,7 @@ for (const [from, list] of Object.entries(relatedIn)) {
     const where = `related.json ${from} -> ${r.psi_id}`
     if (!byId[r.psi_id] || r.psi_id === from) errors.push(`${where}: bad target`)
     if (!r.basis?.length) errors.push(`${where}: needs a basis`)
+    STATS.related_bases += r.basis?.length ?? 0
     for (const b of r.basis ?? []) if (!BASIS[b]) errors.push(`${where}: unknown basis ${b}`); else if (byId[r.psi_id] && !BASIS[b](from, r.psi_id)) errors.push(`${where}: basis "${b}" is not supported by the data`)
     errors.push(...checkSentence(`${where} (${j + 1})`, { text: r.reason, cites: [from, r.psi_id, ...(r.cites ?? [])] }))
     return { psi_id: r.psi_id, reason: r.reason, basis: r.basis, hardware_family: r.basis?.includes('hardware') ? family(byId[from]) : null }
@@ -204,7 +224,14 @@ if (GEN.human_reviewed) {
   if (!GEN.reviewed_by || !GEN.reviewed_date) { console.error('meta.json: human_reviewed needs reviewed_by and reviewed_date'); process.exit(1) }
   if (GEN.reviewed_hash !== CONTENT_HASH) { console.error(`meta.json: AI text changed since ${GEN.reviewed_by} reviewed it (hash ${GEN.reviewed_hash}, now ${CONTENT_HASH}); review docs/AI_TEXT_REVIEW.md again`); process.exit(1) }
 }
-const label = { generated_with: GEN.generated_with, model: GEN.model, date: GEN.date, checked: 'Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).', human_reviewed: GEN.human_reviewed ?? false }
+const label = {
+  generated_with: GEN.generated_with, model: GEN.model, date: GEN.date,
+  checked: 'Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).',
+  human_reviewed: GEN.human_reviewed ?? false,
+  ...(GEN.human_reviewed ? { reviewed_by: GEN.reviewed_by, reviewed_date: GEN.reviewed_date } : {}),
+  content_hash: CONTENT_HASH,
+  checks: { ...STATS, findings: FINDINGS.length, context_kb: Math.round(readFileSync(join(AI, 'context.md')).length / 1024) },
+}
 const w = (f, o) => writeFileSync(join(DATA, f), JSON.stringify(o, null, 1))
 w('briefs.json', { ...label, briefs }); w('qa.json', { ...label, questions: qa }); w('related.json', { ...label, related })
 // ---------- review sheet ----------
@@ -222,10 +249,13 @@ let md = `# AI text review sheet (H5)\n\nGenerated by \`node pipeline/ai_build.m
 md += `**Already checked by script:** every sentence has citations that resolve; every number appears in what it cites; every study named is cited; "closest" points cite only top-5 studies for that view (default weights).\n\n`
 md += `**What a person checks:** does each sentence say what its sources say, without overstating? Is anything misleading for a mission designer? For each top-ranked study, the ranking is in pipeline/ai/context.md.\n\n`
 md += `**Sign-off:** when every item below is fine, set in \`pipeline/ai/meta.json\`: \`"human_reviewed": true, "reviewed_by": "<initials>", "reviewed_date": "<YYYY-MM-DD>", "reviewed_hash": "${CONTENT_HASH}"\`, then run \`node pipeline/ai_build.mjs\`. Write problems under Notes at the end and leave it unsigned; the text will be fixed and the hash will change.\n\n`
-md += `## Briefs (${briefs.length}, shown on the Rank page)\n\n`
+md += `## Briefs (${briefs.length}, shown on the Briefing page, one line on Rank)\n\n`
 for (const b of briefs) md += `### ${b.env_ids.map((e) => envById[e].name).join(' / ')} · ${ENV.tasks.find((t) => t.id === b.task_id).name}\n\n${b.points.map((p) => sentence(p, b.env_ids)).join('')}\n`
-md += `## Ask the evidence (${qa.length} questions)\n\n`
-for (const q of qa) md += `### ${q.question}\n\n${q.answer.map((s) => sentence(s)).join('')}\n`
+const prevIds = new Set(GEN.previous_review?.qa_ids ?? [])
+const nNew = qa.filter((q) => !prevIds.has(q.id)).length
+md += `## Ask the evidence (${qa.length} questions${prevIds.size ? `; ${nNew} marked **NEW** since the review of ${GEN.previous_review.reviewed_date}, the others were reviewed then and have only gained paraphrases` : ''})\n\n`
+md += `Paraphrases (_Also matches_) are not shown on the site; they decide which answer a visitor's wording reaches, so check that each one is really the same question.\n\n`
+for (const q of qa) md += `### ${prevIds.size && !prevIds.has(q.id) ? '**NEW** ' : ''}${q.question}\n\n${q.paraphrases.length ? `_Also matches:_ ${q.paraphrases.map((p) => `“${p}”`).join(' · ')}\n\n` : ''}${q.answer.map((s) => sentence(s)).join('')}\n`
 md += `## Studies like this one (${Object.values(related).flat().length} links, Explorer drawer)\n\n`
 for (const [from, list] of Object.entries(related)) md += `### ${byId[from].acronym} (${from})\n\n${list.map((r) => `- **${byId[r.psi_id].acronym}** [${r.basis.join(', ')}]: ${r.reason}\n`).join('')}\n`
 md += `## Notes\n\n-\n`

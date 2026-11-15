@@ -1,5 +1,18 @@
+import { Link } from 'react-router-dom'
 import { useApp } from '../App'
 import { AiNote, Cites } from './Cites'
+
+/** One-line version of the brief for the Rank page, linking to the full briefing. */
+export function BriefLine() {
+  const { data, envId, task } = useApp()
+  const head = data.briefs.find((x) => x.env_ids.includes(envId) && x.task_id === task.id)?.points.find((p) => p.kind === 'headline')
+  if (!head) return null
+  return (
+    <p className="info brief-line">
+      <span className="chip k-ai">AI briefing</span> {head.text} <Cites cites={head.cites} envId={envId} /> <Link to="/">Read the full briefing →</Link>
+    </p>
+  )
+}
 
 const KIND: Record<string, string> = { closest: 'Closest evidence', found: 'What it found', untested: 'Not tested', next: 'Read next' }
 
