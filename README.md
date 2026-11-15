@@ -14,7 +14,10 @@ node pipeline/ai_build.mjs          # checks the AI-written text against the com
                                     #   and docs/AI_TEXT_REVIEW.md (add --context to regenerate pipeline/ai/context.*)
 cd app
 npm install
-npm run test                        # ranker unit tests (13)
+node ../pipeline/embed.mjs          # semantic search for Ask the evidence: embeds the checked questions, copies the
+                                    #   embedding model and its runtime into app/public (optional: without it, Ask
+                                    #   falls back to keyword matching)
+npm run test                        # ranker, checker and matcher unit tests (22)
 npm run dev                         # local site
 npm run build                       # static site in app/dist
 ```

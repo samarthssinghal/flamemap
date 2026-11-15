@@ -1,52 +1,46 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useApp } from '../App'
 import { AiNote, CitedText } from '../components/Cites'
-import type { QA } from '../lib/types'
+import { checkedAnswers, keywordAnswers, type Answer, type AnswerResult } from '../lib/answer'
+import { loadSemantic, onSemanticState, semanticState, type SemanticState } from '../lib/semantic'
 
-const STOP = new Set('a an and any are as at be by can could do does for from has have how i in is it its of on or than that the there this to was were what when where which who why will with would'.split(' '))
-const SYN: Record<string, string> = { o2: 'oxygen', moon: 'lunar', fabric: 'cotton', extinguish: 'suppress', extinguishment: 'suppress', suppression: 'suppress', suppressant: 'suppress', suppressants: 'suppress', detector: 'detect', detectors: 'detect', detection: 'detect', smoke: 'smoke', ventilation: 'airflow', fan: 'airflow', flow: 'airflow', suit: 'spacesuit', eva: 'spacesuit', gravity: 'gravity', habitat: 'habitat', base: 'habitat' }
-const words = (s: string) => s.toLowerCase().replace(/[^a-z0-9%.\s-]/g, ' ').split(/\s+/).filter((w) => w && !STOP.has(w)).map((w) => SYN[w] ?? SYN[w.replace(/s$/, '')] ?? w.replace(/s$/, ''))
-
-/** Ranks curated questions by word overlap with the visitor's question (question and tags count more than answer text). */
-function search(q: string, qa: QA[]): QA[] {
-  const want = new Set(words(q))
-  if (!want.size) return []
-  return qa
-    .map((x) => {
-      const head = new Set(words(`${x.question} ${x.tags.join(' ')}`))
-      const body = new Set(words(x.answer.map((a) => a.text).join(' ')))
-      let score = 0
-      for (const w of want) score += head.has(w) ? 2 : body.has(w) ? 1 : 0
-      return { x, score: score / Math.sqrt(want.size) }
-    })
-    .filter((r) => r.score >= 1)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .map((r) => r.x)
-}
-
-function Answer({ x }: { x: QA }) {
+function AnswerCard({ x }: { x: Answer }) {
   return (
     <article className="panel answer">
       <h3>{x.question}</h3>
-      {x.answer.map((s, k) => <p key={k}><CitedText s={s} /></p>)}
+      {x.sentences.map((s, k) => <p key={k}><CitedText s={s} /></p>)}
     </article>
   )
 }
 
-/** "Ask the evidence" (R06c): curated questions with cited answers. Static, so it needs no API key or server. */
+const METHOD: Record<SemanticState, string> = {
+  idle: 'Your question is matched to the checked answers in your browser.',
+  loading: 'Matching by key words for now. A small language model that matches by meaning is loading in your browser (about 37 MB, once).',
+  ready: 'Matched by meaning, with a small language model running in your browser. It compares your question with the checked questions; it does not write text.',
+  failed: 'Matched by key words (the in-browser language model could not load).',
+}
+
+/** "Ask the evidence" (R06c): checked answers written by AI at build time, matched to the question in the browser. No API key or server. */
 export default function Ask() {
   const { data } = useApp()
   const [params] = useSearchParams()
   const [q, setQ] = useState(() => params.get('q') ?? '')
   const [asked, setAsked] = useState(() => params.get('q') ?? '')
-  const hits = useMemo(() => search(asked, data.qa), [asked, data.qa])
-  const findingHits = useMemo(() => {
-    const want = new Set(words(asked))
-    if (!want.size) return []
-    return data.findings.filter((f) => words(f.text).filter((w) => want.has(w)).length >= Math.min(2, want.size)).slice(0, 4)
-  }, [asked, data.findings])
+  const [sem, setSem] = useState<SemanticState>(semanticState())
+  const [matched, setMatched] = useState<{ q: string; r: AnswerResult } | null>(null)
+  // Keyword matching is instant; the provider's result (by meaning, once the model is ready) replaces it.
+  const quick = useMemo(() => (asked.trim() ? keywordAnswers(asked, data) : null), [asked, data])
+  const result = matched?.q === asked ? matched.r : quick
+
+  useEffect(() => onSemanticState(setSem), [])
+  useEffect(() => {
+    if (!asked.trim()) return
+    let live = true
+    checkedAnswers.ask(asked, data).then((r) => { if (live) setMatched({ q: asked, r }) })
+    return () => { live = false }
+  }, [asked, data])
+
   const ask = (s: string) => { setQ(s); setAsked(s) }
   return (
     <>
@@ -57,22 +51,32 @@ export default function Ask() {
       <form className="panel ask" role="search" onSubmit={(e) => { e.preventDefault(); setAsked(q) }}>
         <label htmlFor="ask-q">Your question</label>
         <div className="ask-row">
-          <input id="ask-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Has any material been burned at high oxygen?" />
+          <input id="ask-q" type="search" value={q} onFocus={() => void loadSemantic()} onChange={(e) => setQ(e.target.value)} placeholder="e.g. If the fans are turned off, does a fire go out?" />
           <button type="submit">Search answers</button>
         </div>
-        <p className="dim">This matches your question against {data.qa.length} answered questions. It does not generate new text, so an answer is always one that was checked when the site was built.</p>
+        <p className="dim">
+          {data.qa.length} answers were written by AI ({data.ai.generated_with.split(',')[0]}) when the site was built, checked sentence by sentence against the data{data.ai.human_reviewed ? ' and reviewed by a person' : ''}. {METHOD[sem]} No AI service is called and no API key is needed. <Link to="/ai">How the AI works</Link>
+        </p>
       </form>
       <div role="status" aria-live="polite">
-        {asked && hits.length === 0 && (
-          <p className="info">No checked answer matches “{asked}”. FlameMap answers only what the PSI evidence covers and does not predict fire risk. Try one of the questions below, or search the <Link to="/explorer">Explorer</Link>.</p>
+        {asked && result && result.answers.length === 0 && (
+          <div className="info">
+            <p>No checked answer matches “{asked}”. FlameMap answers only what the PSI evidence covers and does not predict fire risk.</p>
+            {result.nearby.length > 0 ? (
+              <>Closest checked questions: <ul>{result.nearby.map((n) => <li key={n.id}><button className="link" onClick={() => ask(n.question)}>{n.question}</button></li>)}</ul></>
+            ) : <p>Try one of the questions below, or search the <Link to="/explorer">Explorer</Link>.</p>}
+          </div>
         )}
-        {hits.map((x) => <Answer key={x.id} x={x} />)}
-        {hits.length > 0 && <AiNote what="These answers were" />}
-        {findingHits.length > 0 && (
+        {result?.answers.map((x) => <AnswerCard key={x.id} x={x} />)}
+        {result && result.answers.length > 0 && <AiNote what="These answers were" />}
+        {result && result.answers.length > 0 && result.nearby.length > 0 && (
+          <p className="dim">Also close: {result.nearby.map((n, k) => <span key={n.id}>{k > 0 && ' · '}<button className="link" onClick={() => ask(n.question)}>{n.question}</button></span>)}</p>
+        )}
+        {result && result.findings.length > 0 && (
           <section className="panel">
             <h3>Related findings</h3>
             <ul className="findings compact">
-              {findingHits.map((f) => <li key={f.id}><CitedText s={{ text: f.text, cites: [...f.psi_ids, f.id] }} /></li>)}
+              {result.findings.map((f) => <li key={f.id}><CitedText s={{ text: f.text, cites: [...f.psi_ids, f.id] }} /></li>)}
             </ul>
           </section>
         )}

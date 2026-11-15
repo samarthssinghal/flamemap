@@ -22,6 +22,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { explain, rank } from '../app/src/lib/ranker.ts'
+import { buildAliases, checkSentence as checkCited } from '../app/src/lib/verify.ts'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const DATA = join(HERE, '..', 'app', 'public', 'data')
@@ -57,61 +58,49 @@ const invText = (i, viewKeys) => {
   return s
 }
 const envText = (e) => `${e.name} ${e.o2_percent} % O2 ${e.pressure_kpa} kPa ${e.gravity_g} g ${e.note ?? ''} ${e.sources.map((s) => s.note ?? '').join(' ')}`
-// Digits inside formulas (O2, CO2, SF6, C2H4) are not quantities.
-const numbersIn = (s) => [...String(s).matchAll(/(?<![A-Za-z\d.])\d+(?:\.\d+)?/g)].map((m) => m[0].replace(/\.0+$/, ''))
-
-// Names a sentence can use for an investigation (acronym, without the ACME prefix, each half of "A / B").
-const ALIASES = INV.flatMap((i) => {
-  const names = new Set([i.acronym, i.acronym.replace(/^ACME /, ''), ...i.acronym.split(' / ')])
-  for (const n of [...names]) if (/^SAFFIRE/.test(n)) names.add(n.replace('SAFFIRE', 'Saffire'))
-  return [...names].filter((n) => n.length >= 3).map((n) => ({ id: i.psi_id, re: new RegExp(`(?<![\\w-])${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w-])`) }))
-})
+const ALIASES = buildAliases(INV)
 
 // What the checks covered, published with the text so the app can show it ("How the AI works").
 const STATS = { sentences: 0, citations: 0, numbers: 0, named_studies: 0, closest_claims: 0, related_bases: 0 }
 
-/** Checks one sentence; returns error strings. envIds: environments the text is shown for. */
+/** Checks one sentence (rules in app/src/lib/verify.ts); returns error strings. envIds: environments the text is shown for. */
 function checkSentence(where, s, { envIds = [], viewKeys = [], closest = false } = {}) {
-  const errs = []
-  if (!s.text || !Array.isArray(s.cites) || s.cites.length === 0) return [`${where}: needs text and at least one cite`]
-  STATS.sentences++
-  STATS.citations += s.cites.length
-  STATS.numbers += numbersIn(s.text).length
-  STATS.named_studies += new Set(ALIASES.filter((a) => a.re.test(s.text)).map((a) => a.id)).size
-  if (closest) STATS.closest_claims++
-  let corpus = ''
-  const citedPsi = new Set()
-  for (const c of s.cites) {
+  // Rankings differ between the environments a shared brief covers, so a number must hold for all of them.
+  const resolve = (c) => {
     if (/^PSI-\d+$/.test(c)) {
-      if (byId[c]) { corpus += ' ' + invText(byId[c], viewKeys); citedPsi.add(c) } else if (modeling[c]) { corpus += ' ' + modeling[c].title; citedPsi.add(c) } else errs.push(`${where}: unknown investigation ${c}`)
-    } else if (/^F\d+$/.test(c)) {
+      if (byId[c]) return [{ text: invText(byId[c], viewKeys), psiId: c }]
+      if (modeling[c]) return [{ text: modeling[c].title, psiId: c }]
+      return [{ error: `unknown investigation ${c}` }]
+    }
+    if (/^F\d+$/.test(c)) {
       const f = findingById[c]
-      if (!f) { errs.push(`${where}: unknown finding ${c}`); continue }
-      corpus += ` ${f.text} ${f.quote ?? ''} ${f.cells.map((x) => `${x.column} ${x.value}`).join(' ')}`
-    } else if (c.startsWith('gap:')) {
+      return f ? [{ text: `${f.text} ${f.quote ?? ''} ${f.cells.map((x) => `${x.column} ${x.value}`).join(' ')}` }] : [{ error: `unknown finding ${c}` }]
+    }
+    if (c.startsWith('gap:')) {
       const [envId, gapId] = c.slice(4).includes('/') ? c.slice(4).split('/') : [null, c.slice(4)]
       const envs = envId ? [envId] : envIds
-      if (!envs.length) { errs.push(`${where}: ${c} needs an environment (gap:<env>/<id>)`); continue }
-      for (const e of envs) {
+      if (!envs.length) return [{ error: `${c} needs an environment (gap:<env>/<id>)` }]
+      return envs.map((e) => {
         const g = (gapsByEnv[e] ?? []).find((x) => x.id === gapId)
-        if (!g) errs.push(`${where}: environment ${e} has no computed gap ${gapId}`)
-        else corpus += ` ${g.text} ${g.computed_from.value}`
-      }
-    } else if (c === 'env' || c.startsWith('env:')) {
-      const envs = c === 'env' ? envIds : [c.slice(4)]
-      for (const e of envs) envById[e] ? (corpus += ' ' + envText(envById[e])) : errs.push(`${where}: unknown environment ${e}`)
-    } else if (c.startsWith('stat:')) {
+        return g ? { text: `${g.text} ${g.computed_from.value}` } : { error: `environment ${e} has no computed gap ${gapId}` }
+      })
+    }
+    if (c === 'env' || c.startsWith('env:')) return (c === 'env' ? envIds : [c.slice(4)]).map((e) => (envById[e] ? { text: envText(envById[e]) } : { error: `unknown environment ${e}` }))
+    if (c.startsWith('stat:')) {
       const v = INSIGHTS[c.slice(5)]
-      if (v === undefined) errs.push(`${where}: unknown insight ${c}`)
-      else corpus += ` ${c.slice(5).replace(/_/g, ' ')} ${JSON.stringify(v)}`
-    } else errs.push(`${where}: cite ${c} is not a PSI ID, finding, gap, env or stat`)
+      return v === undefined ? [{ error: `unknown insight ${c}` }] : [{ text: `${c.slice(5).replace(/_/g, ' ')} ${JSON.stringify(v)}` }]
+    }
+    return [{ error: `cite ${c} is not a PSI ID, finding, gap, env or stat` }]
   }
-  // Rankings differ between the environments a shared brief covers, so a number must hold for all of them.
-  const have = new Set(numbersIn(corpus))
-  for (const n of numbersIn(s.text)) if (!have.has(n)) errs.push(`${where}: number ${n} is not in what it cites (${s.cites.join(', ')})`)
-  for (const a of ALIASES) if (a.re.test(s.text) && !citedPsi.has(a.id)) errs.push(`${where}: names ${byId[a.id].acronym} but does not cite ${a.id}`)
-  if (closest) for (const k of viewKeys) for (const id of citedPsi) if (!views[k].top.includes(id)) errs.push(`${where}: ${id} is not in the top ${TOP} for ${k} (top: ${views[k].top.join(', ')})`)
-  return errs
+  const r = checkCited(where, s, resolve, ALIASES, closest ? viewKeys.map((k) => ({ key: k, top: views[k].top })) : [])
+  if (s.text && s.cites?.length) {
+    STATS.sentences++
+    STATS.citations += s.cites.length
+    STATS.numbers += r.numbers
+    STATS.named_studies += r.named
+    if (closest) STATS.closest_claims++
+  }
+  return r.errors
 }
 
 // ---------- context for the writer ----------
