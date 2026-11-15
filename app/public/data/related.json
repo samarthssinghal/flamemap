@@ -3,7 +3,7 @@
  "model": "claude-opus-5-5",
  "date": "2026-11-14",
  "checked": "Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).",
- "human_reviewed": false,
+ "human_reviewed": true,
  "related": {
   "PSI-25": [
    {
