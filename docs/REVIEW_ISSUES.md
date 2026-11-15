@@ -10,12 +10,12 @@ Status values: `todo` · `in progress` · `done` · `skipped`. Effort is a rough
 | R03 | High | — | done | No "findings": app ranks conditions, never interprets results (done via R06a) |
 | R04 | High | 2–3 h | done | Pipeline not reproducible: hand-copied constants, no raw data in repo |
 | R05 | High | 1 h (human) | in progress | Human verification steps not done (H1, H4, H5, links, phone) |
-| R06 | Critical | see subtasks | todo | Add the super-intelligence (SI) layer the challenge title asks for (subtasks R06a–R06e) |
-| R06a | Critical | 3–4 h | todo | SI: AI-extracted key findings per investigation, each with a quote and source (merges with R03) |
-| R06b | Critical | 2–3 h | todo | SI: AI interpretation brief for each environment + task (what the evidence says, what's missing) |
-| R06c | High | 3–4 h | todo | SI: "Ask the evidence" Q&A in the app, answers cited to PSI records only |
-| R06d | High | 1 h | in progress | SI guardrails: machine check that every number/quote in AI text exists in the source; label AI text |
-| R06e | Medium | 1 h | todo | SI: AI-suggested related investigations ("studies like this one") with reasons |
+| R06 | Critical | see subtasks | in progress | Add the super-intelligence (SI) layer the challenge title asks for (subtasks R06a–R06e) |
+| R06a | Critical | 3–4 h | done | SI: AI-extracted key findings per investigation, each with a quote and source (merges with R03) |
+| R06b | Critical | 2–3 h | done | SI: AI interpretation brief for each environment + task (what the evidence says, what's missing) |
+| R06c | High | 3–4 h | in progress | SI: "Ask the evidence" Q&A in the app, answers cited to PSI records only |
+| R06d | High | 1 h | done | SI guardrails: machine check that every number/quote in AI text exists in the source; label AI text |
+| R06e | Medium | 1 h | done | SI: AI-suggested related investigations ("studies like this one") with reasons |
 | R07 | High | 30 min | todo | Same metric shows two numbers (387 vs 392); custom env has no gaps |
 | R27 | High | 1–2 h | in progress | Add NASA-stated findings from the Researcher's Guide (cited by page); seeds R06a with verified findings |
 | R28 | High | 1 h | todo | "Three misconceptions" panel: NASA's myths about fire in space vs. the PSI evidence that disproved them |
@@ -98,6 +98,14 @@ Note: PLAN.md section 10 forbids "live LLM chat". R06c overrides that and needs 
 **R06d — Guardrails.** Build-time check: every number and quote in AI text must appear in the cited source or computed data; fail the build otherwise. Labels "AI-generated, based on PSI record text" and a link to the source on every AI sentence. Human review (H5) before submission.
 
 **R06e — Related studies.** Model suggests 2–3 related investigations per record with a one-line reason (shared hardware, fuel, condition range); checked against the data.
+
+**Done 2026-11-14 (R06a, R06b, R06d, R06e; R06c option 3):**
+- R06a: 9 more findings (20 total, covering 11 of the 19 studies), including a new `psi_text` source checked word for word against the cached record field, and two new kinds: `record_stated` (BRE: flames kept burning with no airflow at elevated O2, went out at 21%) and `limitation` (SAME's contaminated particle samples; FLEX extinction diameters too small to measure). Also Guide p. 31 (solid-fuel limit near 10 cm/s, upstream spread), p. 32 (gas-jet smoke onset, SPICE/SLICE) and p. 34 (FLEX cool flames). The record text states very few results; most of it is aims and hypotheses. Still no findings for DAFT, CFI, FLEX-2, CFI-G, Flame Design, CLD, E-FIELD, s-Flame: R35 (PSI reports) is the next source.
+- R06d: `pipeline/ai_build.mjs` runs the app's own `ranker.ts` for all 24 preset × task views and checks every AI sentence: at least one cite; every cite resolves (PSI ID, finding `F<n>`, computed gap, env, computed stat); every number appears in what it cites; every study named by acronym is cited; "closest evidence" cites only top-5 studies. Negative test: four injected errors (wrong count, wrong score, uncited study, non-top-5 study) were all caught. CI runs it and also fails if `pipeline/ai/context.json` is stale.
+- R06b: 18 briefs in `pipeline/ai/briefs.json` cover all 24 views (Moon, rover and Mars share briefs: same atmosphere, same top 5). Shown on Rank as "What the evidence says"; custom environments get no brief (it could not be checked), and a note appears when weights differ from the defaults.
+- R06c: option 3 only. 16 curated questions in `pipeline/ai/qa.json`, new "Ask the evidence" page with keyword matching in the browser (no key, no server, no generated text; `#/ask?q=` links work). The bring-your-own-key free-form mode is not built.
+- R06e + R37: `pipeline/ai/related.json`, 42 links; every PSI `related_glds` link is required in both directions, and each claimed basis (psi_link, hardware family, fuel, role, shared finding) is checked against the data. Shown in the Explorer drawer as "Studies like this one". `?open=PSI-n` now opens the drawer, used by citation links.
+- Open: human review of all AI text (H5; `pipeline/ai/meta.json` `human_reviewed` is false and the app says so), the regeneration script with an API key (AI_PLAN "who generates", option 2), R06c free-form mode.
 
 ### R07 — Inconsistent counts; no gaps for custom env (High)
 Rank page "combined" gap uses `RUN_STATS.near` (ISS 387); Evidence Map recounts from bins (`EvidenceMap.tsx:28-34`, ISS 392).
@@ -239,7 +247,7 @@ Checked against all 24 live PSI records (`/geode-py/ws/repo/investigations/<ID>`
 | R34 | High | 1 h | todo | Show PSI objective, approach, hypothesis and research impacts verbatim (CC0) in Explorer and Compare |
 | R35 | High | 2–3 h | todo | Use PSI's own Reports / Science Documents / Presentations as the source for findings (R06a, R27) |
 | R36 | High | 1 h | todo | Pair each hypothesis with its finding ("tested → found") |
-| R37 | Medium | 30 min | todo | Use PSI `related_glds` for related investigations (replaces hand-built links; feeds R14, R06e) |
+| R37 | Medium | 30 min | done | Use PSI `related_glds` for related investigations (replaces hand-built links; feeds R14, R06e) |
 | R38 | Medium | 30 min | todo | Per-investigation Earth benefits from `researchImpacts` (challenge's Earth objective) |
 | R39 | Medium | 30 min | todo | Publications: keep authors and status; citation export (CSV/BibTeX) |
 | R40 | Medium | 1 h | todo | Data inventory per investigation from PSI file categories; link GRC hardware page |

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useApp } from '../App'
+import Brief from '../components/Brief'
 import EnvPicker from '../components/EnvPicker'
 import Findings from '../components/Findings'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, SRC_LABEL, fmtRange } from '../lib/data'
@@ -102,6 +103,7 @@ export default function Rank() {
         </p>
       </div>
       <EnvPicker />
+      <Brief />
       {gaps.length > 0 && (
         <section className="gaps" aria-label="Evidence gaps">
           <h2>Evidence gaps for this environment</h2>

@@ -1,0 +1,484 @@
+{
+ "generated_with": "Claude Code (Claude Opus 5.5), in a development session, from pipeline/ai/context.md",
+ "model": "claude-opus-5-5",
+ "date": "2026-11-14",
+ "checked": "Every number, cited ID and named investigation is checked against the computed data at build time (pipeline/ai_build.mjs).",
+ "human_reviewed": false,
+ "related": {
+  "PSI-25": [
+   {
+    "psi_id": "PSI-26",
+    "reason": "BASS-II is the follow-on to BASS: same glovebox flow duct and solid fuels, with oxygen now lowered and recorded.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "flow duct in the Microgravity Science Glovebox"
+   },
+   {
+    "psi_id": "PSI-99",
+    "reason": "SAFFIRE-II burned solid samples in a Cygnus vehicle and compared them with burns in normal gravity.",
+    "basis": [
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": null
+   },
+   {
+    "psi_id": "PSI-20",
+    "reason": "BRE emulates burning solids with a gas burner and reports burning at elevated oxygen, which BASS-II did not reach.",
+    "basis": [
+     "role"
+    ],
+    "hardware_family": null
+   }
+  ],
+  "PSI-26": [
+   {
+    "psi_id": "PSI-25",
+    "reason": "BASS-II reflew the BASS hardware with oxygen lowered and recorded in its table.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "flow duct in the Microgravity Science Glovebox"
+   },
+   {
+    "psi_id": "PSI-98",
+    "reason": "SAFFIRE-I burned the same cotton-fiberglass fabric (SIBAL) as BASS, but as one large sample in a Cygnus vehicle.",
+    "basis": [
+     "psi_link",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": null
+   },
+   {
+    "psi_id": "PSI-107",
+    "reason": "PSI links SPICE to BASS: both used a fan-driven flow duct in the station glovebox.",
+    "basis": [
+     "psi_link",
+     "hardware"
+    ],
+    "hardware_family": "flow duct in the Microgravity Science Glovebox"
+   }
+  ],
+  "PSI-98": [
+   {
+    "psi_id": "PSI-99",
+    "reason": "SAFFIRE-II used the same Cygnus flow unit with nine smaller samples of several materials.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "Saffire flow unit in a Cygnus cargo vehicle"
+   },
+   {
+    "psi_id": "PSI-100",
+    "reason": "SAFFIRE-III repeated the large cotton-fiberglass burn at a higher airflow.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "Saffire flow unit in a Cygnus cargo vehicle"
+   },
+   {
+    "psi_id": "PSI-26",
+    "reason": "BASS burned the same cotton-fiberglass fabric at small scale in the station glovebox.",
+    "basis": [
+     "psi_link",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": null
+   }
+  ],
+  "PSI-99": [
+   {
+    "psi_id": "PSI-98",
+    "reason": "SAFFIRE-I used the same Cygnus flow unit for one large cotton-fiberglass sample.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "Saffire flow unit in a Cygnus cargo vehicle"
+   },
+   {
+    "psi_id": "PSI-100",
+    "reason": "SAFFIRE-III is the third flight of the same hardware, with a large sample at higher airflow.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "Saffire flow unit in a Cygnus cargo vehicle"
+   },
+   {
+    "psi_id": "PSI-25",
+    "reason": "BASS-II burned PMMA, also a SAFFIRE-II material, at small scale with oxygen varied.",
+    "basis": [
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": null
+   }
+  ],
+  "PSI-100": [
+   {
+    "psi_id": "PSI-98",
+    "reason": "SAFFIRE-I burned the same large cotton-fiberglass sample at a lower airflow, so the two flights bracket the flow effect.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "Saffire flow unit in a Cygnus cargo vehicle"
+   },
+   {
+    "psi_id": "PSI-99",
+    "reason": "SAFFIRE-II flew the same hardware with several materials and recorded oxygen, which SAFFIRE-III did not.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "Saffire flow unit in a Cygnus cargo vehicle"
+   }
+  ],
+  "PSI-102": [
+   {
+    "psi_id": "PSI-101",
+    "reason": "SAME-R reflew SAME on the same hardware after the first flight's particle samples came back contaminated.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "SAME smoke-measurement instruments"
+   },
+   {
+    "psi_id": "PSI-47",
+    "reason": "DAFT checked the P-Trak particle counter in microgravity as a risk-reduction test for SAME.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "SAME smoke-measurement instruments"
+   }
+  ],
+  "PSI-101": [
+   {
+    "psi_id": "PSI-102",
+    "reason": "SAME is the original flight; SAME-R repeated it with broader conditions and a new instrument.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "SAME smoke-measurement instruments"
+   },
+   {
+    "psi_id": "PSI-47",
+    "reason": "DAFT tested the particle counter used in this family of smoke experiments.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "SAME smoke-measurement instruments"
+   }
+  ],
+  "PSI-47": [
+   {
+    "psi_id": "PSI-102",
+    "reason": "DAFT was the risk-reduction test for SAME's particle counter; SAME then measured smoke from real materials.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "SAME smoke-measurement instruments"
+   },
+   {
+    "psi_id": "PSI-101",
+    "reason": "SAME-R reflew the smoke measurements with broader conditions.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "SAME smoke-measurement instruments"
+   }
+  ],
+  "PSI-69": [
+   {
+    "psi_id": "PSI-68",
+    "reason": "FLEX-2 extended FLEX on the same droplet apparatus to more fuels and atmospheres.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "Multi-user Droplet Combustion Apparatus in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-39",
+    "reason": "PSI links CFI to FLEX: the cool flames FLEX discovered became the subject of CFI, on the same droplet apparatus.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel"
+    ],
+    "hardware_family": "Multi-user Droplet Combustion Apparatus in the Combustion Integrated Rack"
+   }
+  ],
+  "PSI-68": [
+   {
+    "psi_id": "PSI-69",
+    "reason": "FLEX is the first flight of this droplet series and the one with stated suppression findings.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "Multi-user Droplet Combustion Apparatus in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-39",
+    "reason": "CFI used the same droplet apparatus to study cool flames in more detail.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "Multi-user Droplet Combustion Apparatus in the Combustion Integrated Rack"
+   }
+  ],
+  "PSI-39": [
+   {
+    "psi_id": "PSI-69",
+    "reason": "PSI links CFI to FLEX, where cool flames after hot-flame extinction were first seen.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel"
+    ],
+    "hardware_family": "Multi-user Droplet Combustion Apparatus in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-159",
+    "reason": "ACME CFI-G studies cool flames with gas fuels instead of droplets.",
+    "basis": [
+     "role"
+    ],
+    "hardware_family": null
+   }
+  ],
+  "PSI-20": [
+   {
+    "psi_id": "PSI-10",
+    "reason": "ACME Flame Design used the same ACME burner hardware and also reached 40% oxygen.",
+    "basis": [
+     "hardware",
+     "fuel"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-25",
+    "reason": "BASS-II burned real solid fuels, the materials BRE emulates with a gas burner.",
+    "basis": [
+     "role"
+    ],
+    "hardware_family": null
+   }
+  ],
+  "PSI-10": [
+   {
+    "psi_id": "PSI-159",
+    "reason": "ACME CFI-G used the same spherical-flame setup, normal and inverse, to look for cool diffusion flames.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-23",
+    "reason": "ACME s-Flame studied spherical diffusion flames on the same ACME hardware.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   }
+  ],
+  "PSI-159": [
+   {
+    "psi_id": "PSI-10",
+    "reason": "ACME Flame Design used the same spherical-flame setup and atmospheres up to 40% oxygen.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-39",
+    "reason": "CFI studies cool flames around fuel droplets rather than gas flames.",
+    "basis": [
+     "role"
+    ],
+    "hardware_family": null
+   }
+  ],
+  "PSI-21": [
+   {
+    "psi_id": "PSI-106",
+    "reason": "SLICE studied lifted coflow flames in the glovebox and, per NASA's Guide, is the precursor to CLD Flame.",
+    "basis": [
+     "fuel",
+     "role"
+    ],
+    "hardware_family": null
+   },
+   {
+    "psi_id": "PSI-22",
+    "reason": "ACME E-FIELD Flames also used a coflow burner on the same ACME hardware.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   }
+  ],
+  "PSI-22": [
+   {
+    "psi_id": "PSI-23",
+    "reason": "PSI links E-FIELD Flames to s-Flame; both are ACME gas-flame studies on the same hardware.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-21",
+    "reason": "ACME CLD Flame used a coflow burner like the one E-FIELD Flames tested under an electric field.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   }
+  ],
+  "PSI-23": [
+   {
+    "psi_id": "PSI-22",
+    "reason": "PSI links s-Flame to E-FIELD Flames; both are ACME gas-flame studies on the same hardware.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   },
+   {
+    "psi_id": "PSI-10",
+    "reason": "ACME Flame Design also studied spherical diffusion flames on the same ACME hardware.",
+    "basis": [
+     "hardware",
+     "fuel",
+     "role"
+    ],
+    "hardware_family": "ACME burners in the Combustion Integrated Rack"
+   }
+  ],
+  "PSI-107": [
+   {
+    "psi_id": "PSI-106",
+    "reason": "SLICE reused the SPICE flow duct in the glovebox to study lifted flames.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "flow duct in the Microgravity Science Glovebox"
+   },
+   {
+    "psi_id": "PSI-26",
+    "reason": "PSI links BASS to SPICE: both used a fan-driven flow duct in the station glovebox.",
+    "basis": [
+     "psi_link",
+     "hardware"
+    ],
+    "hardware_family": "flow duct in the Microgravity Science Glovebox"
+   }
+  ],
+  "PSI-106": [
+   {
+    "psi_id": "PSI-107",
+    "reason": "SPICE is the earlier glovebox experiment whose hardware SLICE reused.",
+    "basis": [
+     "psi_link",
+     "hardware",
+     "fuel",
+     "role",
+     "finding"
+    ],
+    "hardware_family": "flow duct in the Microgravity Science Glovebox"
+   },
+   {
+    "psi_id": "PSI-21",
+    "reason": "ACME CLD Flame continues SLICE's lifted coflow-flame research on ACME hardware.",
+    "basis": [
+     "fuel",
+     "role"
+    ],
+    "hardware_family": null
+   }
+  ]
+ }
+}

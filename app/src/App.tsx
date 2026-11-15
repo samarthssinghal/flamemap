@@ -7,6 +7,7 @@ import EvidenceMap from './pages/EvidenceMap'
 import Explorer from './pages/Explorer'
 import Compare from './pages/Compare'
 import About from './pages/About'
+import Ask from './pages/Ask'
 
 interface Ctx {
   data: AppData
@@ -30,7 +31,7 @@ export const useApp = () => useContext(AppCtx) as Ctx
 export const DISCLAIMER =
   'FlameMap is a student hackathon project and a research-navigation aid. It ranks how closely past NASA experiments match a chosen environment. It does not predict fire behavior, assess risk or certify safety, and it is not NASA guidance. Always consult the original PSI records and publications.'
 
-const TITLES: Record<string, string> = { '/': 'Rank', '/map': 'Evidence map', '/explorer': 'Explorer', '/compare': 'Compare', '/about': 'Method and sources' }
+const TITLES: Record<string, string> = { '/': 'Rank', '/map': 'Evidence map', '/explorer': 'Explorer', '/compare': 'Compare', '/ask': 'Ask the evidence', '/about': 'Method and sources' }
 const num = (s: string | undefined) => (s === undefined || s === '' || s === 'x' || isNaN(Number(s)) ? null : Number(s))
 
 /** Keeps the selection in the address (after the #) so a view can be shared as a link. */
@@ -114,6 +115,7 @@ export default function App() {
             <NavLink to="/" end>Rank</NavLink>
             <NavLink to="/map">Evidence map</NavLink>
             <NavLink to="/explorer">Explorer</NavLink>
+            <NavLink to="/ask">Ask the evidence</NavLink>
             <NavLink to="/compare">Compare{compare.length ? ` (${compare.length})` : ''}</NavLink>
             <NavLink to="/about">Method and sources</NavLink>
           </nav>
@@ -124,6 +126,7 @@ export default function App() {
             <Route path="/map" element={<EvidenceMap />} />
             <Route path="/explorer" element={<Explorer />} />
             <Route path="/compare" element={<Compare />} />
+            <Route path="/ask" element={<Ask />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>

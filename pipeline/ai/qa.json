@@ -1,0 +1,76 @@
+{
+ "about": "Curated questions for 'Ask the evidence' (REVIEW_ISSUES R06c, option 3: static, no API key). Answers written with Claude Code from pipeline/ai/context.md only; every sentence is checked by pipeline/ai_build.mjs.",
+ "questions": [
+  { "id": "solid-high-o2", "question": "Has any solid fuel been tested above 30% oxygen?", "tags": ["prevention", "oxygen", "solid", "habitat"], "answer": [
+   { "text": "No. The highest oxygen level in any solid-fuel data table in PSI is 22.2%, in BASS-II.", "cites": ["stat:max_o2_solid", "PSI-25"] },
+   { "text": "Of the 270 runs at 30% oxygen or more, all come from gas flames (ACME Flame Design, ACME CFI-G) or fuel droplets (FLEX).", "cites": ["stat:runs_o2_ge_30", "PSI-10", "PSI-159", "PSI-69"] },
+   { "text": "The closest evidence for materials is ACME BRE, a gas burner that emulates burning solids: its flames kept burning without airflow in elevated-oxygen atmospheres but went out at 21% oxygen.", "cites": ["PSI-20", "F13"] }
+  ]},
+  { "id": "ventilation-off", "question": "Does shutting off ventilation put a fire out in microgravity?", "tags": ["suppression", "airflow", "ventilation"], "answer": [
+   { "text": "Not reliably. ACME BRE saw flames emulating PMMA and Nylon keep burning steadily with no airflow, even though stopping ventilation is an established step in fighting spacecraft fires.", "cites": ["PSI-20", "F12"] },
+   { "text": "That held in elevated-oxygen atmospheres; at 21% oxygen the same flames went out in a short time.", "cites": ["F13"] },
+   { "text": "BASS also found that a local suppressant jet pulled in air and kept a flame burning even with the ambient airflow turned off.", "cites": ["PSI-26", "F2"] }
+  ]},
+  { "id": "1g-test-conservative", "question": "Is NASA's normal-gravity flammability test conservative for space?", "tags": ["prevention", "materials", "standards"], "answer": [
+   { "text": "Not always. NASA states that the 1-g screening test (NASA-STD-6001 Test 1) is not conservative, because materials can burn at lower oxygen levels in microgravity than on Earth.", "cites": ["PSI-25", "PSI-26", "F1"] },
+   { "text": "SAFFIRE-II, the one study with matched burns in both gravities, shows it depends on the material: silicone and PMMA burned less in microgravity, while the cotton-fiberglass fabric burned its full length in both.", "cites": ["PSI-99", "F9", "F10", "F11"] }
+  ]},
+  { "id": "lunar-habitat", "question": "Which data supports a lunar habitat at 30% oxygen and 70.3 kPa?", "tags": ["habitat", "moon", "oxygen", "pressure"], "answer": [
+   { "text": "Very little. Of 875 runs with both oxygen and pressure, 23 fall within 5 oxygen points and 10 kPa of this atmosphere, all of them FLEX fuel droplets.", "cites": ["gap:moon_base/combined", "PSI-69"] },
+   { "text": "No solid-fuel table records pressure, and the highest solid-fuel oxygen is 22.2%, 7.8 points short.", "cites": ["gap:moon_base/low_pressure", "gap:moon_base/o2_solids"] },
+   { "text": "None of the 19 flight investigations ran at lunar gravity.", "cites": ["gap:moon_base/partial_gravity"] }
+  ]},
+  { "id": "exploration-atmosphere", "question": "What evidence exists for NASA's Exploration Atmosphere (34% oxygen, 56.5 kPa)?", "tags": ["habitat", "oxygen", "pressure", "artemis"], "answer": [
+   { "text": "Only 19 runs fall within 5 oxygen points and 10 kPa of it, all ACME CFI-G gas flames.", "cites": ["gap:exploration_atm/combined", "PSI-159"] },
+   { "text": "FLEX-2, CFI and ACME CFI-G recorded pressure ranges that include 56.5 kPa; none of them burned solid fuels.", "cites": ["gap:exploration_atm/low_pressure", "PSI-68", "PSI-39", "PSI-159"] },
+   { "text": "The highest solid-fuel oxygen tested is 11.8 points below this atmosphere.", "cites": ["gap:exploration_atm/o2_solids"] }
+  ]},
+  { "id": "partial-gravity", "question": "Is there any evidence at Moon or Mars gravity?", "tags": ["gravity", "moon", "mars"], "answer": [
+   { "text": "No. All 19 flight investigations ran in microgravity, so there is no partial-gravity evidence in this collection.", "cites": ["gap:moon_base/partial_gravity", "gap:mars_base/partial_gravity"] },
+   { "text": "The one gravity comparison available is SAFFIRE-II, which lists normal-gravity burn lengths next to its microgravity results.", "cites": ["PSI-99", "F9", "F10"] }
+  ]},
+  { "id": "earth-detector", "question": "Would an Earth smoke detector work on a spacecraft?", "tags": ["detection", "smoke"], "answer": [
+   { "text": "NASA says probably not as designed: smoke particles from microgravity fires differ greatly in size, so a terrestrial detector would be looking for the wrong signature.", "cites": ["F7"] },
+   { "text": "SAME and SAME-R measured smoke from overheated spacecraft materials in the station glovebox to provide that microgravity baseline.", "cites": ["PSI-102", "PSI-101"] },
+   { "text": "The first SAME flight's particle samples came back contaminated and unusable, one reason SAME-R reflew.", "cites": ["F15", "PSI-102", "PSI-101"] }
+  ]},
+  { "id": "gas-suppressants", "question": "Do gaseous suppressants work as well in space as on Earth?", "tags": ["suppression", "standards"], "answer": [
+   { "text": "FLEX found the flammability limit is lower in microgravity, so inert-gas suppressant standards set on Earth give less margin of safety in space.", "cites": ["PSI-69", "F4"] },
+   { "text": "For heptane and methanol droplets, the limiting oxygen index was significantly lower than in normal gravity and lower than predicted.", "cites": ["F5"] },
+   { "text": "For burning solids, BASS found that nitrogen applied to a flame could make it stronger by drawing in oxygen.", "cites": ["PSI-26", "F3"] }
+  ]},
+  { "id": "dangerous-airflow", "question": "What airflow is most dangerous for burning materials in microgravity?", "tags": ["prevention", "airflow", "ventilation"], "answer": [
+   { "text": "NASA states that for flame spread over solids, the lowest oxygen that supports burning occurs near 10 cm/s, the typical speed of spacecraft ventilation, where spread rate is also highest.", "cites": ["F18"] },
+   { "text": "Direction matters too: in SAFFIRE-I at 20 cm/s, the flame spreading with the flow burned for 420 s, against the flow for 70 s.", "cites": ["PSI-98", "F8"] }
+  ]},
+  { "id": "flame-direction", "question": "Do flames spread differently in microgravity?", "tags": ["prevention", "airflow"], "answer": [
+   { "text": "Yes. At low airflow in space, a thin fuel lit in the middle spreads its flame upstream into the oncoming air, the opposite of normal gravity.", "cites": ["F19"] },
+   { "text": "BASS, BASS-II and the Saffire flights burned solids in both opposed and concurrent flow.", "cites": ["PSI-26", "PSI-25", "PSI-98", "PSI-99", "PSI-100"] }
+  ]},
+  { "id": "cool-flames", "question": "What are cool flames and why do they matter for fire safety?", "tags": ["suppression", "droplets", "cool flames"], "answer": [
+   { "text": "FLEX saw that after the visible flame around a heptane droplet went out, a stable low-temperature cool flame formed and kept burning.", "cites": ["PSI-69", "F6"] },
+   { "text": "NASA notes the cool flame can burn for a prolonged time, a result many researchers had thought impossible.", "cites": ["F17"] },
+   { "text": "A fire that looks extinguished may therefore still be reacting; CFI and ACME CFI-G study cool flames in more detail.", "cites": ["F6", "PSI-39", "PSI-159"] }
+  ]},
+  { "id": "solid-pressure", "question": "Which solid-fuel studies recorded pressure?", "tags": ["prevention", "pressure", "solid"], "answer": [
+   { "text": "None. No solid-fuel table in PSI records pressure, so FlameMap assumes cabin pressure for them and labels it as assumed.", "cites": ["stat:solid_investigations_with_recorded_pressure", "PSI-25", "PSI-26", "PSI-98", "PSI-99", "PSI-100"] },
+   { "text": "The lowest recorded pressure in any table is 50.7 kPa, in FLEX-2 fuel-droplet tests.", "cites": ["stat:min_recorded_pressure", "PSI-68"] }
+  ]},
+  { "id": "spacesuit", "question": "Is there any data near a spacesuit atmosphere?", "tags": ["spacesuit", "oxygen", "pressure"], "answer": [
+   { "text": "No. Of 875 runs with both oxygen and pressure, none is within 5 oxygen points and 10 kPa of 100% oxygen at 29.6 kPa.", "cites": ["gap:spacesuit/combined", "env:spacesuit"] },
+   { "text": "The highest oxygen in any table is 40%, in gas flames, and no recorded pressure range includes 29.6 kPa.", "cites": ["gap:spacesuit/o2_any", "gap:spacesuit/low_pressure"] }
+  ]},
+  { "id": "both-gravities", "question": "Which materials were burned in both microgravity and normal gravity?", "tags": ["prevention", "gravity", "materials"], "answer": [
+   { "text": "Only SAFFIRE-II lists both. None of its four silicone samples burned in microgravity, though two burned completely in 1-g.", "cites": ["PSI-99", "F9"] },
+   { "text": "Both PMMA samples burned completely in 1-g but only about 10 cm in microgravity, and the cotton-fiberglass fabric burned its full 29 cm in both.", "cites": ["F10", "F11"] }
+  ]},
+  { "id": "high-o2-any", "question": "Which studies reached the highest oxygen levels?", "tags": ["oxygen"], "answer": [
+   { "text": "Gas-flame studies: ACME BRE, ACME Flame Design and ACME CFI-G all reached 40% oxygen.", "cites": ["gap:spacesuit/o2_any", "PSI-20", "PSI-10", "PSI-159"] },
+   { "text": "Flame Design and CFI-G were not aimed at fire safety, but they are the only runs near the oxygen levels proposed for future habitats; 37 runs reached 30% oxygen or more at 75 kPa or less, from ACME CFI-G and FLEX.", "cites": ["PSI-10", "PSI-159", "PSI-69", "stat:runs_o2_ge_30_and_p_le_75"] }
+  ]},
+  { "id": "smoke-jet-flames", "question": "Do flames make smoke differently in low gravity?", "tags": ["detection", "soot"], "answer": [
+   { "text": "Yes. NASA states that gas-jet flames start producing smoke at substantially different conditions in low gravity than on Earth, contrary to earlier predictions.", "cites": ["F20"] },
+   { "text": "SPICE measured the smoke point of gas-jet flames on the station, and SLICE reused its hardware.", "cites": ["PSI-107", "PSI-106"] }
+  ]}
+ ]
+}

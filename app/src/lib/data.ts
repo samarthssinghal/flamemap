@@ -1,4 +1,4 @@
-import type { EnvFile, GapFile, Investigation, RunPoint } from './types'
+import type { AiLabel, Brief, EnvFile, Finding, GapFile, Investigation, QA, Related, RunPoint } from './types'
 
 export interface Insights {
   snapshot_date: string
@@ -33,6 +33,11 @@ export interface AppData {
   insights: Insights
   sources: SourceFile
   earth: EarthFile
+  findings: (Finding & { psi_ids: string[] })[]
+  ai: AiLabel
+  briefs: Brief[]
+  qa: QA[]
+  related: Record<string, Related[]>
 }
 
 const get = async <T,>(f: string): Promise<T> => {
@@ -42,7 +47,7 @@ const get = async <T,>(f: string): Promise<T> => {
 }
 
 export async function loadData(): Promise<AppData> {
-  const [investigations, runs, env, gaps, insights, sources, earth] = await Promise.all([
+  const [investigations, runs, env, gaps, insights, sources, earth, findings, briefs, qa, related] = await Promise.all([
     get<Investigation[]>('investigations.json'),
     get<RunPoint[]>('runs.json'),
     get<EnvFile>('environments.json'),
@@ -50,8 +55,13 @@ export async function loadData(): Promise<AppData> {
     get<Insights>('insights.json'),
     get<SourceFile>('sources.json'),
     get<EarthFile>('earth_applications.json'),
+    get<AppData['findings']>('findings.json'),
+    get<AiLabel & { briefs: Brief[] }>('briefs.json'),
+    get<AiLabel & { questions: QA[] }>('qa.json'),
+    get<AiLabel & { related: Record<string, Related[]> }>('related.json'),
   ])
-  return { investigations, runs, env, gaps, insights, sources, earth }
+  const { briefs: _b, ...ai } = briefs
+  return { investigations, runs, env, gaps, insights, sources, earth, findings, ai, briefs: _b, qa: qa.questions, related: related.related }
 }
 
 export const ROLE_LABEL: Record<string, string> = { prevention: 'Prevention', detection: 'Detection', suppression: 'Suppression', fundamental: 'Fundamental' }

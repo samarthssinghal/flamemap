@@ -3,6 +3,8 @@ import type { Finding, Investigation } from '../lib/types'
 const KIND_LABEL: Record<Finding['kind'], string> = {
   nasa_stated: 'NASA-stated finding',
   nasa_context: 'NASA context',
+  record_stated: 'Stated in the PSI record',
+  limitation: 'Data limitation (PSI record)',
   from_data: 'From the PSI data table',
 }
 
@@ -17,7 +19,7 @@ export default function Findings({ inv, compact = false }: { inv: Investigation;
     return (
       <ul className="findings compact">
         {inv.findings.map((f) => (
-          <li key={f.text}>{f.text} <a className="dim src" href={sourceHref(f)} target="_blank" rel="noreferrer">({f.source.type === 'nasa_guide' ? `Guide p. ${f.source.page}` : 'PSI table'})</a></li>
+          <li key={f.text}>{f.text} <a className="dim src" href={sourceHref(f)} target="_blank" rel="noreferrer">({f.source.type === 'nasa_guide' ? `Guide p. ${f.source.page}` : f.source.type === 'psi_text' ? 'PSI record' : 'PSI table'})</a></li>
         ))}
       </ul>
     )

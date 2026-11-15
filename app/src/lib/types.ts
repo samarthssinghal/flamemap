@@ -51,11 +51,12 @@ export interface Investigation {
 
 /** A key finding, checked at build time against its source (pipeline/findings.json). */
 export interface Finding {
-  kind: 'nasa_stated' | 'nasa_context' | 'from_data'
+  id: string
+  kind: 'nasa_stated' | 'nasa_context' | 'record_stated' | 'limitation' | 'from_data'
   text: string
   quote: string | null
   cells: { row: string; column: string; value: string }[]
-  source: { type: 'nasa_guide' | 'psi_table'; label: string; url: string; page?: number; file?: string }
+  source: { type: 'nasa_guide' | 'psi_table' | 'psi_text'; label: string; url: string; page?: number; file?: string; field?: string }
   attribution_note: string | null
   generated_by: string
   /** other investigations this finding is also shown on */
@@ -128,3 +129,10 @@ export interface RankedItem {
   breakdown: Factor[]
   flags: string[]
 }
+
+/** AI-written text (pipeline/ai_build.mjs): every sentence carries cites, checked at build time. */
+export interface Cited { text: string; cites: string[] }
+export interface AiLabel { generated_with: string; model: string; date: string; checked: string; human_reviewed: boolean }
+export interface Brief { env_ids: string[]; task_id: string; points: (Cited & { kind: 'headline' | 'closest' | 'found' | 'untested' | 'next' })[] }
+export interface QA { id: string; question: string; tags: string[]; answer: Cited[] }
+export interface Related { psi_id: string; reason: string; basis: string[]; hardware_family: string | null }

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useApp } from '../App'
+import { AiNote } from '../components/Cites'
 import Findings from '../components/Findings'
 import { AVAIL_LABEL, FUEL_LABEL, ROLE_LABEL, SRC_LABEL, fmtRange } from '../lib/data'
 import { flatInv, saveCsv, saveJson } from '../lib/export'
@@ -10,8 +12,11 @@ export function Cond({ c, unit }: { c: RangeCond | null; unit: string }) {
   return <>{fmtRange(c, unit)} <span className={`chip c-${c.confidence}`} title={c.source.ref}>{SRC_LABEL[c.source.type]}</span></>
 }
 
-function Detail({ i, close }: { i: Investigation; close: () => void }) {
-  const { compare, toggleCompare } = useApp()
+const BASIS: Record<string, string> = { psi_link: 'linked on PSI', hardware: 'same hardware', fuel: 'same fuel type', role: 'same fire-safety role', finding: 'shared finding' }
+
+function Detail({ i, close, open }: { i: Investigation; close: () => void; open: (id: string) => void }) {
+  const { data, compare, toggleCompare } = useApp()
+  const related = data.related[i.psi_id] ?? []
   const closeRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     closeRef.current?.focus()
@@ -82,6 +87,23 @@ function Detail({ i, close }: { i: Investigation; close: () => void }) {
           </ul>
         </details>
       )}
+      {related.length > 0 && (
+        <>
+          <h3>Studies like this one</h3>
+          <ul className="related">
+            {related.map((r) => {
+              const t = data.investigations.find((x) => x.psi_id === r.psi_id)
+              return (
+                <li key={r.psi_id}>
+                  <button className="link" onClick={() => open(r.psi_id)}>{t?.acronym ?? r.psi_id}</button>: {r.reason}
+                  <span className="chips">{r.basis.map((b) => <span key={b} className="chip">{b === 'hardware' && r.hardware_family ? r.hardware_family : BASIS[b]}</span>)}</span>
+                </li>
+              )
+            })}
+          </ul>
+          <AiNote what="These reasons were" />
+        </>
+      )}
       {i.related_modeling.length > 0 && (<><h3>Related modeling studies in PSI</h3><ul>{i.related_modeling.map((m) => <li key={m.psi_id}><a href={m.url} target="_blank" rel="noreferrer">{m.psi_id}: {m.title}</a></li>)}</ul></>)}
       <p className="links">
         <a href={i.url} target="_blank" rel="noreferrer">Open the PSI record</a>
@@ -98,7 +120,8 @@ export default function Explorer() {
   const [role, setRole] = useState('')
   const [fuel, setFuel] = useState('')
   const [avail, setAvail] = useState('')
-  const [sel, setSel] = useState<string | null>(null)
+  const [params] = useSearchParams()
+  const [sel, setSel] = useState<string | null>(() => params.get('open'))
   const lastBtn = useRef<HTMLElement | null>(null)
   const closeDetail = useMemo(() => () => { setSel(null); lastBtn.current?.focus() }, [])
   const rows = useMemo(() => data.investigations.filter((i) => {
@@ -145,7 +168,7 @@ export default function Explorer() {
           </tbody>
         </table>
       </div>
-      {selInv && <Detail i={selInv} close={closeDetail} />}
+      {selInv && <Detail i={selInv} close={closeDetail} open={setSel} />}
     </>
   )
 }
