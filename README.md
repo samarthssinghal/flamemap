@@ -6,14 +6,6 @@ Live: https://samarthssinghal.github.io/flamemap/
 
 Choose where your crew will live (station cabin, lunar habitat, Mars habitat, spacesuit, NASA's Exploration Atmosphere…) and what you are working on (prevention, detection, suppression). FlameMap's AI briefing explains what 19 NASA microgravity combustion investigations say about fire safety there and what has never been tested, with a citation on every sentence. Ask your own questions in plain words, or open the ranking to see the arithmetic behind every match score.
 
-## The AI, and how it is kept honest
-- **AI writes the interpretation.** Claude Opus 5.5 (through Claude Code) wrote the 18 briefings, 66 answers on "Ask the evidence" (with 198 paraphrases for matching), 42 "Studies like this one" reasons and 20 key findings, from `pipeline/ai/context.md` only: the computed rankings, gaps, investigation facts and checked findings.
-- **A script checks every sentence.** `pipeline/ai_build.mjs` (rules in `app/src/lib/verify.ts`) fails the build on any number not found in what the sentence cites, any study named without being cited, any citation that does not resolve, or any "closest evidence" claim outside the computed top five. Current text: 295 sentences, 667 citations, 311 numbers, all passing. Findings must match their NASA quote or table cells word for word (`pipeline/build_data.mjs`).
-- **A person reviews it.** `docs/AI_TEXT_REVIEW.md` lists every sentence with its sources expanded; the sign-off in `pipeline/ai/meta.json` is tied to a hash of the text, and the build fails if the text changes afterwards.
-- **No keys, no server.** The text is written ahead of time and ships as static JSON. "Ask the evidence" matches a visitor's question to the checked answers by meaning, with a small sentence-embedding model (all-MiniLM-L6-v2) running in the browser from the site's own files; it compares questions and never generates text. Until the model loads, or if it cannot, keyword matching answers.
-- **Arithmetic ranks, AI explains.** Match scores and gap statements are plain arithmetic on the PSI data, so every result can be checked by hand. The AI cannot change a ranking.
-- **Built to extend.** Answers come through an `AnswerProvider` interface (`app/src/lib/answer.ts`). A live mode (a visitor's own Anthropic key, or a hosted proxy with rate limits and a spending cap) would plug in there and run its sentences through the same checks in the browser. It is designed, not enabled.
-- Study summaries are AI-drafted from the PSI record text and labeled; their human review is still pending. The code was written with an AI coding assistant (Anthropic Claude).
 
 ## Run it
 ```
